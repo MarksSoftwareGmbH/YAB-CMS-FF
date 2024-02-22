@@ -33,6 +33,8 @@ When the composer update is finished
   * Update the file /config/app_local.php Datasources array with the database, username and password for the `default`, `test_mysql`, `development` and `production` configurations.
   * Update the file /config/app_local.php EmailTransport array with a default email server configuration (SMTP or Mail transport).
   * Visit http://your-site.com/ from your browser.
+  * Visit http://your-site.com/login to login as Admin, the default username: Admin and password: superadmin (Please change this credentials to your needs).
+  * Visit http://your-site.com/admin/dashboard to manage the backend as Admin.
 
 #### Installation using the ZIP [Archive](https://github.com/MarksSoftwareGmbH/YAB-CMS-FF/archive/refs/heads/main.zip)
 
@@ -44,6 +46,8 @@ When the composer update is finished
   * Update the file /config/app_local.php Datasources array with the database, username and password for the `default`, `test_mysql`, `development` and `production` configurations.
   * Update the file /config/app_local.php EmailTransport array with a default email server configuration (SMTP or Mail transport).
   * Visit http://your-site.com/ from your browser.
+  * Visit http://your-site.com/login to login as Admin, the default username: Admin and password: superadmin (Please change this credentials to your needs).
+  * Visit http://your-site.com/admin/dashboard to manage the backend as Admin.
 
 ## Vendor plugins
 
