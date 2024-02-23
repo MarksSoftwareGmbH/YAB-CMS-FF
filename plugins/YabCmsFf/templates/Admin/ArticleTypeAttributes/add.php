@@ -107,7 +107,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '1'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '1',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [
@@ -121,7 +121,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '2'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '2',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [
@@ -135,7 +135,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '3'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '3',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [
@@ -149,7 +149,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '4'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '4',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [
@@ -163,7 +163,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '5'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '5',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [
@@ -177,7 +177,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '6'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '6',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [
@@ -191,7 +191,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '7'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '7',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [
@@ -205,7 +205,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '8'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '8',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [
@@ -219,7 +219,7 @@ $this->Breadcrumbs->add([
                         'type'  => 'url',
                         'label' => [
                             'class'         => 'col-sm-2 col-form-label',
-                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '9'),
+                            'text'          => __d('yab_cms_ff', 'Link') . ' ' . '9',
                             'escapeTitle'   => false,
                         ],
                         'templates' => [

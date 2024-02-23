@@ -28,6 +28,11 @@ use Cake\Core\Configure;
 // Get session object
 $session = $this->getRequest()->getSession();
 
+$frontendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.frontendLinkTextColor')):
+    $frontendLinkTextColor = Configure::read('YabCmsFf.settings.frontendLinkTextColor');
+endif;
+
 $frontendButtonColor = 'secondary';
 if (Configure::check('YabCmsFf.settings.frontendButtonColor')):
     $frontendButtonColor = Configure::read('YabCmsFf.settings.frontendButtonColor');
@@ -161,6 +166,144 @@ $this->Breadcrumbs->add([
             <div class="col-md-12">
                 <div class="card card-<?= h($frontendBoxColor); ?> card-outline">
                     <div class="card-body">
+
+                        <?php
+                            if (
+                                $session->check('Auth.User.id') &&
+                                ($session->read('Auth.User.id') == $userProfileDiaryEntry->user->user_profile->user_id)
+                            ):
+                        ?>
+                            <div class="post">
+                                <?= $this->Html->link(
+                                    __d('yab_cms_ff', 'Add a diary entry')
+                                    . ' '
+                                    . $this->Html->tag('i', '', ['class' => 'fas fa-plus']),
+                                    'javascript:void(0)',
+                                    [
+                                        'title'         => __d('yab_cms_ff', 'Add a diary entry'),
+                                        'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                        'type'          => 'button',
+                                        'data-toggle'   => 'collapse',
+                                        'data-target'   => '#collapse_add_diary_entry_collapse',
+                                        'escapeTitle'   => false,
+                                    ]); ?>
+                                <div class="collapse" id="collapse_add_diary_entry_collapse">
+                                    <hr data-content="<?= __d('yab_cms_ff', 'Add'); ?>" class="hr-text">
+                                    <?= $this->Form->create(null, [
+                                        'role'  => 'form',
+                                        'type'  => 'file',
+                                        'url' => [
+                                            'plugin'        => 'YabCmsFf',
+                                            'controller'    => 'UserProfileDiaryEntries',
+                                            'action'        => 'add',
+                                        ],
+                                        'class' => 'form-horizontal user-profile-diary-entry-add',
+                                    ]); ?>
+                                    <?= $this->Form->control('entry_title', [
+                                        'type'  => 'text',
+                                        'label' => [
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Title') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
+                                        ],
+                                        'templates' => [
+                                            'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
+                                            'inputContainerError'   => '<div class="form-group row {{type}}{{required}} invalid-feedback">{{content}}{{error}}{{help}}</div>',
+                                            'formGroup'             => '{{label}}' . '<div class="col-sm-10">{{input}}</div>',
+                                        ],
+                                        'required'  => true,
+                                        'maxlenght' => 254,
+                                    ]); ?>
+                                    <?= $this->Form->control('entry_body', [
+                                        'type'  => 'textarea',
+                                        'label' => [
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Text') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
+                                        ],
+                                        'templates' => [
+                                            'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
+                                            'inputContainerError'   => '<div class="form-group row {{type}}{{required}} invalid-feedback">{{content}}{{error}}{{help}}</div>',
+                                            'formGroup'             => '{{label}}' . '<div class="col-sm-10">{{input}}</div>',
+                                        ],
+                                        'class'     => 'entry_body',
+                                        'required'  => true,
+                                    ]); ?>
+                                    <?= $this->Form->control('entry_avatar', [
+                                        'type'      => 'hidden',
+                                        'value'     => '/yab_cms_ff/img/avatars/avatar.jpg',
+                                    ]); ?>
+                                    <?= $this->Form->control('entry_avatar_file', [
+                                        'type'      => 'file',
+                                        'accept'    => 'image/jpeg,image/jpg,image/gif',
+                                        'label'     => [
+                                            'class'         => 'col-sm-2 col-form-label',
+                                            'text'          => __d('yab_cms_ff', 'Avatar') . ' ' . '(jpg/gif)',
+                                            'escapeTitle'   => false,
+                                        ],
+                                        'templates'     => [
+                                            'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
+                                            'inputContainerError'   => '<div class="form-group row {{type}}{{required}} invalid-feedback">{{content}}{{error}}{{help}}</div>',
+                                            'formGroup'             => '{{label}}' . '<div class="col-sm-10">{{input}}</div>',
+                                        ],
+                                        'required'  => false,
+                                    ]); ?>
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <?= $this->Form->button(__d('yab_cms_ff', 'Save'), ['class' => 'btn btn-' . h($frontendButtonColor) . ' btn-block']); ?>
+                                        </div>
+                                    </div>
+                                    <?= $this->Form->end(); ?>
+                                </div>
+                                <?= $this->Html->scriptBlock(
+                                    '$(function() {
+                                        // Initialize summernote
+                                        $(\'.entry_body\').summernote({
+                                            toolbar: [
+                                                [\'style\', [\'style\']],
+                                                [\'font\', [\'bold\', \'underline\', \'clear\']],
+                                                [\'fontname\', [\'fontname\']],
+                                                [\'color\', [\'color\']],
+                                                [\'para\', [\'ul\', \'ol\', \'paragraph\']],
+                                                [\'table\', [\'table\']],
+                                                [\'insert\', [\'link\']],
+                                                [\'view\', [\'fullscreen\']]
+                                            ],
+                                            placeholder: \'' . __d('yab_cms_ff', 'Please enter a valid entry text') . '\',
+                                            tabsize: 2,
+                                            height: 100
+                                        });
+                                        $(\'.user-profile-diary-entry-add\').submit(function(event) {
+                                            $(\'.entry_body\').summernote(\'destroy\');
+                                        });
+                                        $(\'.user-profile-diary-entry-add\').validate({
+                                            rules: {
+                                                entry_title: {
+                                                    required: true
+                                                }
+                                            },
+                                            messages: {
+                                                entry_title: {
+                                                    required: \'' . __d('yab_cms_ff', 'Please enter a valid entry title') . '\'
+                                                }
+                                            },
+                                            errorElement: \'span\',
+                                            errorPlacement: function (error, element) {
+                                                error.addClass(\'invalid-feedback\');
+                                                element.closest(\'.form-group\').append(error);
+                                            },
+                                            highlight: function (element, errorClass, validClass) {
+                                                $(element).addClass(\'is-invalid\');
+                                            },
+                                            unhighlight: function (element, errorClass, validClass) {
+                                                $(element).removeClass(\'is-invalid\');
+                                            }
+                                        });
+                                    });',
+                                    ['block' => 'scriptBottom']); ?>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="post">
                             <div class="user-block">
                                 <?= $this->Html->image(
@@ -231,7 +374,156 @@ $this->Breadcrumbs->add([
                                         'target'        => '_blank',
                                         'class'         => 'text-sm mr-2',
                                         'escapeTitle'   => false,
-                                    ]); ?><p>
+                                    ]); ?>
+                                <?php
+                                    if (
+                                        $session->check('Auth.User.id') &&
+                                        ($session->read('Auth.User.id') == $userProfileDiaryEntry->user->user_profile->user_id)
+                                    ):
+                                ?>
+                                    <?= $this->Html->link(
+                                        $this->Html->tag('i', '', ['class' => 'fas fa-edit mr-1']),
+                                        'javascript:void(0)',
+                                        [
+                                            'title'         => __d('yab_cms_ff', 'Edit'),
+                                            'class'         => 'float-right btn-tool text-' . h($frontendLinkTextColor),
+                                            'data-toggle'   => 'collapse',
+                                            'data-target'   => '#collapse_' . h($userProfileDiaryEntry->foreign_key) . '_collapse',
+                                            'escapeTitle'   => false,
+                                        ]); ?>
+                                <?php endif; ?>
+                                </p>
+                                <?php
+                                    if (
+                                        $session->check('Auth.User.id') &&
+                                        ($session->read('Auth.User.id') == $userProfileDiaryEntry->user->user_profile->user_id)
+                                    ):
+                                ?>
+                                    <div class="collapse" id="collapse_<?= h($userProfileDiaryEntry->foreign_key); ?>_collapse">
+                                        <hr data-content="<?= __d('yab_cms_ff', 'Edit'); ?>" class="hr-text">
+                                        <?= $this->Form->create(null, [
+                                            'role'  => 'form',
+                                            'type'  => 'file',
+                                            'url' => [
+                                                'plugin'        => 'YabCmsFf',
+                                                'controller'    => 'UserProfileDiaryEntries',
+                                                'action'        => 'edit',
+                                            ],
+                                            'class' => 'form-horizontal user-profile-diary-entry-edit-' . h($userProfileDiaryEntry->foreign_key),
+                                        ]); ?>
+                                        <?= $this->Form->control('foreign_key', [
+                                            'type'  => 'hidden',
+                                            'value'     => h($userProfileDiaryEntry->foreign_key),
+                                            'required'  => true,
+                                            'maxlenght' => 254,
+                                        ]); ?>
+                                        <?= $this->Form->control('entry_title', [
+                                            'type'  => 'text',
+                                            'label' => [
+                                                'class'     => 'col-sm-2 col-form-label',
+                                                'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Title') . '*', ['class' => 'text-danger']),
+                                                'escape'    => false,
+                                            ],
+                                            'templates' => [
+                                                'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
+                                                'inputContainerError'   => '<div class="form-group row {{type}}{{required}} invalid-feedback">{{content}}{{error}}{{help}}</div>',
+                                                'formGroup'             => '{{label}}' . '<div class="col-sm-10">{{input}}</div>',
+                                            ],
+                                            'required'  => true,
+                                            'value'     => htmlspecialchars_decode($userProfileDiaryEntry->entry_title),
+                                            'maxlenght' => 254,
+                                        ]); ?>
+                                        <?= $this->Form->control('entry_body', [
+                                            'type'  => 'textarea',
+                                            'label' => [
+                                                'class'     => 'col-sm-2 col-form-label',
+                                                'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Text') . '*', ['class' => 'text-danger']),
+                                                'escape'    => false,
+                                            ],
+                                            'templates' => [
+                                                'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
+                                                'inputContainerError'   => '<div class="form-group row {{type}}{{required}} invalid-feedback">{{content}}{{error}}{{help}}</div>',
+                                                'formGroup'             => '{{label}}' . '<div class="col-sm-10">{{input}}</div>',
+                                            ],
+                                            'class'     => 'entry_body_' . h($userProfileDiaryEntry->foreign_key),
+                                            'required'  => true,
+                                            'value'     => htmlspecialchars_decode($userProfileDiaryEntry->entry_body),
+                                        ]); ?>
+                                        <?= $this->Form->control('entry_avatar', [
+                                            'type'      => 'hidden',
+                                            'value'     => h($userProfileDiaryEntry->entry_avatar),
+                                        ]); ?>
+                                        <?= $this->Form->control('entry_avatar_file', [
+                                            'type'      => 'file',
+                                            'accept'    => 'image/jpeg,image/jpg,image/gif',
+                                            'label'     => [
+                                                'class'         => 'col-sm-2 col-form-label',
+                                                'text'          => __d('yab_cms_ff', 'Avatar') . ' ' . '(jpg/gif)',
+                                                'escapeTitle'   => false,
+                                            ],
+                                            'templates'     => [
+                                                'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
+                                                'inputContainerError'   => '<div class="form-group row {{type}}{{required}} invalid-feedback">{{content}}{{error}}{{help}}</div>',
+                                                'formGroup'             => '{{label}}' . '<div class="col-sm-10">{{input}}</div>',
+                                            ],
+                                            'required'  => false,
+                                        ]); ?>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <?= $this->Form->button(__d('yab_cms_ff', 'Save'), ['class' => 'btn btn-' . h($frontendButtonColor) . ' btn-block']); ?>
+                                            </div>
+                                        </div>
+                                        <?= $this->Form->end(); ?>
+
+                                        <?= $this->Html->scriptBlock(
+                                            '$(function() {
+                                                // Initialize summernote
+                                                $(\'.entry_body_' . h($userProfileDiaryEntry->foreign_key) . '\').summernote({
+                                                    toolbar: [
+                                                        [\'style\', [\'style\']],
+                                                        [\'font\', [\'bold\', \'underline\', \'clear\']],
+                                                        [\'fontname\', [\'fontname\']],
+                                                        [\'color\', [\'color\']],
+                                                        [\'para\', [\'ul\', \'ol\', \'paragraph\']],
+                                                        [\'table\', [\'table\']],
+                                                        [\'insert\', [\'link\']],
+                                                        [\'view\', [\'fullscreen\']]
+                                                    ],
+                                                    placeholder: \'' . __d('yab_cms_ff', 'Please enter a valid entry text') . '\',
+                                                    tabsize: 2,
+                                                    height: 100
+                                                });
+                                                $(\'.user-profile-diary-entry-edit-' . h($userProfileDiaryEntry->foreign_key) . '\').submit(function(event) {
+                                                    $(\'.entry_body_' . h($userProfileDiaryEntry->foreign_key) . '\').summernote(\'destroy\');
+                                                });
+                                                $(\'.user-profile-diary-entry-edit-' . h($userProfileDiaryEntry->foreign_key) . '\').validate({
+                                                    rules: {
+                                                        entry_title: {
+                                                            required: true
+                                                        }
+                                                    },
+                                                    messages: {
+                                                        entry_title: {
+                                                            required: \'' . __d('yab_cms_ff', 'Please enter a valid entry title') . '\'
+                                                        }
+                                                    },
+                                                    errorElement: \'span\',
+                                                    errorPlacement: function (error, element) {
+                                                        error.addClass(\'invalid-feedback\');
+                                                        element.closest(\'.form-group\').append(error);
+                                                    },
+                                                    highlight: function (element, errorClass, validClass) {
+                                                        $(element).addClass(\'is-invalid\');
+                                                    },
+                                                    unhighlight: function (element, errorClass, validClass) {
+                                                        $(element).removeClass(\'is-invalid\');
+                                                    }
+                                                });
+                                            });',
+                                            ['block' => 'scriptBottom']); ?>
+                                    </div>
+                                <?php endif; ?>
+
                                 <?= $this->Html->scriptBlock(
                                     '$(function() {
                                     $(\'#starCounter' . h($userProfileDiaryEntry->foreign_key) . '\').on(\'click\', function() {

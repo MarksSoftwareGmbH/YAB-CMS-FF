@@ -336,9 +336,9 @@ $this->Breadcrumbs->add([
                                         <?= $this->Form->control('entry_title', [
                                             'type'  => 'text',
                                             'label' => [
-                                                'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Title') . '*', ['class' => 'text-danger']),
-                                                'escapeTitle'   => false,
+                                                'class'     => 'col-sm-2 col-form-label',
+                                                'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Title') . '*', ['class' => 'text-danger']),
+                                                'escape'    => false,
                                             ],
                                             'templates' => [
                                                 'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -351,9 +351,9 @@ $this->Breadcrumbs->add([
                                         <?= $this->Form->control('entry_body', [
                                             'type'  => 'textarea',
                                             'label' => [
-                                                'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Text') . '*', ['class' => 'text-danger']),
-                                                'escapeTitle'   => false,
+                                                'class'     => 'col-sm-2 col-form-label',
+                                                'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Text') . '*', ['class' => 'text-danger']),
+                                                'escape'    => false,
                                             ],
                                             'templates' => [
                                                 'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -553,9 +553,9 @@ $this->Breadcrumbs->add([
                                                 <?= $this->Form->control('entry_title', [
                                                     'type'  => 'text',
                                                     'label' => [
-                                                        'class'         => 'col-sm-2 col-form-label',
-                                                        'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Title') . '*', ['class' => 'text-danger']),
-                                                        'escapeTitle'   => false,
+                                                        'class'     => 'col-sm-2 col-form-label',
+                                                        'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Title') . '*', ['class' => 'text-danger']),
+                                                        'escape'    => false,
                                                     ],
                                                     'templates' => [
                                                         'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -569,9 +569,9 @@ $this->Breadcrumbs->add([
                                                 <?= $this->Form->control('entry_body', [
                                                     'type'  => 'textarea',
                                                     'label' => [
-                                                        'class'         => 'col-sm-2 col-form-label',
-                                                        'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Text') . '*', ['class' => 'text-danger']),
-                                                        'escapeTitle'   => false,
+                                                        'class'     => 'col-sm-2 col-form-label',
+                                                        'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Text') . '*', ['class' => 'text-danger']),
+                                                        'escape'    => false,
                                                     ],
                                                     'templates' => [
                                                         'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -695,9 +695,9 @@ $this->Breadcrumbs->add([
                                         <?= $this->Form->control('entry_no', [
                                             'type'  => 'number',
                                             'label' => [
-                                                'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'No.')),
-                                                'escapeTitle'   => false,
+                                                'class'     => 'col-sm-2 col-form-label',
+                                                'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'No.') . '*', ['class' => 'text-danger']),
+                                                'escape'    => false,
                                             ],
                                             'templates' => [
                                                 'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -713,7 +713,7 @@ $this->Breadcrumbs->add([
                                             'options'   => !empty($userProfileTimelineEntriesList)? $userProfileTimelineEntriesList: [],
                                             'label' => [
                                                 'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Reference No.')),
+                                                'text'          => __d('yab_cms_ff', 'Reference No.'),
                                                 'escapeTitle'   => false,
                                             ],
                                             'templates' => [
@@ -729,9 +729,9 @@ $this->Breadcrumbs->add([
                                         <?= $this->Form->control('entry_date', [
                                             'type' => 'text',
                                             'label' => [
-                                                'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Date') . '*', ['class' => 'text-danger']),
-                                                'escapeTitle'   => false,
+                                                'class'     => 'col-sm-2 col-form-label',
+                                                'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Date') . '*', ['class' => 'text-danger']),
+                                                'escape'    => false,
                                             ],
                                             'templates' => [
                                                 'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -754,9 +754,9 @@ $this->Breadcrumbs->add([
                                                 'tab'       => __d('yab_cms_ff', 'Guitar Pro tab'),
                                             ],
                                             'label' => [
-                                                'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Type') . '*', ['class' => 'text-danger']),
-                                                'escapeTitle'   => false,
+                                                'class'     => 'col-sm-2 col-form-label',
+                                                'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Type') . '*', ['class' => 'text-danger']),
+                                                'escape'    => false,
                                             ],
                                             'templates' => [
                                                 'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -771,9 +771,9 @@ $this->Breadcrumbs->add([
                                         <?= $this->Form->control('entry_title', [
                                             'type'  => 'text',
                                             'label' => [
-                                                'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Title') . '*', ['class' => 'text-danger']),
-                                                'escapeTitle'   => false,
+                                                'class'     => 'col-sm-2 col-form-label',
+                                                'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Title') . '*', ['class' => 'text-danger']),
+                                                'escape'    => false,
                                             ],
                                             'templates' => [
                                                 'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -787,7 +787,7 @@ $this->Breadcrumbs->add([
                                             'type'  => 'text',
                                             'label' => [
                                                 'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Subtitle')),
+                                                'text'          => __d('yab_cms_ff', 'Subtitle'),
                                                 'escapeTitle'   => false,
                                             ],
                                             'templates' => [
@@ -802,7 +802,7 @@ $this->Breadcrumbs->add([
                                             'type'  => 'textarea',
                                             'label' => [
                                                 'class'         => 'col-sm-2 col-form-label',
-                                                'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Text')),
+                                                'text'          => __d('yab_cms_ff', 'Text'),
                                                 'escapeTitle'   => false,
                                             ],
                                             'templates' => [
@@ -840,7 +840,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '1'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '1',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -855,7 +855,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '2'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '2',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -870,7 +870,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '3'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '3',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -885,7 +885,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '4'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '4',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -900,7 +900,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '5'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '5',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -915,7 +915,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '6'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '6',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -930,7 +930,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '7'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '7',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -945,7 +945,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '8'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '8',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -960,7 +960,7 @@ $this->Breadcrumbs->add([
                                                 'type'  => 'url',
                                                 'label' => [
                                                     'class'         => 'col-sm-2 col-form-label',
-                                                    'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '9'),
+                                                    'text'          => __d('yab_cms_ff', 'Link') . ' ' . '9',
                                                     'escapeTitle'   => false,
                                                 ],
                                                 'templates' => [
@@ -2267,9 +2267,9 @@ $this->Breadcrumbs->add([
                                         'type'      => 'text',
                                         'value'     => htmlspecialchars_decode($userProfile->foreign_key),
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Foreign key') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Foreign key') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2284,9 +2284,9 @@ $this->Breadcrumbs->add([
                                         'value'     => h($userProfile->timezone),
                                         'options'   => !empty($this->YabCmsFf->timezone())? $this->YabCmsFf->timezone(): [],
                                         'label'     => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Timezone') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Timezone') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2320,9 +2320,9 @@ $this->Breadcrumbs->add([
                                         'value'     => h($userProfile->salutation),
                                         'options'   => !empty($this->YabCmsFf->salutations())? $this->YabCmsFf->salutations(): [],
                                         'label'     => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Salutation') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Salutation') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2337,9 +2337,9 @@ $this->Breadcrumbs->add([
                                         'type'      => 'text',
                                         'value'     => htmlspecialchars_decode($userProfile->first_name),
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'First name') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'First name') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates' => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2367,9 +2367,9 @@ $this->Breadcrumbs->add([
                                         'type'      => 'text',
                                         'value'     => htmlspecialchars_decode($userProfile->last_name),
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Last name') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Last name') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates' => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2386,9 +2386,9 @@ $this->Breadcrumbs->add([
                                             'Female'    => __d('yab_cms_ff', 'Female'),
                                         ],
                                         'label'     => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Gender') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Gender') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2761,9 +2761,9 @@ $this->Breadcrumbs->add([
                                     <?= $this->Form->control('foreign_key', [
                                         'type'  => 'text',
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Foreign key') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Foreign key') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2778,9 +2778,9 @@ $this->Breadcrumbs->add([
                                         'type'      => 'select',
                                         'options'   => !empty($this->YabCmsFf->timezone())? $this->YabCmsFf->timezone(): [],
                                         'label'     => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Timezone') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Timezone') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2812,9 +2812,9 @@ $this->Breadcrumbs->add([
                                         'type'      => 'select',
                                         'options'   => !empty($this->YabCmsFf->salutations())? $this->YabCmsFf->salutations(): [],
                                         'label'     => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Salutation') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Salutation') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2828,9 +2828,9 @@ $this->Breadcrumbs->add([
                                     <?= $this->Form->control('first_name', [
                                         'type'  => 'text',
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'First name') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'First name') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates' => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2856,9 +2856,9 @@ $this->Breadcrumbs->add([
                                     <?= $this->Form->control('last_name', [
                                         'type'  => 'text',
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Last name') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Last name') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates' => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -2874,9 +2874,9 @@ $this->Breadcrumbs->add([
                                             'Female'    => __d('yab_cms_ff', 'Female'),
                                         ],
                                         'label'     => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Gender') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Gender') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -3242,7 +3242,7 @@ $this->Breadcrumbs->add([
                                         'value'     => !empty($userAccount->foreign_key)? htmlspecialchars_decode($userAccount->foreign_key): '',
                                         'label' => [
                                             'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Foreign key')),
+                                            'text'          => __d('yab_cms_ff', 'Foreign key'),
                                             'escapeTitle'   => false,
                                         ],
                                         'templates'     => [
@@ -3274,9 +3274,9 @@ $this->Breadcrumbs->add([
                                         'type'      => 'text',
                                         'value'     => h($userAccount->username),
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Username') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Username') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -3290,9 +3290,9 @@ $this->Breadcrumbs->add([
                                         'type'      => 'text',
                                         'value'     => htmlspecialchars_decode($userAccount->name),
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Name') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'class'     => 'col-sm-2 col-form-label',
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Name') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates' => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -3306,8 +3306,8 @@ $this->Breadcrumbs->add([
                                         'value'     => htmlspecialchars_decode($userAccount->email),
                                         'label' => [
                                             'class'     => 'col-sm-2 col-form-label',
-                                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Email') . '*', ['class' => 'text-danger']),
-                                            'escapeTitle'   => false,
+                                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Email') . '*', ['class' => 'text-danger']),
+                                            'escape'    => false,
                                         ],
                                         'templates' => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',

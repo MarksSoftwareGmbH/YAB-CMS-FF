@@ -65,6 +65,23 @@ class UserProfileDiaryEntriesSeed extends AbstractSeed
                 'deleted' => NULL,
                 'deleted_by' => NULL,
             ],
+            [
+                'id' => 2,
+                'user_id' => 1,
+                'uuid_id' => Text::uuid(),
+                'foreign_key' => Text::uuid(),
+                'entry_title' => 'YAB CMS FF v1.0.1 beta update',
+                'entry_body' => '&lt;p&gt;Looking better.&lt;/p&gt;',
+                'entry_avatar' => '/yab_cms_ff/img/content/diary_entry_avatar_b2f68372-8e4f-44d2-b60a-6491d1e9b44c.gif',
+                'entry_star_counter' => 0,
+                'view_counter' => 0,
+                'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                'created_by' => '1',
+                'modified' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                'modified_by' => '1',
+                'deleted' => NULL,
+                'deleted_by' => NULL,
+            ],
         ];
 
         $table = $this->table('user_profile_diary_entries');
