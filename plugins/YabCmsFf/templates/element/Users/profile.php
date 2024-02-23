@@ -2305,6 +2305,7 @@ $this->Breadcrumbs->add([
                                             'class'         => 'col-sm-2 col-form-label',
                                             'text'          => __d('yab_cms_ff', 'Prefix'),
                                             'escapeTitle'   => false,
+                                        ],
                                         'templates'     => [
                                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
                                             'inputContainerError'   => '<div class="form-group row {{type}}{{required}} invalid-feedback">{{content}}{{error}}{{help}}</div>',
@@ -3304,7 +3305,7 @@ $this->Breadcrumbs->add([
                                         'type'      => 'email',
                                         'value'     => htmlspecialchars_decode($userAccount->email),
                                         'label' => [
-                                            'class'         => 'col-sm-2 col-form-label',
+                                            'class'     => 'col-sm-2 col-form-label',
                                             'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Email') . '*', ['class' => 'text-danger']),
                                             'escapeTitle'   => false,
                                         ],

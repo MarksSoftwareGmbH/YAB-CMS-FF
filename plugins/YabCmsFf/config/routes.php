@@ -39,7 +39,7 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
         // Article promoted
         $routes
             ->connect('/{locale}/', ['controller' => 'Articles', 'action' => 'promoted'])
-            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he']);
+            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he|pl']);
         $routes
             ->connect('/', ['controller' => 'Articles', 'action' => 'promoted']);
 
@@ -47,7 +47,7 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
         $routes
             ->connect('/{locale}/{slug}', ['controller' => 'Articles', 'action' => 'view'])
             ->setPass(['slug'])
-            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he']);
+            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he|pl']);
         $routes
             ->connect('/{slug}', ['controller' => 'Articles', 'action' => 'view'])
             ->setPass(['slug']);
@@ -56,7 +56,7 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
         $routes
             ->connect('/{locale}/type/{articleType}', ['controller' => 'Articles', 'action' => 'index'])
             ->setPass(['articleType'])
-            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he']);
+            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he|pl']);
         $routes
             ->connect('/type/{articleType}', ['controller' => 'Articles', 'action' => 'index'])
             ->setPass(['articleType']);
@@ -65,7 +65,7 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
         $routes
             ->connect('/{locale}/{articleType}/{slug}', ['controller' => 'Articles', 'action' => 'view'])
             ->setPass(['articleType', 'slug'])
-            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he']);
+            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he|pl']);
         $routes
             ->connect('/{articleType}/{slug}', ['controller' => 'Articles', 'action' => 'view'])
             ->setPass(['articleType', 'slug']);
@@ -74,7 +74,7 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
         $routes
             ->connect('/{locale}/page/{slug}', ['controller' => 'Articles', 'action' => 'pageView'])
             ->setPass(['slug'])
-            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he']);
+            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he|pl']);
         $routes
             ->connect('/page/{slug}', ['controller' => 'Articles', 'action' => 'pageView'])
             ->setPass(['slug']);
@@ -82,7 +82,7 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
         // Article search
         $routes
             ->connect('/{locale}/search', ['controller' => 'Articles', 'action' => 'search'])
-            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he']);
+            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he|pl']);
         $routes
             ->connect('/search', ['controller' => 'Articles', 'action' => 'search']);
 
@@ -111,7 +111,7 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
         // Sitemap
         $routes
             ->connect('/{locale}/sitemap', ['controller' => 'Articles', 'action' => 'sitemap'])
-            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he']);
+            ->setPatterns(['locale' => 'de|en|nl|fr|it|es|pt|ru|zh|ar|he|pl']);
         $routes
             ->connect('/sitemap', ['controller' => 'Articles', 'action' => 'sitemap']);
 

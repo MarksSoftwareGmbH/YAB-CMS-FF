@@ -96,6 +96,22 @@ class LocalesSeed extends AbstractSeed
                 'deleted' => NULL,
                 'deleted_by' => NULL,
             ],
+            [
+                'id' => '4',
+                'uuid_id' => Text::uuid(),
+                'foreign_key' => NULL,
+                'name' => 'Polish',
+                'native' => 'Polski',
+                'code' => 'pl_PL',
+                'weight' => '4',
+                'status' => '1',
+                'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                'created_by' => '1',
+                'modified' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                'modified_by' => '1',
+                'deleted' => NULL,
+                'deleted_by' => NULL,
+            ],
         ];
 
         $table = $this->table('locales');
