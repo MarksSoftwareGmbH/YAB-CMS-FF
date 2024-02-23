@@ -29,7 +29,7 @@ use Cake\Core\Configure;
     <strong>
         <?= __d('yab_cms_ff', '&copy; Copyright 2018-{date} {link}', [
             'date' => $this->Time->format($this->Time->gmt(), 'Y'),
-            'link' => $this->Html->link('Marks Software GmbH', 'https://www.marks-software.de/', ['class' => 'text-dark', 'target' => '_blank', 'escape' => false]),
+            'link' => $this->Html->link('Marks Software GmbH', 'https://www.marks-software.de/', ['class' => 'text-dark', 'target' => '_blank', 'escapeTitle' => false]),
         ]); ?>
     </strong>
     <?= __d('yab_cms_ff', 'All Rights Reserved.'); ?>

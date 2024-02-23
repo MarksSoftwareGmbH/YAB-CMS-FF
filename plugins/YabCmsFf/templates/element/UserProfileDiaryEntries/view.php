@@ -183,10 +183,10 @@ $this->Breadcrumbs->add([
                                     . '(' . $this->Html->tag('span', h($userProfileDiaryEntry->entry_star_counter), ['class' => 'text-dark star-counter-' . h($userProfileDiaryEntry->foreign_key)]) . ')',
                                     'javascript:void(0)',
                                     [
-                                        'title'     => __d('yab_cms_ff', 'Give a star'),
-                                        'id'        => 'starCounter' . h($userProfileDiaryEntry->foreign_key),
-                                        'class'     => 'text-warning text-sm mr-2',
-                                        'escape'    => false,
+                                        'title'         => __d('yab_cms_ff', 'Give a star'),
+                                        'id'            => 'starCounter' . h($userProfileDiaryEntry->foreign_key),
+                                        'class'         => 'text-warning text-sm mr-2',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Html->link(
                                     $this->Html->tag('i', '', ['class' => 'fas fa-eye mr-1'])
@@ -194,9 +194,9 @@ $this->Breadcrumbs->add([
                                     . '(' . $this->Html->tag('span', h($userProfileDiaryEntry->view_counter), ['class' => 'text-dark']) . ')',
                                     'javascript:void(0)',
                                     [
-                                        'title'     => __d('yab_cms_ff', 'Views'),
-                                        'class'     => 'text-success text-sm mr-2',
-                                        'escape'    => false,
+                                        'title'         => __d('yab_cms_ff', 'Views'),
+                                        'class'         => 'text-success text-sm mr-2',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Html->link(
                                     $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -211,9 +211,9 @@ $this->Breadcrumbs->add([
                                         'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                     ], ['fullBase' => true]),
                                     [
-                                        'target'    => '_blank',
-                                        'class'     => 'text-sm mr-2',
-                                        'escape'    => false,
+                                        'target'        => '_blank',
+                                        'class'         => 'text-sm mr-2',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Html->link(
                                     $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -228,9 +228,9 @@ $this->Breadcrumbs->add([
                                         'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                     ], ['fullBase' => true]),
                                     [
-                                        'target'    => '_blank',
-                                        'class'     => 'text-sm mr-2',
-                                        'escape'    => false,
+                                        'target'        => '_blank',
+                                        'class'         => 'text-sm mr-2',
+                                        'escapeTitle'   => false,
                                     ]); ?><p>
                                 <?= $this->Html->scriptBlock(
                                     '$(function() {
@@ -265,7 +265,7 @@ $this->Breadcrumbs->add([
                                         'class'         => 'text-warning text-sm mr-2',
                                         'data-toggle'   => 'modal',
                                         'data-target'   => '#needLoginModal',
-                                        'escape'        => false,
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                     <?= $this->Html->link(
                                         $this->Html->tag('i', '', ['class' => 'fas fa-eye mr-1'])
@@ -273,9 +273,9 @@ $this->Breadcrumbs->add([
                                         . '(' . $this->Html->tag('span', h($userProfileDiaryEntry->view_counter), ['class' => 'text-dark']) . ')',
                                         'javascript:void(0)',
                                         [
-                                            'title'     => __d('yab_cms_ff', 'Views'),
-                                            'class'     => 'text-success text-sm mr-2',
-                                            'escape'    => false,
+                                            'title'         => __d('yab_cms_ff', 'Views'),
+                                            'class'         => 'text-success text-sm mr-2',
+                                            'escapeTitle'   => false,
                                         ]); ?>
                                     <?= $this->Html->link(
                                         $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -290,9 +290,9 @@ $this->Breadcrumbs->add([
                                             'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                         ], ['fullBase' => true]),
                                         [
-                                            'target'    => '_blank',
-                                            'class'     => 'text-sm mr-2',
-                                            'escape'    => false,
+                                            'target'        => '_blank',
+                                            'class'         => 'text-sm mr-2',
+                                            'escapeTitle'   => false,
                                         ]); ?>
                                     <?= $this->Html->link(
                                         $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -307,9 +307,9 @@ $this->Breadcrumbs->add([
                                             'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                         ], ['fullBase' => true]),
                                         [
-                                            'target'    => '_blank',
-                                            'class'     => 'text-sm mr-2',
-                                            'escape'    => false,
+                                            'target'        => '_blank',
+                                            'class'         => 'text-sm mr-2',
+                                            'escapeTitle'   => false,
                                         ]); ?></p>
                                 <div class="modal fade" id="needLoginModal" tabindex="-1" role="dialog" aria-labelledby="needLoginModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -330,9 +330,9 @@ $this->Breadcrumbs->add([
                                                         'action'        => 'register',
                                                     ],
                                                     [
-                                                        'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block mb-3',
-                                                        'style'     => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
-                                                        'escape'    => false,
+                                                        'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block mb-3',
+                                                        'style'         => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
+                                                        'escapeTitle'   => false,
                                                     ]); ?>
                                                 <p class="text-center font-weight-light">- <?= __d('yab_cms_ff', 'Or login'); ?> -</p>
                                                 <?= $this->Html->link(
@@ -344,9 +344,9 @@ $this->Breadcrumbs->add([
                                                         'action'        => 'login',
                                                     ],
                                                     [
-                                                        'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block mb-0',
-                                                        'style'     => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
-                                                        'escape'    => false,
+                                                        'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block mb-0',
+                                                        'style'         => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
+                                                        'escapeTitle'   => false,
                                                     ]); ?>
                                             </div>
                                         </div>

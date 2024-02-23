@@ -43,9 +43,9 @@ endif;
             'articleTypeAlias'  => 'article',
         ],
         [
-            'class'     => 'btn btn-' . h($backendButtonColor),
-            'type'      => 'button',
-            'escape'    => false
+            'class'         => 'btn btn-' . h($backendButtonColor),
+            'type'          => 'button',
+            'escapeTitle'   => false,
         ]); ?>
 </div>
 <div class="input-group-prepend">

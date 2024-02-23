@@ -100,7 +100,7 @@ $this->Html->meta([
                             'class' => 'img-fluid',
                         ]),
                         '/',
-                        ['escape' => false]); ?>
+                        ['escapeTitle' => false]); ?>
                 </div>
                 <p class="login-box-msg">
                     <?= __d('yab_cms_ff', 'Forgot password'); ?>
@@ -161,14 +161,14 @@ $this->Html->meta([
                                 'action'        => 'login',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($frontendButtonColor),
-                                'escape'    => false
+                                'class'         => 'btn btn-' . h($frontendButtonColor),
+                                'escapeTitle'   => false,
                             ]); ?>
                         <?= $this->Form->button(
                             __d('yab_cms_ff', 'Forgot'),
                             [
-                                'class'     => 'float-right btn btn-' . h($frontendButtonColor),
-                                'escape'    => false,
+                                'class'         => 'float-right btn btn-' . h($frontendButtonColor),
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>

@@ -96,8 +96,8 @@ $this->Breadcrumbs->add([
                                     'action'        => 'index',
                                 ],
                                 [
-                                    'class'     => 'btn btn-' . h($backendButtonColor),
-                                    'escape'    => false,
+                                    'class'         => 'btn btn-' . h($backendButtonColor),
+                                    'escapeTitle'   => false,
                                 ]
                             ),
                     ]); ?>
@@ -247,8 +247,8 @@ $this->Breadcrumbs->add([
                     $this->Html->icon('list') . ' ' . __d('yab_cms_ff', 'Index'),
                     $this->request->getSession()->read('Request.HTTP_REFERER'),
                     [
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Html->link(
                     $this->Html->icon('edit') . ' ' . __d('yab_cms_ff', 'Edit'),
@@ -259,8 +259,8 @@ $this->Breadcrumbs->add([
                         'id'            => h($article->id),
                     ],
                     [
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Form->postLink(
                     $this->Html->icon('copy') . ' ' . __d('yab_cms_ff', 'Copy'),
@@ -271,8 +271,8 @@ $this->Breadcrumbs->add([
                         'id'            => h($article->id),
                     ],
                     [
-                        'class' => 'btn btn-app',
-                        'escape' => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Form->postLink(
                     $this->Html->icon('trash') . ' ' . __d('yab_cms_ff', 'Delete'),
@@ -288,8 +288,8 @@ $this->Breadcrumbs->add([
                             'Are you sure you want to delete "{globalTitle}"?',
                             ['globalTitle' => h($article->global_title)]
                         ),
-                        'class' => 'btn btn-app',
-                        'escape' => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
             </div>
         </div>

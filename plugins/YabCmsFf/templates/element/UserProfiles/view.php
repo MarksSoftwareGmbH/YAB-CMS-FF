@@ -245,9 +245,9 @@ $this->Breadcrumbs->add([
                                     __d('yab_cms_ff', 'Diary') . ' ' . '(' . $this->Html->tag('span', 0, ['class' => 'diary-entries-counter-' . htmlspecialchars_decode($userProfile->foreign_key)]) . ')',
                                     '#diary',
                                     [
-                                        'class' => 'nav-link active',
-                                        'data-toggle' => 'tab',
-                                        'escape' => false,
+                                        'class'         => 'nav-link active',
+                                        'data-toggle'   => 'tab',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Html->scriptBlock(
                                     '$(function() {
@@ -280,9 +280,9 @@ $this->Breadcrumbs->add([
                                     __d('yab_cms_ff', 'Timeline') . ' ' . '(' . $this->Html->tag('span', 0, ['class' => 'timeline-entries-counter-' . htmlspecialchars_decode($userProfile->foreign_key)]) . ')',
                                     '#timeline',
                                     [
-                                        'class' => 'nav-link',
-                                        'data-toggle' => 'tab',
-                                        'escape' => false,
+                                        'class'         => 'nav-link',
+                                        'data-toggle'   => 'tab',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Html->scriptBlock(
                                     '$(function() {
@@ -315,9 +315,9 @@ $this->Breadcrumbs->add([
                                     __d('yab_cms_ff', 'Data'),
                                     '#data',
                                     [
-                                        'class' => 'nav-link',
-                                        'data-toggle' => 'tab',
-                                        'escape' => false,
+                                        'class'         => 'nav-link',
+                                        'data-toggle'   => 'tab',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                             </li>
                             <?php // Data Pill End ?>
@@ -337,7 +337,7 @@ $this->Breadcrumbs->add([
                                                 <?= $this->Html->image(
                                                     h($userProfileDiaryEntry->entry_avatar),
                                                     [
-                                                        'alt' => h($userProfileDiaryEntry->entry_avatar),
+                                                        'alt'   => h($userProfileDiaryEntry->entry_avatar),
                                                         'class' => 'img-circle img-bordered-sm',
                                                     ]); ?>
                                                 <span class="username">
@@ -354,10 +354,10 @@ $this->Breadcrumbs->add([
                                                         . '(' . $this->Html->tag('span', h($userProfileDiaryEntry->entry_star_counter), ['class' => 'text-dark star-counter-' . h($userProfileDiaryEntry->foreign_key)]) . ')',
                                                         'javascript:void(0)',
                                                         [
-                                                            'title'     => __d('yab_cms_ff', 'Give a star'),
-                                                            'id'        => 'starCounter' . h($userProfileDiaryEntry->foreign_key),
-                                                            'class'     => 'text-warning text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'title'         => __d('yab_cms_ff', 'Give a star'),
+                                                            'id'            => 'starCounter' . h($userProfileDiaryEntry->foreign_key),
+                                                            'class'         => 'text-warning text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?>
                                                     <?= $this->Html->link(
                                                         $this->Html->tag('i', '', ['class' => 'fas fa-eye mr-1'])
@@ -365,9 +365,9 @@ $this->Breadcrumbs->add([
                                                         . '(' . $this->Html->tag('span', h($userProfileDiaryEntry->view_counter), ['class' => 'text-dark']) . ')',
                                                         'javascript:void(0)',
                                                         [
-                                                            'title'     => __d('yab_cms_ff', 'Views'),
-                                                            'class'     => 'text-success text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'title'         => __d('yab_cms_ff', 'Views'),
+                                                            'class'         => 'text-success text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?>
                                                     <?= $this->Html->link(
                                                         $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -380,8 +380,8 @@ $this->Breadcrumbs->add([
                                                             'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                                         ],
                                                         [
-                                                            'class'     => 'text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'class'         => 'text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?>
                                                     <?= $this->Html->link(
                                                         $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -396,9 +396,9 @@ $this->Breadcrumbs->add([
                                                             'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                                         ], ['fullBase' => true]),
                                                         [
-                                                            'target'    => '_blank',
-                                                            'class'     => 'text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'target'        => '_blank',
+                                                            'class'         => 'text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?>
                                                     <?= $this->Html->link(
                                                         $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -413,9 +413,9 @@ $this->Breadcrumbs->add([
                                                             'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                                         ], ['fullBase' => true]),
                                                         [
-                                                            'target'    => '_blank',
-                                                            'class'     => 'text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'target'        => '_blank',
+                                                            'class'         => 'text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?><p>
                                                     <?= $this->Html->scriptBlock(
                                                         '$(function() {
@@ -450,7 +450,7 @@ $this->Breadcrumbs->add([
                                                         'class'         => 'text-warning text-sm mr-2',
                                                         'data-toggle'   => 'modal',
                                                         'data-target'   => '#needLoginModal',
-                                                        'escape'        => false,
+                                                        'escapeTitle'   => false,
                                                     ]); ?>
                                                     <?= $this->Html->link(
                                                         $this->Html->tag('i', '', ['class' => 'fas fa-eye mr-1'])
@@ -458,9 +458,9 @@ $this->Breadcrumbs->add([
                                                         . '(' . $this->Html->tag('span', h($userProfileDiaryEntry->view_counter), ['class' => 'text-dark']) . ')',
                                                         'javascript:void(0)',
                                                         [
-                                                            'title'     => __d('yab_cms_ff', 'Views'),
-                                                            'class'     => 'text-success text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'title'         => __d('yab_cms_ff', 'Views'),
+                                                            'class'         => 'text-success text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?>
                                                     <?= $this->Html->link(
                                                         $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -473,8 +473,8 @@ $this->Breadcrumbs->add([
                                                             'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                                         ],
                                                         [
-                                                            'class'     => 'text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'class'         => 'text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?>
                                                     <?= $this->Html->link(
                                                         $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -489,9 +489,9 @@ $this->Breadcrumbs->add([
                                                             'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                                         ], ['fullBase' => true]),
                                                         [
-                                                            'target'    => '_blank',
-                                                            'class'     => 'text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'target'        => '_blank',
+                                                            'class'         => 'text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?>
                                                     <?= $this->Html->link(
                                                         $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -506,9 +506,9 @@ $this->Breadcrumbs->add([
                                                             'foreignKey'    => h($userProfileDiaryEntry->foreign_key),
                                                         ], ['fullBase' => true]),
                                                         [
-                                                            'target'    => '_blank',
-                                                            'class'     => 'text-sm mr-2',
-                                                            'escape'    => false,
+                                                            'target'        => '_blank',
+                                                            'class'         => 'text-sm mr-2',
+                                                            'escapeTitle'   => false,
                                                         ]); ?></p>
                                                 <div class="modal fade" id="needLoginModal" tabindex="-1" role="dialog" aria-labelledby="needLoginModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -529,9 +529,9 @@ $this->Breadcrumbs->add([
                                                                         'action'        => 'register',
                                                                     ],
                                                                     [
-                                                                        'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block mb-3',
-                                                                        'style'     => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
-                                                                        'escape'    => false,
+                                                                        'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block mb-3',
+                                                                        'style'         => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
+                                                                        'escapeTitle'   => false,
                                                                     ]); ?>
                                                                 <p class="text-center font-weight-light">- <?= __d('yab_cms_ff', 'Or login'); ?> -</p>
                                                                 <?= $this->Html->link(
@@ -543,9 +543,9 @@ $this->Breadcrumbs->add([
                                                                         'action'        => 'login',
                                                                     ],
                                                                     [
-                                                                        'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block mb-0',
-                                                                        'style'     => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
-                                                                        'escape'    => false,
+                                                                        'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block mb-0',
+                                                                        'style'         => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
+                                                                        'escapeTitle'   => false,
                                                                     ]); ?>
                                                             </div>
                                                         </div>
@@ -607,7 +607,7 @@ $this->Breadcrumbs->add([
                                                                 'slug'          => $this->YabCmsFf->buildSlug(h($userProfileTimelineEntry->entry_title)),
                                                                 'foreignKey'    => h($userProfileTimelineEntry->foreign_key),
                                                             ],
-                                                            ['escape' => false]); ?>
+                                                            ['escapeTitle' => false]); ?>
                                                         <i class="far fa-clock-o"></i> <?= h($userProfileTimelineEntry->entry_date->format('M d, Y g:i:s a')); ?><br />
                                                         <br />
                                                         <?php if (!empty($userProfileTimelineEntry->entry_subtitle)): ?>
@@ -625,7 +625,7 @@ $this->Breadcrumbs->add([
                                                                 'slug'          => $this->YabCmsFf->buildSlug(h($userProfileTimelineEntry->entry_title)),
                                                                 'foreignKey'    => h($userProfileTimelineEntry->foreign_key),
                                                             ],
-                                                                ['escape' => false]); ?></small>
+                                                            ['escapeTitle' => false]); ?></small>
                                                     </h3>
 
                                                     <div class="timeline-body">
@@ -732,7 +732,7 @@ $this->Breadcrumbs->add([
                                                                                 'data-toggle'   => 'lightbox',
                                                                                 'data-title'    => h($userProfileTimelineEntry->entry_image_1),
                                                                                 'data-gallery'  => 'gallery',
-                                                                                'escape'        => false,
+                                                                                'escapeTitle'   => false,
                                                                             ]); ?>
                                                                     <?php endif; ?>
                                                                 </div>
@@ -765,7 +765,7 @@ $this->Breadcrumbs->add([
                                                                                             'data-toggle'   => 'lightbox',
                                                                                             'data-title'    => h($userProfileTimelineEntry->entry_image_2),
                                                                                             'data-gallery'  => 'gallery',
-                                                                                            'escape'        => false,
+                                                                                            'escapeTitle'   => false,
                                                                                         ]); ?>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -784,7 +784,7 @@ $this->Breadcrumbs->add([
                                                                                             'data-toggle'   => 'lightbox',
                                                                                             'data-title'    => h($userProfileTimelineEntry->entry_image_3),
                                                                                             'data-gallery'  => 'gallery',
-                                                                                            'escape'        => false,
+                                                                                            'escapeTitle'   => false,
                                                                                         ]); ?>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -805,7 +805,7 @@ $this->Breadcrumbs->add([
                                                                                             'data-toggle'   => 'lightbox',
                                                                                             'data-title'    => h($userProfileTimelineEntry->entry_image_4),
                                                                                             'data-gallery'  => 'gallery',
-                                                                                            'escape'        => false,
+                                                                                            'escapeTitle'   => false,
                                                                                         ]); ?>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -824,7 +824,7 @@ $this->Breadcrumbs->add([
                                                                                             'data-toggle'   => 'lightbox',
                                                                                             'data-title'    => h($userProfileTimelineEntry->entry_image_5),
                                                                                             'data-gallery'  => 'gallery',
-                                                                                            'escape'        => false,
+                                                                                            'escapeTitle'   => false,
                                                                                         ]); ?>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -857,7 +857,7 @@ $this->Breadcrumbs->add([
                                                                                     'data-toggle'   => 'lightbox',
                                                                                     'data-title'    => h($userProfileTimelineEntry->entry_image_6),
                                                                                     'data-gallery'  => 'gallery',
-                                                                                    'escape'        => false,
+                                                                                    'escapeTitle'   => false,
                                                                                 ]); ?>
                                                                         <?php endif; ?>
                                                                     </div>
@@ -876,7 +876,7 @@ $this->Breadcrumbs->add([
                                                                                     'data-toggle'   => 'lightbox',
                                                                                     'data-title'    => h($userProfileTimelineEntry->entry_image_7),
                                                                                     'data-gallery'  => 'gallery',
-                                                                                    'escape'        => false,
+                                                                                    'escapeTitle'   => false,
                                                                                 ]); ?>
                                                                         <?php endif; ?>
                                                                     </div>
@@ -895,7 +895,7 @@ $this->Breadcrumbs->add([
                                                                                     'data-toggle'   => 'lightbox',
                                                                                     'data-title'    => h($userProfileTimelineEntry->entry_image_8),
                                                                                     'data-gallery'  => 'gallery',
-                                                                                    'escape'        => false,
+                                                                                    'escapeTitle'   => false,
                                                                                 ]); ?>
                                                                         <?php endif; ?>
                                                                     </div>
@@ -914,7 +914,7 @@ $this->Breadcrumbs->add([
                                                                                     'data-toggle'   => 'lightbox',
                                                                                     'data-title'    => h($userProfileTimelineEntry->entry_image_9),
                                                                                     'data-gallery'  => 'gallery',
-                                                                                    'escape'        => false,
+                                                                                    'escapeTitle'   => false,
                                                                                 ]); ?>
                                                                         <?php endif; ?>
                                                                     </div>
@@ -1075,9 +1075,9 @@ $this->Breadcrumbs->add([
                                                                             . h($userProfileTimelineEntry->entry_pdf_1),
                                                                             h($userProfileTimelineEntry->entry_pdf_1_file),
                                                                             [
-                                                                                'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                'target'    => '_blank',
-                                                                                'escape'    => false,
+                                                                                'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                'target'        => '_blank',
+                                                                                'escapeTitle'   => false,
                                                                             ]); ?>
                                                                     <?php endif; ?>
                                                                 </div>
@@ -1103,9 +1103,9 @@ $this->Breadcrumbs->add([
                                                                                         . h($userProfileTimelineEntry->entry_pdf_2),
                                                                                         h($userProfileTimelineEntry->entry_pdf_2_file),
                                                                                         [
-                                                                                            'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                            'target'    => '_blank',
-                                                                                            'escape'    => false,
+                                                                                            'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                            'target'        => '_blank',
+                                                                                            'escapeTitle'   => false,
                                                                                         ]); ?>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -1116,9 +1116,9 @@ $this->Breadcrumbs->add([
                                                                                         . h($userProfileTimelineEntry->entry_pdf_3),
                                                                                         h($userProfileTimelineEntry->entry_pdf_3_file),
                                                                                         [
-                                                                                            'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                            'target'    => '_blank',
-                                                                                            'escape'    => false,
+                                                                                            'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                            'target'        => '_blank',
+                                                                                            'escapeTitle'   => false,
                                                                                         ]); ?>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -1131,9 +1131,9 @@ $this->Breadcrumbs->add([
                                                                                         . h($userProfileTimelineEntry->entry_pdf_4),
                                                                                         h($userProfileTimelineEntry->entry_pdf_4_file),
                                                                                         [
-                                                                                            'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                            'target'    => '_blank',
-                                                                                            'escape'    => false,
+                                                                                            'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                            'target'        => '_blank',
+                                                                                            'escapeTitle'   => false,
                                                                                         ]); ?>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -1144,9 +1144,9 @@ $this->Breadcrumbs->add([
                                                                                         . h($userProfileTimelineEntry->entry_pdf_5),
                                                                                         h($userProfileTimelineEntry->entry_pdf_5_file),
                                                                                         [
-                                                                                            'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                            'target'    => '_blank',
-                                                                                            'escape'    => false,
+                                                                                            'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                            'target'        => '_blank',
+                                                                                            'escapeTitle'   => false,
                                                                                         ]); ?>
                                                                                 <?php endif; ?>
                                                                             </div>
@@ -1171,9 +1171,9 @@ $this->Breadcrumbs->add([
                                                                                 . h($userProfileTimelineEntry->entry_pdf_6),
                                                                                 h($userProfileTimelineEntry->entry_pdf_6_file),
                                                                                 [
-                                                                                    'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                    'target'    => '_blank',
-                                                                                    'escape'    => false,
+                                                                                    'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                    'target'        => '_blank',
+                                                                                    'escapeTitle'   => false,
                                                                                 ]); ?>
                                                                         <?php endif; ?>
                                                                     </div>
@@ -1184,9 +1184,9 @@ $this->Breadcrumbs->add([
                                                                                 . h($userProfileTimelineEntry->entry_pdf_7),
                                                                                 h($userProfileTimelineEntry->entry_pdf_7_file),
                                                                                 [
-                                                                                    'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                    'target'    => '_blank',
-                                                                                    'escape'    => false,
+                                                                                    'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                    'target'        => '_blank',
+                                                                                    'escapeTitle'   => false,
                                                                                 ]); ?>
                                                                         <?php endif; ?>
                                                                     </div>
@@ -1197,9 +1197,9 @@ $this->Breadcrumbs->add([
                                                                                 . h($userProfileTimelineEntry->entry_pdf_8),
                                                                                 h($userProfileTimelineEntry->entry_pdf_8_file),
                                                                                 [
-                                                                                    'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                    'target'    => '_blank',
-                                                                                    'escape'    => false,
+                                                                                    'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                    'target'        => '_blank',
+                                                                                    'escapeTitle'   => false,
                                                                                 ]); ?>
                                                                         <?php endif; ?>
                                                                     </div>
@@ -1210,9 +1210,9 @@ $this->Breadcrumbs->add([
                                                                                 . h($userProfileTimelineEntry->entry_pdf_9),
                                                                                 h($userProfileTimelineEntry->entry_pdf_9_file),
                                                                                 [
-                                                                                    'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
-                                                                                    'target'    => '_blank',
-                                                                                    'escape'    => false,
+                                                                                    'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-block',
+                                                                                    'target'        => '_blank',
+                                                                                    'escapeTitle'   => false,
                                                                                 ]); ?>
                                                                         <?php endif; ?>
                                                                     </div>
@@ -1255,9 +1255,9 @@ $this->Breadcrumbs->add([
                                                                 . '(' . $this->Html->tag('span', h($userProfileTimelineEntry->view_counter), ['class' => 'text-dark']) . ')',
                                                                 'javascript:void(0)',
                                                                 [
-                                                                    'title'     => __d('yab_cms_ff', 'Views'),
-                                                                    'class'     => 'text-success text-sm mr-2',
-                                                                    'escape'    => false,
+                                                                    'title'         => __d('yab_cms_ff', 'Views'),
+                                                                    'class'         => 'text-success text-sm mr-2',
+                                                                    'escapeTitle'   => false,
                                                                 ]); ?>
                                                             <?= $this->Html->link(
                                                                 $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -1271,8 +1271,8 @@ $this->Breadcrumbs->add([
                                                                     'foreignKey'    => h($userProfileTimelineEntry->foreign_key),
                                                                 ],
                                                                 [
-                                                                    'class'     => 'text-sm mr-2',
-                                                                    'escape'    => false,
+                                                                    'class'         => 'text-sm mr-2',
+                                                                    'escapeTitle'   => false,
                                                                 ]); ?>
                                                             <?= $this->Html->link(
                                                                 $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -1288,9 +1288,9 @@ $this->Breadcrumbs->add([
                                                                     'foreignKey'    => h($userProfileTimelineEntry->foreign_key),
                                                                 ], ['fullBase' => true]),
                                                                 [
-                                                                    'target'    => '_blank',
-                                                                    'class'     => 'text-sm mr-2',
-                                                                    'escape'    => false,
+                                                                    'target'        => '_blank',
+                                                                    'class'         => 'text-sm mr-2',
+                                                                    'escapeTitle'   => false,
                                                                 ]); ?>
                                                         <?= $this->Html->link(
                                                             $this->Html->tag('i', '', ['class' => 'fas fa-share mr-1'])
@@ -1306,9 +1306,9 @@ $this->Breadcrumbs->add([
                                                                 'foreignKey'    => h($userProfileTimelineEntry->foreign_key),
                                                             ], ['fullBase' => true]),
                                                             [
-                                                                'target'    => '_blank',
-                                                                'class'     => 'text-sm mr-2',
-                                                                'escape'    => false,
+                                                                'target'        => '_blank',
+                                                                'class'         => 'text-sm mr-2',
+                                                                'escapeTitle'   => false,
                                                             ]); ?><p>
 
                                                             <?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'ekko-lightbox' . DS . 'ekko-lightbox'); ?>
@@ -1405,8 +1405,8 @@ $this->Breadcrumbs->add([
                                                 h($userProfile->website),
                                                 h($userProfile->website),
                                                 [
-                                                    'target' => '_blank',
-                                                    'escape' => false,
+                                                    'target'        => '_blank',
+                                                    'escapeTitle'   => false,
                                                 ]); ?></dd>
                                     <?php endif; ?>
 
@@ -1416,8 +1416,8 @@ $this->Breadcrumbs->add([
                                                 h($userProfile->telephone),
                                                 'tel:' . h($userProfile->telephone),
                                                 [
-                                                    'target' => '_blank',
-                                                    'escape' => false,
+                                                    'target'        => '_blank',
+                                                    'escapeTitle'   => false,
                                                 ]); ?></dd>
                                     <?php endif; ?>
 
@@ -1427,8 +1427,8 @@ $this->Breadcrumbs->add([
                                                 h($userProfile->mobilephone),
                                                 'tel:' . h($userProfile->mobilephone),
                                                 [
-                                                    'target' => '_blank',
-                                                    'escape' => false,
+                                                    'target'        => '_blank',
+                                                    'escapeTitle'   => false,
                                                 ]); ?></dd>
                                     <?php endif; ?>
 
@@ -1442,12 +1442,9 @@ $this->Breadcrumbs->add([
                                         <dd class="col-sm-8"><?= h($userProfile->timezone); ?></dd>
                                     <?php endif; ?>
 
-
-
                                 </dl>
                             </div>
                             <?php // Data Tab End ?>
-
                         </div>
                     </div>
                 </div>

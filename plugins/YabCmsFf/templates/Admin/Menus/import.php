@@ -34,17 +34,17 @@ $this->Breadcrumbs->add([
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
-            'plugin' => 'YabCmsFf',
-            'controller' => 'Dashboards',
-            'action' => 'dashboard',
+            'plugin'        => 'YabCmsFf',
+            'controller'    => 'Dashboards',
+            'action'        => 'dashboard',
         ]
     ],
     [
         'title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller')),
         'url' => [
-            'plugin' => 'YabCmsFf',
-            'controller' => 'Menus',
-            'action' => 'index',
+            'plugin'        => 'YabCmsFf',
+            'controller'    => 'Menus',
+            'action'        => 'index',
         ]
     ],
     ['title' => ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))]
@@ -52,11 +52,11 @@ $this->Breadcrumbs->add([
 
 <?= $this->Form->create(null, [
     'url' => [
-        'plugin' => 'YabCmsFf',
-        'controller' => 'Menus',
-        'action' => 'import',
+        'plugin'        => 'YabCmsFf',
+        'controller'    => 'Menus',
+        'action'        => 'import',
     ],
-    'type' => 'file',
+    'type'  => 'file',
     'class' => 'form-general',
 ]); ?>
 <div class="row">
@@ -69,23 +69,23 @@ $this->Breadcrumbs->add([
             </div>
             <div class="card-body">
                 <?= $this->Form->control('delimiter', [
-                    'type' => 'text',
-                    'default' => ';',
+                    'type'      => 'text',
+                    'default'   => ';',
                     'readonly',
-                    'required' => true,
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('enclosure', [
-                    'type' => 'text',
-                    'default' => '"',
+                    'type'      => 'text',
+                    'default'   => '"',
                     'readonly',
-                    'required' => true,
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('file', [
-                    'type' => 'file',
-                    'accept' => 'text/comma-separated-values,text/csv,application/csv',
-                    'label' => __d('yab_cms_ff', 'Select file'),
-                    'required' => true,
-                    'help' => __d('yab_cms_ff', 'Please use a valid csv file.')
+                    'type'      => 'file',
+                    'accept'    => 'text/comma-separated-values,text/csv,application/csv',
+                    'label'     => __d('yab_cms_ff', 'Select file'),
+                    'required'  => true,
+                    'help'      => __d('yab_cms_ff', 'Please use a valid csv file.')
                 ]); ?>
             </div>
         </div>
@@ -109,13 +109,13 @@ $this->Breadcrumbs->add([
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
-                            'plugin' => 'YabCmsFf',
-                            'controller' => 'Menus',
-                            'action' => 'index',
+                            'plugin'        => 'YabCmsFf',
+                            'controller'    => 'Menus',
+                            'action'        => 'index',
                         ],
                         [
-                            'class' => 'btn btn-danger float-right',
-                            'escape' => false,
+                            'class'     => 'btn btn-danger float-right',
+                            'escapeTitle'   => false,
                         ]); ?>
                 </div>
             </div>

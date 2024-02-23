@@ -51,7 +51,7 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
                             'class' => 'img-fluid',
                         ]),
                         '/',
-                        ['escape' => false]); ?>
+                        ['escapeTitle' => false]); ?>
                 </div>
                 <p class="login-box-msg text-sm">
                     <?= __d('yab_cms_ff', 'Password reset'); ?>
@@ -107,14 +107,14 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
                             __d('yab_cms_ff', 'Home'),
                             '/',
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor),
-                                'escape'    => false
+                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'escapeTitle'   => false,
                             ]); ?>
                         <?= $this->Form->button(
                             __d('yab_cms_ff', 'Reset'),
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor) . ' float-right',
-                                'escape'    => false
+                                'class'         => 'btn btn-' . h($backendButtonColor) . ' float-right',
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>

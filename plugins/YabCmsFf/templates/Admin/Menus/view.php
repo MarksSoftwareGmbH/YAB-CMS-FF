@@ -45,17 +45,17 @@ $this->Breadcrumbs->add([
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
-            'plugin' => 'YabCmsFf',
-            'controller' => 'Dashboards',
-            'action' => 'dashboard',
+            'plugin'        => 'YabCmsFf',
+            'controller'    => 'Dashboards',
+            'action'        => 'dashboard',
         ]
     ],
     [
         'title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller')),
         'url' => [
-            'plugin' => 'YabCmsFf',
-            'controller' => 'Menus',
-            'action' => 'index',
+            'plugin'        => 'YabCmsFf',
+            'controller'    => 'Menus',
+            'action'        => 'index',
         ]
     ],
     ['title' => __d('yab_cms_ff', 'View')],
@@ -72,17 +72,17 @@ $this->Breadcrumbs->add([
                 <div class="card-tools">
                     <?= $this->Form->create(null, [
                         'url' => [
-                            'plugin' => 'YabCmsFf',
-                            'controller' => 'Menus',
-                            'action' => 'index',
+                            'plugin'        => 'YabCmsFf',
+                            'controller'    => 'Menus',
+                            'action'        => 'index',
                         ],
                     ]); ?>
                     <?= $this->Form->control('search', [
-                        'type' => 'text',
-                        'label' => false,
-                        'placeholder' => __d('yab_cms_ff', 'Search') . '...',
-                        'style' => 'width: 150px;',
-                        'append' => $this->Form->button(
+                        'type'          => 'text',
+                        'label'         => false,
+                        'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
+                        'style'         => 'width: 150px;',
+                        'append'        => $this->Form->button(
                                 __d('yab_cms_ff', 'Filter'),
                                 ['class' => 'btn btn-' . h($backendButtonColor)]
                             )
@@ -90,13 +90,13 @@ $this->Breadcrumbs->add([
                             . $this->Html->link(
                                 __d('yab_cms_ff', 'Reset'),
                                 [
-                                    'plugin' => 'YabCmsFf',
-                                    'controller' => 'Menus',
-                                    'action' => 'index',
+                                    'plugin'        => 'YabCmsFf',
+                                    'controller'    => 'Menus',
+                                    'action'        => 'index',
                                 ],
                                 [
-                                    'class' => 'btn btn-' . h($backendButtonColor),
-                                    'escape' => false,
+                                    'class'         => 'btn btn-' . h($backendButtonColor),
+                                    'escapeTitle'   => false,
                                 ]
                             ),
                     ]); ?>
@@ -112,10 +112,10 @@ $this->Breadcrumbs->add([
                         <?php if (!empty($menu->domain->name)): ?>
                             <?= $menu->has('domain')?
                                 $this->Html->link($menu->domain->name, [
-                                    'plugin' => 'YabCmsFf',
-                                    'controller' => 'Domains',
-                                    'action' => 'view',
-                                    'id' => h($menu->domain->id)
+                                    'plugin'        => 'YabCmsFf',
+                                    'controller'    => 'Domains',
+                                    'action'        => 'view',
+                                    'id'            => h($menu->domain->id)
                                 ]): '-'; ?>
                         <?php else: ?>
                             -
@@ -143,33 +143,33 @@ $this->Breadcrumbs->add([
                 <?= $this->Html->link(
                     $this->Html->icon('list') . ' ' . __d('yab_cms_ff', 'Index'),
                     [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Menus',
-                        'action' => 'index',
+                        'plugin'        => 'YabCmsFf',
+                        'controller'    => 'Menus',
+                        'action'        => 'index',
                     ],
                     [
-                        'class' => 'btn btn-app',
-                        'escape' => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Html->link(
                     $this->Html->icon('edit') . ' ' . __d('yab_cms_ff', 'Edit'),
                     [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Menus',
-                        'action' => 'edit',
-                        'id' => h($menu->id),
+                        'plugin'        => 'YabCmsFf',
+                        'controller'    => 'Menus',
+                        'action'        => 'edit',
+                        'id'            => h($menu->id),
                     ],
                     [
-                        'class' => 'btn btn-app',
-                        'escape' => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Form->postLink(
                     $this->Html->icon('trash') . ' ' . __d('yab_cms_ff', 'Delete'),
                     [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Menus',
-                        'action' => 'delete',
-                        'id' => h($menu->id),
+                        'plugin'        => 'YabCmsFf',
+                        'controller'    => 'Menus',
+                        'action'        => 'delete',
+                        'id'            => h($menu->id),
                     ],
                     [
                         'confirm' => __d(
@@ -177,8 +177,8 @@ $this->Breadcrumbs->add([
                             'Are you sure you want to delete "{title}"?',
                             ['title' => h($menu->title)]
                         ),
-                        'class' => 'btn btn-app',
-                        'escape' => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
             </div>
         </div>

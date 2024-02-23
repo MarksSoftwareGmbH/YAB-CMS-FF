@@ -155,8 +155,8 @@ $this->Breadcrumbs->add([
                                     'action'        => 'index',
                                 ],
                                 [
-                                    'class'     => 'btn btn-' . h($frontendButtonColor),
-                                    'escape'    => false,
+                                    'class'         => 'btn btn-' . h($frontendButtonColor),
+                                    'escapeTitle'   => false,
                                 ]
                             ),
                     ]); ?>
@@ -179,7 +179,7 @@ $this->Breadcrumbs->add([
                             <?= !empty($userProfile->image)? $this->Html->link(
                                     $this->Html->tag('div', $this->Html->image(h($userProfile->image), ['alt' => __d('yab_cms_ff', 'Avatar'), 'class' => 'img-circle elevation-2']), ['class' => 'widget-user-image']),
                                     ['controller' => 'UserProfiles', 'action' => 'view', 'foreignKey' => htmlspecialchars_decode($userProfile->foreign_key)],
-                                    ['target' => '_self', 'escape' => false]): ''; ?>
+                                    ['target' => '_self', 'escapeTitle' => false]): ''; ?>
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-sm-6 border-right">

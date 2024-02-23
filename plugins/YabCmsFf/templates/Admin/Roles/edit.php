@@ -97,8 +97,8 @@ $this->Breadcrumbs->add([
                             'action'        => 'index',
                         ],
                         [
-                            'class'     => 'btn btn-danger float-right',
-                            'escape'    => false,
+                            'class'         => 'btn btn-danger float-right',
+                            'escapeTitle'   => false,
                         ]); ?>
                 </div>
             </div>

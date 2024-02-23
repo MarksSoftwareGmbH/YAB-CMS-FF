@@ -73,7 +73,7 @@ $this->Breadcrumbs->add([
                             'controller'    => 'Domains',
                             'action'        => 'add',
                         ],
-                        ['escape' => false]),
+                        ['escapeTitle' => false]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]
@@ -87,8 +87,8 @@ $this->Breadcrumbs->add([
                                 'action'        => 'index',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor),
-                                'escape'    => false,
+                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'escapeTitle'   => false,
                             ]
                         )
                         . ' '
@@ -100,9 +100,9 @@ $this->Breadcrumbs->add([
                                 'action'        => 'import',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor),
-                                'escape'    => false,
-                                'title'     => __d('yab_cms_ff', 'Upload & import CSV'),
+                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'escapeTitle'   => false,
+                                'title'         => __d('yab_cms_ff', 'Upload & import CSV'),
                             ]
                         )
                         . ' '
@@ -115,9 +115,9 @@ $this->Breadcrumbs->add([
                                 '_ext'          => 'csv',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor),
-                                'escape'    => false,
-                                'title'     => __d('yab_cms_ff', 'Export & download CSV'),
+                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'escapeTitle'   => false,
+                                'title'         => __d('yab_cms_ff', 'Export & download CSV'),
                             ]
                         ),
                 ]); ?>
@@ -154,7 +154,7 @@ $this->Breadcrumbs->add([
                                     [
                                         'title'         => __d('yab_cms_ff', 'View'),
                                         'data-toggle'   => 'tooltip',
-                                        'escape'        => false,
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Html->link(
                                     $this->Html->icon('edit'),
@@ -167,7 +167,7 @@ $this->Breadcrumbs->add([
                                     [
                                         'title'         => __d('yab_cms_ff', 'Edit'),
                                         'data-toggle'   => 'tooltip',
-                                        'escape'        => false,
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Form->postLink(
                                     $this->Html->icon('trash'),
@@ -185,7 +185,7 @@ $this->Breadcrumbs->add([
                                         ),
                                         'title'         => __d('yab_cms_ff', 'Delete'),
                                         'data-toggle'   => 'tooltip',
-                                        'escape'        => false,
+                                        'escapeTitle'   => false,
                                     ]); ?>
                             </td>
                         </tr>
@@ -193,9 +193,7 @@ $this->Breadcrumbs->add([
                     </tbody>
                 </table>
             </div>
-
             <?= $this->element('paginator'); ?>
-
         </div>
     </div>
 </div>

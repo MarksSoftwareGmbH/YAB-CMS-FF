@@ -63,8 +63,8 @@ $userProfilesCount = $UserProfiles
         . $this->Html->tag('span', __d('yab_cms_ff', 'YAB CMS FF'), ['class' => 'brand-text font-weight-light']),
         '/',
         [
-            'class'     => 'brand-link bg-' . h($frontendSidebarBackgroundColor),
-            'escape'    => false,
+            'class'         => 'brand-link bg-' . h($frontendSidebarBackgroundColor),
+            'escapeTitle'   => false,
         ]); ?>
     <div class="sidebar">
         <?php if ($session->check('Auth.User.id')): ?>
@@ -115,8 +115,8 @@ $userProfilesCount = $UserProfiles
                         'action'        => 'dashboard',
                     ],
                     [
-                        'class'     => 'nav-link',
-                        'escape'    => false,
+                        'class'         => 'nav-link',
+                        'escapeTitle'   => false,
                     ]); ?></li>
                 <li class="nav-item"><?= $this->Html->link(
                     $this->Html->tag('i', '', ['class' => 'nav-icon fas fa-users'])
@@ -127,8 +127,8 @@ $userProfilesCount = $UserProfiles
                         'action'        => 'index',
                     ],
                     [
-                        'class'     => 'nav-link',
-                        'escape'    => false,
+                        'class'         => 'nav-link',
+                        'escapeTitle'   => false,
                     ]); ?></li>
                 <li class="nav-item"><?= $this->Html->link(
                     $this->Html->tag('i', '', ['class' => 'nav-icon fas fa-edit'])
@@ -140,8 +140,8 @@ $userProfilesCount = $UserProfiles
                         'articleType'   => 'project',
                     ],
                     [
-                        'class'     => 'nav-link',
-                        'escape'    => false,
+                        'class'         => 'nav-link',
+                        'escapeTitle'   => false,
                     ]); ?></li>
             </ul>
         </nav>

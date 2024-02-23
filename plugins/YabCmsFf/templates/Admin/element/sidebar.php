@@ -56,8 +56,8 @@ endif;
         . $this->Html->tag('span', __d('yab_cms_ff', 'YAB CMS FF'), ['class' => 'brand-text font-weight-light']),
         '/',
         [
-            'class'     => 'brand-link bg-' . h($backendSidebarBackgroundColor),
-            'escape'    => false,
+            'class'         => 'brand-link bg-' . h($backendSidebarBackgroundColor),
+            'escapeTitle'   => false,
         ]); ?>
     <div class="sidebar">
         <nav class="mt-2">

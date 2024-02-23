@@ -82,8 +82,8 @@ $this->Breadcrumbs->add([
                                 'action'        => 'index',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor),
-                                'escape'    => false,
+                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'escapeTitle'   => false,
                             ]
                         )
                         . ' '
@@ -95,9 +95,9 @@ $this->Breadcrumbs->add([
                                 'action'        => 'import',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor),
-                                'escape'    => false,
-                                'title'     => __d('yab_cms_ff', 'Upload & import CSV'),
+                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'escapeTitle'   => false,
+                                'title'         => __d('yab_cms_ff', 'Upload & import CSV'),
                             ]
                         )
                         . ' '
@@ -110,9 +110,9 @@ $this->Breadcrumbs->add([
                                 '_ext'          => 'csv',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor),
-                                'escape'    => false,
-                                'title'     => __d('yab_cms_ff', 'Export & download CSV'),
+                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'escapeTitle'   => false,
+                                'title'         => __d('yab_cms_ff', 'Export & download CSV'),
                             ]
                         ),
                 ]); ?>
@@ -151,36 +151,36 @@ $this->Breadcrumbs->add([
                                 <?= $this->Html->link(
                                     $this->Html->icon('eye'),
                                     [
-                                        'plugin' => 'YabCmsFf',
-                                        'controller' => 'Menus',
-                                        'action' => 'view',
-                                        'id' => h($menu->id),
+                                        'plugin'        => 'YabCmsFf',
+                                        'controller'    => 'Menus',
+                                        'action'        => 'view',
+                                        'id'            => h($menu->id),
                                     ],
                                     [
-                                        'title' => __d('yab_cms_ff', 'View'),
-                                        'data-toggle' => 'tooltip',
-                                        'escape' => false,
+                                        'title'         => __d('yab_cms_ff', 'View'),
+                                        'data-toggle'   => 'tooltip',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Html->link(
                                     $this->Html->icon('edit'),
                                     [
-                                        'plugin' => 'YabCmsFf',
-                                        'controller' => 'Menus',
-                                        'action' => 'edit',
-                                        'id' => h($menu->id),
+                                        'plugin'        => 'YabCmsFf',
+                                        'controller'    => 'Menus',
+                                        'action'        => 'edit',
+                                        'id'            => h($menu->id),
                                     ],
                                     [
-                                        'title' => __d('yab_cms_ff', 'Edit'),
-                                        'data-toggle' => 'tooltip',
-                                        'escape' => false,
+                                        'title'         => __d('yab_cms_ff', 'Edit'),
+                                        'data-toggle'   => 'tooltip',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Form->postLink(
                                     $this->Html->icon('trash'),
                                     [
-                                        'plugin' => 'YabCmsFf',
-                                        'controller' => 'Menus',
-                                        'action' => 'delete',
-                                        'id' => h($menu->id),
+                                        'plugin'        => 'YabCmsFf',
+                                        'controller'    => 'Menus',
+                                        'action'        => 'delete',
+                                        'id'            => h($menu->id),
                                     ],
                                     [
                                         'confirm' => __d(
@@ -188,9 +188,9 @@ $this->Breadcrumbs->add([
                                             'Are you sure you want to delete "{title}"?',
                                             ['title' => h($menu->title)]
                                         ),
-                                        'title' => __d('yab_cms_ff', 'Delete'),
-                                        'data-toggle' => 'tooltip',
-                                        'escape' => false,
+                                        'title'         => __d('yab_cms_ff', 'Delete'),
+                                        'data-toggle'   => 'tooltip',
+                                        'escapeTitle'   => false,
                                     ]); ?>
                             </td>
                         </tr>
@@ -198,9 +198,7 @@ $this->Breadcrumbs->add([
                     </tbody>
                 </table>
             </div>
-
             <?= $this->element('paginator'); ?>
-
         </div>
     </div>
 </div>

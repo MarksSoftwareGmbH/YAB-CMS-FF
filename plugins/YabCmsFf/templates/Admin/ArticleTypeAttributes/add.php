@@ -93,7 +93,7 @@ $this->Breadcrumbs->add([
                                 'class'         => 'text-primary',
                                 'data-toggle'   => 'collapse',
                                 'data-target'   => '#collapse_article_type_attribute_add_links',
-                                'escape'        => false,
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
@@ -106,9 +106,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_1', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '1'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '1'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -120,9 +120,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_2', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '2'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '2'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -134,9 +134,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_3', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '3'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '3'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -148,9 +148,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_4', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '4'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '4'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -162,9 +162,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_5', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '5'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '5'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -176,9 +176,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_6', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '6'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '6'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -190,9 +190,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_7', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '7'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '7'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -204,9 +204,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_8', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '8'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '8'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -218,9 +218,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_9', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '9'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '9'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -241,7 +241,7 @@ $this->Breadcrumbs->add([
                                 'class'         => 'text-primary',
                                 'data-toggle'   => 'collapse',
                                 'data-target'   => '#collapse_article_type_attribute_add_images',
-                                'escape'        => false,
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
@@ -255,9 +255,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '1' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '1' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -270,9 +270,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '2' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '2' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -285,9 +285,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '3' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '3' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -300,9 +300,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '4' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '4' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -315,9 +315,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '5' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '5' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -330,9 +330,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '6' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '6' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -345,9 +345,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '7' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '7' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -360,9 +360,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '8' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '8' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -375,9 +375,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'image/jpeg,image/jpg,image/gif',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Image') . ' ' . '9' . ' ' . '(jpg/gif)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Image') . ' ' . '9' . ' ' . '(jpg/gif)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -398,7 +398,7 @@ $this->Breadcrumbs->add([
                                 'class'         => 'text-primary',
                                 'data-toggle'   => 'collapse',
                                 'data-target'   => '#collapse_article_type_attribute_add_videos',
-                                'escape'        => false,
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
@@ -412,9 +412,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '1' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '1' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -427,9 +427,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '2' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '2' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -442,9 +442,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '3' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '3' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -457,9 +457,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '4' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '4' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -472,9 +472,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '5' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '5' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -487,9 +487,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '6' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '6' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -502,9 +502,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '7' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '7' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -517,9 +517,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '8' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '8' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -532,9 +532,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'video/mp4',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'Video') . ' ' . '9' . ' ' . '(mp4)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'Video') . ' ' . '9' . ' ' . '(mp4)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -555,7 +555,7 @@ $this->Breadcrumbs->add([
                                 'class'         => 'text-primary',
                                 'data-toggle'   => 'collapse',
                                 'data-target'   => '#collapse_article_type_attribute_add_pdf',
-                                'escape'        => false,
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
@@ -569,9 +569,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '1' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '1' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -584,9 +584,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '2' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '2' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -599,9 +599,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '3' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '3' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -614,9 +614,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '4' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '4' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -629,9 +629,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '5' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '5' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -644,9 +644,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '6' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '6' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -659,9 +659,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '7' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '7' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -674,9 +674,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '8' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '8' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -689,9 +689,9 @@ $this->Breadcrumbs->add([
                         'type'      => 'file',
                         'accept'    => 'application/pdf',
                         'label'     => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => __d('yab_cms_ff', 'PDF') . ' ' . '9' . ' ' . '(pdf)',
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => __d('yab_cms_ff', 'PDF') . ' ' . '9' . ' ' . '(pdf)',
+                            'escapeTitle'   => false,
                         ],
                         'templates'     => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -753,8 +753,8 @@ $this->Breadcrumbs->add([
                             'action'        => 'index',
                         ],
                         [
-                            'class'     => 'btn btn-danger float-right',
-                            'escape'    => false,
+                            'class'         => 'btn btn-danger float-right',
+                            'escapeTitle'   => false,
                         ]); ?>
                 </div>
             </div>

@@ -34,7 +34,7 @@ use Cake\Core\Configure;
             'link' => $this->Html->link(
                 'Marks Software GmbH',
                 'https://www.marks-software.de/',
-                ['target' => '_blank', 'escape' => false]
+                ['target' => '_blank', 'escapeTitle' => false]
             ),
         ]); ?></strong>
     <?= __d('yab_cms_ff', 'All Rights Reserved.'); ?>

@@ -95,8 +95,8 @@ $this->Breadcrumbs->add([
                                     'action'        => 'index',
                                 ],
                                 [
-                                    'class'     => 'btn btn-' . h($backendButtonColor),
-                                    'escape'    => false,
+                                    'class'         => 'btn btn-' . h($backendButtonColor),
+                                    'escapeTitle'   => false,
                                 ]
                             ),
                     ]); ?>
@@ -170,23 +170,23 @@ $this->Breadcrumbs->add([
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Video 9'); ?></dt>
                     <dd class="col-sm-9"><?= empty($articleTypeAttribute->video_9)? '-': '<video width=25 controls><source src="' . $articleTypeAttribute->video_9_file . '"></video>' . ' ' . h($articleTypeAttribute->video_9); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 1'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_1)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_1_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_1); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_1)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_1_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_1); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 2'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_2)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_2_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_2); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_2)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_2_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_2); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 3'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_3)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_3_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_3); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_3)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_3_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_3); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 4'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_4)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_4_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_4); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_4)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_4_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_4); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 5'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_5)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_5_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_5); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_5)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_5_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_5); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 6'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_6)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_6_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_6); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_6)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_6_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_6); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 7'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_7)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_7_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_7); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_7)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_7_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_7); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 8'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_8)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_8_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_8); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_8)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_8_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_8); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 9'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_9)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_9_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttribute->pdf_9); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttribute->pdf_9)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_9_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttribute->pdf_9); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Empty value'); ?></dt>
                     <dd class="col-sm-9"><?= $this->YabCmsFf->status(h($articleTypeAttribute->empty_value)); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'WYSIWYG'); ?></dt>
@@ -254,8 +254,8 @@ $this->Breadcrumbs->add([
                         'action'        => 'index',
                     ],
                     [
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Html->link(
                     $this->Html->icon('edit') . ' ' . __d('yab_cms_ff', 'Edit'),
@@ -266,8 +266,8 @@ $this->Breadcrumbs->add([
                         'id'            => h($articleTypeAttribute->id),
                     ],
                     [
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]) ?>
                 <?= $this->Form->postLink(
                     $this->Html->icon('trash') . ' ' . __d('yab_cms_ff', 'Delete'),
@@ -283,8 +283,8 @@ $this->Breadcrumbs->add([
                             'Are you sure you want to delete "{title}"?',
                             ['title' => h($articleTypeAttribute->title)]
                         ),
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
             </div>
         </div>

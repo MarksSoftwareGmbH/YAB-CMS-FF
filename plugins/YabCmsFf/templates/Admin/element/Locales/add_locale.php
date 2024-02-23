@@ -42,8 +42,8 @@ endif;
             'action'        => 'add',
         ],
         [
-            'class'     => 'btn btn-' . h($backendButtonColor),
-            'type'      => 'button',
-            'escape'    => false
+            'class'         => 'btn btn-' . h($backendButtonColor),
+            'type'          => 'button',
+            'escapeTitle'   => false,
         ]); ?>
 </div>

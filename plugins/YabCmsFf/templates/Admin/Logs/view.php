@@ -95,8 +95,8 @@ $this->Breadcrumbs->add([
                                     'action'        => 'index',
                                 ],
                                 [
-                                    'class'     => 'btn btn-' . h($backendButtonColor),
-                                    'escape'    => false,
+                                    'class'         => 'btn btn-' . h($backendButtonColor),
+                                    'escapeTitle'   => false,
                                 ]
                             ),
                     ]); ?>
@@ -157,8 +157,8 @@ $this->Breadcrumbs->add([
                         'action'        => 'index',
                     ],
                     [
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Html->link(
                     $this->Html->icon('edit') . ' ' . __d('yab_cms_ff', 'Edit'),
@@ -169,8 +169,8 @@ $this->Breadcrumbs->add([
                         'id'            => h($log->id),
                     ],
                     [
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Form->postLink(
                     $this->Html->icon('trash') . ' ' . __d('yab_cms_ff', 'Delete'),
@@ -186,8 +186,8 @@ $this->Breadcrumbs->add([
                             'Are you sure you want to delete "{request}"?',
                             ['request' => h($log->request)]
                         ),
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
             </div>
         </div>

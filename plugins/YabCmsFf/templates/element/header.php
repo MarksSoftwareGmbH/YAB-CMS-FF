@@ -63,7 +63,7 @@ endif;
                     'class'         => 'nav-link',
                     'data-widget'   => 'pushmenu',
                     'role'          => 'button',
-                    'escape'        => false,
+                    'escapeTitle'   => false,
                 ]); ?>
         </li>
     </ul>
@@ -125,7 +125,7 @@ endif;
                         [
                             'class'         => 'nav-link dropdown-toggle',
                             'data-toggle'   => 'dropdown',
-                            'escape'        => false,
+                            'escapeTitle'   => false,
                         ]); ?>
                 <?php else: ?>
                     <?= $this->Html->link(
@@ -140,7 +140,7 @@ endif;
                         [
                             'class'         => 'nav-link dropdown-toggle',
                             'data-toggle'   => 'dropdown',
-                            'escape'        => false,
+                            'escapeTitle'   => false,
                         ]); ?>
                 <?php endif; ?>
             <?php else: ?>
@@ -155,7 +155,7 @@ endif;
                     [
                         'class'         => 'nav-link dropdown-toggle',
                         'data-toggle'   => 'dropdown',
-                        'escape'        => false,
+                        'escapeTitle'   => false,
                     ]); ?>
             <?php endif; ?>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -188,8 +188,8 @@ endif;
                                 'action'        => 'profile',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($frontendButtonColor),
-                                'escape'    => false,
+                                'class'         => 'btn btn-' . h($frontendButtonColor),
+                                'escapeTitle'   => false,
                             ]); ?>
                         <?= $this->Html->link(
                             $this->Html->icon('sign-out-alt')
@@ -201,8 +201,8 @@ endif;
                                 'action'        => 'logout',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($frontendButtonColor) . ' float-right',
-                                'escape'    => false,
+                                'class'         => 'btn btn-' . h($frontendButtonColor) . ' float-right',
+                                'escapeTitle'   => false,
                             ]); ?>
                     <?php else: ?>
                         <?= $this->Html->link(
@@ -214,9 +214,9 @@ endif;
                                 'action'        => 'register',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block',
-                                'style'     => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
-                                'escape'    => false,
+                                'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block',
+                                'style'         => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
+                                'escapeTitle'   => false,
                             ]); ?>
                         <?= $this->Html->link(
                             $this->Html->tag('i', '', ['class' => 'fas fa-sign-in-alt', 'style' => 'width: 24px; height: 22px; margin: 0 13px -2px -7px;'])
@@ -227,9 +227,9 @@ endif;
                                 'action'        => 'login',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block',
-                                'style'     => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
-                                'escape'    => false,
+                                'class'         => 'btn btn-' . h($frontendButtonColor) . ' btn-flat btn-block',
+                                'style'         => 'text-align: left; font-size: 16px !important; line-height: 20px; padding: 9px 21px 11px;',
+                                'escapeTitle'   => false,
                             ]); ?>
                     <?php endif; ?>
                 </li>
@@ -245,9 +245,9 @@ endif;
                     'action'        => 'dashboard',
                 ],
                 [
-                    'escape'    => false,
-                    'class'     => 'nav-link',
-                    'role'      => 'button',
+                    'escapeTitle'   => false,
+                    'class'         => 'nav-link',
+                    'role'          => 'button',
                 ]); ?></li>
         <?php endif; ?>
     </ul>

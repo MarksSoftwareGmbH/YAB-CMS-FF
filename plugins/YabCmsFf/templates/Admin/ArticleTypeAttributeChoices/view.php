@@ -95,8 +95,8 @@ $this->Breadcrumbs->add([
                                     'action'        => 'index',
                                 ],
                                 [
-                                    'class'     => 'btn btn-' . $backendButtonColor,
-                                    'escape'    => false,
+                                    'class'         => 'btn btn-' . $backendButtonColor,
+                                    'escapeTitle'   => false,
                                 ]
                             ),
                     ]); ?>
@@ -182,23 +182,23 @@ $this->Breadcrumbs->add([
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Video 9'); ?></dt>
                     <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->video_9)? '-': '<video width=25 controls><source src="' . $articleTypeAttributeChoice->video_9_file . '"></video>' . ' ' . h($articleTypeAttributeChoice->video_9); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 1'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_1)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_1_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_1); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_1)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_1_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_1); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 2'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_2)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_2_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_2); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_2)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_2_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_2); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 3'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_3)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_3_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_3); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_3)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_3_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_3); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 4'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_4)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_4_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_4); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_4)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_4_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_4); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 5'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_5)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_5_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_5); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_5)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_5_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_5); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 6'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_6)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_6_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_6); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_6)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_6_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_6); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 7'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_7)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_7_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_7); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_7)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_7_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_7); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 8'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_8)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_8_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_8); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_8)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_8_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_8); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'PDF 9'); ?></dt>
-                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_9)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_9_file, ['target' => '_blank', 'escape' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_9); ?></dd>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_9)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_9_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_9); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created'); ?></dt>
                     <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->created)? '-': h($articleTypeAttributeChoice->created->format('d.m.Y H:i:s')); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified'); ?></dt>
@@ -213,8 +213,8 @@ $this->Breadcrumbs->add([
                         'action'        => 'index',
                     ],
                     [
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Html->link(
                     $this->Html->icon('edit') . ' ' . __d('yab_cms_ff', 'Edit'),
@@ -225,8 +225,8 @@ $this->Breadcrumbs->add([
                         'id'            => h($articleTypeAttributeChoice->id),
                     ],
                     [
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Form->postLink(
                     $this->Html->icon('trash') . ' ' . __d('yab_cms_ff', 'Delete'),
@@ -242,8 +242,8 @@ $this->Breadcrumbs->add([
                             'Are you sure, you want to delete "{value}"?',
                             ['value' => h($articleTypeAttributeChoice->value)]
                         ),
-                        'class'     => 'btn btn-app',
-                        'escape'    => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
             </div>
         </div>

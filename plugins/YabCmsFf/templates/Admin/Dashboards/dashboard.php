@@ -63,8 +63,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -87,8 +87,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -111,8 +111,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -135,8 +135,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -163,8 +163,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -187,8 +187,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -211,8 +211,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -235,8 +235,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -263,8 +263,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>
@@ -287,8 +287,8 @@ $this->Breadcrumbs->add([
                     'action'        => 'index',
                 ],
                 [
-                    'class'     => 'small-box-footer',
-                    'escape'    => false,
+                    'class'         => 'small-box-footer',
+                    'escapeTitle'   => false,
                 ]); ?>
         </div>
     </div>

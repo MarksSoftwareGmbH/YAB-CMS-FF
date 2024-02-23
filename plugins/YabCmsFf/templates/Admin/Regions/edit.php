@@ -36,17 +36,17 @@ $this->Breadcrumbs->add([
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
-            'plugin' => 'YabCmsFf',
-            'controller' => 'Dashboards',
-            'action' => 'dashboard',
+            'plugin'        => 'YabCmsFf',
+            'controller'    => 'Dashboards',
+            'action'        => 'dashboard',
         ]
     ],
     [
         'title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller')),
         'url' => [
-            'plugin' => 'YabCmsFf',
-            'controller' => 'Regions',
-            'action' => 'index',
+            'plugin'        => 'YabCmsFf',
+            'controller'    => 'Regions',
+            'action'        => 'index',
         ]
     ],
     ['title' => __d('yab_cms_ff', 'Edit region')],
@@ -64,26 +64,26 @@ $this->Breadcrumbs->add([
             </div>
             <div class="card-body">
                 <?= $this->Form->control('foreign_key', [
-                    'type' => 'text',
-                    'required' => false,
+                    'type'      => 'text',
+                    'required'  => false,
                 ]); ?>
                 <?= $this->Form->control('name', [
-                    'type' => 'text',
-                    'required' => true,
+                    'type'      => 'text',
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('slug', [
-                    'type' => 'text',
-                    'class' => 'slug',
-                    'required' => true,
+                    'type'      => 'text',
+                    'class'     => 'slug',
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('code', [
-                    'type' => 'text',
-                    'required' => true,
+                    'type'      => 'text',
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('info', [
-                    'type' => 'textarea',
-                    'class' => 'info',
-                    'required' => false,
+                    'type'      => 'textarea',
+                    'class'     => 'info',
+                    'required'  => false,
                 ]); ?>
             </div>
         </div>
@@ -97,11 +97,11 @@ $this->Breadcrumbs->add([
             </div>
             <div class="card-body">
                 <?= $this->Form->control('locale', [
-                    'type' => 'select',
-                    'options' => !empty($this->YabCmsFf->localeCodes())? $this->YabCmsFf->localeCodes(): [],
+                    'type'      => 'select',
+                    'options'   => !empty($this->YabCmsFf->localeCodes())? $this->YabCmsFf->localeCodes(): [],
                     'class'     => 'select2',
                     'style'     => 'width: 100%',
-                    'required' => true,
+                    'required'  => true,
                 ]); ?>
                 <div class="form-group">
                     <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
@@ -115,13 +115,13 @@ $this->Breadcrumbs->add([
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
-                            'plugin' => 'YabCmsFf',
-                            'controller' => 'Regions',
-                            'action' => 'index',
+                            'plugin'        => 'YabCmsFf',
+                            'controller'    => 'Regions',
+                            'action'        => 'index',
                         ],
                         [
-                            'class' => 'btn btn-danger float-right',
-                            'escape' => false,
+                            'class'         => 'btn btn-danger float-right',
+                            'escapeTitle'   => false,
                         ]); ?>
                 </div>
             </div>

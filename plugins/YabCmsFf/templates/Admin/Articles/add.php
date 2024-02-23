@@ -217,8 +217,8 @@ $this->Breadcrumbs->add([
                         __d('yab_cms_ff', 'Cancel'),
                         $this->request->getSession()->read('Request.HTTP_REFERER'),
                         [
-                            'class'     => 'btn btn-danger float-right',
-                            'escape'    => false,
+                            'class'         => 'btn btn-danger float-right',
+                            'escapeTitle'   => false,
                         ]); ?>
                 </div>
             </div>

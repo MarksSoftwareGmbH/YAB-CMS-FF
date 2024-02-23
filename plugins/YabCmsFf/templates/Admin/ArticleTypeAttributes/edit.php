@@ -88,7 +88,7 @@ $this->Breadcrumbs->add([
                                 'class'         => 'text-primary',
                                 'data-toggle'   => 'collapse',
                                 'data-target'   => '#collapse_article_type_attribute_edit_links',
-                                'escape'        => false,
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
@@ -101,9 +101,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_1', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '1'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '1'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -115,9 +115,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_2', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '2'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '2'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -129,9 +129,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_3', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '3'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '3'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -143,9 +143,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_4', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '4'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '4'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -157,9 +157,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_5', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '5'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '5'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -171,9 +171,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_6', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '6'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '6'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -185,9 +185,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_7', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '7'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '7'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -199,9 +199,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_8', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '8'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '8'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -213,9 +213,9 @@ $this->Breadcrumbs->add([
                     <?= $this->Form->control('link_9', [
                         'type'  => 'url',
                         'label' => [
-                            'class'     => 'col-sm-2 col-form-label',
-                            'text'      => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '9'),
-                            'escape'    => false,
+                            'class'         => 'col-sm-2 col-form-label',
+                            'text'          => $this->Html->tag('p', __d('yab_cms_ff', 'Link') . ' ' . '9'),
+                            'escapeTitle'   => false,
                         ],
                         'templates' => [
                             'inputContainer'        => '<div class="form-group row {{type}}{{required}}">{{content}}{{help}}</div>',
@@ -236,7 +236,7 @@ $this->Breadcrumbs->add([
                                 'class'         => 'text-primary',
                                 'data-toggle'   => 'collapse',
                                 'data-target'   => '#collapse_article_type_attribute_edit_images',
-                                'escape'        => false,
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
@@ -393,7 +393,7 @@ $this->Breadcrumbs->add([
                                 'class'         => 'text-primary',
                                 'data-toggle'   => 'collapse',
                                 'data-target'   => '#collapse_article_type_attribute_edit_videos',
-                                'escape'        => false,
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
@@ -577,7 +577,7 @@ $this->Breadcrumbs->add([
                                 'class'         => 'text-primary',
                                 'data-toggle'   => 'collapse',
                                 'data-target'   => '#collapse_article_type_attribute_edit_pdf',
-                                'escape'        => false,
+                                'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
@@ -591,7 +591,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '1' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_1) && !empty($articleTypeAttributeChoice->pdf_1_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_1_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_1); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_1_file, ['target' => '_blank','escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_1); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_1', [
@@ -606,7 +606,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '2' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_2) && !empty($articleTypeAttributeChoice->pdf_2_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_2_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_2); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_2_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_2); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_2', [
@@ -621,7 +621,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '3' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_3) && !empty($articleTypeAttributeChoice->pdf_3_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_3_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_3); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_3_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_3); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_3', [
@@ -636,7 +636,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '4' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_4) && !empty($articleTypeAttributeChoice->pdf_4_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_4_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_4); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_4_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_4); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_4', [
@@ -651,7 +651,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '5' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_5) && !empty($articleTypeAttributeChoice->pdf_5_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_5_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_5); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_5_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_5); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_5', [
@@ -666,7 +666,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '6' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_6) && !empty($articleTypeAttributeChoice->pdf_6_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_6_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_6); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_6_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_6); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_6', [
@@ -681,7 +681,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '7' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_7) && !empty($articleTypeAttributeChoice->pdf_7_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_7_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_7); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_7_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_7); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_7', [
@@ -696,7 +696,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '8' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_8) && !empty($articleTypeAttributeChoice->pdf_8_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_8_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_8); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_8_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_8); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_8', [
@@ -711,7 +711,7 @@ $this->Breadcrumbs->add([
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '9' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
                             <?php if (!empty($articleTypeAttributeChoice->pdf_9) && !empty($articleTypeAttributeChoice->pdf_9_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_9_file, ['target' => '_blank', 'escape' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_9); ?>)<br />
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_9_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_9); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_9', [
@@ -776,8 +776,8 @@ $this->Breadcrumbs->add([
                             'action'        => 'index',
                         ],
                         [
-                            'class'     => 'btn btn-danger float-right',
-                            'escape'    => false,
+                            'class'         => 'btn btn-danger float-right',
+                            'escapeTitle'   => false,
                         ]); ?>
                 </div>
             </div>

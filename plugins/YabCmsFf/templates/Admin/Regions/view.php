@@ -45,17 +45,17 @@ $this->Breadcrumbs->add([
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
-            'plugin' => 'YabCmsFf',
-            'controller' => 'Dashboards',
-            'action' => 'dashboard',
+            'plugin'        => 'YabCmsFf',
+            'controller'    => 'Dashboards',
+            'action'        => 'dashboard',
         ]
     ],
     [
         'title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller')),
         'url' => [
-            'plugin' => 'YabCmsFf',
-            'controller' => 'Regions',
-            'action' => 'index',
+            'plugin'        => 'YabCmsFf',
+            'controller'    => 'Regions',
+            'action'        => 'index',
         ]
     ],
     ['title' => __d('yab_cms_ff', 'View')],
@@ -72,17 +72,17 @@ $this->Breadcrumbs->add([
                 <div class="card-tools">
                     <?= $this->Form->create(null, [
                         'url' => [
-                            'plugin' => 'YabCmsFf',
-                            'controller' => 'Regions',
-                            'action' => 'index',
+                            'plugin'        => 'YabCmsFf',
+                            'controller'    => 'Regions',
+                            'action'        => 'index',
                         ],
                     ]); ?>
                     <?= $this->Form->control('search', [
-                        'type' => 'text',
-                        'label' => false,
-                        'placeholder' => __d('yab_cms_ff', 'Search') . '...',
-                        'style' => 'width: 150px;',
-                        'append' => $this->Form->button(
+                        'type'          => 'text',
+                        'label'         => false,
+                        'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
+                        'style'         => 'width: 150px;',
+                        'append'        => $this->Form->button(
                                 __d('yab_cms_ff', 'Filter'),
                                 ['class' => 'btn btn-' . h($backendButtonColor)]
                             )
@@ -90,13 +90,13 @@ $this->Breadcrumbs->add([
                             . $this->Html->link(
                                 __d('yab_cms_ff', 'Reset'),
                                 [
-                                    'plugin' => 'YabCmsFf',
-                                    'controller' => 'Regions',
-                                    'action' => 'index',
+                                    'plugin'        => 'YabCmsFf',
+                                    'controller'    => 'Regions',
+                                    'action'        => 'index',
                                 ],
                                 [
-                                    'class' => 'btn btn-' . h($backendButtonColor),
-                                    'escape' => false,
+                                    'class'         => 'btn btn-' . h($backendButtonColor),
+                                    'escapeTitle'   => false,
                                 ]
                             ),
                     ]); ?>
@@ -130,33 +130,33 @@ $this->Breadcrumbs->add([
                 <?= $this->Html->link(
                     $this->Html->icon('list') . ' ' . __d('yab_cms_ff', 'Index'),
                     [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Regions',
-                        'action' => 'index',
+                        'plugin'        => 'YabCmsFf',
+                        'controller'    => 'Regions',
+                        'action'        => 'index',
                     ],
                     [
-                        'class' => 'btn btn-app',
-                        'escape' => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Html->link(
                     $this->Html->icon('edit') . ' ' . __d('yab_cms_ff', 'Edit'),
                     [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Regions',
-                        'action' => 'edit',
-                        'id' => h($region->id),
+                        'plugin'        => 'YabCmsFf',
+                        'controller'    => 'Regions',
+                        'action'        => 'edit',
+                        'id'            => h($region->id),
                     ],
                     [
-                        'class' => 'btn btn-app',
-                        'escape' => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
                 <?= $this->Form->postLink(
                     $this->Html->icon('trash') . ' ' . __d('yab_cms_ff', 'Delete'),
                     [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Regions',
-                        'action' => 'delete',
-                        'id' => h($region->id),
+                        'plugin'        => 'YabCmsFf',
+                        'controller'    => 'Regions',
+                        'action'        => 'delete',
+                        'id'            => h($region->id),
                     ],
                     [
                         'confirm' => __d(
@@ -164,8 +164,8 @@ $this->Breadcrumbs->add([
                             'Are you sure you want to delete "{name}"?',
                             ['name' => h($region->name)]
                         ),
-                        'class' => 'btn btn-app',
-                        'escape' => false,
+                        'class'         => 'btn btn-app',
+                        'escapeTitle'   => false,
                     ]); ?>
             </div>
         </div>

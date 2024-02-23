@@ -63,7 +63,7 @@ endif;
                     'class'         => 'nav-link',
                     'data-widget'   => 'pushmenu',
                     'role'          => 'button',
-                    'escape'        => false,
+                    'escapeTitle'   => false,
                 ]); ?>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
@@ -133,7 +133,7 @@ endif;
                     [
                         'class'         => 'nav-link dropdown-toggle',
                         'data-toggle'   => 'dropdown',
-                        'escape'        => false,
+                        'escapeTitle'   => false,
                     ]); ?>
             <?php else: ?>
                 <?= $this->Html->link(
@@ -148,7 +148,7 @@ endif;
                     [
                         'class'         => 'nav-link dropdown-toggle',
                         'data-toggle'   => 'dropdown',
-                        'escape'        => false,
+                        'escapeTitle'   => false,
                     ]); ?>
             <?php endif; ?>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -180,8 +180,8 @@ endif;
                             'id'            => $session->read('Auth.User.id')
                         ],
                         [
-                            'class' => 'btn btn-' . h($backendButtonColor) . ' btn-flat',
-                            'escape' => false,
+                            'class'         => 'btn btn-' . h($backendButtonColor) . ' btn-flat',
+                            'escapeTitle'   => false,
                         ]); ?>
                     <?= $this->Html->link(
                         $this->Html->icon('sign-out-alt')
@@ -194,8 +194,8 @@ endif;
                             'action'        => 'logout',
                         ],
                         [
-                            'class'     => 'btn btn-' . h($backendButtonColor) . ' btn-flat float-right',
-                            'escape'    => false,
+                            'class'         => 'btn btn-' . h($backendButtonColor) . ' btn-flat float-right',
+                            'escapeTitle'   => false,
                         ]); ?>
                 </li>
             </ul>

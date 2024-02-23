@@ -100,8 +100,8 @@ $this->Breadcrumbs->add([
                                 'action'        => 'index',
                             ],
                             [
-                                'class'     => 'btn btn-' . h($backendButtonColor),
-                                'escape'    => false,
+                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'escapeTitle'   => false,
                             ]
                         ),
                 ]); ?>
@@ -158,7 +158,7 @@ $this->Breadcrumbs->add([
                                     [
                                         'title'         => __d('yab_cms_ff', 'View'),
                                         'data-toggle'   => 'tooltip',
-                                        'escape'        => false,
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Html->link(
                                     $this->Html->icon('edit'),
@@ -171,7 +171,7 @@ $this->Breadcrumbs->add([
                                     [
                                         'title'         => __d('yab_cms_ff', 'Edit'),
                                         'data-toggle'   => 'tooltip',
-                                        'escape'        => false,
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Form->postLink(
                                     $this->Html->icon('copy'),
@@ -184,7 +184,7 @@ $this->Breadcrumbs->add([
                                     [
                                         'title'         => __d('yab_cms_ff', 'Copy'),
                                         'data-toggle'   => 'tooltip',
-                                        'escape'        => false,
+                                        'escapeTitle'   => false,
                                     ]); ?>
                                 <?= $this->Form->postLink(
                                     $this->Html->icon('trash'),
@@ -202,7 +202,7 @@ $this->Breadcrumbs->add([
                                         ),
                                         'title'         => __d('yab_cms_ff', 'Delete'),
                                         'data-toggle'   => 'tooltip',
-                                        'escape'        => false,
+                                        'escapeTitle'   => false,
                                     ]); ?>
                             </td>
                         </tr>
