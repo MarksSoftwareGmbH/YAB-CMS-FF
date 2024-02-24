@@ -113,7 +113,7 @@ $this->Breadcrumbs->add([
     'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'select2' . DS . 'js' . DS . 'select2.full.min',
     ['block' => 'scriptBottom']); ?>
 <?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'ArticleArticleTypeAttributeValues' . DS . 'form',
+    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'articleArticleTypeAttributeValues' . DS . 'form',
     ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {

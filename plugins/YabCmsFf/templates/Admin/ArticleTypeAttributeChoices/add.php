@@ -69,7 +69,7 @@ $this->Breadcrumbs->add([
                     'value' => '',
                 ]); ?>
                 <?= $this->Form->control('article_type_attribute_id', [
-                    'options'   => (!empty($articleTypeAttributes))? $articleTypeAttributes: [],
+                    'options'   => !empty($articleTypeAttributes)? $articleTypeAttributes: [],
                     'class'     => 'select2',
                     'style'     => 'width: 100%',
                     'empty'     => false,

@@ -86,7 +86,7 @@ $this->Breadcrumbs->add([
 
                     echo $this->Form->control('article_article_type_attribute_values' . '.' . h($key) . '.' . 'id', [
                         'type'  => 'hidden',
-                        'value' => (!empty($articleArticleTypeAttributeValueId))? $articleArticleTypeAttributeValueId[0]: '',
+                        'value' => !empty($articleArticleTypeAttributeValueId)? $articleArticleTypeAttributeValueId[0]: '',
                     ]);
 
                     echo $this->Form->control('article_article_type_attribute_values' . '.' . h($key) . '.' . 'article_type_attribute_id', [
