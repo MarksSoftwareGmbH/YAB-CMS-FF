@@ -11,7 +11,7 @@ It is powered by the [CakePHP](http://cakephp.org) 5 PHP framework.
 
 ## Installation
 
-#### Installation using GitHUb [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories)
+#### Installation using GitHub [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories)
 
 The preferred way to install YAB-CMS-FF is by using HTTP
 
@@ -68,6 +68,10 @@ When the composer update is finished
   * **Mark Story - Asset Compress**: [markstory/asset_compress](https://github.com/markstory/asset_compress)
   * **Mark Scherer - CakePHP IdeHelper Plugin**: [dereuromark/cakephp-ide-helper](https://github.com/dereuromark/cakephp-ide-helper)
   * **PHPStan - PHP Static Analysis Tool**: [phpstan/phpstan](https://github.com/phpstan/phpstan)
+
+## Front- and Backend template
+
+  * **Colorlib (Aigars Silkalns) - AdminLTE Bootstrap Admin Dashboard Template** [https://github.com/ColorlibHQ/AdminLTE](https://github.com/ColorlibHQ/AdminLTE)
 
 ## Links
 
