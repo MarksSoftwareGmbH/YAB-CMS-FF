@@ -651,31 +651,6 @@ class YabCmsFfHelper extends Helper
     }
 
     /**
-     * Dynamics connect types method
-     *
-     * @param string|null $key
-     *
-     * @return array|mixed
-     */
-    public function dynamicsConnectTypes(string $key = null)
-    {
-        $types = [
-            'basic'  => 'Basic',
-            'custom' => 'Custom',
-            'proxy'  => 'Proxy',
-        ];
-        if ($key) {
-            if (isset($types[$key])) {
-                return $types[$key];
-            } else {
-                return $key;
-            }
-        }
-
-        return $types;
-    }
-
-    /**
      * Generates a strong password of N length containing at least one lower case letter,
      * one uppercase letter, one digit, and one special character. The remaining characters
      * in the password are chosen at random from those four sets.

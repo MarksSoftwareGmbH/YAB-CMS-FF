@@ -77,7 +77,7 @@ class YabCmsFfCommand extends Command implements CommandCollectionAwareInterface
         $io->info('Available Commands:', 2);
 
         foreach ($this->commands as $command => $class) {
-            if (substr($command, 0, 12) === 'yab_cms_ff.') {
+            if (substr($command, 0, 11) === 'yab_cms_ff.') {
                 $io->out('- ' . $command);
             }
         }
