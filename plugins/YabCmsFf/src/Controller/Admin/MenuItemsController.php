@@ -26,12 +26,15 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Controller\Admin;
 
-use YabCmsFf\Controller\Admin\AppController;
 use Cake\Event\EventInterface;
+use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
-use YabCmsFf\Utility\YabCmsFf;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use YabCmsFf\Controller\Admin\AppController;
+use YabCmsFf\Utility\YabCmsFf;
 
 /**
  * MenuItems Controller
@@ -578,12 +581,145 @@ class MenuItemsController extends AppController
     }
 
     /**
-     * Export method
+     * Export xlsx method
      *
      * @return \Cake\Http\Response|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function export()
+    public function exportXlsx()
+    {
+        $menuItems = $this->MenuItems->find('all');
+        $header = $this->MenuItems->tableColumns;
+
+        $menuItemsArray = [];
+        foreach($menuItems as $menuItem) {
+            $menuItemArray = [];
+            $menuItemArray['id'] = $menuItem->id;
+            $menuItemArray['parent_id'] = $menuItem->parent_id;
+            $menuItemArray['menu_id'] = $menuItem->menu_id;
+            $menuItemArray['domain_id'] = $menuItem->domain_id;
+            $menuItemArray['foreign_key'] = $menuItem->foreign_key;
+            $menuItemArray['title'] = $menuItem->title;
+            $menuItemArray['alias'] = $menuItem->alias;
+            $menuItemArray['sub_title'] = $menuItem->sub_title;
+            $menuItemArray['link'] = $menuItem->link;
+            $menuItemArray['link_target'] = $menuItem->link_target;
+            $menuItemArray['link_rel'] = $menuItem->link_rel;
+            $menuItemArray['description'] = $menuItem->description;
+            $menuItemArray['lft'] = $menuItem->lft;
+            $menuItemArray['rght'] = $menuItem->rght;
+            $menuItemArray['locale'] = $menuItem->locale;
+            $menuItemArray['status'] = ($menuItem->status == 1)? 1: 0;
+            $menuItemArray['created'] = empty($menuItem->created)? NULL: $menuItem->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $menuItemArray['modified'] = empty($menuItem->modified)? NULL: $menuItem->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $menuItemsArray[] = $menuItemArray;
+        }
+        $menuItems = $menuItemsArray;
+
+        $objSpreadsheet = new Spreadsheet();
+        $objSpreadsheet->setActiveSheetIndex(0);
+
+        $rowCount = 1;
+        $colCount = 1;
+        foreach ($header as $headerAlias) {
+            $col = 'A';
+            switch ($colCount) {
+                case 2: $col = 'B'; break;
+                case 3: $col = 'C'; break;
+                case 4: $col = 'D'; break;
+                case 5: $col = 'E'; break;
+                case 6: $col = 'F'; break;
+                case 7: $col = 'G'; break;
+                case 8: $col = 'H'; break;
+                case 9: $col = 'I'; break;
+                case 10: $col = 'J'; break;
+                case 11: $col = 'K'; break;
+                case 12: $col = 'L'; break;
+                case 13: $col = 'M'; break;
+                case 14: $col = 'N'; break;
+                case 15: $col = 'O'; break;
+                case 16: $col = 'P'; break;
+                case 17: $col = 'Q'; break;
+                case 18: $col = 'R'; break;
+                case 19: $col = 'S'; break;
+                case 20: $col = 'T'; break;
+                case 21: $col = 'U'; break;
+                case 22: $col = 'V'; break;
+                case 23: $col = 'W'; break;
+                case 24: $col = 'X'; break;
+                case 25: $col = 'Y'; break;
+                case 26: $col = 'Z'; break;
+            }
+
+            $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $headerAlias);
+            $colCount++;
+        }
+
+        $rowCount = 1;
+        foreach ($menuItems as $dataEntity) {
+            $rowCount++;
+
+            $colCount = 1;
+            foreach ($dataEntity as $dataProperty) {
+                $col = 'A';
+                switch ($colCount) {
+                    case 2: $col = 'B'; break;
+                    case 3: $col = 'C'; break;
+                    case 4: $col = 'D'; break;
+                    case 5: $col = 'E'; break;
+                    case 6: $col = 'F'; break;
+                    case 7: $col = 'G'; break;
+                    case 8: $col = 'H'; break;
+                    case 9: $col = 'I'; break;
+                    case 10: $col = 'J'; break;
+                    case 11: $col = 'K'; break;
+                    case 12: $col = 'L'; break;
+                    case 13: $col = 'M'; break;
+                    case 14: $col = 'N'; break;
+                    case 15: $col = 'O'; break;
+                    case 16: $col = 'P'; break;
+                    case 17: $col = 'Q'; break;
+                    case 18: $col = 'R'; break;
+                    case 19: $col = 'S'; break;
+                    case 20: $col = 'T'; break;
+                    case 21: $col = 'U'; break;
+                    case 22: $col = 'V'; break;
+                    case 23: $col = 'W'; break;
+                    case 24: $col = 'X'; break;
+                    case 25: $col = 'Y'; break;
+                    case 26: $col = 'Z'; break;
+                }
+
+                $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $dataProperty);
+                $colCount++;
+            }
+        }
+
+        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $objSpreadsheet
+                ->getActiveSheet()
+                ->getColumnDimension($col)
+                ->setAutoSize(true);
+        }
+        $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');
+        $stream = new CallbackStream(function () use ($objSpreadsheetWriter) {
+            $objSpreadsheetWriter->save('php://output');
+        });
+
+        return $this->response
+            ->withType('xlsx')
+            ->withHeader('Content-Disposition', 'attachment;filename="' . strtolower($this->defaultTable) . '.' . 'xlsx"')
+            ->withBody($stream);
+    }
+
+    /**
+     * Export csv method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportCsv()
     {
         $menuItems = $this->MenuItems->find('all');
         $delimiter = ';';
@@ -608,6 +744,12 @@ class MenuItemsController extends AppController
             function ($row) {
                 return ($row['status'] == true)? 1: 0;
             },
+            function ($row) {
+                return empty($row['created'])? NULL: $row['created']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            function ($row) {
+                return empty($row['modified'])? NULL: $row['modified']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
         ];
 
         $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'csv'));
@@ -622,5 +764,93 @@ class MenuItemsController extends AppController
                 'header'    => $header,
                 'extract'   => $extract,
             ]);
+    }
+
+    /**
+     * Export xml method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXml()
+    {
+        $menuItems = $this->MenuItems->find('all');
+
+        $menuItemsArray = [];
+        foreach($menuItems as $menuItem) {
+            $menuItemArray = [];
+            $menuItemArray['id'] = $menuItem->id;
+            $menuItemArray['parent_id'] = $menuItem->parent_id;
+            $menuItemArray['menu_id'] = $menuItem->menu_id;
+            $menuItemArray['domain_id'] = $menuItem->domain_id;
+            $menuItemArray['foreign_key'] = $menuItem->foreign_key;
+            $menuItemArray['title'] = $menuItem->title;
+            $menuItemArray['alias'] = $menuItem->alias;
+            $menuItemArray['sub_title'] = $menuItem->sub_title;
+            $menuItemArray['link'] = $menuItem->link;
+            $menuItemArray['link_target'] = $menuItem->link_target;
+            $menuItemArray['link_rel'] = $menuItem->link_rel;
+            $menuItemArray['description'] = $menuItem->description;
+            $menuItemArray['lft'] = $menuItem->lft;
+            $menuItemArray['rght'] = $menuItem->rght;
+            $menuItemArray['locale'] = $menuItem->locale;
+            $menuItemArray['status'] = ($menuItem->status == 1)? 1: 0;
+            $menuItemArray['created'] = empty($menuItem->created)? NULL: $menuItem->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $menuItemArray['modified'] = empty($menuItem->modified)? NULL: $menuItem->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $menuItemsArray[] = $menuItemArray;
+        }
+        $menuItems = ['MenuItems' => ['MenuItem' => $menuItemsArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'xml'));
+        $this->set(compact('menuItems'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Xml')
+            ->setOptions(['serialize' => 'menuItems']);
+    }
+
+    /**
+     * Export json method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportJson()
+    {
+        $menuItems = $this->MenuItems->find('all');
+
+        $menuItemsArray = [];
+        foreach($menuItems as $menuItem) {
+            $menuItemArray = [];
+            $menuItemArray['id'] = $menuItem->id;
+            $menuItemArray['parent_id'] = $menuItem->parent_id;
+            $menuItemArray['menu_id'] = $menuItem->menu_id;
+            $menuItemArray['domain_id'] = $menuItem->domain_id;
+            $menuItemArray['foreign_key'] = $menuItem->foreign_key;
+            $menuItemArray['title'] = $menuItem->title;
+            $menuItemArray['alias'] = $menuItem->alias;
+            $menuItemArray['sub_title'] = $menuItem->sub_title;
+            $menuItemArray['link'] = $menuItem->link;
+            $menuItemArray['link_target'] = $menuItem->link_target;
+            $menuItemArray['link_rel'] = $menuItem->link_rel;
+            $menuItemArray['description'] = $menuItem->description;
+            $menuItemArray['lft'] = $menuItem->lft;
+            $menuItemArray['rght'] = $menuItem->rght;
+            $menuItemArray['locale'] = $menuItem->locale;
+            $menuItemArray['status'] = ($menuItem->status == 1)? 1: 0;
+            $menuItemArray['created'] = empty($menuItem->created)? NULL: $menuItem->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $menuItemArray['modified'] = empty($menuItem->modified)? NULL: $menuItem->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $menuItemsArray[] = $menuItemArray;
+        }
+        $menuItems = ['MenuItems' => ['MenuItem' => $menuItemsArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'json'));
+        $this->set(compact('menuItems'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Json')
+            ->setOptions(['serialize' => 'menuItems']);
     }
 }

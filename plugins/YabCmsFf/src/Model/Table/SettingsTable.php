@@ -114,6 +114,8 @@ class SettingsTable extends Table
         'value',
         'title',
         'description',
+        'created',
+        'modified',
     ];
 
     /**

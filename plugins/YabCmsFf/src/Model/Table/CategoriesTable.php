@@ -149,6 +149,8 @@ class CategoriesTable extends Table
         'meta_keywords',
         'locale',
         'status',
+        'created',
+        'modified',
     ];
 
     /**

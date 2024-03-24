@@ -26,11 +26,14 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Controller\Admin;
 
-use YabCmsFf\Controller\Admin\AppController;
 use Cake\Event\EventInterface;
-use YabCmsFf\Utility\YabCmsFf;
+use Cake\Http\CallbackStream;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Inflector;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use YabCmsFf\Controller\Admin\AppController;
+use YabCmsFf\Utility\YabCmsFf;
 
 /**
  * Articles Controller
@@ -632,5 +635,269 @@ class ArticlesController extends AppController
         $this->response->getBody()->write(json_encode($result));
         $this->response = $this->response->withType('json');
         return $this->response;
+    }
+
+    /**
+     * Export xlsx method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXlsx()
+    {
+        $articles = $this->Articles->find('all');
+        $header = $this->Articles->tableColumns;
+
+        $articlesArray = [];
+        foreach($articles as $article) {
+            $articleArray = [];
+            $articleArray['id'] = $article->id;
+            $articleArray['parent_id'] = $article->parent_id;
+            $articleArray['article_type_id'] = $article->article_type_id;
+            $articleArray['user_id'] = $article->user_id;
+            $articleArray['domain_id'] = $article->domain_id;
+            $articleArray['lft'] = $article->lft;
+            $articleArray['rght'] = $article->rght;
+            $articleArray['locale'] = $article->locale;
+            $articleArray['promote_start'] = empty($article->promote_start)? NULL: $article->promote_start->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['promote_end'] = empty($article->promote_end)? NULL: $article->promote_end->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['promote'] = ($article->promote == 1)? 1: 0;
+            $articleArray['status'] = ($article->status == 1)? 1: 0;
+            $articleArray['created'] = empty($article->created)? NULL: $article->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['modified'] = empty($article->modified)? NULL: $article->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $articlesArray[] = $articleArray;
+        }
+        $articles = $articlesArray;
+
+        $objSpreadsheet = new Spreadsheet();
+        $objSpreadsheet->setActiveSheetIndex(0);
+
+        $rowCount = 1;
+        $colCount = 1;
+        foreach ($header as $headerAlias) {
+            $col = 'A';
+            switch ($colCount) {
+                case 2: $col = 'B'; break;
+                case 3: $col = 'C'; break;
+                case 4: $col = 'D'; break;
+                case 5: $col = 'E'; break;
+                case 6: $col = 'F'; break;
+                case 7: $col = 'G'; break;
+                case 8: $col = 'H'; break;
+                case 9: $col = 'I'; break;
+                case 10: $col = 'J'; break;
+                case 11: $col = 'K'; break;
+                case 12: $col = 'L'; break;
+                case 13: $col = 'M'; break;
+                case 14: $col = 'N'; break;
+                case 15: $col = 'O'; break;
+                case 16: $col = 'P'; break;
+                case 17: $col = 'Q'; break;
+                case 18: $col = 'R'; break;
+                case 19: $col = 'S'; break;
+                case 20: $col = 'T'; break;
+                case 21: $col = 'U'; break;
+                case 22: $col = 'V'; break;
+                case 23: $col = 'W'; break;
+                case 24: $col = 'X'; break;
+                case 25: $col = 'Y'; break;
+                case 26: $col = 'Z'; break;
+            }
+
+            $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $headerAlias);
+            $colCount++;
+        }
+
+        $rowCount = 1;
+        foreach ($articles as $dataEntity) {
+            $rowCount++;
+
+            $colCount = 1;
+            foreach ($dataEntity as $dataProperty) {
+                $col = 'A';
+                switch ($colCount) {
+                    case 2: $col = 'B'; break;
+                    case 3: $col = 'C'; break;
+                    case 4: $col = 'D'; break;
+                    case 5: $col = 'E'; break;
+                    case 6: $col = 'F'; break;
+                    case 7: $col = 'G'; break;
+                    case 8: $col = 'H'; break;
+                    case 9: $col = 'I'; break;
+                    case 10: $col = 'J'; break;
+                    case 11: $col = 'K'; break;
+                    case 12: $col = 'L'; break;
+                    case 13: $col = 'M'; break;
+                    case 14: $col = 'N'; break;
+                    case 15: $col = 'O'; break;
+                    case 16: $col = 'P'; break;
+                    case 17: $col = 'Q'; break;
+                    case 18: $col = 'R'; break;
+                    case 19: $col = 'S'; break;
+                    case 20: $col = 'T'; break;
+                    case 21: $col = 'U'; break;
+                    case 22: $col = 'V'; break;
+                    case 23: $col = 'W'; break;
+                    case 24: $col = 'X'; break;
+                    case 25: $col = 'Y'; break;
+                    case 26: $col = 'Z'; break;
+                }
+
+                $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $dataProperty);
+                $colCount++;
+            }
+        }
+
+        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $objSpreadsheet
+                ->getActiveSheet()
+                ->getColumnDimension($col)
+                ->setAutoSize(true);
+        }
+        $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');
+        $stream = new CallbackStream(function () use ($objSpreadsheetWriter) {
+            $objSpreadsheetWriter->save('php://output');
+        });
+
+        return $this->response
+            ->withType('xlsx')
+            ->withHeader('Content-Disposition', 'attachment;filename="' . strtolower($this->defaultTable) . '.' . 'xlsx"')
+            ->withBody($stream);
+    }
+
+    /**
+     * Export csv method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportCsv()
+    {
+        $articles = $this->Articles->find('all');
+        $delimiter = ';';
+        $enclosure = '"';
+        $header = $this->Articles->tableColumns;
+        $extract = [
+            'id',
+            'parent_id',
+            'article_type_id',
+            'user_id',
+            'domain_id',
+            'lft',
+            'rght',
+            'locale',
+            function ($row) {
+                return empty($row['promote_start'])? NULL: $row['promote_start']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            function ($row) {
+                return empty($row['promote_end'])? NULL: $row['promote_end']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            function ($row) {
+                return ($row['promote'] == 1)? 1: 0;
+            },
+            function ($row) {
+                return ($row['status'] == 1)? 1: 0;
+            },
+            function ($row) {
+                return empty($row['created'])? NULL: $row['created']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            function ($row) {
+                return empty($row['modified'])? NULL: $row['modified']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+        ];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'csv'));
+        $this->set(compact('articles'));
+        $this
+            ->viewBuilder()
+            ->setClassName('CsvView.Csv')
+            ->setOptions([
+                'serialize' => 'articles',
+                'delimiter' => $delimiter,
+                'enclosure' => $enclosure,
+                'header'    => $header,
+                'extract'   => $extract,
+            ]);
+    }
+
+    /**
+     * Export xml method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXml()
+    {
+        $articles = $this->Articles->find('all');
+
+        $articlesArray = [];
+        foreach($articles as $article) {
+            $articleArray = [];
+            $articleArray['id'] = $article->id;
+            $articleArray['parent_id'] = $article->parent_id;
+            $articleArray['article_type_id'] = $article->article_type_id;
+            $articleArray['user_id'] = $article->user_id;
+            $articleArray['domain_id'] = $article->domain_id;
+            $articleArray['lft'] = $article->lft;
+            $articleArray['rght'] = $article->rght;
+            $articleArray['locale'] = $article->locale;
+            $articleArray['promote_start'] = empty($article->promote_start)? NULL: $article->promote_start->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['promote_end'] = empty($article->promote_end)? NULL: $article->promote_end->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['promote'] = ($article->promote == 1)? 1: 0;
+            $articleArray['status'] = ($article->status == 1)? 1: 0;
+            $articleArray['created'] = empty($article->created)? NULL: $article->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['modified'] = empty($article->modified)? NULL: $article->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $articlesArray[] = $articleArray;
+        }
+        $articles = ['Articles' => ['Article' => $articlesArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'xml'));
+        $this->set(compact('articles'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Xml')
+            ->setOptions(['serialize' => 'articles']);
+    }
+
+    /**
+     * Export json method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportJson()
+    {
+        $articles = $this->Articles->find('all');
+
+        $articlesArray = [];
+        foreach($articles as $article) {
+            $articleArray = [];
+            $articleArray['id'] = $article->id;
+            $articleArray['parent_id'] = $article->parent_id;
+            $articleArray['article_type_id'] = $article->article_type_id;
+            $articleArray['user_id'] = $article->user_id;
+            $articleArray['domain_id'] = $article->domain_id;
+            $articleArray['lft'] = $article->lft;
+            $articleArray['rght'] = $article->rght;
+            $articleArray['locale'] = $article->locale;
+            $articleArray['promote_start'] = empty($article->promote_start)? NULL: $article->promote_start->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['promote_end'] = empty($article->promote_end)? NULL: $article->promote_end->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['promote'] = ($article->promote == 1)? 1: 0;
+            $articleArray['status'] = ($article->status == 1)? 1: 0;
+            $articleArray['created'] = empty($article->created)? NULL: $article->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleArray['modified'] = empty($article->modified)? NULL: $article->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $articlesArray[] = $articleArray;
+        }
+        $articles = ['Articles' => ['Article' => $articlesArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'json'));
+        $this->set(compact('articles'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Json')
+            ->setOptions(['serialize' => 'articles']);
     }
 }

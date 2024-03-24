@@ -112,6 +112,8 @@ class LocalesTable extends Table
         'code',
         'weight',
         'status',
+        'created',
+        'modified',
     ];
 
     /**

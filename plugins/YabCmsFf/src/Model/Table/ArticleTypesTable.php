@@ -112,6 +112,8 @@ class ArticleTypesTable extends Table
         'title',
         'alias',
         'description',
+        'created',
+        'modified',
     ];
 
     /**

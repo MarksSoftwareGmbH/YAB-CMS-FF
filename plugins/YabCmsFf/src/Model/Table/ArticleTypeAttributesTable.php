@@ -149,7 +149,6 @@ class ArticleTypeAttributesTable extends Table
      */
     public $tableColumns = [
         'id',
-        'uuid_id',
         'foreign_key',
         'title',
         'alias',
@@ -220,6 +219,8 @@ class ArticleTypeAttributesTable extends Table
         'pdf_9_file',
         'empty_value',
         'wysiwyg',
+        'created',
+        'modified',
     ];
 
     /**

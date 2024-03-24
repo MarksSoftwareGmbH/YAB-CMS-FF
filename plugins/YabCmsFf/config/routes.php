@@ -230,7 +230,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/categories/import', ['controller' => 'Categories', 'action' => 'import']);
             $routes
-                ->connect('/categories/export', ['controller' => 'Categories', 'action' => 'export']);
+                ->connect('/categories/export-xlsx', ['controller' => 'Categories', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/categories/export-csv', ['controller' => 'Categories', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/categories/export-xml', ['controller' => 'Categories', 'action' => 'exportXml']);
+            $routes
+                ->connect('/categories/export-json', ['controller' => 'Categories', 'action' => 'exportJson']);
 
             /*
              * Countries Controller
@@ -254,7 +260,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/countries/import', ['controller' => 'Countries', 'action' => 'import']);
             $routes
-                ->connect('/countries/export', ['controller' => 'Countries', 'action' => 'export']);
+                ->connect('/countries/export-xlsx', ['controller' => 'Countries', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/countries/export-csv', ['controller' => 'Countries', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/countries/export-xml', ['controller' => 'Countries', 'action' => 'exportXml']);
+            $routes
+                ->connect('/countries/export-json', ['controller' => 'Countries', 'action' => 'exportJson']);
 
             /*
              * Dashboards Controller
@@ -284,7 +296,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/domains/import', ['controller' => 'Domains', 'action' => 'import']);
             $routes
-                ->connect('/domains/export', ['controller' => 'Domains', 'action' => 'export']);
+                ->connect('/domains/export-xlsx', ['controller' => 'Domains', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/domains/export-csv', ['controller' => 'Domains', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/domains/export-xml', ['controller' => 'Domains', 'action' => 'exportXml']);
+            $routes
+                ->connect('/domains/export-json', ['controller' => 'Domains', 'action' => 'exportJson']);
 
             /*
              * Locales Controller
@@ -307,7 +325,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/locales/import', ['controller' => 'Locales', 'action' => 'import']);
             $routes
-                ->connect('/locales/export', ['controller' => 'Locales', 'action' => 'export']);
+                ->connect('/locales/export-xlsx', ['controller' => 'Locales', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/locales/export-csv', ['controller' => 'Locales', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/locales/export-xml', ['controller' => 'Locales', 'action' => 'exportXml']);
+            $routes
+                ->connect('/locales/export-json', ['controller' => 'Locales', 'action' => 'exportJson']);
 
             /*
              * Logs Controller
@@ -329,7 +353,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
             $routes
-                ->connect('/logs/export', ['controller' => 'Logs', 'action' => 'export']);
+                ->connect('/logs/export-xlsx', ['controller' => 'Logs', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/logs/export-csv', ['controller' => 'Logs', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/logs/export-xml', ['controller' => 'Logs', 'action' => 'exportXml']);
+            $routes
+                ->connect('/logs/export-json', ['controller' => 'Logs', 'action' => 'exportJson']);
 
             /*
              * Menus Controller
@@ -353,7 +383,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/menus/import', ['controller' => 'Menus', 'action' => 'import']);
             $routes
-                ->connect('/menus/export', ['controller' => 'Menus', 'action' => 'export']);
+                ->connect('/menus/export-xlsx', ['controller' => 'Menus', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/menus/export-csv', ['controller' => 'Menus', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/menus/export-xml', ['controller' => 'Menus', 'action' => 'exportXml']);
+            $routes
+                ->connect('/menus/export-json', ['controller' => 'Menus', 'action' => 'exportJson']);
 
             /*
              * Menu Items Controller
@@ -387,7 +423,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/menu-items/import', ['controller' => 'MenuItems', 'action' => 'import']);
             $routes
-                ->connect('/menu-items/export', ['controller' => 'MenuItems', 'action' => 'export']);
+                ->connect('/menu-items/export-xlsx', ['controller' => 'MenuItems', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/menu-items/export-csv', ['controller' => 'MenuItems', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/menu-items/export-xml', ['controller' => 'MenuItems', 'action' => 'exportXml']);
+            $routes
+                ->connect('/menu-items/export-json', ['controller' => 'MenuItems', 'action' => 'exportJson']);
 
             /*
              * Articles Controller
@@ -425,6 +467,14 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->setPatterns(['id' => '\d+']);
             $routes
                 ->connect('/articles/file/upload', ['controller' => 'Articles', 'action' => 'fileUpload']);
+            $routes
+                ->connect('/articles/export-xlsx', ['controller' => 'Articles', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/articles/export-csv', ['controller' => 'Articles', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/articles/export-xml', ['controller' => 'Articles', 'action' => 'exportXml']);
+            $routes
+                ->connect('/articles/export-json', ['controller' => 'Articles', 'action' => 'exportJson']);
 
             /*
              * ArticleTypes Controller
@@ -448,7 +498,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/article-types/import', ['controller' => 'ArticleTypes', 'action' => 'import']);
             $routes
-                ->connect('/article-types/export', ['controller' => 'ArticleTypes', 'action' => 'export']);
+                ->connect('/article-types/export-xlsx', ['controller' => 'ArticleTypes', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/article-types/export-csv', ['controller' => 'ArticleTypes', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/article-types/export-xml', ['controller' => 'ArticleTypes', 'action' => 'exportXml']);
+            $routes
+                ->connect('/article-types/export-json', ['controller' => 'ArticleTypes', 'action' => 'exportJson']);
 
             /*
              * ArticleTypeAttributes Controller
@@ -472,7 +528,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/article-type-attributes/import', ['controller' => 'ArticleTypeAttributes', 'action' => 'import']);
             $routes
-                ->connect('/article-type-attributes/export', ['controller' => 'ArticleTypeAttributes', 'action' => 'export']);
+                ->connect('/article-type-attributes/export-xlsx', ['controller' => 'ArticleTypeAttributes', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/article-type-attributes/export-csv', ['controller' => 'ArticleTypeAttributes', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/article-type-attributes/export-xml', ['controller' => 'ArticleTypeAttributes', 'action' => 'exportXml']);
+            $routes
+                ->connect('/article-type-attributes/export-json', ['controller' => 'ArticleTypeAttributes', 'action' => 'exportJson']);
 
             /*
              * ArticleTypeAttributeChoices Controller
@@ -496,7 +558,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/article-type-attribute-choices/import', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'import']);
             $routes
-                ->connect('/article-type-attribute-choices/export', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'export']);
+                ->connect('/article-type-attribute-choices/export-xlsx', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/article-type-attribute-choices/export-csv', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/article-type-attribute-choices/export-xml', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'exportXml']);
+            $routes
+                ->connect('/article-type-attribute-choices/export-json', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'exportJson']);
 
             /*
              * ArticleArticleTypeAttributeValues Controller
@@ -517,6 +585,14 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/article-article-type-attribute-value/delete/{id}', ['controller' => 'ArticleArticleTypeAttributeValues', 'action' => 'delete'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $routes
+                ->connect('/article-article-type-attribute-values/export-xlsx', ['controller' => 'ArticleArticleTypeAttributeValues', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/article-article-type-attribute-values/export-csv', ['controller' => 'ArticleArticleTypeAttributeValues', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/article-article-type-attribute-values/export-xml', ['controller' => 'ArticleArticleTypeAttributeValues', 'action' => 'exportXml']);
+            $routes
+                ->connect('/article-article-type-attribute-values/export-json', ['controller' => 'ArticleArticleTypeAttributeValues', 'action' => 'exportJson']);
 
             /*
              * Regions Controller
@@ -540,7 +616,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/regions/import', ['controller' => 'Regions', 'action' => 'import']);
             $routes
-                ->connect('/regions/export', ['controller' => 'Regions', 'action' => 'export']);
+                ->connect('/regions/export-xlsx', ['controller' => 'Regions', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/regions/export-csv', ['controller' => 'Regions', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/regions/export-xml', ['controller' => 'Regions', 'action' => 'exportXml']);
+            $routes
+                ->connect('/regions/export-json', ['controller' => 'Regions', 'action' => 'exportJson']);
 
             /*
              * Roles Controller
@@ -561,6 +643,14 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/role/delete/{id}', ['controller' => 'Roles', 'action' => 'delete'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $routes
+                ->connect('/roles/export-xlsx', ['controller' => 'Roles', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/roles/export-csv', ['controller' => 'Roles', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/roles/export-xml', ['controller' => 'Roles', 'action' => 'exportXml']);
+            $routes
+                ->connect('/roles/export-json', ['controller' => 'Roles', 'action' => 'exportJson']);
 
             /*
              * Settings Controller
@@ -584,7 +674,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/settings/import', ['controller' => 'Settings', 'action' => 'import']);
             $routes
-                ->connect('/settings/export', ['controller' => 'Settings', 'action' => 'export']);
+                ->connect('/settings/export-xlsx', ['controller' => 'Settings', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/settings/export-csv', ['controller' => 'Settings', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/settings/export-xml', ['controller' => 'Settings', 'action' => 'exportXml']);
+            $routes
+                ->connect('/settings/export-json', ['controller' => 'Settings', 'action' => 'exportJson']);
 
             /*
              * Users Controller
@@ -623,6 +719,14 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/user/delete/{id}', ['controller' => 'Users', 'action' => 'delete'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $routes
+                ->connect('/users/export-xlsx', ['controller' => 'Users', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/users/export-csv', ['controller' => 'Users', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/users/export-xml', ['controller' => 'Users', 'action' => 'exportXml']);
+            $routes
+                ->connect('/users/export-json', ['controller' => 'Users', 'action' => 'exportJson']);
 
             /*
              * UserProfiles Controller
@@ -643,6 +747,14 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/user-profile/delete/{id}', ['controller' => 'UserProfiles', 'action' => 'delete'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $routes
+                ->connect('/user-profiles/export-xlsx', ['controller' => 'UserProfiles', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/user-profiles/export-csv', ['controller' => 'UserProfiles', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/user-profiles/export-xml', ['controller' => 'UserProfiles', 'action' => 'exportXml']);
+            $routes
+                ->connect('/user-profiles/export-json', ['controller' => 'UserProfiles', 'action' => 'exportJson']);
 
             /*
              * Registrations Controller
@@ -666,7 +778,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/registrations/import', ['controller' => 'Registrations', 'action' => 'import']);
             $routes
-                ->connect('/registrations/export', ['controller' => 'Registrations', 'action' => 'export']);
+                ->connect('/registrations/export-xlsx', ['controller' => 'Registrations', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/registrations/export-csv', ['controller' => 'Registrations', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/registrations/export-xml', ['controller' => 'Registrations', 'action' => 'exportXml']);
+            $routes
+                ->connect('/registrations/export-json', ['controller' => 'Registrations', 'action' => 'exportJson']);
 
             /*
              * Registration Types Controller
@@ -694,8 +812,13 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->connect('/registration-types/import', ['controller' => 'RegistrationTypes', 'action' => 'import']);
             $routes
-                ->connect('/registration-types/export', ['controller' => 'RegistrationTypes', 'action' => 'export']);
-
+                ->connect('/registration-types/export-xlsx', ['controller' => 'RegistrationTypes', 'action' => 'exportXlsx']);
+            $routes
+                ->connect('/registration-types/export-csv', ['controller' => 'RegistrationTypes', 'action' => 'exportCsv']);
+            $routes
+                ->connect('/registration-types/export-xml', ['controller' => 'RegistrationTypes', 'action' => 'exportXml']);
+            $routes
+                ->connect('/registration-types/export-json', ['controller' => 'RegistrationTypes', 'action' => 'exportJson']);
         });
 
         /*
@@ -890,7 +1013,6 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/users/{id}', ['controller' => 'Users', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
-
         });
     }
 );

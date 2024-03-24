@@ -26,12 +26,15 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Controller\Admin;
 
-use YabCmsFf\Controller\Admin\AppController;
 use Cake\Event\EventInterface;
+use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
-use YabCmsFf\Utility\YabCmsFf;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use YabCmsFf\Controller\Admin\AppController;
+use YabCmsFf\Utility\YabCmsFf;
 
 /**
  * Categories Controller
@@ -492,12 +495,143 @@ class CategoriesController extends AppController
     }
 
     /**
-     * Export method
+     * Export xlsx method
      *
      * @return \Cake\Http\Response|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function export()
+    public function exportXlsx()
+    {
+        $categories = $this->Categories->find('all');
+        $header = $this->Categories->tableColumns;
+
+        $categoriesArray = [];
+        foreach($categories as $category) {
+            $categoryArray = [];
+            $categoryArray['id'] = $category->id;
+            $categoryArray['parent_id'] = $category->parent_id;
+            $categoryArray['domain_id'] = $category->domain_id;
+            $categoryArray['foreign_key'] = $category->foreign_key;
+            $categoryArray['lft'] = $category->lft;
+            $categoryArray['rght'] = $category->rght;
+            $categoryArray['name'] = $category->name;
+            $categoryArray['slug'] = $category->slug;
+            $categoryArray['description'] = $category->description;
+            $categoryArray['background_image'] = $category->background_image;
+            $categoryArray['meta_description'] = $category->meta_description;
+            $categoryArray['meta_keywords'] = $category->meta_keywords;
+            $categoryArray['locale'] = $category->locale;
+            $categoryArray['status'] = ($category->status == 1)? 1: 0;
+            $categoryArray['created'] = empty($category->created)? NULL: $category->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $categoryArray['modified'] = empty($category->modified)? NULL: $category->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $categoriesArray[] = $categoryArray;
+        }
+        $categories = $categoriesArray;
+
+        $objSpreadsheet = new Spreadsheet();
+        $objSpreadsheet->setActiveSheetIndex(0);
+
+        $rowCount = 1;
+        $colCount = 1;
+        foreach ($header as $headerAlias) {
+            $col = 'A';
+            switch ($colCount) {
+                case 2: $col = 'B'; break;
+                case 3: $col = 'C'; break;
+                case 4: $col = 'D'; break;
+                case 5: $col = 'E'; break;
+                case 6: $col = 'F'; break;
+                case 7: $col = 'G'; break;
+                case 8: $col = 'H'; break;
+                case 9: $col = 'I'; break;
+                case 10: $col = 'J'; break;
+                case 11: $col = 'K'; break;
+                case 12: $col = 'L'; break;
+                case 13: $col = 'M'; break;
+                case 14: $col = 'N'; break;
+                case 15: $col = 'O'; break;
+                case 16: $col = 'P'; break;
+                case 17: $col = 'Q'; break;
+                case 18: $col = 'R'; break;
+                case 19: $col = 'S'; break;
+                case 20: $col = 'T'; break;
+                case 21: $col = 'U'; break;
+                case 22: $col = 'V'; break;
+                case 23: $col = 'W'; break;
+                case 24: $col = 'X'; break;
+                case 25: $col = 'Y'; break;
+                case 26: $col = 'Z'; break;
+            }
+
+            $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $headerAlias);
+            $colCount++;
+        }
+
+        $rowCount = 1;
+        foreach ($categories as $dataEntity) {
+            $rowCount++;
+
+            $colCount = 1;
+            foreach ($dataEntity as $dataProperty) {
+                $col = 'A';
+                switch ($colCount) {
+                    case 2: $col = 'B'; break;
+                    case 3: $col = 'C'; break;
+                    case 4: $col = 'D'; break;
+                    case 5: $col = 'E'; break;
+                    case 6: $col = 'F'; break;
+                    case 7: $col = 'G'; break;
+                    case 8: $col = 'H'; break;
+                    case 9: $col = 'I'; break;
+                    case 10: $col = 'J'; break;
+                    case 11: $col = 'K'; break;
+                    case 12: $col = 'L'; break;
+                    case 13: $col = 'M'; break;
+                    case 14: $col = 'N'; break;
+                    case 15: $col = 'O'; break;
+                    case 16: $col = 'P'; break;
+                    case 17: $col = 'Q'; break;
+                    case 18: $col = 'R'; break;
+                    case 19: $col = 'S'; break;
+                    case 20: $col = 'T'; break;
+                    case 21: $col = 'U'; break;
+                    case 22: $col = 'V'; break;
+                    case 23: $col = 'W'; break;
+                    case 24: $col = 'X'; break;
+                    case 25: $col = 'Y'; break;
+                    case 26: $col = 'Z'; break;
+                }
+
+                $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $dataProperty);
+                $colCount++;
+            }
+        }
+
+        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $objSpreadsheet
+                ->getActiveSheet()
+                ->getColumnDimension($col)
+                ->setAutoSize(true);
+        }
+        $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');
+        $stream = new CallbackStream(function () use ($objSpreadsheetWriter) {
+            $objSpreadsheetWriter->save('php://output');
+        });
+
+        return $this->response
+            ->withType('xlsx')
+            ->withHeader('Content-Disposition', 'attachment;filename="' . strtolower($this->defaultTable) . '.' . 'xlsx"')
+            ->withBody($stream);
+    }
+
+    /**
+     * Export csv method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportCsv()
     {
         $categories = $this->Categories->find('all');
         $delimiter = ';';
@@ -534,5 +668,89 @@ class CategoriesController extends AppController
                 'header'    => $header,
                 'extract'   => $extract,
             ]);
+    }
+
+    /**
+     * Export xml method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXml()
+    {
+        $categories = $this->Categories->find('all');
+
+        $categoriesArray = [];
+        foreach($categories as $category) {
+            $categoryArray = [];
+            $categoryArray['id'] = $category->id;
+            $categoryArray['parent_id'] = $category->parent_id;
+            $categoryArray['domain_id'] = $category->domain_id;
+            $categoryArray['foreign_key'] = $category->foreign_key;
+            $categoryArray['lft'] = $category->lft;
+            $categoryArray['rght'] = $category->rght;
+            $categoryArray['name'] = $category->name;
+            $categoryArray['slug'] = $category->slug;
+            $categoryArray['description'] = $category->description;
+            $categoryArray['background_image'] = $category->background_image;
+            $categoryArray['meta_description'] = $category->meta_description;
+            $categoryArray['meta_keywords'] = $category->meta_keywords;
+            $categoryArray['locale'] = $category->locale;
+            $categoryArray['status'] = ($category->status == 1)? 1: 0;
+            $categoryArray['created'] = empty($category->created)? NULL: $category->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $categoryArray['modified'] = empty($category->modified)? NULL: $category->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $categoriesArray[] = $categoryArray;
+        }
+        $categories = ['Categories' => ['Category' => $categoriesArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'xml'));
+        $this->set(compact('categories'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Xml')
+            ->setOptions(['serialize' => 'categories']);
+    }
+
+    /**
+     * Export json method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportJson()
+    {
+        $categories = $this->Categories->find('all');
+
+        $categoriesArray = [];
+        foreach($categories as $category) {
+            $categoryArray = [];
+            $categoryArray['id'] = $category->id;
+            $categoryArray['parent_id'] = $category->parent_id;
+            $categoryArray['domain_id'] = $category->domain_id;
+            $categoryArray['foreign_key'] = $category->foreign_key;
+            $categoryArray['lft'] = $category->lft;
+            $categoryArray['rght'] = $category->rght;
+            $categoryArray['name'] = $category->name;
+            $categoryArray['slug'] = $category->slug;
+            $categoryArray['description'] = $category->description;
+            $categoryArray['background_image'] = $category->background_image;
+            $categoryArray['meta_description'] = $category->meta_description;
+            $categoryArray['meta_keywords'] = $category->meta_keywords;
+            $categoryArray['locale'] = $category->locale;
+            $categoryArray['status'] = ($category->status == 1)? 1: 0;
+            $categoryArray['created'] = empty($category->created)? NULL: $category->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $categoryArray['modified'] = empty($category->modified)? NULL: $category->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $categoriesArray[] = $categoryArray;
+        }
+        $categories = ['Categories' => ['Category' => $categoriesArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'json'));
+        $this->set(compact('categories'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Json')
+            ->setOptions(['serialize' => 'categories']);
     }
 }

@@ -147,6 +147,28 @@ class ArticlesTable extends Table
     }
 
     /**
+     * Default table columns.
+     *
+     * @var array
+     */
+    public $tableColumns = [
+        'id',
+        'parent_id',
+        'article_type_id',
+        'user_id',
+        'domain_id',
+        'lft',
+        'rght',
+        'locale',
+        'promote_start',
+        'promote_end',
+        'promote',
+        'status',
+        'created',
+        'modified',
+    ];
+
+    /**
      * Returns the default validator object. Subclasses can override this function
      * to add a default validation set to the validator object.
      *

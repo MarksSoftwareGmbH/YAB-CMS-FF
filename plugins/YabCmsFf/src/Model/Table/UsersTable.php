@@ -90,7 +90,7 @@ class UsersTable extends Table
 
         $this->hasOne('UserProfiles', [
             'className' => 'YabCmsFf.UserProfiles',
-            'dependent' => true,
+            'dependent' => false,
         ]);
         $this->belongsTo('Roles', [
             'foreignKey' => 'role_id',
@@ -143,6 +143,26 @@ class UsersTable extends Table
                 ],
             ]);
     }
+
+    /**
+     * Default table columns.
+     *
+     * @var array
+     */
+    public $tableColumns = [
+        'id',
+        'role_id',
+        'locale_id',
+        'foreign_key',
+        'username',
+        'name',
+        'email',
+        'status',
+        'activation_date',
+        'last_login',
+        'created',
+        'modified',
+    ];
 
     /**
      * Returns the default validator object. Subclasses can override this function

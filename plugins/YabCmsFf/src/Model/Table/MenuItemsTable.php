@@ -143,6 +143,8 @@ class MenuItemsTable extends Table
         'rght',
         'locale',
         'status',
+        'created',
+        'modified',
     ];
 
     /**

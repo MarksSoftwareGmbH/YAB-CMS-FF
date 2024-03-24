@@ -100,20 +100,75 @@ $this->Breadcrumbs->add([
                             ]
                         )
                         . ' '
+                        . '<div class="btn-group dropleft">'
                         . $this->Html->link(
-                            $this->Html->icon('download') . ' ' . __d('yab_cms_ff', 'CSV'),
+                            $this->Html->tag('span', '', ['class' => 'caret']) . ' ' . $this->Html->icon('download') . ' ' . __d('yab_cms_ff', 'Download'),
+                            '#',
+                            [
+                                'type'          => 'button',
+                                'class'         => 'dropdown-toggle btn btn-' . h($backendButtonColor),
+                                'id'            => 'dropdownMenu',
+                                'data-toggle'   => 'dropdown',
+                                'aria-haspopup' => true,
+                                'aria-expanded' => false,
+                                'escapeTitle'   => false,
+                                'title'         => __d('yab_cms_ff', 'Download'),
+                            ]
+                        )
+                        . '<div class="dropdown-menu" aria-labelledby="dropdownMenu">'
+                        . $this->Html->link(
+                            __d('yab_cms_ff', 'XLSX'),
                             [
                                 'plugin'        => 'YabCmsFf',
                                 'controller'    => 'Countries',
-                                'action'        => 'export',
+                                'action'        => 'exportXlsx',
+                            ],
+                            [
+                                'class'         => 'dropdown-item',
+                                'escapeTitle'   => false,
+                                'title'         => __d('yab_cms_ff', 'Export & download XLSX'),
+                            ])
+                        . $this->Html->link(
+                            __d('yab_cms_ff', 'CSV'),
+                            [
+                                'plugin'        => 'YabCmsFf',
+                                'controller'    => 'Countries',
+                                'action'        => 'exportCsv',
                                 '_ext'          => 'csv',
                             ],
                             [
-                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'class'         => 'dropdown-item',
                                 'escapeTitle'   => false,
                                 'title'         => __d('yab_cms_ff', 'Export & download CSV'),
-                            ]
-                        ),
+                            ])
+                        . $this->Html->link(
+                            __d('yab_cms_ff', 'XML'),
+                            [
+                                'plugin'        => 'YabCmsFf',
+                                'controller'    => 'Countries',
+                                'action'        => 'exportXml',
+                                '_ext'          => 'xml',
+                            ],
+                            [
+                                'class'         => 'dropdown-item',
+                                'escapeTitle'   => false,
+                                'title'         => __d('yab_cms_ff', 'Export & download XML'),
+                            ])
+                        . $this->Html->link(
+                            __d('yab_cms_ff', 'JSON'),
+                            [
+                                'plugin'        => 'YabCmsFf',
+                                'controller'    => 'Countries',
+                                'action'        => 'exportJson',
+                                '_ext'          => 'json',
+                            ],
+                            [
+                                'class'         => 'dropdown-item',
+                                'escapeTitle'   => false,
+                                'title'         => __d('yab_cms_ff', 'Export & download JSON'),
+                            ])
+                        . '</div>'
+                        . '</div>',
                 ]); ?>
                 <?= $this->Form->end(); ?>
             </div>

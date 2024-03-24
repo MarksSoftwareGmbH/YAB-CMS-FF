@@ -138,7 +138,6 @@ class ArticleTypeAttributeChoicesTable extends Table
     public $tableColumns = [
         'id',
         'article_type_attribute_id',
-        'uuid_id',
         'foreign_key',
         'value',
         'link_1',
@@ -204,6 +203,8 @@ class ArticleTypeAttributeChoicesTable extends Table
         'pdf_8_file',
         'pdf_9',
         'pdf_9_file',
+        'created',
+        'modified',
     ];
 
     /**

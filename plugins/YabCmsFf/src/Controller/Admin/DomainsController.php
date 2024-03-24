@@ -26,11 +26,14 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Controller\Admin;
 
-use YabCmsFf\Controller\Admin\AppController;
 use Cake\Event\EventInterface;
+use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
-use YabCmsFf\Utility\YabCmsFf;
 use Cake\Utility\Hash;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use YabCmsFf\Controller\Admin\AppController;
+use YabCmsFf\Utility\YabCmsFf;
 
 /**
  * Domains Controller
@@ -356,18 +359,152 @@ class DomainsController extends AppController
     }
 
     /**
-     * Export method
+     * Export xlsx method
      *
      * @return \Cake\Http\Response|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function export()
+    public function exportXlsx()
+    {
+        $domains = $this->Domains->find('all');
+        $header = $this->Domains->tableColumns;
+
+        $domainsArray = [];
+        foreach($domains as $domain) {
+            $domainArray = [];
+            $domainArray['id'] = $domain->id;
+            $domainArray['scheme'] = $domain->scheme;
+            $domainArray['url'] = $domain->url;
+            $domainArray['name'] = $domain->name;
+            $domainArray['theme'] = $domain->theme;
+            $domainArray['created'] = empty($domain->created)? NULL: $domain->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $domainArray['modified'] = empty($domain->modified)? NULL: $domain->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $domainsArray[] = $domainArray;
+        }
+        $domains = $domainsArray;
+
+        $objSpreadsheet = new Spreadsheet();
+        $objSpreadsheet->setActiveSheetIndex(0);
+
+        $rowCount = 1;
+        $colCount = 1;
+        foreach ($header as $headerAlias) {
+            $col = 'A';
+            switch ($colCount) {
+                case 2: $col = 'B'; break;
+                case 3: $col = 'C'; break;
+                case 4: $col = 'D'; break;
+                case 5: $col = 'E'; break;
+                case 6: $col = 'F'; break;
+                case 7: $col = 'G'; break;
+                case 8: $col = 'H'; break;
+                case 9: $col = 'I'; break;
+                case 10: $col = 'J'; break;
+                case 11: $col = 'K'; break;
+                case 12: $col = 'L'; break;
+                case 13: $col = 'M'; break;
+                case 14: $col = 'N'; break;
+                case 15: $col = 'O'; break;
+                case 16: $col = 'P'; break;
+                case 17: $col = 'Q'; break;
+                case 18: $col = 'R'; break;
+                case 19: $col = 'S'; break;
+                case 20: $col = 'T'; break;
+                case 21: $col = 'U'; break;
+                case 22: $col = 'V'; break;
+                case 23: $col = 'W'; break;
+                case 24: $col = 'X'; break;
+                case 25: $col = 'Y'; break;
+                case 26: $col = 'Z'; break;
+            }
+
+            $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $headerAlias);
+            $colCount++;
+        }
+
+        $rowCount = 1;
+        foreach ($domains as $dataEntity) {
+            $rowCount++;
+
+            $colCount = 1;
+            foreach ($dataEntity as $dataProperty) {
+                $col = 'A';
+                switch ($colCount) {
+                    case 2: $col = 'B'; break;
+                    case 3: $col = 'C'; break;
+                    case 4: $col = 'D'; break;
+                    case 5: $col = 'E'; break;
+                    case 6: $col = 'F'; break;
+                    case 7: $col = 'G'; break;
+                    case 8: $col = 'H'; break;
+                    case 9: $col = 'I'; break;
+                    case 10: $col = 'J'; break;
+                    case 11: $col = 'K'; break;
+                    case 12: $col = 'L'; break;
+                    case 13: $col = 'M'; break;
+                    case 14: $col = 'N'; break;
+                    case 15: $col = 'O'; break;
+                    case 16: $col = 'P'; break;
+                    case 17: $col = 'Q'; break;
+                    case 18: $col = 'R'; break;
+                    case 19: $col = 'S'; break;
+                    case 20: $col = 'T'; break;
+                    case 21: $col = 'U'; break;
+                    case 22: $col = 'V'; break;
+                    case 23: $col = 'W'; break;
+                    case 24: $col = 'X'; break;
+                    case 25: $col = 'Y'; break;
+                    case 26: $col = 'Z'; break;
+                }
+
+                $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $dataProperty);
+                $colCount++;
+            }
+        }
+
+        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $objSpreadsheet
+                ->getActiveSheet()
+                ->getColumnDimension($col)
+                ->setAutoSize(true);
+        }
+        $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');
+        $stream = new CallbackStream(function () use ($objSpreadsheetWriter) {
+            $objSpreadsheetWriter->save('php://output');
+        });
+
+        return $this->response
+            ->withType('xlsx')
+            ->withHeader('Content-Disposition', 'attachment;filename="' . strtolower($this->defaultTable) . '.' . 'xlsx"')
+            ->withBody($stream);
+    }
+
+    /**
+     * Export csv method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportCsv()
     {
         $domains = $this->Domains->find('all');
         $delimiter = ';';
         $enclosure = '"';
         $header = $this->Domains->tableColumns;
-        $extract = $this->Domains->tableColumns;
+        $extract = [
+            'id',
+            'scheme',
+            'url',
+            'name',
+            'theme',
+            function ($row) {
+                return empty($row['created'])? NULL: $row['created']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            function ($row) {
+                return empty($row['modified'])? NULL: $row['modified']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+        ];
 
         $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'csv'));
         $this->set(compact('domains'));
@@ -381,5 +518,71 @@ class DomainsController extends AppController
                 'header'    => $header,
                 'extract'   => $extract,
             ]);
+    }
+
+    /**
+     * Export xml method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXml()
+    {
+        $domains = $this->Domains->find('all');
+
+        $domainsArray = [];
+        foreach($domains as $domain) {
+            $domainArray = [];
+            $domainArray['id'] = $domain->id;
+            $domainArray['scheme'] = $domain->scheme;
+            $domainArray['url'] = $domain->url;
+            $domainArray['name'] = $domain->name;
+            $domainArray['theme'] = $domain->theme;
+            $domainArray['created'] = empty($domain->created)? NULL: $domain->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $domainArray['modified'] = empty($domain->modified)? NULL: $domain->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $domainsArray[] = $domainArray;
+        }
+        $domains = ['Domains' => ['Domain' => $domainsArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'xml'));
+        $this->set(compact('domains'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Xml')
+            ->setOptions(['serialize' => 'domains']);
+    }
+
+    /**
+     * Export json method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportJson()
+    {
+        $domains = $this->Domains->find('all');
+
+        $domainsArray = [];
+        foreach($domains as $domain) {
+            $domainArray = [];
+            $domainArray['id'] = $domain->id;
+            $domainArray['scheme'] = $domain->scheme;
+            $domainArray['url'] = $domain->url;
+            $domainArray['name'] = $domain->name;
+            $domainArray['theme'] = $domain->theme;
+            $domainArray['created'] = empty($domain->created)? NULL: $domain->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $domainArray['modified'] = empty($domain->modified)? NULL: $domain->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $domainsArray[] = $domainArray;
+        }
+        $domains = ['Domains' => ['Domain' => $domainsArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'json'));
+        $this->set(compact('domains'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Json')
+            ->setOptions(['serialize' => 'domains']);
     }
 }

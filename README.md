@@ -77,13 +77,3 @@ When the composer update is finished
 
   * **Marks Software GmbH website**: [https://www.marks-software.de](https://www.marks-software.de)
   * **Marks Software GmbH on X / Twitter**: [https://twitter.com/SoftwareMarks](https://twitter.com/SoftwareMarks)
-
-## Please donate and support
-
-  * **Bitcoin on-chain address**:
-  
-    bc1q2640hpfc39gjdp6l4ejr0lqnyyw8ply4yg0uuu
-
-<p align="center">
-    <img alt="bc1q2640hpfc39gjdp6l4ejr0lqnyyw8ply4yg0uuu" src="https://www.marks-software.de/uploads/bc1q2640hpfc39gjdp6l4ejr0lqnyyw8ply4yg0uuu.jpg" width="400" />
-</p>

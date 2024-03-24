@@ -125,7 +125,9 @@ class DomainsTable extends Table
         'scheme',
         'url',
         'name',
-        'theme'
+        'theme',
+        'created',
+        'modified',
     ];
 
     /**

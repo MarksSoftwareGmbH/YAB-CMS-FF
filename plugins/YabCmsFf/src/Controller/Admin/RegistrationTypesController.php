@@ -26,10 +26,14 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Controller\Admin;
 
-use YabCmsFf\Controller\Admin\AppController;
+use Cake\Datasource\ConnectionManager;
 use Cake\Event\EventInterface;
+use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
 use Cake\Utility\Hash;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use YabCmsFf\Controller\Admin\AppController;
 use YabCmsFf\Utility\YabCmsFf;
 
 /**
@@ -372,18 +376,152 @@ class RegistrationTypesController extends AppController
     }
 
     /**
-     * Export method
+     * Export xlsx method
      *
      * @return \Cake\Http\Response|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function export()
+    public function exportXlsx()
+    {
+        $registrationTypes = $this->RegistrationTypes->find('all');
+        $header = $this->RegistrationTypes->tableColumns;
+
+        $registrationTypesArray = [];
+        foreach($registrationTypes as $registrationType) {
+            $registrationTypeArray = [];
+            $registrationTypeArray['id'] = $registrationType->id;
+            $registrationTypeArray['foreign_key'] = $registrationType->foreign_key;
+            $registrationTypeArray['title'] = $registrationType->title;
+            $registrationTypeArray['alias'] = $registrationType->billing_name_addition;
+            $registrationTypeArray['description'] = $registrationType->description;
+            $registrationTypeArray['created'] = empty($registrationType->created)? NULL: $registrationType->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $registrationTypeArray['modified'] = empty($registrationType->modified)? NULL: $registrationType->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $registrationTypesArray[] = $registrationTypeArray;
+        }
+        $registrationTypes = $registrationTypesArray;
+
+        $objSpreadsheet = new Spreadsheet();
+        $objSpreadsheet->setActiveSheetIndex(0);
+
+        $rowCount = 1;
+        $colCount = 1;
+        foreach ($header as $headerAlias) {
+            $col = 'A';
+            switch ($colCount) {
+                case 2: $col = 'B'; break;
+                case 3: $col = 'C'; break;
+                case 4: $col = 'D'; break;
+                case 5: $col = 'E'; break;
+                case 6: $col = 'F'; break;
+                case 7: $col = 'G'; break;
+                case 8: $col = 'H'; break;
+                case 9: $col = 'I'; break;
+                case 10: $col = 'J'; break;
+                case 11: $col = 'K'; break;
+                case 12: $col = 'L'; break;
+                case 13: $col = 'M'; break;
+                case 14: $col = 'N'; break;
+                case 15: $col = 'O'; break;
+                case 16: $col = 'P'; break;
+                case 17: $col = 'Q'; break;
+                case 18: $col = 'R'; break;
+                case 19: $col = 'S'; break;
+                case 20: $col = 'T'; break;
+                case 21: $col = 'U'; break;
+                case 22: $col = 'V'; break;
+                case 23: $col = 'W'; break;
+                case 24: $col = 'X'; break;
+                case 25: $col = 'Y'; break;
+                case 26: $col = 'Z'; break;
+            }
+
+            $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $headerAlias);
+            $colCount++;
+        }
+
+        $rowCount = 1;
+        foreach ($registrationTypes as $dataEntity) {
+            $rowCount++;
+
+            $colCount = 1;
+            foreach ($dataEntity as $dataProperty) {
+                $col = 'A';
+                switch ($colCount) {
+                    case 2: $col = 'B'; break;
+                    case 3: $col = 'C'; break;
+                    case 4: $col = 'D'; break;
+                    case 5: $col = 'E'; break;
+                    case 6: $col = 'F'; break;
+                    case 7: $col = 'G'; break;
+                    case 8: $col = 'H'; break;
+                    case 9: $col = 'I'; break;
+                    case 10: $col = 'J'; break;
+                    case 11: $col = 'K'; break;
+                    case 12: $col = 'L'; break;
+                    case 13: $col = 'M'; break;
+                    case 14: $col = 'N'; break;
+                    case 15: $col = 'O'; break;
+                    case 16: $col = 'P'; break;
+                    case 17: $col = 'Q'; break;
+                    case 18: $col = 'R'; break;
+                    case 19: $col = 'S'; break;
+                    case 20: $col = 'T'; break;
+                    case 21: $col = 'U'; break;
+                    case 22: $col = 'V'; break;
+                    case 23: $col = 'W'; break;
+                    case 24: $col = 'X'; break;
+                    case 25: $col = 'Y'; break;
+                    case 26: $col = 'Z'; break;
+                }
+
+                $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $dataProperty);
+                $colCount++;
+            }
+        }
+
+        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $objSpreadsheet
+                ->getActiveSheet()
+                ->getColumnDimension($col)
+                ->setAutoSize(true);
+        }
+        $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');
+        $stream = new CallbackStream(function () use ($objSpreadsheetWriter) {
+            $objSpreadsheetWriter->save('php://output');
+        });
+
+        return $this->response
+            ->withType('xlsx')
+            ->withHeader('Content-Disposition', 'attachment;filename="' . strtolower($this->defaultTable) . '.' . 'xlsx"')
+            ->withBody($stream);
+    }
+
+    /**
+     * Export csv method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportCsv()
     {
         $registrationTypes = $this->RegistrationTypes->find('all');
         $delimiter = ';';
         $enclosure = '"';
         $header = $this->RegistrationTypes->tableColumns;
-        $extract = $this->RegistrationTypes->tableColumns;
+        $extract = [
+            'id',
+            'foreign_key',
+            'title',
+            'alias',
+            'description',
+            function ($row) {
+                return empty($row['created'])? NULL: $row['created']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            function ($row) {
+                return empty($row['modified'])? NULL: $row['modified']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+        ];
 
         $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'csv'));
         $this->set(compact('registrationTypes'));
@@ -397,5 +535,71 @@ class RegistrationTypesController extends AppController
                 'header'    => $header,
                 'extract'   => $extract,
             ]);
+    }
+
+    /**
+     * Export xml method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXml()
+    {
+        $registrationTypes = $this->RegistrationTypes->find('all');
+
+        $registrationTypesArray = [];
+        foreach($registrationTypes as $registrationType) {
+            $registrationTypeArray = [];
+            $registrationTypeArray['id'] = $registrationType->id;
+            $registrationTypeArray['foreign_key'] = $registrationType->foreign_key;
+            $registrationTypeArray['title'] = $registrationType->title;
+            $registrationTypeArray['alias'] = $registrationType->billing_name_addition;
+            $registrationTypeArray['description'] = $registrationType->description;
+            $registrationTypeArray['created'] = empty($registrationType->created)? NULL: $registrationType->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $registrationTypeArray['modified'] = empty($registrationType->modified)? NULL: $registrationType->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $registrationTypesArray[] = $registrationTypeArray;
+        }
+        $registrationTypes = ['RegistrationTypes' => ['RegistrationType' => $registrationTypesArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'xml'));
+        $this->set(compact('registrationTypes'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Xml')
+            ->setOptions(['serialize' => 'registrationTypes']);
+    }
+
+    /**
+     * Export json method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportJson()
+    {
+        $registrationTypes = $this->RegistrationTypes->find('all');
+
+        $registrationTypesArray = [];
+        foreach($registrationTypes as $registrationType) {
+            $registrationTypeArray = [];
+            $registrationTypeArray['id'] = $registrationType->id;
+            $registrationTypeArray['foreign_key'] = $registrationType->foreign_key;
+            $registrationTypeArray['title'] = $registrationType->title;
+            $registrationTypeArray['alias'] = $registrationType->billing_name_addition;
+            $registrationTypeArray['description'] = $registrationType->description;
+            $registrationTypeArray['created'] = empty($registrationType->created)? NULL: $registrationType->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $registrationTypeArray['modified'] = empty($registrationType->modified)? NULL: $registrationType->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $registrationTypesArray[] = $registrationTypeArray;
+        }
+        $registrationTypes = ['RegistrationTypes' => ['RegistrationType' => $registrationTypesArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'json'));
+        $this->set(compact('registrationTypes'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Json')
+            ->setOptions(['serialize' => 'registrationTypes']);
     }
 }

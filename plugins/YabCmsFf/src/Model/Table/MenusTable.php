@@ -119,6 +119,8 @@ class MenusTable extends Table
         'description',
         'locale',
         'status',
+        'created',
+        'modified',
     ];
 
     /**

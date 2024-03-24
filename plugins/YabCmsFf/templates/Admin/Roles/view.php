@@ -119,6 +119,32 @@ $this->Breadcrumbs->add([
                     <dd class="col-sm-9"><?= empty($role->modified)? '-': h($role->modified->format('d.m.Y H:i:s')); ?></dd>
                 </dl>
                 <hr/>
+                <dl>
+                    <dd>
+                        <div class="accordion" id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                                            <?= __d('yab_cms_ff', 'REST API request') . ':' . ' ' . '/api/roles/' . h($role->id) . ' ' . '(' . __d('yab_cms_ff', 'JSON decoded version') . ')'; ?>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <pre>
+                                            <code class="language-php">
+                                                <?php $json = json_encode(['success' => true, 'data' => $role]); ?>
+                                                <?= print_r(json_decode($json), true); ?>
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </dd>
+                </dl>
+                <hr/>
                 <?= $this->Html->link(
                     $this->Html->icon('list') . ' ' . __d('yab_cms_ff', 'Index'),
                     [
@@ -163,3 +189,8 @@ $this->Breadcrumbs->add([
         </div>
     </div>
 </div>
+
+<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'prism' . DS . 'prism.min'); ?>
+<?= $this->Html->script(
+    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'prism' . DS . 'prism.min',
+    ['block' => 'scriptBottom']); ?>

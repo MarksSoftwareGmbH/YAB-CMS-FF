@@ -26,9 +26,12 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Controller\Admin;
 
-use YabCmsFf\Controller\Admin\AppController;
 use Cake\Datasource\ConnectionManager;
 use Cake\Event\EventInterface;
+use Cake\Http\CallbackStream;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use YabCmsFf\Controller\Admin\AppController;
 use YabCmsFf\Utility\YabCmsFf;
 
 /**
@@ -217,18 +220,155 @@ class LogsController extends AppController
     }
 
     /**
-     * Export method
+     * Export xlsx method
      *
      * @return \Cake\Http\Response|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function export()
+    public function exportXlsx()
+    {
+        $logs = $this->Logs->find('all');
+        $header = $this->Logs->tableColumns;
+
+        $logsArray = [];
+        foreach($logs as $log) {
+            $logArray = [];
+            $logArray['id'] = $log->id;
+            $logArray['request'] = $log->request;
+            $logArray['type'] = $log->type;
+            $logArray['message'] = $log->message;
+            $logArray['ip'] = $log->ip;
+            $logArray['uri'] = $log->uri;
+            $logArray['data'] = $log->data;
+            $logArray['created'] = $log->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $logArray['created_by'] = $log->created_by;
+
+            $logsArray[] = $logArray;
+        }
+        $logs = $logsArray;
+
+        $objSpreadsheet = new Spreadsheet();
+        $objSpreadsheet->setActiveSheetIndex(0);
+
+        $rowCount = 1;
+        $colCount = 1;
+        foreach ($header as $headerAlias) {
+            $col = 'A';
+            switch ($colCount) {
+                case 2: $col = 'B'; break;
+                case 3: $col = 'C'; break;
+                case 4: $col = 'D'; break;
+                case 5: $col = 'E'; break;
+                case 6: $col = 'F'; break;
+                case 7: $col = 'G'; break;
+                case 8: $col = 'H'; break;
+                case 9: $col = 'I'; break;
+                case 10: $col = 'J'; break;
+                case 11: $col = 'K'; break;
+                case 12: $col = 'L'; break;
+                case 13: $col = 'M'; break;
+                case 14: $col = 'N'; break;
+                case 15: $col = 'O'; break;
+                case 16: $col = 'P'; break;
+                case 17: $col = 'Q'; break;
+                case 18: $col = 'R'; break;
+                case 19: $col = 'S'; break;
+                case 20: $col = 'T'; break;
+                case 21: $col = 'U'; break;
+                case 22: $col = 'V'; break;
+                case 23: $col = 'W'; break;
+                case 24: $col = 'X'; break;
+                case 25: $col = 'Y'; break;
+                case 26: $col = 'Z'; break;
+            }
+
+            $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $headerAlias);
+            $colCount++;
+        }
+
+        $rowCount = 1;
+        foreach ($logs as $dataEntity) {
+            $rowCount++;
+
+            $colCount = 1;
+            foreach ($dataEntity as $dataProperty) {
+                $col = 'A';
+                switch ($colCount) {
+                    case 2: $col = 'B'; break;
+                    case 3: $col = 'C'; break;
+                    case 4: $col = 'D'; break;
+                    case 5: $col = 'E'; break;
+                    case 6: $col = 'F'; break;
+                    case 7: $col = 'G'; break;
+                    case 8: $col = 'H'; break;
+                    case 9: $col = 'I'; break;
+                    case 10: $col = 'J'; break;
+                    case 11: $col = 'K'; break;
+                    case 12: $col = 'L'; break;
+                    case 13: $col = 'M'; break;
+                    case 14: $col = 'N'; break;
+                    case 15: $col = 'O'; break;
+                    case 16: $col = 'P'; break;
+                    case 17: $col = 'Q'; break;
+                    case 18: $col = 'R'; break;
+                    case 19: $col = 'S'; break;
+                    case 20: $col = 'T'; break;
+                    case 21: $col = 'U'; break;
+                    case 22: $col = 'V'; break;
+                    case 23: $col = 'W'; break;
+                    case 24: $col = 'X'; break;
+                    case 25: $col = 'Y'; break;
+                    case 26: $col = 'Z'; break;
+                }
+
+                $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $dataProperty);
+                $colCount++;
+            }
+        }
+
+        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $objSpreadsheet
+                ->getActiveSheet()
+                ->getColumnDimension($col)
+                ->setAutoSize(true);
+        }
+        $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');
+        $stream = new CallbackStream(function () use ($objSpreadsheetWriter) {
+            $objSpreadsheetWriter->save('php://output');
+        });
+
+        return $this->response
+            ->withType('xlsx')
+            ->withHeader('Content-Disposition', 'attachment;filename="' . strtolower($this->defaultTable) . '.' . 'xlsx"')
+            ->withBody($stream);
+    }
+
+    /**
+     * Export csv method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportCsv()
     {
         $logs = $this->Logs->find('all');
         $delimiter = ';';
         $enclosure = '"';
         $header = $this->Logs->tableColumns;
         $extract = $this->Logs->tableColumns;
+        $extract = [
+            'id',
+            'request',
+            'type',
+            'message',
+            'ip',
+            'uri',
+            'data',
+            function ($row) {
+                return $row['created']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            'created_by',
+        ];
 
         $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'csv'));
         $this->set(compact('logs'));
@@ -242,5 +382,75 @@ class LogsController extends AppController
                 'header'    => $header,
                 'extract'   => $extract,
             ]);
+    }
+
+    /**
+     * Export xml method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXml()
+    {
+        $logs = $this->Logs->find('all');
+
+        $logsArray = [];
+        foreach($logs as $log) {
+            $logArray = [];
+            $logArray['id'] = $log->id;
+            $logArray['request'] = $log->request;
+            $logArray['type'] = $log->type;
+            $logArray['message'] = $log->message;
+            $logArray['ip'] = $log->ip;
+            $logArray['uri'] = $log->uri;
+            $logArray['data'] = $log->data;
+            $logArray['created'] = $log->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $logArray['created_by'] = $log->created_by;
+
+            $logsArray[] = $logArray;
+        }
+        $logs = ['Logs' => ['Log' => $logsArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'xml'));
+        $this->set(compact('logs'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Xml')
+            ->setOptions(['serialize' => 'logs']);
+    }
+
+    /**
+     * Export json method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportJson()
+    {
+        $logs = $this->Logs->find('all');
+
+        $logsArray = [];
+        foreach($logs as $log) {
+            $logArray = [];
+            $logArray['id'] = $log->id;
+            $logArray['request'] = $log->request;
+            $logArray['type'] = $log->type;
+            $logArray['message'] = $log->message;
+            $logArray['ip'] = $log->ip;
+            $logArray['uri'] = $log->uri;
+            $logArray['data'] = $log->data;
+            $logArray['created'] = $log->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $logArray['created_by'] = $log->created_by;
+
+            $logsArray[] = $logArray;
+        }
+        $logs = ['Logs' => ['Log' => $logsArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'json'));
+        $this->set(compact('logs'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Json')
+            ->setOptions(['serialize' => 'logs']);
     }
 }

@@ -149,6 +149,32 @@ $this->Breadcrumbs->add([
                     </dd>
                 </dl>
                 <hr/>
+                <dl>
+                    <dd>
+                        <div class="accordion" id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                                            <?= __d('yab_cms_ff', 'REST API request') . ':' . ' ' . '/api/logs/' . h($log->id) . ' ' . '(' . __d('yab_cms_ff', 'JSON decoded version') . ')'; ?>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <pre>
+                                            <code class="language-php">
+                                                <?php $json = json_encode(['success' => true, 'data' => $log]); ?>
+                                                <?= print_r(json_decode($json), true); ?>
+                                            </code>
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </dd>
+                </dl>
+                <hr/>
                 <?= $this->Html->link(
                     $this->Html->icon('list') . ' ' . __d('yab_cms_ff', 'Index'),
                     [

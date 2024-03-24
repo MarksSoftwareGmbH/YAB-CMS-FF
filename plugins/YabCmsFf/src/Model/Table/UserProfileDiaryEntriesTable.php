@@ -104,6 +104,23 @@ class UserProfileDiaryEntriesTable extends Table
     }
 
     /**
+     * Default table columns.
+     *
+     * @var array
+     */
+    public $tableColumns = [
+        'id',
+        'foreign_key',
+        'entry_title',
+        'entry_body',
+        'entry_avatar',
+        'entry_star_counter',
+        'view_counter',
+        'created',
+        'modified',
+    ];
+
+    /**
      * Returns the default validator object. Subclasses can override this function
      * to add a default validation set to the validator object.
      *

@@ -116,6 +116,8 @@ class RegionsTable extends Table
         'code',
         'info',
         'status',
+        'created',
+        'modified',
     ];
 
     /**

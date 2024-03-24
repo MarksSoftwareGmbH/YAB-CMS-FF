@@ -115,6 +115,8 @@ class RegistrationTypesTable extends Table
         'title',
         'alias',
         'description',
+        'created',
+        'modified',
     ];
 
     /**

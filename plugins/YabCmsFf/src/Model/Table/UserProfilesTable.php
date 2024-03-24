@@ -121,6 +121,44 @@ class UserProfilesTable extends Table
     }
 
     /**
+     * Default table columns.
+     *
+     * @var array
+     */
+    public $tableColumns = [
+        'id',
+        'user_id',
+        'foreign_key',
+        'prefix',
+        'salutation',
+        'suffix',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'gender',
+        'birthday',
+        'image',
+        'website',
+        'telephone',
+        'mobilephone',
+        'fax',
+        'company',
+        'street',
+        'street_addition',
+        'postcode',
+        'city',
+        'region_id',
+        'country_id',
+        'about_me',
+        'tags',
+        'timezone',
+        'view_counter',
+        'status',
+        'created',
+        'modified',
+    ];
+
+    /**
      * Returns the default validator object. Subclasses can override this function
      * to add a default validation set to the validator object.
      *

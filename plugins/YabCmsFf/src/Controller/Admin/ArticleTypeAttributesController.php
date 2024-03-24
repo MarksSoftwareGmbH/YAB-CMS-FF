@@ -26,14 +26,17 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Controller\Admin;
 
-use YabCmsFf\Controller\Admin\AppController;
 use Cake\Event\EventInterface;
+use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
-use YabCmsFf\Utility\YabCmsFf;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
 use Intervention\Image\ImageManager;
 use Imagick;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use YabCmsFf\Controller\Admin\AppController;
+use YabCmsFf\Utility\YabCmsFf;
 
 /**
  * ArticleTypeAttributes Controller
@@ -3069,18 +3072,392 @@ class ArticleTypeAttributesController extends AppController
     }
 
     /**
-     * Export method
+     * Export xlsx method
      *
      * @return \Cake\Http\Response|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function export()
+    public function exportXlsx()
+    {
+        $articleTypeAttributes = $this->ArticleTypeAttributes->find('all');
+        $header = $this->ArticleTypeAttributes->tableColumns;
+
+        $articleTypeAttributesArray = [];
+        foreach($articleTypeAttributes as $articleTypeAttribute) {
+            $articleTypeAttributeArray = [];
+            $articleTypeAttributeArray['id'] = $articleTypeAttribute->id;
+            $articleTypeAttributeArray['foreign_key'] = $articleTypeAttribute->foreign_key;
+            $articleTypeAttributeArray['title'] = $articleTypeAttribute->title;
+            $articleTypeAttributeArray['alias'] = $articleTypeAttribute->alias;
+            $articleTypeAttributeArray['type'] = $articleTypeAttribute->type;
+            $articleTypeAttributeArray['description'] = $articleTypeAttribute->description;
+            $articleTypeAttributeArray['link_1'] = $articleTypeAttribute->link_1;
+            $articleTypeAttributeArray['link_2'] = $articleTypeAttribute->link_2;
+            $articleTypeAttributeArray['link_3'] = $articleTypeAttribute->link_3;
+            $articleTypeAttributeArray['link_4'] = $articleTypeAttribute->link_4;
+            $articleTypeAttributeArray['link_5'] = $articleTypeAttribute->link_5;
+            $articleTypeAttributeArray['link_6'] = $articleTypeAttribute->link_6;
+            $articleTypeAttributeArray['link_7'] = $articleTypeAttribute->link_7;
+            $articleTypeAttributeArray['link_8'] = $articleTypeAttribute->link_8;
+            $articleTypeAttributeArray['link_9'] = $articleTypeAttribute->link_9;
+            $articleTypeAttributeArray['image_1'] = $articleTypeAttribute->image_1;
+            $articleTypeAttributeArray['image_1_file'] = $articleTypeAttribute->image_1_file;
+            $articleTypeAttributeArray['image_2'] = $articleTypeAttribute->image_2;
+            $articleTypeAttributeArray['image_2_file'] = $articleTypeAttribute->image_2_file;
+            $articleTypeAttributeArray['image_3'] = $articleTypeAttribute->image_3;
+            $articleTypeAttributeArray['image_3_file'] = $articleTypeAttribute->image_3_file;
+            $articleTypeAttributeArray['image_4'] = $articleTypeAttribute->image_4;
+            $articleTypeAttributeArray['image_4_file'] = $articleTypeAttribute->image_4_file;
+            $articleTypeAttributeArray['image_5'] = $articleTypeAttribute->image_5;
+            $articleTypeAttributeArray['image_5_file'] = $articleTypeAttribute->image_5_file;
+            $articleTypeAttributeArray['image_6'] = $articleTypeAttribute->image_6;
+            $articleTypeAttributeArray['image_6_file'] = $articleTypeAttribute->image_6_file;
+            $articleTypeAttributeArray['image_7'] = $articleTypeAttribute->image_7;
+            $articleTypeAttributeArray['image_7_file'] = $articleTypeAttribute->image_7_file;
+            $articleTypeAttributeArray['image_8'] = $articleTypeAttribute->image_8;
+            $articleTypeAttributeArray['image_8_file'] = $articleTypeAttribute->image_8_file;
+            $articleTypeAttributeArray['image_9'] = $articleTypeAttribute->image_9;
+            $articleTypeAttributeArray['image_9_file'] = $articleTypeAttribute->image_9_file;
+            $articleTypeAttributeArray['video_1'] = $articleTypeAttribute->video_1;
+            $articleTypeAttributeArray['video_1_file'] = $articleTypeAttribute->video_1_file;
+            $articleTypeAttributeArray['video_2'] = $articleTypeAttribute->video_2;
+            $articleTypeAttributeArray['video_2_file'] = $articleTypeAttribute->video_2_file;
+            $articleTypeAttributeArray['video_3'] = $articleTypeAttribute->video_3;
+            $articleTypeAttributeArray['video_3_file'] = $articleTypeAttribute->video_3_file;
+            $articleTypeAttributeArray['video_4'] = $articleTypeAttribute->video_4;
+            $articleTypeAttributeArray['video_4_file'] = $articleTypeAttribute->video_4_file;
+            $articleTypeAttributeArray['video_5'] = $articleTypeAttribute->video_5;
+            $articleTypeAttributeArray['video_5_file'] = $articleTypeAttribute->video_5_file;
+            $articleTypeAttributeArray['video_6'] = $articleTypeAttribute->video_6;
+            $articleTypeAttributeArray['video_6_file'] = $articleTypeAttribute->video_6_file;
+            $articleTypeAttributeArray['video_7'] = $articleTypeAttribute->video_7;
+            $articleTypeAttributeArray['video_7_file'] = $articleTypeAttribute->video_7_file;
+            $articleTypeAttributeArray['video_8'] = $articleTypeAttribute->video_8;
+            $articleTypeAttributeArray['video_8_file'] = $articleTypeAttribute->video_8_file;
+            $articleTypeAttributeArray['video_9'] = $articleTypeAttribute->video_9;
+            $articleTypeAttributeArray['video_9_file'] = $articleTypeAttribute->video_9_file;
+            $articleTypeAttributeArray['pdf_1'] = $articleTypeAttribute->pdf_1;
+            $articleTypeAttributeArray['pdf_1_file'] = $articleTypeAttribute->pdf_1_file;
+            $articleTypeAttributeArray['pdf_2'] = $articleTypeAttribute->pdf_2;
+            $articleTypeAttributeArray['pdf_2_file'] = $articleTypeAttribute->pdf_2_file;
+            $articleTypeAttributeArray['pdf_3'] = $articleTypeAttribute->pdf_3;
+            $articleTypeAttributeArray['pdf_3_file'] = $articleTypeAttribute->pdf_3_file;
+            $articleTypeAttributeArray['pdf_4'] = $articleTypeAttribute->pdf_4;
+            $articleTypeAttributeArray['pdf_4_file'] = $articleTypeAttribute->pdf_4_file;
+            $articleTypeAttributeArray['pdf_5'] = $articleTypeAttribute->pdf_5;
+            $articleTypeAttributeArray['pdf_5_file'] = $articleTypeAttribute->pdf_5_file;
+            $articleTypeAttributeArray['pdf_6'] = $articleTypeAttribute->pdf_6;
+            $articleTypeAttributeArray['pdf_6_file'] = $articleTypeAttribute->pdf_6_file;
+            $articleTypeAttributeArray['pdf_7'] = $articleTypeAttribute->pdf_7;
+            $articleTypeAttributeArray['pdf_7_file'] = $articleTypeAttribute->pdf_7_file;
+            $articleTypeAttributeArray['pdf_8'] = $articleTypeAttribute->pdf_8;
+            $articleTypeAttributeArray['pdf_8_file'] = $articleTypeAttribute->pdf_8_file;
+            $articleTypeAttributeArray['pdf_9'] = $articleTypeAttribute->pdf_9;
+            $articleTypeAttributeArray['pdf_9_file'] = $articleTypeAttribute->pdf_9_file;
+            $articleTypeAttributeArray['empty_value'] = ($articleTypeAttribute->empty_value == 1)? 1: 0;
+            $articleTypeAttributeArray['wysiwyg'] = ($articleTypeAttribute->wysiwyg == 1)? 1: 0;
+            $articleTypeAttributeArray['created'] = empty($articleTypeAttribute->created)? NULL: $articleTypeAttribute->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleTypeAttributeArray['modified'] = empty($articleTypeAttribute->modified)? NULL: $articleTypeAttribute->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $articleTypeAttributesArray[] = $articleTypeAttributeArray;
+        }
+        $articleTypeAttributes = $articleTypeAttributesArray;
+
+        $objSpreadsheet = new Spreadsheet();
+        $objSpreadsheet->setActiveSheetIndex(0);
+
+        $rowCount = 1;
+        $colCount = 1;
+        foreach ($header as $headerAlias) {
+            $col = 'A';
+            switch ($colCount) {
+                case 2: $col = 'B'; break;
+                case 3: $col = 'C'; break;
+                case 4: $col = 'D'; break;
+                case 5: $col = 'E'; break;
+                case 6: $col = 'F'; break;
+                case 7: $col = 'G'; break;
+                case 8: $col = 'H'; break;
+                case 9: $col = 'I'; break;
+                case 10: $col = 'J'; break;
+                case 11: $col = 'K'; break;
+                case 12: $col = 'L'; break;
+                case 13: $col = 'M'; break;
+                case 14: $col = 'N'; break;
+                case 15: $col = 'O'; break;
+                case 16: $col = 'P'; break;
+                case 17: $col = 'Q'; break;
+                case 18: $col = 'R'; break;
+                case 19: $col = 'S'; break;
+                case 20: $col = 'T'; break;
+                case 21: $col = 'U'; break;
+                case 22: $col = 'V'; break;
+                case 23: $col = 'W'; break;
+                case 24: $col = 'X'; break;
+                case 25: $col = 'Y'; break;
+                case 26: $col = 'Z'; break;
+                case 27: $col = 'AA'; break;
+                case 28: $col = 'AB'; break;
+                case 29: $col = 'AC'; break;
+                case 30: $col = 'AD'; break;
+                case 31: $col = 'AE'; break;
+                case 32: $col = 'AF'; break;
+                case 33: $col = 'AG'; break;
+                case 34: $col = 'AH'; break;
+                case 35: $col = 'AI'; break;
+                case 36: $col = 'AJ'; break;
+                case 37: $col = 'AK'; break;
+                case 38: $col = 'AL'; break;
+                case 39: $col = 'AM'; break;
+                case 40: $col = 'AN'; break;
+                case 41: $col = 'AO'; break;
+                case 42: $col = 'AP'; break;
+                case 43: $col = 'AQ'; break;
+                case 44: $col = 'AR'; break;
+                case 45: $col = 'AS'; break;
+                case 46: $col = 'AT'; break;
+                case 47: $col = 'AU'; break;
+                case 48: $col = 'AV'; break;
+                case 49: $col = 'AW'; break;
+                case 50: $col = 'AX'; break;
+                case 51: $col = 'AY'; break;
+                case 52: $col = 'AZ'; break;
+                case 53: $col = 'BA'; break;
+                case 54: $col = 'BB'; break;
+                case 55: $col = 'BC'; break;
+                case 56: $col = 'BD'; break;
+                case 57: $col = 'BE'; break;
+                case 58: $col = 'BF'; break;
+                case 59: $col = 'BG'; break;
+                case 60: $col = 'BH'; break;
+                case 61: $col = 'BI'; break;
+                case 62: $col = 'BJ'; break;
+                case 63: $col = 'BK'; break;
+                case 64: $col = 'BL'; break;
+                case 65: $col = 'BM'; break;
+                case 66: $col = 'BN'; break;
+                case 67: $col = 'BO'; break;
+                case 68: $col = 'BP'; break;
+                case 69: $col = 'BQ'; break;
+                case 70: $col = 'BR'; break;
+                case 71: $col = 'BS'; break;
+                case 72: $col = 'BT'; break;
+                case 73: $col = 'BU'; break;
+                case 74: $col = 'BV'; break;
+                case 75: $col = 'BW'; break;
+                case 76: $col = 'BX'; break;
+                case 77: $col = 'BY'; break;
+                case 78: $col = 'BZ'; break;
+            }
+
+            $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $headerAlias);
+            $colCount++;
+        }
+
+        $rowCount = 1;
+        foreach ($articleTypeAttributes as $dataEntity) {
+            $rowCount++;
+
+            $colCount = 1;
+            foreach ($dataEntity as $dataProperty) {
+                $col = 'A';
+                switch ($colCount) {
+                    case 2: $col = 'B'; break;
+                    case 3: $col = 'C'; break;
+                    case 4: $col = 'D'; break;
+                    case 5: $col = 'E'; break;
+                    case 6: $col = 'F'; break;
+                    case 7: $col = 'G'; break;
+                    case 8: $col = 'H'; break;
+                    case 9: $col = 'I'; break;
+                    case 10: $col = 'J'; break;
+                    case 11: $col = 'K'; break;
+                    case 12: $col = 'L'; break;
+                    case 13: $col = 'M'; break;
+                    case 14: $col = 'N'; break;
+                    case 15: $col = 'O'; break;
+                    case 16: $col = 'P'; break;
+                    case 17: $col = 'Q'; break;
+                    case 18: $col = 'R'; break;
+                    case 19: $col = 'S'; break;
+                    case 20: $col = 'T'; break;
+                    case 21: $col = 'U'; break;
+                    case 22: $col = 'V'; break;
+                    case 23: $col = 'W'; break;
+                    case 24: $col = 'X'; break;
+                    case 25: $col = 'Y'; break;
+                    case 26: $col = 'Z'; break;
+                    case 27: $col = 'AA'; break;
+                    case 28: $col = 'AB'; break;
+                    case 29: $col = 'AC'; break;
+                    case 30: $col = 'AD'; break;
+                    case 31: $col = 'AE'; break;
+                    case 32: $col = 'AF'; break;
+                    case 33: $col = 'AG'; break;
+                    case 34: $col = 'AH'; break;
+                    case 35: $col = 'AI'; break;
+                    case 36: $col = 'AJ'; break;
+                    case 37: $col = 'AK'; break;
+                    case 38: $col = 'AL'; break;
+                    case 39: $col = 'AM'; break;
+                    case 40: $col = 'AN'; break;
+                    case 41: $col = 'AO'; break;
+                    case 42: $col = 'AP'; break;
+                    case 43: $col = 'AQ'; break;
+                    case 44: $col = 'AR'; break;
+                    case 45: $col = 'AS'; break;
+                    case 46: $col = 'AT'; break;
+                    case 47: $col = 'AU'; break;
+                    case 48: $col = 'AV'; break;
+                    case 49: $col = 'AW'; break;
+                    case 50: $col = 'AX'; break;
+                    case 51: $col = 'AY'; break;
+                    case 52: $col = 'AZ'; break;
+                    case 53: $col = 'BA'; break;
+                    case 54: $col = 'BB'; break;
+                    case 55: $col = 'BC'; break;
+                    case 56: $col = 'BD'; break;
+                    case 57: $col = 'BE'; break;
+                    case 58: $col = 'BF'; break;
+                    case 59: $col = 'BG'; break;
+                    case 60: $col = 'BH'; break;
+                    case 61: $col = 'BI'; break;
+                    case 62: $col = 'BJ'; break;
+                    case 63: $col = 'BK'; break;
+                    case 64: $col = 'BL'; break;
+                    case 65: $col = 'BM'; break;
+                    case 66: $col = 'BN'; break;
+                    case 67: $col = 'BO'; break;
+                    case 68: $col = 'BP'; break;
+                    case 69: $col = 'BQ'; break;
+                    case 70: $col = 'BR'; break;
+                    case 71: $col = 'BS'; break;
+                    case 72: $col = 'BT'; break;
+                    case 73: $col = 'BU'; break;
+                    case 74: $col = 'BV'; break;
+                    case 75: $col = 'BW'; break;
+                    case 76: $col = 'BX'; break;
+                    case 77: $col = 'BY'; break;
+                    case 78: $col = 'BZ'; break;
+                }
+
+                $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $dataProperty);
+                $colCount++;
+            }
+        }
+
+        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $objSpreadsheet
+                ->getActiveSheet()
+                ->getColumnDimension($col)
+                ->setAutoSize(true);
+        }
+        $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');
+        $stream = new CallbackStream(function () use ($objSpreadsheetWriter) {
+            $objSpreadsheetWriter->save('php://output');
+        });
+
+        return $this->response
+            ->withType('xlsx')
+            ->withHeader('Content-Disposition', 'attachment;filename="' . strtolower($this->defaultTable) . '.' . 'xlsx"')
+            ->withBody($stream);
+    }
+
+    /**
+     * Export csv method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportCsv()
     {
         $articleTypeAttributes = $this->ArticleTypeAttributes->find('all');
         $delimiter = ';';
         $enclosure = '"';
         $header = $this->ArticleTypeAttributes->tableColumns;
-        $extract = $this->ArticleTypeAttributes->tableColumns;
+        $extract = [
+            'id',
+            'foreign_key',
+            'title',
+            'alias',
+            'type',
+            'description',
+            'link_1',
+            'link_2',
+            'link_3',
+            'link_4',
+            'link_5',
+            'link_6',
+            'link_7',
+            'link_8',
+            'link_9',
+            'image_1',
+            'image_1_file',
+            'image_2',
+            'image_2_file',
+            'image_3',
+            'image_3_file',
+            'image_4',
+            'image_4_file',
+            'image_5',
+            'image_5_file',
+            'image_6',
+            'image_6_file',
+            'image_7',
+            'image_7_file',
+            'image_8',
+            'image_8_file',
+            'image_9',
+            'image_9_file',
+            'video_1',
+            'video_1_file',
+            'video_2',
+            'video_2_file',
+            'video_3',
+            'video_3_file',
+            'video_4',
+            'video_4_file',
+            'video_5',
+            'video_5_file',
+            'video_6',
+            'video_6_file',
+            'video_7',
+            'video_7_file',
+            'video_8',
+            'video_8_file',
+            'video_9',
+            'video_9_file',
+            'pdf_1',
+            'pdf_1_file',
+            'pdf_2',
+            'pdf_2_file',
+            'pdf_3',
+            'pdf_3_file',
+            'pdf_4',
+            'pdf_4_file',
+            'pdf_5',
+            'pdf_5_file',
+            'pdf_6',
+            'pdf_6_file',
+            'pdf_7',
+            'pdf_7_file',
+            'pdf_8',
+            'pdf_8_file',
+            'pdf_9',
+            'pdf_9_file',
+            function ($row) {
+                return ($row['empty_value'] == 1)? 1: 0;
+            },
+            function ($row) {
+                return ($row['wysiwyg'] == 1)? 1: 0;
+            },
+            function ($row) {
+                return empty($row['created'])? NULL: $row['created']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            function ($row) {
+                return empty($row['modified'])? NULL: $row['modified']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+        ];
 
         $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'csv'));
         $this->set(compact('articleTypeAttributes'));
@@ -3094,5 +3471,203 @@ class ArticleTypeAttributesController extends AppController
                 'header'    => $header,
                 'extract'   => $extract,
             ]);
+    }
+
+    /**
+     * Export xml method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXml()
+    {
+        $articleTypeAttributes = $this->ArticleTypeAttributes->find('all');
+
+        $articleTypeAttributesArray = [];
+        foreach($articleTypeAttributes as $articleTypeAttribute) {
+            $articleTypeAttributeArray = [];
+            $articleTypeAttributeArray['id'] = $articleTypeAttribute->id;
+            $articleTypeAttributeArray['foreign_key'] = $articleTypeAttribute->foreign_key;
+            $articleTypeAttributeArray['title'] = $articleTypeAttribute->title;
+            $articleTypeAttributeArray['alias'] = $articleTypeAttribute->alias;
+            $articleTypeAttributeArray['type'] = $articleTypeAttribute->type;
+            $articleTypeAttributeArray['description'] = $articleTypeAttribute->description;
+            $articleTypeAttributeArray['link_1'] = $articleTypeAttribute->link_1;
+            $articleTypeAttributeArray['link_2'] = $articleTypeAttribute->link_2;
+            $articleTypeAttributeArray['link_3'] = $articleTypeAttribute->link_3;
+            $articleTypeAttributeArray['link_4'] = $articleTypeAttribute->link_4;
+            $articleTypeAttributeArray['link_5'] = $articleTypeAttribute->link_5;
+            $articleTypeAttributeArray['link_6'] = $articleTypeAttribute->link_6;
+            $articleTypeAttributeArray['link_7'] = $articleTypeAttribute->link_7;
+            $articleTypeAttributeArray['link_8'] = $articleTypeAttribute->link_8;
+            $articleTypeAttributeArray['link_9'] = $articleTypeAttribute->link_9;
+            $articleTypeAttributeArray['image_1'] = $articleTypeAttribute->image_1;
+            $articleTypeAttributeArray['image_1_file'] = $articleTypeAttribute->image_1_file;
+            $articleTypeAttributeArray['image_2'] = $articleTypeAttribute->image_2;
+            $articleTypeAttributeArray['image_2_file'] = $articleTypeAttribute->image_2_file;
+            $articleTypeAttributeArray['image_3'] = $articleTypeAttribute->image_3;
+            $articleTypeAttributeArray['image_3_file'] = $articleTypeAttribute->image_3_file;
+            $articleTypeAttributeArray['image_4'] = $articleTypeAttribute->image_4;
+            $articleTypeAttributeArray['image_4_file'] = $articleTypeAttribute->image_4_file;
+            $articleTypeAttributeArray['image_5'] = $articleTypeAttribute->image_5;
+            $articleTypeAttributeArray['image_5_file'] = $articleTypeAttribute->image_5_file;
+            $articleTypeAttributeArray['image_6'] = $articleTypeAttribute->image_6;
+            $articleTypeAttributeArray['image_6_file'] = $articleTypeAttribute->image_6_file;
+            $articleTypeAttributeArray['image_7'] = $articleTypeAttribute->image_7;
+            $articleTypeAttributeArray['image_7_file'] = $articleTypeAttribute->image_7_file;
+            $articleTypeAttributeArray['image_8'] = $articleTypeAttribute->image_8;
+            $articleTypeAttributeArray['image_8_file'] = $articleTypeAttribute->image_8_file;
+            $articleTypeAttributeArray['image_9'] = $articleTypeAttribute->image_9;
+            $articleTypeAttributeArray['image_9_file'] = $articleTypeAttribute->image_9_file;
+            $articleTypeAttributeArray['video_1'] = $articleTypeAttribute->video_1;
+            $articleTypeAttributeArray['video_1_file'] = $articleTypeAttribute->video_1_file;
+            $articleTypeAttributeArray['video_2'] = $articleTypeAttribute->video_2;
+            $articleTypeAttributeArray['video_2_file'] = $articleTypeAttribute->video_2_file;
+            $articleTypeAttributeArray['video_3'] = $articleTypeAttribute->video_3;
+            $articleTypeAttributeArray['video_3_file'] = $articleTypeAttribute->video_3_file;
+            $articleTypeAttributeArray['video_4'] = $articleTypeAttribute->video_4;
+            $articleTypeAttributeArray['video_4_file'] = $articleTypeAttribute->video_4_file;
+            $articleTypeAttributeArray['video_5'] = $articleTypeAttribute->video_5;
+            $articleTypeAttributeArray['video_5_file'] = $articleTypeAttribute->video_5_file;
+            $articleTypeAttributeArray['video_6'] = $articleTypeAttribute->video_6;
+            $articleTypeAttributeArray['video_6_file'] = $articleTypeAttribute->video_6_file;
+            $articleTypeAttributeArray['video_7'] = $articleTypeAttribute->video_7;
+            $articleTypeAttributeArray['video_7_file'] = $articleTypeAttribute->video_7_file;
+            $articleTypeAttributeArray['video_8'] = $articleTypeAttribute->video_8;
+            $articleTypeAttributeArray['video_8_file'] = $articleTypeAttribute->video_8_file;
+            $articleTypeAttributeArray['video_9'] = $articleTypeAttribute->video_9;
+            $articleTypeAttributeArray['video_9_file'] = $articleTypeAttribute->video_9_file;
+            $articleTypeAttributeArray['pdf_1'] = $articleTypeAttribute->pdf_1;
+            $articleTypeAttributeArray['pdf_1_file'] = $articleTypeAttribute->pdf_1_file;
+            $articleTypeAttributeArray['pdf_2'] = $articleTypeAttribute->pdf_2;
+            $articleTypeAttributeArray['pdf_2_file'] = $articleTypeAttribute->pdf_2_file;
+            $articleTypeAttributeArray['pdf_3'] = $articleTypeAttribute->pdf_3;
+            $articleTypeAttributeArray['pdf_3_file'] = $articleTypeAttribute->pdf_3_file;
+            $articleTypeAttributeArray['pdf_4'] = $articleTypeAttribute->pdf_4;
+            $articleTypeAttributeArray['pdf_4_file'] = $articleTypeAttribute->pdf_4_file;
+            $articleTypeAttributeArray['pdf_5'] = $articleTypeAttribute->pdf_5;
+            $articleTypeAttributeArray['pdf_5_file'] = $articleTypeAttribute->pdf_5_file;
+            $articleTypeAttributeArray['pdf_6'] = $articleTypeAttribute->pdf_6;
+            $articleTypeAttributeArray['pdf_6_file'] = $articleTypeAttribute->pdf_6_file;
+            $articleTypeAttributeArray['pdf_7'] = $articleTypeAttribute->pdf_7;
+            $articleTypeAttributeArray['pdf_7_file'] = $articleTypeAttribute->pdf_7_file;
+            $articleTypeAttributeArray['pdf_8'] = $articleTypeAttribute->pdf_8;
+            $articleTypeAttributeArray['pdf_8_file'] = $articleTypeAttribute->pdf_8_file;
+            $articleTypeAttributeArray['pdf_9'] = $articleTypeAttribute->pdf_9;
+            $articleTypeAttributeArray['pdf_9_file'] = $articleTypeAttribute->pdf_9_file;
+            $articleTypeAttributeArray['empty_value'] = ($articleTypeAttribute->empty_value == 1)? 1: 0;
+            $articleTypeAttributeArray['wysiwyg'] = ($articleTypeAttribute->wysiwyg == 1)? 1: 0;
+            $articleTypeAttributeArray['created'] = empty($articleTypeAttribute->created)? NULL: $articleTypeAttribute->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleTypeAttributeArray['modified'] = empty($articleTypeAttribute->modified)? NULL: $articleTypeAttribute->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $articleTypeAttributesArray[] = $articleTypeAttributeArray;
+        }
+        $articleTypeAttributes = ['ArticleTypeAttributes' => ['ArticleTypeAttribute' => $articleTypeAttributesArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'xml'));
+        $this->set(compact('articleTypeAttributes'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Xml')
+            ->setOptions(['serialize' => 'articleTypeAttributes']);
+    }
+
+    /**
+     * Export json method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportJson()
+    {
+        $articleTypeAttributes = $this->ArticleTypeAttributes->find('all');
+
+        $articleTypeAttributesArray = [];
+        foreach($articleTypeAttributes as $articleTypeAttribute) {
+            $articleTypeAttributeArray = [];
+            $articleTypeAttributeArray['id'] = $articleTypeAttribute->id;
+            $articleTypeAttributeArray['foreign_key'] = $articleTypeAttribute->foreign_key;
+            $articleTypeAttributeArray['title'] = $articleTypeAttribute->title;
+            $articleTypeAttributeArray['alias'] = $articleTypeAttribute->alias;
+            $articleTypeAttributeArray['type'] = $articleTypeAttribute->type;
+            $articleTypeAttributeArray['description'] = $articleTypeAttribute->description;
+            $articleTypeAttributeArray['link_1'] = $articleTypeAttribute->link_1;
+            $articleTypeAttributeArray['link_2'] = $articleTypeAttribute->link_2;
+            $articleTypeAttributeArray['link_3'] = $articleTypeAttribute->link_3;
+            $articleTypeAttributeArray['link_4'] = $articleTypeAttribute->link_4;
+            $articleTypeAttributeArray['link_5'] = $articleTypeAttribute->link_5;
+            $articleTypeAttributeArray['link_6'] = $articleTypeAttribute->link_6;
+            $articleTypeAttributeArray['link_7'] = $articleTypeAttribute->link_7;
+            $articleTypeAttributeArray['link_8'] = $articleTypeAttribute->link_8;
+            $articleTypeAttributeArray['link_9'] = $articleTypeAttribute->link_9;
+            $articleTypeAttributeArray['image_1'] = $articleTypeAttribute->image_1;
+            $articleTypeAttributeArray['image_1_file'] = $articleTypeAttribute->image_1_file;
+            $articleTypeAttributeArray['image_2'] = $articleTypeAttribute->image_2;
+            $articleTypeAttributeArray['image_2_file'] = $articleTypeAttribute->image_2_file;
+            $articleTypeAttributeArray['image_3'] = $articleTypeAttribute->image_3;
+            $articleTypeAttributeArray['image_3_file'] = $articleTypeAttribute->image_3_file;
+            $articleTypeAttributeArray['image_4'] = $articleTypeAttribute->image_4;
+            $articleTypeAttributeArray['image_4_file'] = $articleTypeAttribute->image_4_file;
+            $articleTypeAttributeArray['image_5'] = $articleTypeAttribute->image_5;
+            $articleTypeAttributeArray['image_5_file'] = $articleTypeAttribute->image_5_file;
+            $articleTypeAttributeArray['image_6'] = $articleTypeAttribute->image_6;
+            $articleTypeAttributeArray['image_6_file'] = $articleTypeAttribute->image_6_file;
+            $articleTypeAttributeArray['image_7'] = $articleTypeAttribute->image_7;
+            $articleTypeAttributeArray['image_7_file'] = $articleTypeAttribute->image_7_file;
+            $articleTypeAttributeArray['image_8'] = $articleTypeAttribute->image_8;
+            $articleTypeAttributeArray['image_8_file'] = $articleTypeAttribute->image_8_file;
+            $articleTypeAttributeArray['image_9'] = $articleTypeAttribute->image_9;
+            $articleTypeAttributeArray['image_9_file'] = $articleTypeAttribute->image_9_file;
+            $articleTypeAttributeArray['video_1'] = $articleTypeAttribute->video_1;
+            $articleTypeAttributeArray['video_1_file'] = $articleTypeAttribute->video_1_file;
+            $articleTypeAttributeArray['video_2'] = $articleTypeAttribute->video_2;
+            $articleTypeAttributeArray['video_2_file'] = $articleTypeAttribute->video_2_file;
+            $articleTypeAttributeArray['video_3'] = $articleTypeAttribute->video_3;
+            $articleTypeAttributeArray['video_3_file'] = $articleTypeAttribute->video_3_file;
+            $articleTypeAttributeArray['video_4'] = $articleTypeAttribute->video_4;
+            $articleTypeAttributeArray['video_4_file'] = $articleTypeAttribute->video_4_file;
+            $articleTypeAttributeArray['video_5'] = $articleTypeAttribute->video_5;
+            $articleTypeAttributeArray['video_5_file'] = $articleTypeAttribute->video_5_file;
+            $articleTypeAttributeArray['video_6'] = $articleTypeAttribute->video_6;
+            $articleTypeAttributeArray['video_6_file'] = $articleTypeAttribute->video_6_file;
+            $articleTypeAttributeArray['video_7'] = $articleTypeAttribute->video_7;
+            $articleTypeAttributeArray['video_7_file'] = $articleTypeAttribute->video_7_file;
+            $articleTypeAttributeArray['video_8'] = $articleTypeAttribute->video_8;
+            $articleTypeAttributeArray['video_8_file'] = $articleTypeAttribute->video_8_file;
+            $articleTypeAttributeArray['video_9'] = $articleTypeAttribute->video_9;
+            $articleTypeAttributeArray['video_9_file'] = $articleTypeAttribute->video_9_file;
+            $articleTypeAttributeArray['pdf_1'] = $articleTypeAttribute->pdf_1;
+            $articleTypeAttributeArray['pdf_1_file'] = $articleTypeAttribute->pdf_1_file;
+            $articleTypeAttributeArray['pdf_2'] = $articleTypeAttribute->pdf_2;
+            $articleTypeAttributeArray['pdf_2_file'] = $articleTypeAttribute->pdf_2_file;
+            $articleTypeAttributeArray['pdf_3'] = $articleTypeAttribute->pdf_3;
+            $articleTypeAttributeArray['pdf_3_file'] = $articleTypeAttribute->pdf_3_file;
+            $articleTypeAttributeArray['pdf_4'] = $articleTypeAttribute->pdf_4;
+            $articleTypeAttributeArray['pdf_4_file'] = $articleTypeAttribute->pdf_4_file;
+            $articleTypeAttributeArray['pdf_5'] = $articleTypeAttribute->pdf_5;
+            $articleTypeAttributeArray['pdf_5_file'] = $articleTypeAttribute->pdf_5_file;
+            $articleTypeAttributeArray['pdf_6'] = $articleTypeAttribute->pdf_6;
+            $articleTypeAttributeArray['pdf_6_file'] = $articleTypeAttribute->pdf_6_file;
+            $articleTypeAttributeArray['pdf_7'] = $articleTypeAttribute->pdf_7;
+            $articleTypeAttributeArray['pdf_7_file'] = $articleTypeAttribute->pdf_7_file;
+            $articleTypeAttributeArray['pdf_8'] = $articleTypeAttribute->pdf_8;
+            $articleTypeAttributeArray['pdf_8_file'] = $articleTypeAttribute->pdf_8_file;
+            $articleTypeAttributeArray['pdf_9'] = $articleTypeAttribute->pdf_9;
+            $articleTypeAttributeArray['pdf_9_file'] = $articleTypeAttribute->pdf_9_file;
+            $articleTypeAttributeArray['empty_value'] = ($articleTypeAttribute->empty_value == 1)? 1: 0;
+            $articleTypeAttributeArray['wysiwyg'] = ($articleTypeAttribute->wysiwyg == 1)? 1: 0;
+            $articleTypeAttributeArray['created'] = empty($articleTypeAttribute->created)? NULL: $articleTypeAttribute->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $articleTypeAttributeArray['modified'] = empty($articleTypeAttribute->modified)? NULL: $articleTypeAttribute->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $articleTypeAttributesArray[] = $articleTypeAttributeArray;
+        }
+        $articleTypeAttributes = ['ArticleTypeAttributes' => ['ArticleTypeAttribute' => $articleTypeAttributesArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'json'));
+        $this->set(compact('articleTypeAttributes'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Json')
+            ->setOptions(['serialize' => 'articleTypeAttributes']);
     }
 }

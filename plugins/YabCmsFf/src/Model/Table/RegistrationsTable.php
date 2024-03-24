@@ -183,6 +183,8 @@ class RegistrationsTable extends Table
         'terms_conditions',
         'privacy_policy',
         'ip',
+        'created',
+        'modified',
     ];
 
     /**

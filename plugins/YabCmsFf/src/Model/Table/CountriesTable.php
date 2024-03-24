@@ -123,6 +123,8 @@ class CountriesTable extends Table
         'locale',
         'locale_translation',
         'status',
+        'created',
+        'modified',
     ];
 
     /**

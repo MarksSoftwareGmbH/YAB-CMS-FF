@@ -26,12 +26,15 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Controller\Admin;
 
-use YabCmsFf\Controller\Admin\AppController;
-use YabCmsFf\Utility\YabCmsFf;
 use Cake\Datasource\ConnectionManager;
 use Cake\Event\EventInterface;
+use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
 use Cake\Utility\Hash;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use YabCmsFf\Controller\Admin\AppController;
+use YabCmsFf\Utility\YabCmsFf;
 
 /**
  * Registrations Controller
@@ -413,12 +416,222 @@ class RegistrationsController extends AppController
     }
 
     /**
-     * Export method
+     * Export xlsx method
      *
      * @return \Cake\Http\Response|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function export()
+    public function exportXlsx()
+    {
+        $registrations = $this->Registrations->find('all');
+        $header = $this->Registrations->tableColumns;
+
+        $registrationsArray = [];
+        foreach($registrations as $registration) {
+            $registrationArray = [];
+            $registrationArray['id'] = $registration->id;
+            $registrationArray['registration_type_id'] = $registration->registration_type_id;
+            $registrationArray['billing_name'] = $registration->billing_name;
+            $registrationArray['billing_name_addition'] = $registration->billing_name_addition;
+            $registrationArray['billing_legal_form'] = $registration->billing_legal_form;
+            $registrationArray['billing_vat_number'] = $registration->billing_vat_number;
+            $registrationArray['billing_salutation'] = $registration->billing_salutation;
+            $registrationArray['billing_first_name'] = $registration->billing_first_name;
+            $registrationArray['billing_middle_name'] = $registration->billing_middle_name;
+            $registrationArray['billing_last_name'] = $registration->billing_last_name;
+            $registrationArray['billing_management'] = $registration->billing_management; 
+            $registrationArray['billing_email'] = $registration->billing_email;
+            $registrationArray['billing_website'] = $registration->billing_website;
+            $registrationArray['billing_telephone'] = $registration->billing_telephone;
+            $registrationArray['billing_mobilephone'] = $registration->billing_mobilephone;
+            $registrationArray['billing_fax'] = $registration->billing_fax;
+            $registrationArray['billing_street'] = $registration->billing_street;
+            $registrationArray['billing_street_addition'] = $registration->billing_street_addition;
+            $registrationArray['billing_postcode'] = $registration->billing_postcode;
+            $registrationArray['billing_city'] = $registration->billing_city;
+            $registrationArray['billing_country'] = $registration->billing_country;
+            $registrationArray['shipping_name'] = $registration->shipping_name;
+            $registrationArray['shipping_name_addition'] = $registration->shipping_name_addition;
+            $registrationArray['shipping_management'] = $registration->shipping_management;
+            $registrationArray['shipping_email'] = $registration->shipping_email;
+            $registrationArray['shipping_telephone'] = $registration->shipping_telephone;
+            $registrationArray['shipping_mobilephone'] = $registration->shipping_mobilephone;
+            $registrationArray['shipping_fax'] = $registration->shipping_fax;
+            $registrationArray['shipping_street'] = $registration->shipping_street;
+            $registrationArray['shipping_street_addition'] = $registration->shipping_street_addition;
+            $registrationArray['shipping_postcode'] = $registration->shipping_postcode;
+            $registrationArray['shipping_city'] = $registration->shipping_city;
+            $registrationArray['shipping_country'] = $registration->shipping_country;
+            $registrationArray['newsletter_email'] = $registration->newsletter_email;
+            $registrationArray['remark'] = $registration->remark;
+            $registrationArray['register_excerpt'] = $registration->register_excerpt;
+            $registrationArray['newsletter'] = ($registration->newsletter == 1)? 1: 0;
+            $registrationArray['marketing'] = ($registration->marketing == 1)? 1: 0;
+            $registrationArray['terms_conditions'] = ($registration->terms_conditions == 1)? 1: 0;
+            $registrationArray['privacy_policy'] = ($registration->privacy_policy == 1)? 1: 0;
+            $registrationArray['ip'] = $registration->ip;
+            $registrationArray['created'] = empty($registration->created)? NULL: $registration->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $registrationArray['modified'] = empty($registration->modified)? NULL: $registration->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $registrationsArray[] = $registrationArray;
+        }
+        $registrations = $registrationsArray;
+
+        $objSpreadsheet = new Spreadsheet();
+        $objSpreadsheet->setActiveSheetIndex(0);
+
+        $rowCount = 1;
+        $colCount = 1;
+        foreach ($header as $headerAlias) {
+            $col = 'A';
+            switch ($colCount) {
+                case 2: $col = 'B'; break;
+                case 3: $col = 'C'; break;
+                case 4: $col = 'D'; break;
+                case 5: $col = 'E'; break;
+                case 6: $col = 'F'; break;
+                case 7: $col = 'G'; break;
+                case 8: $col = 'H'; break;
+                case 9: $col = 'I'; break;
+                case 10: $col = 'J'; break;
+                case 11: $col = 'K'; break;
+                case 12: $col = 'L'; break;
+                case 13: $col = 'M'; break;
+                case 14: $col = 'N'; break;
+                case 15: $col = 'O'; break;
+                case 16: $col = 'P'; break;
+                case 17: $col = 'Q'; break;
+                case 18: $col = 'R'; break;
+                case 19: $col = 'S'; break;
+                case 20: $col = 'T'; break;
+                case 21: $col = 'U'; break;
+                case 22: $col = 'V'; break;
+                case 23: $col = 'W'; break;
+                case 24: $col = 'X'; break;
+                case 25: $col = 'Y'; break;
+                case 26: $col = 'Z'; break;
+                case 27: $col = 'AA'; break;
+                case 28: $col = 'AB'; break;
+                case 29: $col = 'AC'; break;
+                case 30: $col = 'AD'; break;
+                case 31: $col = 'AE'; break;
+                case 32: $col = 'AF'; break;
+                case 33: $col = 'AG'; break;
+                case 34: $col = 'AH'; break;
+                case 35: $col = 'AI'; break;
+                case 36: $col = 'AJ'; break;
+                case 37: $col = 'AK'; break;
+                case 38: $col = 'AL'; break;
+                case 39: $col = 'AM'; break;
+                case 40: $col = 'AN'; break;
+                case 41: $col = 'AO'; break;
+                case 42: $col = 'AP'; break;
+                case 43: $col = 'AQ'; break;
+                case 44: $col = 'AR'; break;
+                case 45: $col = 'AS'; break;
+                case 46: $col = 'AT'; break;
+                case 47: $col = 'AU'; break;
+                case 48: $col = 'AV'; break;
+                case 49: $col = 'AW'; break;
+                case 50: $col = 'AX'; break;
+                case 51: $col = 'AY'; break;
+                case 52: $col = 'AZ'; break;
+            }
+
+            $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $headerAlias);
+            $colCount++;
+        }
+
+        $rowCount = 1;
+        foreach ($registrations as $dataEntity) {
+            $rowCount++;
+
+            $colCount = 1;
+            foreach ($dataEntity as $dataProperty) {
+                $col = 'A';
+                switch ($colCount) {
+                    case 2: $col = 'B'; break;
+                    case 3: $col = 'C'; break;
+                    case 4: $col = 'D'; break;
+                    case 5: $col = 'E'; break;
+                    case 6: $col = 'F'; break;
+                    case 7: $col = 'G'; break;
+                    case 8: $col = 'H'; break;
+                    case 9: $col = 'I'; break;
+                    case 10: $col = 'J'; break;
+                    case 11: $col = 'K'; break;
+                    case 12: $col = 'L'; break;
+                    case 13: $col = 'M'; break;
+                    case 14: $col = 'N'; break;
+                    case 15: $col = 'O'; break;
+                    case 16: $col = 'P'; break;
+                    case 17: $col = 'Q'; break;
+                    case 18: $col = 'R'; break;
+                    case 19: $col = 'S'; break;
+                    case 20: $col = 'T'; break;
+                    case 21: $col = 'U'; break;
+                    case 22: $col = 'V'; break;
+                    case 23: $col = 'W'; break;
+                    case 24: $col = 'X'; break;
+                    case 25: $col = 'Y'; break;
+                    case 26: $col = 'Z'; break;
+                    case 27: $col = 'AA'; break;
+                    case 28: $col = 'AB'; break;
+                    case 29: $col = 'AC'; break;
+                    case 30: $col = 'AD'; break;
+                    case 31: $col = 'AE'; break;
+                    case 32: $col = 'AF'; break;
+                    case 33: $col = 'AG'; break;
+                    case 34: $col = 'AH'; break;
+                    case 35: $col = 'AI'; break;
+                    case 36: $col = 'AJ'; break;
+                    case 37: $col = 'AK'; break;
+                    case 38: $col = 'AL'; break;
+                    case 39: $col = 'AM'; break;
+                    case 40: $col = 'AN'; break;
+                    case 41: $col = 'AO'; break;
+                    case 42: $col = 'AP'; break;
+                    case 43: $col = 'AQ'; break;
+                    case 44: $col = 'AR'; break;
+                    case 45: $col = 'AS'; break;
+                    case 46: $col = 'AT'; break;
+                    case 47: $col = 'AU'; break;
+                    case 48: $col = 'AV'; break;
+                    case 49: $col = 'AW'; break;
+                    case 50: $col = 'AX'; break;
+                    case 51: $col = 'AY'; break;
+                    case 52: $col = 'AZ'; break;
+                }
+
+                $objSpreadsheet->getActiveSheet()->setCellValue($col . $rowCount, $dataProperty);
+                $colCount++;
+            }
+        }
+
+        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+            $objSpreadsheet
+                ->getActiveSheet()
+                ->getColumnDimension($col)
+                ->setAutoSize(true);
+        }
+        $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');
+        $stream = new CallbackStream(function () use ($objSpreadsheetWriter) {
+            $objSpreadsheetWriter->save('php://output');
+        });
+
+        return $this->response
+            ->withType('xlsx')
+            ->withHeader('Content-Disposition', 'attachment;filename="' . strtolower($this->defaultTable) . '.' . 'xlsx"')
+            ->withBody($stream);
+    }
+
+    /**
+     * Export csv method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportCsv()
     {
         $registrations = $this->Registrations->find('all');
         $delimiter = ';';
@@ -462,18 +675,24 @@ class RegistrationsController extends AppController
             'remark',
             'register_excerpt',
             function ($row) {
-                return ($row['newsletter'] == true)? 1: 0;
+                return ($row['newsletter'] == 1)? 1: 0;
             },
             function ($row) {
-                return ($row['marketing'] == true)? 1: 0;
+                return ($row['marketing'] == 1)? 1: 0;
             },
             function ($row) {
-                return ($row['terms_conditions'] == true)? 1: 0;
+                return ($row['terms_conditions'] == 1)? 1: 0;
             },
             function ($row) {
-                return ($row['privacy_policy'] == true)? 1: 0;
+                return ($row['privacy_policy'] == 1)? 1: 0;
             },
             'ip',
+            function ($row) {
+                return empty($row['created'])? NULL: $row['created']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
+            function ($row) {
+                return empty($row['modified'])? NULL: $row['modified']->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            },
         ];
 
         $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'csv'));
@@ -488,5 +707,143 @@ class RegistrationsController extends AppController
                 'header'    => $header,
                 'extract'   => $extract,
             ]);
+    }
+
+    /**
+     * Export xml method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportXml()
+    {
+        $registrations = $this->Registrations->find('all');
+
+        $registrationsArray = [];
+        foreach($registrations as $registration) {
+            $registrationArray = [];
+            $registrationArray['id'] = $registration->id;
+            $registrationArray['registration_type_id'] = $registration->registration_type_id;
+            $registrationArray['billing_name'] = $registration->billing_name;
+            $registrationArray['billing_name_addition'] = $registration->billing_name_addition;
+            $registrationArray['billing_legal_form'] = $registration->billing_legal_form;
+            $registrationArray['billing_vat_number'] = $registration->billing_vat_number;
+            $registrationArray['billing_salutation'] = $registration->billing_salutation;
+            $registrationArray['billing_first_name'] = $registration->billing_first_name;
+            $registrationArray['billing_middle_name'] = $registration->billing_middle_name;
+            $registrationArray['billing_last_name'] = $registration->billing_last_name;
+            $registrationArray['billing_management'] = $registration->billing_management; 
+            $registrationArray['billing_email'] = $registration->billing_email;
+            $registrationArray['billing_website'] = $registration->billing_website;
+            $registrationArray['billing_telephone'] = $registration->billing_telephone;
+            $registrationArray['billing_mobilephone'] = $registration->billing_mobilephone;
+            $registrationArray['billing_fax'] = $registration->billing_fax;
+            $registrationArray['billing_street'] = $registration->billing_street;
+            $registrationArray['billing_street_addition'] = $registration->billing_street_addition;
+            $registrationArray['billing_postcode'] = $registration->billing_postcode;
+            $registrationArray['billing_city'] = $registration->billing_city;
+            $registrationArray['billing_country'] = $registration->billing_country;
+            $registrationArray['shipping_name'] = $registration->shipping_name;
+            $registrationArray['shipping_name_addition'] = $registration->shipping_name_addition;
+            $registrationArray['shipping_management'] = $registration->shipping_management;
+            $registrationArray['shipping_email'] = $registration->shipping_email;
+            $registrationArray['shipping_telephone'] = $registration->shipping_telephone;
+            $registrationArray['shipping_mobilephone'] = $registration->shipping_mobilephone;
+            $registrationArray['shipping_fax'] = $registration->shipping_fax;
+            $registrationArray['shipping_street'] = $registration->shipping_street;
+            $registrationArray['shipping_street_addition'] = $registration->shipping_street_addition;
+            $registrationArray['shipping_postcode'] = $registration->shipping_postcode;
+            $registrationArray['shipping_city'] = $registration->shipping_city;
+            $registrationArray['shipping_country'] = $registration->shipping_country;
+            $registrationArray['newsletter_email'] = $registration->newsletter_email;
+            $registrationArray['remark'] = $registration->remark;
+            $registrationArray['register_excerpt'] = $registration->register_excerpt;
+            $registrationArray['newsletter'] = ($registration->newsletter == 1)? 1: 0;
+            $registrationArray['marketing'] = ($registration->marketing == 1)? 1: 0;
+            $registrationArray['terms_conditions'] = ($registration->terms_conditions == 1)? 1: 0;
+            $registrationArray['privacy_policy'] = ($registration->privacy_policy == 1)? 1: 0;
+            $registrationArray['ip'] = $registration->ip;
+            $registrationArray['created'] = empty($registration->created)? NULL: $registration->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $registrationArray['modified'] = empty($registration->modified)? NULL: $registration->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $registrationsArray[] = $registrationArray;
+        }
+        $registrations = ['Registrations' => ['Registration' => $registrationsArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'xml'));
+        $this->set(compact('registrations'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Xml')
+            ->setOptions(['serialize' => 'registrations']);
+    }
+
+    /**
+     * Export json method
+     *
+     * @return \Cake\Http\Response|void Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportJson()
+    {
+        $registrations = $this->Registrations->find('all');
+
+        $registrationsArray = [];
+        foreach($registrations as $registration) {
+            $registrationArray = [];
+            $registrationArray['id'] = $registration->id;
+            $registrationArray['registration_type_id'] = $registration->registration_type_id;
+            $registrationArray['billing_name'] = $registration->billing_name;
+            $registrationArray['billing_name_addition'] = $registration->billing_name_addition;
+            $registrationArray['billing_legal_form'] = $registration->billing_legal_form;
+            $registrationArray['billing_vat_number'] = $registration->billing_vat_number;
+            $registrationArray['billing_salutation'] = $registration->billing_salutation;
+            $registrationArray['billing_first_name'] = $registration->billing_first_name;
+            $registrationArray['billing_middle_name'] = $registration->billing_middle_name;
+            $registrationArray['billing_last_name'] = $registration->billing_last_name;
+            $registrationArray['billing_management'] = $registration->billing_management; 
+            $registrationArray['billing_email'] = $registration->billing_email;
+            $registrationArray['billing_website'] = $registration->billing_website;
+            $registrationArray['billing_telephone'] = $registration->billing_telephone;
+            $registrationArray['billing_mobilephone'] = $registration->billing_mobilephone;
+            $registrationArray['billing_fax'] = $registration->billing_fax;
+            $registrationArray['billing_street'] = $registration->billing_street;
+            $registrationArray['billing_street_addition'] = $registration->billing_street_addition;
+            $registrationArray['billing_postcode'] = $registration->billing_postcode;
+            $registrationArray['billing_city'] = $registration->billing_city;
+            $registrationArray['billing_country'] = $registration->billing_country;
+            $registrationArray['shipping_name'] = $registration->shipping_name;
+            $registrationArray['shipping_name_addition'] = $registration->shipping_name_addition;
+            $registrationArray['shipping_management'] = $registration->shipping_management;
+            $registrationArray['shipping_email'] = $registration->shipping_email;
+            $registrationArray['shipping_telephone'] = $registration->shipping_telephone;
+            $registrationArray['shipping_mobilephone'] = $registration->shipping_mobilephone;
+            $registrationArray['shipping_fax'] = $registration->shipping_fax;
+            $registrationArray['shipping_street'] = $registration->shipping_street;
+            $registrationArray['shipping_street_addition'] = $registration->shipping_street_addition;
+            $registrationArray['shipping_postcode'] = $registration->shipping_postcode;
+            $registrationArray['shipping_city'] = $registration->shipping_city;
+            $registrationArray['shipping_country'] = $registration->shipping_country;
+            $registrationArray['newsletter_email'] = $registration->newsletter_email;
+            $registrationArray['remark'] = $registration->remark;
+            $registrationArray['register_excerpt'] = $registration->register_excerpt;
+            $registrationArray['newsletter'] = ($registration->newsletter == 1)? 1: 0;
+            $registrationArray['marketing'] = ($registration->marketing == 1)? 1: 0;
+            $registrationArray['terms_conditions'] = ($registration->terms_conditions == 1)? 1: 0;
+            $registrationArray['privacy_policy'] = ($registration->privacy_policy == 1)? 1: 0;
+            $registrationArray['ip'] = $registration->ip;
+            $registrationArray['created'] = empty($registration->created)? NULL: $registration->created->i18nFormat('yyyy-MM-dd HH:mm:ss');
+            $registrationArray['modified'] = empty($registration->modified)? NULL: $registration->modified->i18nFormat('yyyy-MM-dd HH:mm:ss');
+
+            $registrationsArray[] = $registrationArray;
+        }
+        $registrations = ['Registrations' => ['Registration' => $registrationsArray]];
+
+        $this->setResponse($this->getResponse()->withDownload(strtolower($this->defaultTable) . '.' . 'json'));
+        $this->set(compact('registrations'));
+        $this
+            ->viewBuilder()
+            ->setClassName('Json')
+            ->setOptions(['serialize' => 'registrations']);
     }
 }

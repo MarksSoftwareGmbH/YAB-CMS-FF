@@ -100,6 +100,20 @@ class ArticleArticleTypeAttributeValuesTable extends Table
     }
 
     /**
+     * Default table columns.
+     *
+     * @var array
+     */
+    public $tableColumns = [
+        'id',
+        'article_id',
+        'article_type_attribute_id',
+        'value',
+        'created',
+        'modified',
+    ];
+
+    /**
      * Returns the default validator object. Subclasses can override this function
      * to add a default validation set to the validator object.
      *
