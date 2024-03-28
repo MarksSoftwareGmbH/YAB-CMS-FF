@@ -191,6 +191,11 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             $routes
                 ->setExtensions(['ajax', 'json', 'xml', 'csv', 'txt']);
 
+            // Switch locale
+            $routes
+                ->connect('/switch-locale/{code}', ['controller' => 'Locales', 'action' => 'switchLocale'])
+                ->setPass(['code']);
+
             $routes
                 ->connect('/app/clear-cache', ['controller' => 'AppCaches', 'action' => 'clearAppCaches']);
             $routes

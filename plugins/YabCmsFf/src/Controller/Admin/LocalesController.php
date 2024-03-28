@@ -226,6 +226,24 @@ class LocalesController extends AppController
     }
 
     /**
+     * Switch locale method.
+     *
+     * @param string $code
+     *
+     * @return \Cake\Http\Response|null
+     */
+    public function switchLocale($code = 'en_US')
+    {
+        if (!$this->Locale->processLocaleForSession($this, $code)) {
+            $this->Flash->set(
+                __d('yab_cms_ff', 'The locale could not be changed. Please, try again.'),
+                ['element' => 'default', 'params' => ['class' => 'error']]);
+        }
+
+        return $this->redirect('/');
+    }
+
+    /**
      * Import method
      *
      * @return \Cake\Http\Response|null Redirects to index.
