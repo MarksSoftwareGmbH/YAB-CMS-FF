@@ -45,28 +45,52 @@ class DomainsLocalesSeed extends AbstractSeed
     {
         $data = [
             [
-                'id' => '1',
-                'domain_id' => '1',
-                'locale_id' => '1',
-                'position' => '1',
+                'id' => 1,
+                'domain_id' => 1,
+                'locale_id' => 1,
+                'position' => 1,
             ],
             [
-                'id' => '2',
-                'domain_id' => '1',
-                'locale_id' => '2',
-                'position' => '2',
+                'id' => 2,
+                'domain_id' => 1,
+                'locale_id' => 2,
+                'position' => 2,
             ],
             [
-                'id' => '3',
-                'domain_id' => '1',
-                'locale_id' => '3',
-                'position' => '3',
+                'id' => 3,
+                'domain_id' => 1,
+                'locale_id' => 3,
+                'position' => 3,
             ],
             [
-                'id' => '4',
-                'domain_id' => '1',
-                'locale_id' => '4',
-                'position' => '4',
+                'id' => 4,
+                'domain_id' => 1,
+                'locale_id' => 4,
+                'position' => 4,
+            ],
+            [
+                'id' => 5,
+                'domain_id' => 1,
+                'locale_id' => 5,
+                'position' => 5,
+            ],
+            [
+                'id' => 6,
+                'domain_id' => 1,
+                'locale_id' => 6,
+                'position' => 6,
+            ],
+            [
+                'id' => 7,
+                'domain_id' => 1,
+                'locale_id' => 7,
+                'position' => 7,
+            ],
+            [
+                'id' => 8,
+                'domain_id' => 1,
+                'locale_id' => 8,
+                'position' => 8,
             ],
         ];
 
