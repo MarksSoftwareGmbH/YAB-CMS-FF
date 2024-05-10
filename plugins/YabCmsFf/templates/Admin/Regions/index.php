@@ -61,20 +61,23 @@ $this->Breadcrumbs->add([
                         'action'        => 'index',
                     ],
                 ]); ?>
+                <?php $this->Form->setTemplates(['inputGroupText' => '{{content}}']); ?>
                 <?= $this->Form->control('search', [
                     'type'          => 'text',
                     'value'         => $this->getRequest()->getQuery('search'),
                     'label'         => false,
                     'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
-                    'prepend' => $this->Html->link(
+                    'prepend'       => $this->Html->link(
                         $this->Html->icon('plus') . ' ' . __d('yab_cms_ff', 'Add region'),
                         [
                             'plugin'        => 'YabCmsFf',
                             'controller'    => 'Regions',
                             'action'        => 'add',
                         ],
-                        ['escapeTitle' => false]
-                    ),
+                        [
+                            'class'         => 'btn btn-' . h($backendButtonColor),
+                            'escapeTitle'   => false,
+                        ]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]
