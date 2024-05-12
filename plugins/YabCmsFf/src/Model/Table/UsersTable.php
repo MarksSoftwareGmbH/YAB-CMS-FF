@@ -279,6 +279,10 @@ class UsersTable extends Table
      */
     public function findAuth(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
+        
         if (!empty($options['username'])) {
             $query
                 ->where(['Users.username' => $options['username']])
@@ -305,6 +309,10 @@ class UsersTable extends Table
      */
     public function findWithFullName(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
+
         $query->select([
             'id',
             'foreign_key',
@@ -334,6 +342,10 @@ class UsersTable extends Table
      */
     public function findByToken(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
+
         return $query
             ->where([
                 'username' => $options['username'],

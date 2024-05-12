@@ -262,6 +262,9 @@ class ArticlesTable extends Table
      */
     public function findPromoted(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
         if (empty($options['locale'])) {
             $options['locale'] = 'en_US';
         }
@@ -301,6 +304,9 @@ class ArticlesTable extends Table
      */
     public function findIndex(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
         if (empty($options['locale'])) {
             $options['locale'] = 'en_US';
         }
@@ -343,6 +349,9 @@ class ArticlesTable extends Table
      */
     public function findSitemap(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
         if (empty($options['locale'])) {
             $options['locale'] = 'en_US';
         }
@@ -381,6 +390,10 @@ class ArticlesTable extends Table
      */
     public function findAllArticles(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
+
         $query
             ->contain([
                 'ArticleTypes' => [
@@ -407,6 +420,9 @@ class ArticlesTable extends Table
      */
     public function findByArticleType(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
         if (empty($options['locale'])) {
             $options['locale'] = 'en_US';
         }
@@ -482,6 +498,9 @@ class ArticlesTable extends Table
      */
     public function findBySlug(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
         if (empty($options['locale'])) {
             $options['locale'] = 'en_US';
         }
@@ -522,6 +541,9 @@ class ArticlesTable extends Table
      */
     public function findByArticleTypeAndSlug(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
         if (empty($options['locale'])) {
             $options['locale'] = 'en_US';
         }
@@ -565,6 +587,9 @@ class ArticlesTable extends Table
      */
     public function findBySlugAndId(SelectQuery $query, array $options)
     {
+        if (array_key_exists('options', $options)) {
+            $options = $options['options'];
+        }
         $query
             ->contain([
                 'ArticleTypes' => [
