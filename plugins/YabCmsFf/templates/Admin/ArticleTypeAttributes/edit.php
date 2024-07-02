@@ -53,7 +53,11 @@ $this->Breadcrumbs->add([
     ['title' => h($articleTypeAttribute->title)]
 ]); ?>
 
-<?= $this->Form->create($articleTypeAttribute, ['class' => 'form-general']); ?>
+<?= $this->Form->create($articleTypeAttribute, [
+    'role'  => 'form',
+    'type'  => 'file',
+    'class' => 'form-general',
+    ]); ?>
 <div class="row">
     <section class="col-lg-8 connectedSortable">
         <div class="card">
@@ -249,8 +253,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '1' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_1) && !empty($articleTypeAttributeChoice->image_1_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_1_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_1); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_1) && !empty($articleTypeAttribute->image_1_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_1_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_1); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_1', [
@@ -264,8 +268,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '2' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_2) && !empty($articleTypeAttributeChoice->image_2_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_2_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_2); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_2) && !empty($articleTypeAttribute->image_2_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_2_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_2); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_2', [
@@ -279,8 +283,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '3' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_3) && !empty($articleTypeAttributeChoice->image_3_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_3_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_3); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_3) && !empty($articleTypeAttribute->image_3_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_3_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_3); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_3', [
@@ -294,8 +298,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '4' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_4) && !empty($articleTypeAttributeChoice->image_4_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_4_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_4); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_4) && !empty($articleTypeAttribute->image_4_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_4_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_4); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_4', [
@@ -309,8 +313,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '5' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_5) && !empty($articleTypeAttributeChoice->image_5_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_5_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_5); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_5) && !empty($articleTypeAttribute->image_5_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_5_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_5); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_5', [
@@ -324,8 +328,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '6' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_6) && !empty($articleTypeAttributeChoice->image_6_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_6_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_6); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_6) && !empty($articleTypeAttribute->image_6_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_6_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_6); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_6', [
@@ -339,8 +343,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '7' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_7) && !empty($articleTypeAttributeChoice->image_7_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_7_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_7); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_7) && !empty($articleTypeAttribute->image_7_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_7_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_7); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_7', [
@@ -354,8 +358,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '8' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_8) && !empty($articleTypeAttributeChoice->image_8_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_8_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_8); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_8) && !empty($articleTypeAttribute->image_8_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_8_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_8); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_8', [
@@ -369,8 +373,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Image') . ' ' . '9' . ' ' . '(jpg/gif)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->image_9) && !empty($articleTypeAttributeChoice->image_9_file)): ?>
-                                <?= $this->Html->image($articleTypeAttributeChoice->image_9_file, ['width' => 25]); ?> (<?= h($articleTypeAttributeChoice->image_9); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->image_9) && !empty($articleTypeAttribute->image_9_file)): ?>
+                                <?= $this->Html->image($articleTypeAttribute->image_9_file, ['width' => 25]); ?> (<?= h($articleTypeAttribute->image_9); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('image_9', [
@@ -406,11 +410,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '1' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_1) && !empty($articleTypeAttributeChoice->video_1_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_1) && !empty($articleTypeAttribute->video_1_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_1_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_1_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_1); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_1); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_1', [
@@ -424,11 +428,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '2' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_2) && !empty($articleTypeAttributeChoice->video_2_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_2) && !empty($articleTypeAttribute->video_2_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_2_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_2_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_2); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_2); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_2', [
@@ -442,11 +446,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '3' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_3) && !empty($articleTypeAttributeChoice->video_3_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_3) && !empty($articleTypeAttribute->video_3_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_3_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_3_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_3); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_3); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_3', [
@@ -460,11 +464,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '4' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_4) && !empty($articleTypeAttributeChoice->video_4_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_4) && !empty($articleTypeAttribute->video_4_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_4_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_4_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_4); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_4); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_4', [
@@ -478,11 +482,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '5' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_5) && !empty($articleTypeAttributeChoice->video_5_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_5) && !empty($articleTypeAttribute->video_5_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_5_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_5_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_5); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_5); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_5', [
@@ -496,11 +500,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '6' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_6) && !empty($articleTypeAttributeChoice->video_6_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_6) && !empty($articleTypeAttribute->video_6_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_6_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_6_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_6); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_6); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_6', [
@@ -514,11 +518,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '7' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_7) && !empty($articleTypeAttributeChoice->video_7_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_7) && !empty($articleTypeAttribute->video_7_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_7_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_7_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_7); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_7); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_7', [
@@ -532,11 +536,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '8' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_8) && !empty($articleTypeAttributeChoice->video_8_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_8) && !empty($articleTypeAttribute->video_8_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_8_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_8_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_8); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_8); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_8', [
@@ -550,11 +554,11 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'Video') . ' ' . '9' . ' ' . '(mp4)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->video_9) && !empty($articleTypeAttributeChoice->video_9_file)): ?>
+                            <?php if (!empty($articleTypeAttribute->video_9) && !empty($articleTypeAttribute->video_9_file)): ?>
                                 <video width=25 controls>
-                                    <source src="<?= h($articleTypeAttributeChoice->video_9_file); ?>">
+                                    <source src="<?= h($articleTypeAttribute->video_9_file); ?>">
                                 </video>
-                                (<?= h($articleTypeAttributeChoice->video_9); ?>)<br />
+                                (<?= h($articleTypeAttribute->video_9); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('video_9', [
@@ -590,8 +594,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '1' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_1) && !empty($articleTypeAttributeChoice->pdf_1_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_1_file, ['target' => '_blank','escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_1); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_1) && !empty($articleTypeAttribute->pdf_1_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_1_file, ['target' => '_blank','escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_1); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_1', [
@@ -605,8 +609,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '2' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_2) && !empty($articleTypeAttributeChoice->pdf_2_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_2_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_2); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_2) && !empty($articleTypeAttribute->pdf_2_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_2_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_2); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_2', [
@@ -620,8 +624,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '3' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_3) && !empty($articleTypeAttributeChoice->pdf_3_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_3_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_3); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_3) && !empty($articleTypeAttribute->pdf_3_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_3_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_3); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_3', [
@@ -635,8 +639,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '4' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_4) && !empty($articleTypeAttributeChoice->pdf_4_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_4_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_4); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_4) && !empty($articleTypeAttribute->pdf_4_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_4_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_4); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_4', [
@@ -650,8 +654,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '5' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_5) && !empty($articleTypeAttributeChoice->pdf_5_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_5_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_5); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_5) && !empty($articleTypeAttribute->pdf_5_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_5_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_5); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_5', [
@@ -665,8 +669,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '6' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_6) && !empty($articleTypeAttributeChoice->pdf_6_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_6_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_6); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_6) && !empty($articleTypeAttribute->pdf_6_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_6_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_6); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_6', [
@@ -680,8 +684,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '7' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_7) && !empty($articleTypeAttributeChoice->pdf_7_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_7_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_7); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_7) && !empty($articleTypeAttribute->pdf_7_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_7_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_7); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_7', [
@@ -695,8 +699,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '8' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_8) && !empty($articleTypeAttributeChoice->pdf_8_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_8_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_8); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_8) && !empty($articleTypeAttribute->pdf_8_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_8_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_8); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_8', [
@@ -710,8 +714,8 @@ $this->Breadcrumbs->add([
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"><?= __d('yab_cms_ff', 'PDF') . ' ' . '9' . ' ' . '(pdf)'; ?></label>
                         <div class="col-sm-10">
-                            <?php if (!empty($articleTypeAttributeChoice->pdf_9) && !empty($articleTypeAttributeChoice->pdf_9_file)): ?>
-                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_9_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttributeChoice->pdf_9); ?>)<br />
+                            <?php if (!empty($articleTypeAttribute->pdf_9) && !empty($articleTypeAttribute->pdf_9_file)): ?>
+                                <?= $this->Html->link($this->Html->icon('file'), $articleTypeAttribute->pdf_9_file, ['target' => '_blank', 'escapeTitle' => false]); ?> (<?= h($articleTypeAttribute->pdf_9); ?>)<br />
                                 <br />
                             <?php endif; ?>
                             <?= $this->Form->control('pdf_9', [
