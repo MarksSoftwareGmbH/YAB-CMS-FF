@@ -251,8 +251,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_1_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_1' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_1_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_1' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_1']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -289,7 +289,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_1'] = $postData['image_1']->getClientFileName();
-                            $postData['image_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_1' . '.' . 'jpg';
+                            $postData['image_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_1' . '.' . 'jpg';
                         } else {
                             unset($postData['image_1']);
                         }
@@ -299,7 +299,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_1']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_1']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_1' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_1' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_1']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -318,7 +318,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_1'] = $postData['image_1']->getClientFileName();
-                            $postData['image_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_1' . '.' . 'gif';
+                            $postData['image_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_1' . '.' . 'gif';
                         } else {
                             unset($postData['image_1']);
                         }
@@ -340,8 +340,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_2_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_2' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_2_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_2' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_2']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -378,7 +378,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_2'] = $postData['image_2']->getClientFileName();
-                            $postData['image_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_2' . '.' . 'jpg';
+                            $postData['image_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_2' . '.' . 'jpg';
                         } else {
                             unset($postData['image_2']);
                         }
@@ -388,7 +388,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_2']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_2']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_2' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_2' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_2']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -407,7 +407,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_2'] = $postData['image_2']->getClientFileName();
-                            $postData['image_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_2' . '.' . 'gif';
+                            $postData['image_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_2' . '.' . 'gif';
                         } else {
                             unset($postData['image_2']);
                         }
@@ -429,8 +429,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_3_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_3' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_3_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_3' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_3']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -467,7 +467,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_3'] = $postData['image_3']->getClientFileName();
-                            $postData['image_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_3' . '.' . 'jpg';
+                            $postData['image_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_3' . '.' . 'jpg';
                         } else {
                             unset($postData['image_3']);
                         }
@@ -477,7 +477,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_3']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_3']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_3' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_3' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_3']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -496,7 +496,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_3'] = $postData['image_3']->getClientFileName();
-                            $postData['image_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_3' . '.' . 'gif';
+                            $postData['image_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_3' . '.' . 'gif';
                         } else {
                             unset($postData['image_3']);
                         }
@@ -518,8 +518,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_4_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_4' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_4_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_4' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_4']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -556,7 +556,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_4'] = $postData['image_4']->getClientFileName();
-                            $postData['image_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_4' . '.' . 'jpg';
+                            $postData['image_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_4' . '.' . 'jpg';
                         } else {
                             unset($postData['image_4']);
                         }
@@ -566,7 +566,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_4']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_4']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_4' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_4' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_4']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -585,7 +585,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_4'] = $postData['image_3']->getClientFileName();
-                            $postData['image_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_4' . '.' . 'gif';
+                            $postData['image_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_4' . '.' . 'gif';
                         } else {
                             unset($postData['image_4']);
                         }
@@ -607,8 +607,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_5_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_5' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_5_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_5' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_5']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -645,7 +645,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_5'] = $postData['image_5']->getClientFileName();
-                            $postData['image_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_5' . '.' . 'jpg';
+                            $postData['image_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_5' . '.' . 'jpg';
                         } else {
                             unset($postData['image_5']);
                         }
@@ -655,7 +655,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_5']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_5']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_5' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_5' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_5']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -674,7 +674,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_5'] = $postData['image_5']->getClientFileName();
-                            $postData['image_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_5' . '.' . 'gif';
+                            $postData['image_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_5' . '.' . 'gif';
                         } else {
                             unset($postData['image_5']);
                         }
@@ -696,8 +696,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_6_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_6' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_6_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_6' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_6']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -734,7 +734,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_6'] = $postData['image_6']->getClientFileName();
-                            $postData['image_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_6' . '.' . 'jpg';
+                            $postData['image_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_6' . '.' . 'jpg';
                         } else {
                             unset($postData['image_6']);
                         }
@@ -744,7 +744,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_6']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_6']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_6' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_6' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_6']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -763,7 +763,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_6'] = $postData['image_6']->getClientFileName();
-                            $postData['image_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_6' . '.' . 'gif';
+                            $postData['image_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_6' . '.' . 'gif';
                         } else {
                             unset($postData['image_6']);
                         }
@@ -785,8 +785,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_7_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_7' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_7_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_7' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_7']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -823,7 +823,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_7'] = $postData['image_7']->getClientFileName();
-                            $postData['image_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_7' . '.' . 'jpg';
+                            $postData['image_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_7' . '.' . 'jpg';
                         } else {
                             unset($postData['image_7']);
                         }
@@ -833,7 +833,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_7']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_7']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_7' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_7' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_7']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -852,7 +852,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_7'] = $postData['image_6']->getClientFileName();
-                            $postData['image_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_7' . '.' . 'gif';
+                            $postData['image_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_7' . '.' . 'gif';
                         } else {
                             unset($postData['image_7']);
                         }
@@ -874,8 +874,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_8_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_8' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_8_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_8' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_8']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -912,7 +912,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_8'] = $postData['image_8']->getClientFileName();
-                            $postData['image_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_8' . '.' . 'jpg';
+                            $postData['image_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_8' . '.' . 'jpg';
                         } else {
                             unset($postData['image_8']);
                         }
@@ -922,7 +922,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_8']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_8']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_8' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_8' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_8']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -941,7 +941,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_8'] = $postData['image_6']->getClientFileName();
-                            $postData['image_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_8' . '.' . 'gif';
+                            $postData['image_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_8' . '.' . 'gif';
                         } else {
                             unset($postData['image_8']);
                         }
@@ -963,8 +963,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_9_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_9' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_9_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_9' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_9']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -1001,7 +1001,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_9'] = $postData['image_9']->getClientFileName();
-                            $postData['image_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_9' . '.' . 'jpg';
+                            $postData['image_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_9' . '.' . 'jpg';
                         } else {
                             unset($postData['image_9']);
                         }
@@ -1011,7 +1011,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_9']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_9']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_9' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_9' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_9']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -1030,7 +1030,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_9'] = $postData['image_6']->getClientFileName();
-                            $postData['image_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_9' . '.' . 'gif';
+                            $postData['image_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_9' . '.' . 'gif';
                         } else {
                             unset($postData['image_9']);
                         }
@@ -1061,13 +1061,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_1']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_1']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_1' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_1' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_1']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_1'] = $postData['video_1']->getClientFileName();
-                            $postData['video_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_1' . '.' . 'mp4';
+                            $postData['video_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_1' . '.' . 'mp4';
                         } else {
                             unset($postData['video_1']);
                         }
@@ -1086,13 +1086,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_2']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_2']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_2' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_2' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_2']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_2'] = $postData['video_2']->getClientFileName();
-                            $postData['video_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_2' . '.' . 'mp4';
+                            $postData['video_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_2' . '.' . 'mp4';
                         } else {
                             unset($postData['video_2']);
                         }
@@ -1111,13 +1111,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_3']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_3']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_3' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_3' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_3']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_3'] = $postData['video_3']->getClientFileName();
-                            $postData['video_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_3' . '.' . 'mp4';
+                            $postData['video_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_3' . '.' . 'mp4';
                         } else {
                             unset($postData['video_3']);
                         }
@@ -1136,13 +1136,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_4']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_4']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_4' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_4' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_4']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_4'] = $postData['video_4']->getClientFileName();
-                            $postData['video_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_4' . '.' . 'mp4';
+                            $postData['video_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_4' . '.' . 'mp4';
                         } else {
                             unset($postData['video_4']);
                         }
@@ -1161,13 +1161,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_5']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_5']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_5' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_5' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_5']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_5'] = $postData['video_5']->getClientFileName();
-                            $postData['video_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_5' . '.' . 'mp4';
+                            $postData['video_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_5' . '.' . 'mp4';
                         } else {
                             unset($postData['video_5']);
                         }
@@ -1186,13 +1186,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_6']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_6']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_6' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_6' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_6']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_6'] = $postData['video_6']->getClientFileName();
-                            $postData['video_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_6' . '.' . 'mp4';
+                            $postData['video_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_6' . '.' . 'mp4';
                         } else {
                             unset($postData['video_6']);
                         }
@@ -1211,13 +1211,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_7']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_7']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_7' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_7' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_7']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_7'] = $postData['video_7']->getClientFileName();
-                            $postData['video_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_7' . '.' . 'mp4';
+                            $postData['video_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_7' . '.' . 'mp4';
                         } else {
                             unset($postData['video_7']);
                         }
@@ -1236,13 +1236,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_8']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_8']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_8' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_8' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_8']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_8'] = $postData['video_8']->getClientFileName();
-                            $postData['video_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_8' . '.' . 'mp4';
+                            $postData['video_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_8' . '.' . 'mp4';
                         } else {
                             unset($postData['video_8']);
                         }
@@ -1261,13 +1261,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_9']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_9']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_9' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_9' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_9']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_9'] = $postData['video_9']->getClientFileName();
-                            $postData['video_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_9' . '.' . 'mp4';
+                            $postData['video_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_9' . '.' . 'mp4';
                         } else {
                             unset($postData['video_9']);
                         }
@@ -1298,13 +1298,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_1']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_1']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_1' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_1' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_1']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_1'] = $postData['pdf_1']->getClientFileName();
-                            $postData['pdf_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_1' . '.' . 'pdf';
+                            $postData['pdf_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_1' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_1']);
                         }
@@ -1323,13 +1323,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_2']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_2']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_2' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_2' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_2']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_2'] = $postData['pdf_2']->getClientFileName();
-                            $postData['pdf_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_2' . '.' . 'pdf';
+                            $postData['pdf_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_2' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_2']);
                         }
@@ -1348,13 +1348,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_3']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_3']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_3' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_3' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_3']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_3'] = $postData['pdf_3']->getClientFileName();
-                            $postData['pdf_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_3' . '.' . 'pdf';
+                            $postData['pdf_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_3' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_3']);
                         }
@@ -1373,13 +1373,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_4']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_4']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_4' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_4' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_4']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_4'] = $postData['pdf_4']->getClientFileName();
-                            $postData['pdf_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_4' . '.' . 'pdf';
+                            $postData['pdf_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_4' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_4']);
                         }
@@ -1398,13 +1398,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_5']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_5']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_5' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_5' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_5']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_5'] = $postData['pdf_5']->getClientFileName();
-                            $postData['pdf_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_5' . '.' . 'pdf';
+                            $postData['pdf_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_5' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_5']);
                         }
@@ -1423,13 +1423,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_6']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_6']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_6' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_6' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_6']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_6'] = $postData['pdf_6']->getClientFileName();
-                            $postData['pdf_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_6' . '.' . 'pdf';
+                            $postData['pdf_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_6' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_6']);
                         }
@@ -1448,13 +1448,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_7']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_7']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_7' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_7' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_7']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_7'] = $postData['pdf_7']->getClientFileName();
-                            $postData['pdf_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_7' . '.' . 'pdf';
+                            $postData['pdf_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_7' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_7']);
                         }
@@ -1473,13 +1473,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_8']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_8']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_8' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_8' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_8']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_8'] = $postData['pdf_8']->getClientFileName();
-                            $postData['pdf_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_8' . '.' . 'pdf';
+                            $postData['pdf_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_8' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_8']);
                         }
@@ -1498,13 +1498,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_9']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_9']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_9' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_9' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_9']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_9'] = $postData['pdf_9']->getClientFileName();
-                            $postData['pdf_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_9' . '.' . 'pdf';
+                            $postData['pdf_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_9' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_9']);
                         }
@@ -1608,8 +1608,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_1_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_1' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_1_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_1' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_1']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -1646,7 +1646,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_1'] = $postData['image_1']->getClientFileName();
-                            $postData['image_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_1' . '.' . 'jpg';
+                            $postData['image_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_1' . '.' . 'jpg';
                         } else {
                             unset($postData['image_1']);
                         }
@@ -1656,7 +1656,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_1']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_1']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_1' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_1' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_1']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -1675,7 +1675,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_1'] = $postData['image_1']->getClientFileName();
-                            $postData['image_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_1' . '.' . 'gif';
+                            $postData['image_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_1' . '.' . 'gif';
                         } else {
                             unset($postData['image_1']);
                         }
@@ -1697,8 +1697,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_2_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_2' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_2_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_2' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_2']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -1735,7 +1735,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_2'] = $postData['image_2']->getClientFileName();
-                            $postData['image_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_2' . '.' . 'jpg';
+                            $postData['image_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_2' . '.' . 'jpg';
                         } else {
                             unset($postData['image_2']);
                         }
@@ -1745,7 +1745,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_2']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_2']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_2' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_2' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_2']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -1764,7 +1764,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_2'] = $postData['image_2']->getClientFileName();
-                            $postData['image_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_2' . '.' . 'gif';
+                            $postData['image_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_2' . '.' . 'gif';
                         } else {
                             unset($postData['image_2']);
                         }
@@ -1786,8 +1786,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_3_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_3' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_3_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_3' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_3']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -1824,7 +1824,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_3'] = $postData['image_3']->getClientFileName();
-                            $postData['image_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_3' . '.' . 'jpg';
+                            $postData['image_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_3' . '.' . 'jpg';
                         } else {
                             unset($postData['image_3']);
                         }
@@ -1834,7 +1834,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_3']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_3']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_3' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_3' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_3']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -1853,7 +1853,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_3'] = $postData['image_3']->getClientFileName();
-                            $postData['image_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_3' . '.' . 'gif';
+                            $postData['image_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_3' . '.' . 'gif';
                         } else {
                             unset($postData['image_3']);
                         }
@@ -1875,8 +1875,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_4_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_4' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_4_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_4' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_4']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -1913,7 +1913,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_4'] = $postData['image_4']->getClientFileName();
-                            $postData['image_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_4' . '.' . 'jpg';
+                            $postData['image_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_4' . '.' . 'jpg';
                         } else {
                             unset($postData['image_4']);
                         }
@@ -1923,7 +1923,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_4']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_4']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_4' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_4' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_4']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -1942,7 +1942,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_4'] = $postData['image_3']->getClientFileName();
-                            $postData['image_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_4' . '.' . 'gif';
+                            $postData['image_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_4' . '.' . 'gif';
                         } else {
                             unset($postData['image_4']);
                         }
@@ -1964,8 +1964,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_5_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_5' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_5_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_5' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_5']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -2002,7 +2002,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_5'] = $postData['image_5']->getClientFileName();
-                            $postData['image_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_5' . '.' . 'jpg';
+                            $postData['image_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_5' . '.' . 'jpg';
                         } else {
                             unset($postData['image_5']);
                         }
@@ -2012,7 +2012,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_5']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_5']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_5' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_5' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_5']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -2031,7 +2031,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_5'] = $postData['image_5']->getClientFileName();
-                            $postData['image_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_5' . '.' . 'gif';
+                            $postData['image_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_5' . '.' . 'gif';
                         } else {
                             unset($postData['image_5']);
                         }
@@ -2053,8 +2053,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_6_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_6' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_6_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_6' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_6']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -2091,7 +2091,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_6'] = $postData['image_6']->getClientFileName();
-                            $postData['image_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_6' . '.' . 'jpg';
+                            $postData['image_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_6' . '.' . 'jpg';
                         } else {
                             unset($postData['image_6']);
                         }
@@ -2101,7 +2101,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_6']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_6']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_6' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_6' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_6']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -2120,7 +2120,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_6'] = $postData['image_6']->getClientFileName();
-                            $postData['image_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_6' . '.' . 'gif';
+                            $postData['image_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_6' . '.' . 'gif';
                         } else {
                             unset($postData['image_6']);
                         }
@@ -2142,8 +2142,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_7_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_7' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_7_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_7' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_7']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -2180,7 +2180,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_7'] = $postData['image_7']->getClientFileName();
-                            $postData['image_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_7' . '.' . 'jpg';
+                            $postData['image_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_7' . '.' . 'jpg';
                         } else {
                             unset($postData['image_7']);
                         }
@@ -2190,7 +2190,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_7']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_7']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_7' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_7' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_7']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -2209,7 +2209,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_7'] = $postData['image_6']->getClientFileName();
-                            $postData['image_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_7' . '.' . 'gif';
+                            $postData['image_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_7' . '.' . 'gif';
                         } else {
                             unset($postData['image_7']);
                         }
@@ -2231,8 +2231,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_8_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_8' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_8_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_8' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_8']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -2269,7 +2269,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_8'] = $postData['image_8']->getClientFileName();
-                            $postData['image_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_8' . '.' . 'jpg';
+                            $postData['image_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_8' . '.' . 'jpg';
                         } else {
                             unset($postData['image_8']);
                         }
@@ -2279,7 +2279,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_8']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_8']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_8' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_8' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_8']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -2298,7 +2298,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_8'] = $postData['image_6']->getClientFileName();
-                            $postData['image_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_8' . '.' . 'gif';
+                            $postData['image_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_8' . '.' . 'gif';
                         } else {
                             unset($postData['image_8']);
                         }
@@ -2320,8 +2320,8 @@ class ArticleTypeAttributesController extends AppController
                             'image/jpg',
                         ])
                     ) {
-                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_9_' . '.' . 'jpg';
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_img_' . h($uuidId) . '_9' . '.' . 'jpg';
+                        $rootImageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_9_' . '.' . 'jpg';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_img_' . h($uuidId) . '_9' . '.' . 'jpg';
                         $imageContents = file_get_contents($postData['image_9']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($rootImageUri, $imageContents);
@@ -2358,7 +2358,7 @@ class ArticleTypeAttributesController extends AppController
                             $image->save($imageUri);
 
                             $postData['image_9'] = $postData['image_9']->getClientFileName();
-                            $postData['image_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_img_' . h($uuidId) . '_9' . '.' . 'jpg';
+                            $postData['image_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_img_' . h($uuidId) . '_9' . '.' . 'jpg';
                         } else {
                             unset($postData['image_9']);
                         }
@@ -2368,7 +2368,7 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['image_9']->getStream()->getMetadata('uri')) &&
                         in_array($postData['image_9']->getClientMediaType(), ['image/gif'])
                     ) {
-                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_gif_' . h($uuidId) . '_9' . '.' . 'gif';
+                        $imageUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_gif_' . h($uuidId) . '_9' . '.' . 'gif';
                         $imageContents = file_get_contents($postData['image_9']->getStream()->getMetadata('uri'));
                         if ($imageContents) {
                             file_put_contents($imageUri, $imageContents);
@@ -2387,7 +2387,7 @@ class ArticleTypeAttributesController extends AppController
                             $imageGif->writeImages($imageUri, true);
 
                             $postData['image_9'] = $postData['image_6']->getClientFileName();
-                            $postData['image_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_gif_' . h($uuidId) . '_9' . '.' . 'gif';
+                            $postData['image_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_gif_' . h($uuidId) . '_9' . '.' . 'gif';
                         } else {
                             unset($postData['image_9']);
                         }
@@ -2418,13 +2418,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_1']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_1']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_1' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_1' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_1']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_1'] = $postData['video_1']->getClientFileName();
-                            $postData['video_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_1' . '.' . 'mp4';
+                            $postData['video_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_1' . '.' . 'mp4';
                         } else {
                             unset($postData['video_1']);
                         }
@@ -2443,13 +2443,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_2']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_2']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_2' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_2' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_2']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_2'] = $postData['video_2']->getClientFileName();
-                            $postData['video_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_2' . '.' . 'mp4';
+                            $postData['video_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_2' . '.' . 'mp4';
                         } else {
                             unset($postData['video_2']);
                         }
@@ -2468,13 +2468,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_3']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_3']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_3' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_3' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_3']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_3'] = $postData['video_3']->getClientFileName();
-                            $postData['video_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_3' . '.' . 'mp4';
+                            $postData['video_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_3' . '.' . 'mp4';
                         } else {
                             unset($postData['video_3']);
                         }
@@ -2493,13 +2493,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_4']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_4']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_4' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_4' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_4']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_4'] = $postData['video_4']->getClientFileName();
-                            $postData['video_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_4' . '.' . 'mp4';
+                            $postData['video_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_4' . '.' . 'mp4';
                         } else {
                             unset($postData['video_4']);
                         }
@@ -2518,13 +2518,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_5']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_5']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_5' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_5' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_5']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_5'] = $postData['video_5']->getClientFileName();
-                            $postData['video_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_5' . '.' . 'mp4';
+                            $postData['video_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_5' . '.' . 'mp4';
                         } else {
                             unset($postData['video_5']);
                         }
@@ -2543,13 +2543,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_6']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_6']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_6' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_6' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_6']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_6'] = $postData['video_6']->getClientFileName();
-                            $postData['video_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_6' . '.' . 'mp4';
+                            $postData['video_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_6' . '.' . 'mp4';
                         } else {
                             unset($postData['video_6']);
                         }
@@ -2568,13 +2568,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_7']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_7']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_7' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_7' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_7']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_7'] = $postData['video_7']->getClientFileName();
-                            $postData['video_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_7' . '.' . 'mp4';
+                            $postData['video_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_7' . '.' . 'mp4';
                         } else {
                             unset($postData['video_7']);
                         }
@@ -2593,13 +2593,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_8']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_8']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_8' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_8' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_8']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_8'] = $postData['video_8']->getClientFileName();
-                            $postData['video_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_8' . '.' . 'mp4';
+                            $postData['video_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_8' . '.' . 'mp4';
                         } else {
                             unset($postData['video_8']);
                         }
@@ -2618,13 +2618,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['video_9']->getStream()->getMetadata('uri')) &&
                         in_array($postData['video_9']->getClientMediaType(), ['video/mp4'])
                     ) {
-                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_vid_' . h($uuidId) . '_9' . '.' . 'mp4';
+                        $videoUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_vid_' . h($uuidId) . '_9' . '.' . 'mp4';
                         $videoContents = file_get_contents($postData['video_9']->getStream()->getMetadata('uri'));
                         if ($videoContents) {
                             file_put_contents($videoUri, $videoContents);
 
                             $postData['video_9'] = $postData['video_9']->getClientFileName();
-                            $postData['video_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_vid_' . h($uuidId) . '_9' . '.' . 'mp4';
+                            $postData['video_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_vid_' . h($uuidId) . '_9' . '.' . 'mp4';
                         } else {
                             unset($postData['video_9']);
                         }
@@ -2655,13 +2655,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_1']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_1']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_1' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_1' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_1']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_1'] = $postData['pdf_1']->getClientFileName();
-                            $postData['pdf_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_1' . '.' . 'pdf';
+                            $postData['pdf_1_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_1' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_1']);
                         }
@@ -2680,13 +2680,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_2']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_2']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_2' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_2' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_2']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_2'] = $postData['pdf_2']->getClientFileName();
-                            $postData['pdf_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_2' . '.' . 'pdf';
+                            $postData['pdf_2_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_2' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_2']);
                         }
@@ -2705,13 +2705,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_3']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_3']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_3' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_3' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_3']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_3'] = $postData['pdf_3']->getClientFileName();
-                            $postData['pdf_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_3' . '.' . 'pdf';
+                            $postData['pdf_3_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_3' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_3']);
                         }
@@ -2730,13 +2730,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_4']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_4']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_4' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_4' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_4']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_4'] = $postData['pdf_4']->getClientFileName();
-                            $postData['pdf_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_4' . '.' . 'pdf';
+                            $postData['pdf_4_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_4' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_4']);
                         }
@@ -2755,13 +2755,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_5']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_5']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_5' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_5' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_5']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_5'] = $postData['pdf_5']->getClientFileName();
-                            $postData['pdf_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_5' . '.' . 'pdf';
+                            $postData['pdf_5_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_5' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_5']);
                         }
@@ -2780,13 +2780,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_6']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_6']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_6' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_6' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_6']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_6'] = $postData['pdf_6']->getClientFileName();
-                            $postData['pdf_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_6' . '.' . 'pdf';
+                            $postData['pdf_6_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_6' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_6']);
                         }
@@ -2805,13 +2805,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_7']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_7']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_7' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_7' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_7']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_7'] = $postData['pdf_7']->getClientFileName();
-                            $postData['pdf_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_7' . '.' . 'pdf';
+                            $postData['pdf_7_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_7' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_7']);
                         }
@@ -2830,13 +2830,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_8']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_8']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_8' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_8' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_8']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_8'] = $postData['pdf_8']->getClientFileName();
-                            $postData['pdf_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_8' . '.' . 'pdf';
+                            $postData['pdf_8_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_8' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_8']);
                         }
@@ -2855,13 +2855,13 @@ class ArticleTypeAttributesController extends AppController
                         !empty($postData['pdf_9']->getStream()->getMetadata('uri')) &&
                         in_array($postData['pdf_9']->getClientMediaType(), ['application/pdf'])
                     ) {
-                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_9' . '.' . 'pdf';
+                        $pdfUri = ROOT . DS . 'plugins' . DS . 'YabCmsFf' . DS . 'webroot' . DS . 'img' . DS . 'admin' . DS . 'content' . DS . 'article_type_attribute_pdf_' . h($uuidId) . '_9' . '.' . 'pdf';
                         $pdfContents = file_get_contents($postData['pdf_9']->getStream()->getMetadata('uri'));
                         if ($pdfContents) {
                             file_put_contents($pdfUri, $pdfContents);
 
                             $postData['pdf_9'] = $postData['pdf_9']->getClientFileName();
-                            $postData['pdf_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_choice_pdf_' . h($uuidId) . '_9' . '.' . 'pdf';
+                            $postData['pdf_9_file'] = '/yab_cms_ff/img/admin/content/' . 'article_type_attribute_pdf_' . h($uuidId) . '_9' . '.' . 'pdf';
                         } else {
                             unset($postData['pdf_9']);
                         }

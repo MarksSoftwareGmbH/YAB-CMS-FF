@@ -122,7 +122,7 @@ $this->Breadcrumbs->add([
                 ]); ?>
                 <?= $this->Form->control('locale', [
                     'type'      => 'select',
-                    'options'   => !empty($this->YabCmsFf->localeCodes())? $this->YabCmsFf->localeCodes(): [6],
+                    'options'   => !empty($this->YabCmsFf->localeCodes())? $this->YabCmsFf->localeCodes(): [],
                     'class'     => 'select2',
                     'style'     => 'width: 100%',
                     'required'  => true,
