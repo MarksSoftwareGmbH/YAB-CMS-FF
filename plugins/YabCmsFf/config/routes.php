@@ -846,6 +846,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/articles/{id}', ['controller' => 'Articles', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/articles', ['controller' => 'Articles', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/articles/{id}', ['controller' => 'Articles', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/articles/{id}', ['controller' => 'Articles', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
 
             /*
              * ArticleTypes Controller
@@ -854,6 +864,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/article-types', ['controller' => 'ArticleTypes', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
             $builder
                 ->connect('/article-types/{id}', ['controller' => 'ArticleTypes', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/article-types', ['controller' => 'ArticleTypes', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/article-types/{id}', ['controller' => 'ArticleTypes', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/article-types/{id}', ['controller' => 'ArticleTypes', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
 
@@ -866,6 +886,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/article-type-attributes/{id}', ['controller' => 'ArticleTypeAttributes', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/article-type-attributes', ['controller' => 'ArticleTypeAttributes', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/article-type-attributes/{id}', ['controller' => 'ArticleTypeAttributes', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/article-type-attributes/{id}', ['controller' => 'ArticleTypeAttributes', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
 
             /*
              * ArticleTypeAttributeChoices Controller
@@ -874,6 +904,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/article-type-attribute-choices', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
             $builder
                 ->connect('/article-type-attribute-choices/{id}', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/article-type-attribute-choices', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/article-type-attribute-choices/{id}', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/article-type-attribute-choices/{id}', ['controller' => 'ArticleTypeAttributeChoices', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
 
@@ -886,6 +926,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/categories/{id}', ['controller' => 'Categories', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/categories', ['controller' => 'Categories', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/categories/{id}', ['controller' => 'Categories', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/categories/{id}', ['controller' => 'Categories', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
 
             /*
              * Countries Controller
@@ -894,6 +944,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/countries', ['controller' => 'Countries', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
             $builder
                 ->connect('/countries/{id}', ['controller' => 'Countries', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/countries', ['controller' => 'Countries', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/countries/{id}', ['controller' => 'Countries', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/countries/{id}', ['controller' => 'Countries', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
 
@@ -906,6 +966,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/domains/{id}', ['controller' => 'Domains', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/domains', ['controller' => 'Domains', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/domains/{id}', ['controller' => 'Domains', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/domains/{id}', ['controller' => 'Domains', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
 
             /*
              * Locales Controller
@@ -914,6 +984,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/locales', ['controller' => 'Locales', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
             $builder
                 ->connect('/locales/{id}', ['controller' => 'Locales', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/locales', ['controller' => 'Locales', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/locales/{id}', ['controller' => 'Locales', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/locales/{id}', ['controller' => 'Locales', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
 
@@ -926,6 +1006,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/logs/{id}', ['controller' => 'Logs', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/logs', ['controller' => 'Logs', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/logs/{id}', ['controller' => 'Logs', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/logs/{id}', ['controller' => 'Logs', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
 
             /*
              * MenuItems Controller
@@ -934,6 +1024,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/menu-items', ['controller' => 'MenuItems', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
             $builder
                 ->connect('/menu-items/{id}', ['controller' => 'MenuItems', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/menu-items', ['controller' => 'MenuItems', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/menu-items/{id}', ['controller' => 'MenuItems', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/menu-items/{id}', ['controller' => 'MenuItems', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
 
@@ -946,6 +1046,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/menus/{id}', ['controller' => 'Menus', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/menus', ['controller' => 'Menus', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/menus/{id}', ['controller' => 'Menus', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/menus/{id}', ['controller' => 'Menus', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
 
             /*
              * Regions Controller
@@ -954,6 +1064,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/regions', ['controller' => 'Regions', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
             $builder
                 ->connect('/regions/{id}', ['controller' => 'Regions', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/registrations', ['controller' => 'Registrations', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/registrations/{id}', ['controller' => 'Registrations', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/registrations/{id}', ['controller' => 'Registrations', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
 
@@ -976,6 +1096,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/registration-types/{id}', ['controller' => 'RegistrationTypes', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/registration-types', ['controller' => 'RegistrationTypes', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/registration-types/{id}', ['controller' => 'RegistrationTypes', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/registration-types/{id}', ['controller' => 'RegistrationTypes', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
 
             /*
              * Roles Controller
@@ -984,6 +1114,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/roles', ['controller' => 'Roles', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
             $builder
                 ->connect('/roles/{id}', ['controller' => 'Roles', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/roles', ['controller' => 'Roles', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/roles/{id}', ['controller' => 'Roles', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/roles/{id}', ['controller' => 'Roles', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
 
@@ -996,6 +1136,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/settings/{id}', ['controller' => 'Settings', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/settings', ['controller' => 'Settings', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/settings/{id}', ['controller' => 'Settings', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/settings/{id}', ['controller' => 'Settings', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
 
             /*
             * UserProfiles Controller
@@ -1004,6 +1154,16 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
                 ->connect('/user-profiles', ['controller' => 'UserProfiles', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
             $builder
                 ->connect('/user-profiles/{id}', ['controller' => 'UserProfiles', 'action' => 'view', '_ext' => 'json', '_method' => 'GET'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/user-profiles', ['controller' => 'UserProfiles', 'action' => 'add', '_ext' => 'json', '_method' => 'POST']);
+            $builder
+                ->connect('/user-profiles/{id}', ['controller' => 'UserProfiles', 'action' => 'edit', '_ext' => 'json', '_method' => 'PUT'])
+                ->setPass(['id'])
+                ->setPatterns(['id' => '\d+']);
+            $builder
+                ->connect('/user-profiles/{id}', ['controller' => 'UserProfiles', 'action' => 'delete', '_ext' => 'json', '_method' => 'DELETE'])
                 ->setPass(['id'])
                 ->setPatterns(['id' => '\d+']);
 
