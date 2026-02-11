@@ -24,4 +24,10 @@
  * SOFTWARE.
  */
 
-$this->Breadcrumbs->add([['title' => __d('yab_cms_ff', 'Dashboard')]]);
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],    
+    ['title' => __d('yab_cms_ff', 'Dashboard')]
+], ['class' => 'breadcrumb-item']); ?>

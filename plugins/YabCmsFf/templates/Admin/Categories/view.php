@@ -33,6 +33,11 @@ if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
 endif;
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
     . ' :: '
@@ -41,7 +46,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . $category->name_id
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -60,8 +69,7 @@ $this->Breadcrumbs->add([
     ],
     ['title' => __d('yab_cms_ff', 'View')],
     ['title' => $category->name_id]
-]); ?>
-
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -153,8 +161,12 @@ $this->Breadcrumbs->add([
                     <dd class="col-sm-9"><?= $this->YabCmsFf->status(h($category->status)); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created'); ?></dt>
                     <dd class="col-sm-9"><?= empty($category->created)? '-': h($category->created->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($category->created_by)]: h($category->created_by); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified'); ?></dt>
                     <dd class="col-sm-9"><?= empty($category->modified)? '-': h($category->modified->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($category->modified_by)]: h($category->modified_by); ?></dd>
                 </dl>
                 <hr/>
                 <dl>

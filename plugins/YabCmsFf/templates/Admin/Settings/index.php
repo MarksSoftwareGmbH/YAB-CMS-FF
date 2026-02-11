@@ -39,7 +39,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -49,7 +53,7 @@ $this->Breadcrumbs->add([
         ]
     ],
     ['title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -175,15 +179,15 @@ $this->Breadcrumbs->add([
             </div>
 
             <div class="card-body table-responsive">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-bordered table-hover text-nowrap" id="slideActionsTable">
                     <thead>
                     <tr>
-                        <th><?= $this->Paginator->sort('Domains.name', __d('yab_cms_ff', 'Domain')); ?></th>
-                        <th><?= $this->Paginator->sort('parameter', __d('yab_cms_ff', 'Parameter')); ?></th>
-                        <th><?= $this->Paginator->sort('name', __d('yab_cms_ff', 'Name')); ?></th>
-                        <th><?= $this->Paginator->sort('value', __d('yab_cms_ff', 'Value')); ?></th>
-                        <th><?= $this->Paginator->sort('title', __d('yab_cms_ff', 'Title')); ?></th>
-                        <th class="actions"><?= __d('yab_cms_ff', 'Actions'); ?></th>
+                        <th><small><strong><?= $this->Paginator->sort('Domains.name', __d('yab_cms_ff', 'Domain')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('parameter', __d('yab_cms_ff', 'Parameter')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('name', __d('yab_cms_ff', 'Name')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('value', __d('yab_cms_ff', 'Value')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('title', __d('yab_cms_ff', 'Title')); ?></strong></small></th>
+                        <th class="actions"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -207,6 +211,7 @@ $this->Breadcrumbs->add([
                             <td><?= h($setting->value); ?></td>
                             <td><?= h($setting->title); ?></td>
                             <td class="actions">
+                                <div class="actions-links" style="display: block;">
                                 <?= $this->Html->link(
                                     $this->Html->icon('eye'),
                                     [
@@ -251,6 +256,7 @@ $this->Breadcrumbs->add([
                                         'data-toggle'   => 'tooltip',
                                         'escapeTitle'   => false,
                                     ]); ?>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

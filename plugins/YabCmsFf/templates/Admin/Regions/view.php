@@ -33,6 +33,11 @@ if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
 endif;
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
     . ' :: '
@@ -41,7 +46,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . h($region->name)
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -60,8 +69,7 @@ $this->Breadcrumbs->add([
     ],
     ['title' => __d('yab_cms_ff', 'View')],
     ['title' => h($region->name)]
-]); ?>
-
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -123,8 +131,12 @@ $this->Breadcrumbs->add([
                     <dd class="col-sm-9"><?= $this->YabCmsFf->status(h($region->status)); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created'); ?></dt>
                     <dd class="col-sm-9"><?= empty($region->created)? '-': h($region->created->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($region->created_by)]: h($region->created_by); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified'); ?></dt>
                     <dd class="col-sm-9"><?= empty($region->modified)? '-': h($region->modified->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($region->modified_by)]: h($region->modified_by); ?></dd>
                 </dl>
                 <hr/>
                 <dl>

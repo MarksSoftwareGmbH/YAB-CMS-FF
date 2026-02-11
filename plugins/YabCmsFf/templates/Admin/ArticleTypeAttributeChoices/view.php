@@ -33,6 +33,11 @@ if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
 endif;
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
     . ' :: '
@@ -41,7 +46,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . h($articleTypeAttributeChoice->value)
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -60,8 +69,7 @@ $this->Breadcrumbs->add([
     ],
     ['title' => __d('yab_cms_ff', 'View')],
     ['title' => h($articleTypeAttributeChoice->value)]
-]); ?>
-
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -107,6 +115,8 @@ $this->Breadcrumbs->add([
                 <dl class="row">
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Id'); ?></dt>
                     <dd class="col-sm-9"><?= h($articleTypeAttributeChoice->id); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'UUID'); ?></dt>
+                    <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->uuid_id)? '-': h($articleTypeAttributeChoice->uuid_id); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Type option'); ?></dt>
                     <dd class="col-sm-9">
                         <?php if (!empty($articleTypeAttributeChoice->article_type_attribute->title_alias)): ?>
@@ -201,8 +211,12 @@ $this->Breadcrumbs->add([
                     <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->pdf_9)? '-': $this->Html->link($this->Html->icon('file'), $articleTypeAttributeChoice->pdf_9_file, ['target' => '_blank', 'escapeTitle' => false]) . ' ' . h($articleTypeAttributeChoice->pdf_9); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created'); ?></dt>
                     <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->created)? '-': h($articleTypeAttributeChoice->created->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($articleTypeAttributeChoice->created_by)]: h($articleTypeAttributeChoice->created_by); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified'); ?></dt>
                     <dd class="col-sm-9"><?= empty($articleTypeAttributeChoice->modified)? '-': h($articleTypeAttributeChoice->modified->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($articleTypeAttributeChoice->modified_by)]: h($articleTypeAttributeChoice->modified_by); ?></dd>
                 </dl>
                 <hr/>
                 <dl>

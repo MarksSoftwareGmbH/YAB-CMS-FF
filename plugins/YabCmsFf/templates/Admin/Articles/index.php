@@ -33,6 +33,11 @@ if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
 endif;
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 $session = $this->request->getSession();
 if (str_contains($this->getRequest()->getRequestTarget(), '?')):
     $session->write('Request.HTTP_REFERER', [
@@ -55,7 +60,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -65,7 +74,7 @@ $this->Breadcrumbs->add([
         ]
     ],
     ['title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -179,18 +188,18 @@ $this->Breadcrumbs->add([
             </div>
 
             <div class="card-body table-responsive">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-bordered table-hover text-nowrap" id="slideActionsTable">
                     <thead>
                     <tr>
-                        <th><?= $this->Paginator->sort('Domains.name', __d('yab_cms_ff', 'Domain')); ?></th>
-                        <th><?= $this->Paginator->sort('Customers.name', __d('yab_cms_ff', 'Customer')); ?></th>
-                        <th><?= $this->Paginator->sort('ArticleTypes.title', __d('yab_cms_ff', 'Type')); ?></th>
-                        <th><?= __d('yab_cms_ff', 'Title'); ?></th>
-                        <th><?= __d('yab_cms_ff', 'Slug'); ?></th>
-                        <th><?= $this->Paginator->sort('locale', __d('yab_cms_ff', 'Locale')); ?></th>
-                        <th><?= $this->Paginator->sort('promote', __d('yab_cms_ff', 'Promote')); ?></th>
-                        <th><?= $this->Paginator->sort('status', __d('yab_cms_ff', 'Status')); ?></th>
-                        <th class="actions"><?= __d('yab_cms_ff', 'Actions'); ?></th>
+                        <th><small><strong><?= $this->Paginator->sort('Domains.name', __d('yab_cms_ff', 'Domain')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('Customers.name', __d('yab_cms_ff', 'Customer')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('ArticleTypes.title', __d('yab_cms_ff', 'Type')); ?></strong></small></th>
+                        <th><small><strong><?= __d('yab_cms_ff', 'Title'); ?></strong></small></th>
+                        <th><small><strong><?= __d('yab_cms_ff', 'Slug'); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('locale', __d('yab_cms_ff', 'Locale')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('promote', __d('yab_cms_ff', 'Promote')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('status', __d('yab_cms_ff', 'Status')); ?></strong></small></th>
+                        <th class="actions"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -217,6 +226,7 @@ $this->Breadcrumbs->add([
                             <td><?= $this->YabCmsFf->status(h($article->promote)); ?></td>
                             <td><?= $this->YabCmsFf->status(h($article->status)); ?></td>
                             <td class="actions">
+                                <div class="actions-links" style="display: block;">
                                 <?= $this->Html->link(
                                     $this->Html->icon('eye'),
                                     [
@@ -274,6 +284,7 @@ $this->Breadcrumbs->add([
                                         'data-toggle'   => 'tooltip',
                                         'escapeTitle'   => false,
                                     ]); ?>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

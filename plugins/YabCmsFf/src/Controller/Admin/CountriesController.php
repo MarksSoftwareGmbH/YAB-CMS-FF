@@ -61,6 +61,7 @@ class CountriesController extends AppController
         'maxLimit' => 50,
         'sortableFields' => [
             'id',
+            'uuid_id',
             'foreign_key',
             'name',
             'slug',
@@ -126,13 +127,21 @@ class CountriesController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $country = $this->Countries->get($id);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.Countries.beforeViewRender', $this, ['Country' => $country]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('country', $country);
+        YabCmsFf::dispatchEvent('Controller.Admin.Countries.beforeViewRender', $this, [
+            'Country'   => $country,
+            'Users'     => $users,
+        ]);
+
+        $this->set(compact('country', 'users'));
     }
 
     /**
@@ -188,7 +197,7 @@ class CountriesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $country = $this->Countries->get($id);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -236,7 +245,7 @@ class CountriesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $country = $this->Countries->get($id);
@@ -393,6 +402,7 @@ class CountriesController extends AppController
         foreach($countries as $country) {
             $countryArray = [];
             $countryArray['id'] = $country->id;
+            $countryArray['uuid_id'] = $country->uuid_id;
             $countryArray['foreign_key'] = $country->foreign_key;
             $countryArray['name'] = $country->name;
             $countryArray['slug'] = $country->slug;
@@ -518,6 +528,7 @@ class CountriesController extends AppController
         $header = $this->Countries->tableColumns;
         $extract = [
             'id',
+            'uuid_id',
             'foreign_key',
             'name',
             'slug',
@@ -564,6 +575,7 @@ class CountriesController extends AppController
         foreach($countries as $country) {
             $countryArray = [];
             $countryArray['id'] = $country->id;
+            $countryArray['uuid_id'] = $country->uuid_id;
             $countryArray['foreign_key'] = $country->foreign_key;
             $countryArray['name'] = $country->name;
             $countryArray['slug'] = $country->slug;
@@ -601,6 +613,7 @@ class CountriesController extends AppController
         foreach($countries as $country) {
             $countryArray = [];
             $countryArray['id'] = $country->id;
+            $countryArray['uuid_id'] = $country->uuid_id;
             $countryArray['foreign_key'] = $country->foreign_key;
             $countryArray['name'] = $country->name;
             $countryArray['slug'] = $country->slug;

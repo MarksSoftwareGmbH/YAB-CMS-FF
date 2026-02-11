@@ -77,8 +77,8 @@ class UsersEventHandler implements EventListenerInterface
     /**
      * On before login event method.
      *
-     * @param Event $event
-     * @return bool
+     * @param \Cake\Event\Event $event
+     * @return $event
      */
     public function onBeforeLogin(Event $event)
     {
@@ -97,22 +97,22 @@ class UsersEventHandler implements EventListenerInterface
                 ['element' => 'default', 'params' => ['class' => 'error']]
             );
 
-            return false;
+            $event->setResult(false);
         }
 
-        return true;
+        $event->setResult(true);
     }
 
     /**
      * On login success event method.
      *
-     * @param Event $event
-     * @return bool
+     * @param \Cake\Event\Event $event
+     * @return $event
      */
     public function onLoginSuccess(Event $event)
     {
         if (empty($event->getSubject()->getRequest()->getData())) {
-            return true;
+            $event->setResult(true);
         }
         $cacheName = 'yab_cms_ff_auth_failed_' . $event->getSubject()->getRequest()->getData('username');
         Cache::delete($cacheName, 'yab_cms_ff_users_login');
@@ -133,35 +133,35 @@ class UsersEventHandler implements EventListenerInterface
                     ['element' => 'default', 'params' => ['class' => 'danger']]
                 );
 
-                return false;
+                $event->setResult(false);
             }
 
             if (isset($user->user_profile) && !empty($user->user_profile->image)) {
                 $event->getSubject()->getRequest()->getSession()->write('Auth.User.avatar', $user->user_profile->image);
             }
             if (isset($user->locale->code) && !empty($user->locale->code)) {
-                return $event->getSubject()->redirect([
+                $event->setResult($event->getSubject()->redirect([
                     'plugin'        => 'YabCmsFf',
                     'controller'    => 'Locales',
                     'action'        => 'switchLocale',
                     'code'          => h($user->locale->code),
-                ]);
+                ]));
             }
         }
 
-        return true;
+        $event->setResult(true);
     }
 
     /**
      * On login failure event method.
      *
-     * @param Event $event
-     * @return bool
+     * @param \Cake\Event\Event $event
+     * @return $event
      */
     public function onLoginFailure(Event $event)
     {
         if (empty($event->getSubject()->getRequest()->getData())) {
-            return true;
+            $event->setResult(true);
         }
 
         $cacheName = 'yab_cms_ff_auth_failed_' . $event->getSubject()->getRequest()->getData('username');
@@ -181,22 +181,22 @@ class UsersEventHandler implements EventListenerInterface
                 ['element' => 'default', 'params' => ['class' => 'error']]
             );
 
-            return false;
+            $event->setResult(false);
         }
 
-        return true;
+        $event->setResult(true);
     }
 
     /**
      * On edit success event method.
      *
-     * @param Event $event
-     * @return bool
+     * @param \Cake\Event\Event $event
+     * @return $event
      */
     public function onEditSuccess(Event $event)
     {
         if (empty($event->getSubject()->getRequest()->getData())) {
-            return true;
+            $event->setResult(value: true);
         }
 
         $user = $event->getData();
@@ -232,6 +232,6 @@ class UsersEventHandler implements EventListenerInterface
             }
         }
 
-        return true;
+        $event->setResult(true);
     }
 }

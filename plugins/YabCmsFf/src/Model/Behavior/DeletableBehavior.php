@@ -90,10 +90,10 @@ class DeletableBehavior extends Behavior
                 ['_primary' => false] + $options->getArrayCopy()
             );
 
-            return true;
+            $event->setResult(value: true);
         }
 
-        return false;
+        $event->setResult(value: false);
     }
 
     /**

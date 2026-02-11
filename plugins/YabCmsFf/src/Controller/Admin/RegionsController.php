@@ -112,13 +112,21 @@ class RegionsController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $region = $this->Regions->get($id);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.Regions.beforeViewRender', $this, ['Region' => $region]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('region', $region);
+        YabCmsFf::dispatchEvent('Controller.Admin.Regions.beforeViewRender', $this, [
+            'Region'    => $region,
+            'Users'     => $users,
+        ]);
+
+        $this->set(compact('region', 'users'));
     }
 
     /**
@@ -161,7 +169,7 @@ class RegionsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $region = $this->Regions->get($id);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -196,7 +204,7 @@ class RegionsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $region = $this->Regions->get($id);

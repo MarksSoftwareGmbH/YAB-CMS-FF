@@ -23,6 +23,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+use Cake\Core\Configure;
+use Cake\Utility\Text;
+
+$backendBoxColor = 'secondary';
+if (Configure::check('YabCmsFf.settings.backendBoxColor')):
+    $backendBoxColor = Configure::read('YabCmsFf.settings.backendBoxColor');
+endif;
+
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
 
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
@@ -32,7 +44,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . h($menuItem->title)
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -51,9 +67,8 @@ $this->Breadcrumbs->add([
     ],
     ['title' => __d('yab_cms_ff', 'Edit menu item')],
     ['title' => h($menuItem->title)]
-]); ?>
-
-<?= $this->Form->create($menuItem, ['class' => 'form-general']); ?>
+], ['class' => 'breadcrumb-item']); ?>
+<?= $this->Form->create($menuItem, ['class' => 'form-general form-menu-item']); ?>
 <div class="row">
     <section class="col-lg-8 connectedSortable">
         <div class="card">
@@ -63,15 +78,33 @@ $this->Breadcrumbs->add([
                 </h3>
             </div>
             <div class="card-body">
+                <?= $this->Form->control('uuid_id', [
+                    'type'      => 'hidden',
+                    'value'     => !empty($menuItem->uuid_id)? h($menuItem->uuid_id): Text::uuid(),
+                ]); ?>
                 <?= $this->Form->control('title', [
                     'type'      => 'text',
-                    'required'  => true,
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Title') . '*',
+                        'class' => 'text-danger',
+                    ],
+                    'maxlength'         => 255,
+                    'data-chars-max'    => 255,
+                    'data-msg-color'    => 'success',
+                    'class'             => 'border-danger count-chars',
+                    'required'          => true,
                 ]); ?>
                 <?= $this->Form->control('alias', [
                     'type'      => 'text',
-                    'class'     => 'slug',
-                    'required'  => true,
-                    'readonly'  => true,
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Alias') . '*',
+                        'class' => 'text-danger',
+                    ],
+                    'maxlength'         => 255,
+                    'data-chars-max'    => 255,
+                    'data-msg-color'    => 'success',
+                    'class'             => 'slug border-danger count-chars',
+                    'required'          => true,
                 ]); ?>
                 <?= $this->Form->control('sub_title', [
                     'type'      => 'text',
@@ -79,7 +112,15 @@ $this->Breadcrumbs->add([
                 ]); ?>
                 <?= $this->Form->control('link', [
                     'type'      => 'text',
-                    'required'  => true,
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Link') . '*',
+                        'class' => 'text-danger',
+                    ],
+                    'maxlength'         => 255,
+                    'data-chars-max'    => 255,
+                    'data-msg-color'    => 'success',
+                    'class'             => 'border-danger count-chars',
+                    'required'          => true,
                 ]); ?>
                 <?= $this->Form->control('link_target', [
                     'type'      => 'text',
@@ -92,7 +133,6 @@ $this->Breadcrumbs->add([
                 ]); ?>
                 <?= $this->Form->control('description', [
                     'type'      => 'textarea',
-                    'class'     => 'description',
                     'required'  => false,
                 ]); ?>
             </div>
@@ -107,11 +147,32 @@ $this->Breadcrumbs->add([
             </div>
             <div class="card-body">
                 <?= $this->Form->control('menu_id', [
-                    'label'     => __d('yab_cms_ff', 'Menu'),
+                    'type'  => 'select',
+                    'label' => [
+                        'text' => __d('yab_cms_ff', 'Menu') . '*'
+                            . ' '
+                            . '('
+                            . $this->Html->link(
+                                __d('yab_cms_ff', 'Add menu'),
+                                [
+                                    'plugin'        => 'YabCmsFf',
+                                    'controller'    => 'Menus',
+                                    'action'        => 'add',
+                                ],
+                                [
+                                    'target'        => '_blank',
+                                    'class'         => 'text-' . h($backendLinkTextColor),
+                                    'escapeTitle'   => false,
+                                ])
+                            . ')',
+                        'class'     => 'text-danger',
+                        'escape'    => false,
+                    ],
                     'options'   => !empty($menus)? $menus: [],
                     'class'     => 'select2',
                     'style'     => 'width: 100%',
-                    'empty'     => false,
+                    'empty'     => true,
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('parent_id', [
                     'label'     => __d('yab_cms_ff', 'Parent'),
@@ -121,19 +182,59 @@ $this->Breadcrumbs->add([
                     'empty'     => true,
                 ]); ?>
                 <?= $this->Form->control('domain_id', [
-                    'label'     => __d('yab_cms_ff', 'Domain'),
+                    'type'  => 'select',
+                    'label' => [
+                        'text' => __d('yab_cms_ff', 'Domain') . '*'
+                            . ' '
+                            . '('
+                            . $this->Html->link(
+                                __d('yab_cms_ff', 'Add domain'),
+                                [
+                                    'plugin'        => 'YabCmsFf',
+                                    'controller'    => 'Domains',
+                                    'action'        => 'add',
+                                ],
+                                [
+                                    'target'        => '_blank',
+                                    'class'         => 'text-' . h($backendLinkTextColor),
+                                    'escapeTitle'   => false,
+                                ])
+                            . ')',
+                        'class'     => 'text-danger',
+                        'escape'    => false,
+                    ],
                     'options'   => !empty($this->YabCmsFf->domains())? $this->YabCmsFf->domains(): [],
                     'class'     => 'select2',
                     'style'     => 'width: 100%',
                     'empty'     => true,
-                    'required'  => false,
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('locale', [
-                    'type'      => 'select',
-                    'label'     => __d('yab_cms_ff', 'Locale'),
+                    'type'  => 'select',
+                    'label' => [
+                        'text' => __d('yab_cms_ff', 'Locale') . '*'
+                            . ' '
+                            . '('
+                            . $this->Html->link(
+                                __d('yab_cms_ff', 'Add locale'),
+                                [
+                                    'plugin'        => 'YabCmsFf',
+                                    'controller'    => 'Locales',
+                                    'action'        => 'add',
+                                ],
+                                [
+                                    'target'        => '_blank',
+                                    'class'         => 'text-' . h($backendLinkTextColor),
+                                    'escapeTitle'   => false,
+                                ])
+                            . ')',
+                        'class'     => 'text-danger',
+                        'escape'    => false,
+                    ],
                     'options'   => !empty($this->YabCmsFf->localeCodes())? $this->YabCmsFf->localeCodes(): [],
                     'class'     => 'select2',
                     'style'     => 'width: 100%',
+                    'empty'     => true,
                     'required'  => true,
                 ]); ?>
                 <div class="form-group">

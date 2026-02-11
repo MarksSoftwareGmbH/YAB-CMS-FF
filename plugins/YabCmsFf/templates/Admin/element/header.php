@@ -112,12 +112,14 @@ endif;
                 <?= $this->Form->end(); ?>
             </div>
         </li>
-        <?php if ($backendControlSidebar === '1'): ?>
-            <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                    <?= $this->Html->icon('th-large'); ?>
-                </a>
-            </li>
+        <?php if ($session->check('Auth.User.id') && ($session->read('Auth.User.role.alias') === 'admin')): ?>
+            <?php if ($backendControlSidebar === '1'): ?>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+                        <?= $this->Html->icon('th-large'); ?>
+                    </a>
+                </li>
+            <?php endif; ?>
         <?php endif; ?>
         <li class="nav-item dropdown user-menu">
             <?php if ($session->check('Auth.User.avatar')): ?>

@@ -26,7 +26,6 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Event;
 
-use Cake\Cache\Cache;
 use Cake\Core\App;
 use Cake\Core\Plugin;
 use Cake\Core\Configure;
@@ -122,7 +121,7 @@ class EventManager extends CakeEventManager
      * @param array $options
      * @return void
      */
-    public function attach($callable, string $eventKey = null, array $options = [])
+    public function attach($callable,? string $eventKey = null, array $options = [])
     {
         parent::on($callable, $eventKey, $options);
         if (is_object($callable)) {
@@ -138,7 +137,7 @@ class EventManager extends CakeEventManager
      * @param string|null $eventKey
      * @return void
      */
-    public function detach($callable, string $eventKey = null)
+    public function detach($callable,? string $eventKey = null)
     {
         if (is_object($callable)) {
             $key = get_class($callable);

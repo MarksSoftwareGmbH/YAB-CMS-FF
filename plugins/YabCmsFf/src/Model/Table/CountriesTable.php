@@ -85,7 +85,7 @@ class CountriesTable extends Table
         ]);
 
         // Setup search filter using search manager
-        $this->searchManager()
+        $this->getBehavior('Search')->searchManager()
             ->value('locale', [
                 'fields' => ['Countries.locale']
             ])
@@ -97,6 +97,7 @@ class CountriesTable extends Table
                 'wildcardAny' => '*',
                 'wildcardOne' => '?',
                 'fields' => [
+                    'uuid_id',
                     'foreign_key',
                     'name',
                     'slug',
@@ -115,6 +116,7 @@ class CountriesTable extends Table
      */
     public $tableColumns = [
         'id',
+        'uuid_id',
         'foreign_key',
         'name',
         'slug',

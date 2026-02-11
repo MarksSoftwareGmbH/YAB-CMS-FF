@@ -23,6 +23,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+use Cake\Core\Configure;
+use Cake\Utility\Text;
+
+$backendBoxColor = 'secondary';
+if (Configure::check('YabCmsFf.settings.backendBoxColor')):
+    $backendBoxColor = Configure::read('YabCmsFf.settings.backendBoxColor');
+endif;
+
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
 
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
@@ -30,7 +42,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -48,55 +64,95 @@ $this->Breadcrumbs->add([
         ]
     ],
     ['title' => __d('yab_cms_ff', 'Add article type')]
-]); ?>
-
+], ['class' => 'breadcrumb-item']); ?>
 <?= $this->Form->create($articleType, ['class' => 'form-general']); ?>
 <div class="row">
     <section class="col-lg-8 connectedSortable">
-        <div class="card">
+        <div class="card card-<?= h($backendBoxColor); ?>">
             <div class="card-header">
                 <h3 class="card-title">
                     <?= $this->Html->icon('plus'); ?> <?= __d('yab_cms_ff', 'Add article type'); ?>
                 </h3>
             </div>
             <div class="card-body">
-                <?= $this->Form->control('foreign_key', [
-                    'type'      => 'text',
-                    'required'  => false,
+                <?= $this->Form->control('uuid_id', [
+                    'type'      => 'hidden',
+                    'value'     => Text::uuid(),
                 ]); ?>
                 <?= $this->Form->control('title', [
                     'type'      => 'text',
-                    'required'  => true,
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Title') . '*',
+                        'class' => 'text-danger',
+                    ],
+                    'maxlength'         => 255,
+                    'data-chars-max'    => 255,
+                    'data-msg-color'    => 'success',
+                    'class'             => 'border-danger count-chars',
+                    'required'          => true,
                 ]); ?>
                 <?= $this->Form->control('alias', [
                     'type'      => 'text',
-                    'class'     => 'slug',
-                    'required'  => true,
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Alias') . '*',
+                        'class' => 'text-danger',
+                    ],
+                    'maxlength'         => 255,
+                    'data-chars-max'    => 255,
+                    'data-msg-color'    => 'success',
+                    'class'             => 'slug border-danger count-chars',
+                    'required'          => true,
                 ]); ?>
                 <?= $this->Form->control('description', [
                     'type'      => 'textarea',
-                    'class'     => 'description',
                     'required'  => false,
                 ]); ?>
             </div>
         </div>
     </section>
     <section class="col-lg-4 connectedSortable">
-        <div class="card">
+        <div class="card card-<?= h($backendBoxColor); ?>">
             <div class="card-header">
                 <h3 class="card-title">
                     <?= $this->Html->icon('cog'); ?> <?= __d('yab_cms_ff', 'Actions'); ?>
                 </h3>
             </div>
             <div class="card-body">
+                <?= $this->Form->control('foreign_key', [
+                    'type'              => 'text',
+                    'maxlength'         => 255,
+                    'data-chars-max'    => 255,
+                    'data-msg-color'    => 'success',
+                    'class'             => 'count-chars',
+                    'required'          => false,
+                ]); ?>
                 <?= $this->Form->control('article_type_attributes._ids', [
-                    'type' => 'select',
-                    'multiple' => 'checkbox',
+                    'type'      => 'select',
+                    'multiple'  => 'checkbox',
+                    'label' => [
+                        'text' => __d('yab_cms_ff', 'Article type attributes') . '*'
+                            . ' '
+                            . '('
+                            . $this->Html->link(
+                                __d('yab_cms_ff', 'Add article type attribute'),
+                                [
+                                    'plugin'        => 'YabCmsFf',
+                                    'controller'    => 'ArticleTypeAttributes',
+                                    'action'        => 'add',
+                                ],
+                                [
+                                    'target'        => '_blank',
+                                    'class'         => 'text-' . h($backendLinkTextColor),
+                                    'escapeTitle'   => false,
+                                ])
+                            . ')',
+                        'class'     => 'text-danger',
+                        'escape'    => false,
+                    ],
                     'options' => !empty($articleTypeAttributes)? $articleTypeAttributes: [],
-                    'label' => __d('yab_cms_ff', 'Attributes'),
                 ]); ?>
                 <div class="form-group">
-                    <?= $this->Form->button(__d('yab_cms_ff', 'Submit'), ['class' => 'btn btn-success']); ?>
+                    <?= $this->Form->button(__d('yab_cms_ff', 'Submit'), ['class' => 'btn btn-success shadow rounded']); ?>
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
@@ -105,7 +161,7 @@ $this->Breadcrumbs->add([
                             'action'        => 'index',
                         ],
                         [
-                            'class'         => 'btn btn-danger float-right',
+                            'class'         => 'btn btn-danger shadow rounded float-right',
                             'escapeTitle'   => false,
                         ]); ?>
                 </div>
@@ -131,11 +187,6 @@ $this->Breadcrumbs->add([
         ArticleTypes.init();
         // Initialize select2
         $(\'.select2\').select2();
-        // Initialize summernote
-        $(\'.description\').summernote();
-        $(\'.form-general\').submit(function(event) {
-            $(\'.description\').summernote(\'destroy\');
-        });
         $(\'.form-general\').validate({
             rules: {
                 title: {
@@ -163,6 +214,27 @@ $this->Breadcrumbs->add([
             },
             unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass(\'is-invalid\');
+            }
+        });
+        $(\'.count-chars\').keyup(function () {
+            var charInput = this.value;
+            var charInputLength = this.value.length;
+            const maxChars = $(this).data(\'chars-max\');
+            const messageColor = $(this).data(\'msg-color\');
+            var inputId = this.getAttribute(\'id\');
+            var messageDivId = inputId + \'Message\';
+            var remainingMessage = \'\';
+
+            if (charInputLength >= maxChars) {
+                $(\'#\' + inputId).val(charInput.substring(0, maxChars));
+                remainingMessage = \'0 ' . __d('yab_cms_ff', 'character remaining') . '\' ;
+            } else {
+                remainingMessage = (maxChars - charInputLength) + \' ' . __d('yab_cms_ff', 'character(s) remaining') . '\';
+            }
+            if ($(\'#\' + messageDivId).length == 0) {
+                $(\'#\' + inputId).after(\'<div id="\' + messageDivId + \'" class="text-\' + messageColor + \' font-weight-bold">\' + remainingMessage + \'</div>\');
+            } else {
+                $(\'#\' + messageDivId).text(remainingMessage);
             }
         });
     });',

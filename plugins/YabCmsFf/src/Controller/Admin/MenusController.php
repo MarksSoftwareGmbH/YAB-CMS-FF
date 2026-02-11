@@ -140,7 +140,7 @@ class MenusController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $menu = $this->Menus->get($id, contain: [
             'Domains' => function ($q) {
@@ -148,9 +148,17 @@ class MenusController extends AppController
             }
         ]);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.Menus.beforeViewRender', $this, ['Menu' => $menu]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('menu', $menu);
+        YabCmsFf::dispatchEvent('Controller.Admin.Menus.beforeViewRender', $this, [
+            'Menu'  => $menu,
+            'Users' => $users,
+        ]);
+
+        $this->set(compact('menu', 'users'));
     }
 
     /**
@@ -193,7 +201,7 @@ class MenusController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $menu = $this->Menus->get($id, contain: ['Domains']);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -228,7 +236,7 @@ class MenusController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $menu = $this->Menus->get($id);

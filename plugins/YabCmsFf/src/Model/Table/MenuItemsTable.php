@@ -92,7 +92,7 @@ class MenuItemsTable extends Table
         ]);
 
         // Setup search filter using search manager
-        $this->searchManager()
+        $this->getBehavior('Search')->searchManager()
             ->value('domain', [
                 'fields' => ['Domains.name']
             ])

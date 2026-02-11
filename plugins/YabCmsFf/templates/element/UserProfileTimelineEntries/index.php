@@ -103,7 +103,11 @@ $this->Html->meta([
 ]);
 
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Yet another boring CMS for FREE'),
         'url' => [
@@ -130,8 +134,7 @@ $this->Breadcrumbs->add([
         ],
     ],
     ['title' => __d('yab_cms_ff', 'Timeline entries')],
-]);
-?>
+], ['class' => 'breadcrumb-item']); ?>
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">

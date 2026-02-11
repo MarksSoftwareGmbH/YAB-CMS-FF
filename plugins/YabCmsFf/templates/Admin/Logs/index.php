@@ -33,13 +33,22 @@ if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
 endif;
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
     . ' :: '
     . ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -49,7 +58,7 @@ $this->Breadcrumbs->add([
         ]
     ],
     ['title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -170,17 +179,17 @@ $this->Breadcrumbs->add([
             </div>
 
             <div class="card-body table-responsive">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-bordered table-hover text-nowrap" id="slideActionsTable">
                     <thead>
                     <tr>
-                        <th><?= $this->Paginator->sort('request', __d('yab_cms_ff', 'Request')); ?></th>
-                        <th><?= $this->Paginator->sort('type', __d('yab_cms_ff', 'Type')); ?></th>
-                        <th><?= $this->Paginator->sort('message', __d('yab_cms_ff', 'Message')); ?></th>
-                        <th><?= $this->Paginator->sort('ip', __d('yab_cms_ff', 'IP')); ?></th>
-                        <th><?= $this->Paginator->sort('uri', __d('yab_cms_ff', 'URI')); ?></th>
-                        <th><?= $this->Paginator->sort('data', __d('yab_cms_ff', 'Data')); ?></th>
-                        <th><?= $this->Paginator->sort('created', __d('yab_cms_ff', 'Created')); ?></th>
-                        <th class="actions"><?= __d('yab_cms_ff', 'Actions'); ?></th>
+                        <th><small><strong><?= $this->Paginator->sort('request', __d('yab_cms_ff', 'Request')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('type', __d('yab_cms_ff', 'Type')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('message', __d('yab_cms_ff', 'Message')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('ip', __d('yab_cms_ff', 'IP')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('uri', __d('yab_cms_ff', 'URI')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('data', __d('yab_cms_ff', 'Data')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('created', __d('yab_cms_ff', 'Created')); ?></strong></small></th>
+                        <th class="actions"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -242,6 +251,7 @@ $this->Breadcrumbs->add([
                             </td>
                             <td><?= empty($log->modified)? '-': h($log->modified->format('d.m.Y H:i:s')); ?></td>
                             <td class="actions">
+                                <div class="actions-links" style="display: block;">
                                 <?= $this->Html->link(
                                     $this->Html->icon('eye'),
                                     [
@@ -286,6 +296,7 @@ $this->Breadcrumbs->add([
                                         'data-toggle'   => 'tooltip',
                                         'escapeTitle'   => false,
                                     ]); ?>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

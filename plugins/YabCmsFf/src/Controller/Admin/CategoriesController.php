@@ -191,7 +191,7 @@ class CategoriesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function moveUp(int $id = null)
+    public function moveUp(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $category = $this->Categories->get($id);
@@ -217,7 +217,7 @@ class CategoriesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function moveDown(int $id = null)
+    public function moveDown(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $category = $this->Categories->get($id);
@@ -242,13 +242,21 @@ class CategoriesController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $category = $this->Categories->get($id, contain: ['ParentCategories', 'ChildCategories', 'Domains']);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.Categories.beforeViewRender', $this, ['Category' => $category]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('category', $category);
+        YabCmsFf::dispatchEvent('Controller.Admin.Categories.beforeViewRender', $this, [
+            'Category'  => $category,
+            'Users'     => $users,
+        ]);
+
+        $this->set(compact('category', 'users'));
     }
 
     /**
@@ -304,7 +312,7 @@ class CategoriesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $category = $this->Categories->get($id, contain: ['Articles', 'Domains']);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -352,7 +360,7 @@ class CategoriesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $category = $this->Categories->get($id);

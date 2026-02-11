@@ -47,10 +47,14 @@ endif;
 $this->assign('title', __d('yab_cms_ff', 'Yet another boring CMS for FREE'));
 
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     ['title' => 'Yet another boring CMS for FREE'],
     ['title' => __d('yab_cms_ff', 'Recent CMS articles')]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">

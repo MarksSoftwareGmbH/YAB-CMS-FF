@@ -97,7 +97,7 @@ return [
             'className' => Connection::class,
             'driver' => Sqlite::class,
             'persistent' => false,
-            'host' => '127.0.0.1',
+            'host' => 'localhost',
             //'port' => 'non_standard_port_number',
             'username' => null,
             'password' => null,

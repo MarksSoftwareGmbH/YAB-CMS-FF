@@ -33,6 +33,11 @@ if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
 endif;
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
     . ' :: '
@@ -41,7 +46,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . h($articleType->title)
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -60,8 +69,7 @@ $this->Breadcrumbs->add([
     ],
     ['title' => __d('yab_cms_ff', 'View')],
     ['title' => h($articleType->title)]
-]); ?>
-
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -107,6 +115,8 @@ $this->Breadcrumbs->add([
                 <dl class="row">
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Id'); ?></dt>
                     <dd class="col-sm-9"><?= h($articleType->id); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'UUID'); ?></dt>
+                    <dd class="col-sm-9"><?= empty($articleType->uuid_id)? '-': h($articleType->uuid_id); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Foreign key'); ?></dt>
                     <dd class="col-sm-9"><?= empty($articleType->foreign_key)? '-': h($articleType->foreign_key); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Title'); ?></dt>
@@ -115,8 +125,12 @@ $this->Breadcrumbs->add([
                     <dd class="col-sm-9"><?= empty($articleType->alias)? '-': h($articleType->alias); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created'); ?></dt>
                     <dd class="col-sm-9"><?= empty($articleType->created)? '-': h($articleType->created->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($articleType->created_by)]: h($articleType->created_by); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified'); ?></dt>
                     <dd class="col-sm-9"><?= empty($articleType->modified)? '-': h($articleType->modified->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($articleType->modified_by)]: h($articleType->modified_by); ?></dd>
                 </dl>
                 <hr/>
                 <dl>

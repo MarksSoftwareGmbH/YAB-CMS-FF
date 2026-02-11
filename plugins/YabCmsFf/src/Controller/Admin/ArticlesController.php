@@ -219,7 +219,7 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function moveUp(int $id = null)
+    public function moveUp(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $article = $this->Articles->get($id);
@@ -245,7 +245,7 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function moveDown(int $id = null)
+    public function moveDown(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $article = $this->Articles->get($id);
@@ -270,7 +270,7 @@ class ArticlesController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $article = $this->Articles->get($id, contain: [
             'ParentArticles',
@@ -294,11 +294,17 @@ class ArticlesController extends AppController
             'Users',
         ]);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.Articles.beforeViewRender', $this, ['Article' => $article]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('article', $article);
+        YabCmsFf::dispatchEvent('Controller.Admin.Articles.beforeViewRender', $this, [
+            'Article'   => $article,
+            'Users'     => $users,
+        ]);
 
-        $this->viewBuilder()->setOption('serialize', ['article']);
+        $this->set(compact('article', 'users'));
     }
 
     /**
@@ -308,7 +314,7 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function add(string $articleTypeAlias = null)
+    public function add(?string $articleTypeAlias = null)
     {
         // Get session
         $session = $this->request->getSession();
@@ -400,8 +406,6 @@ class ArticlesController extends AppController
         ]);
 
         $this->set(compact('article', 'articleType'));
-
-        $this->viewBuilder()->setOption('serialize', ['article', 'articleType']);
     }
 
     /**
@@ -411,7 +415,7 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         // Get session
         $session = $this->request->getSession();
@@ -473,8 +477,6 @@ class ArticlesController extends AppController
         YabCmsFf::dispatchEvent('Controller.Admin.Articles.beforeEditRender', $this, ['Article' => $article]);
 
         $this->set('article', $article);
-
-        $this->viewBuilder()->setOption('serialize', ['article']);
     }
 
     /**
@@ -484,7 +486,7 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function copy(int $id = null)
+    public function copy(?int $id = null)
     {
         // Get session
         $session = $this->request->getSession();
@@ -568,7 +570,7 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         // Get session
         $session = $this->request->getSession();

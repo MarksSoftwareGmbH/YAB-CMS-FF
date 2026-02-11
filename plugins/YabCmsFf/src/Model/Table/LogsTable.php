@@ -69,7 +69,7 @@ class LogsTable extends Table
         $this->addBehavior('YabCmsFf.Deletable');
 
         // Setup search filter using search manager
-        $this->searchManager()
+        $this->getBehavior('Search')->searchManager()
             ->add('search', 'Search.Like', [
                 'before' => true,
                 'after' => true,

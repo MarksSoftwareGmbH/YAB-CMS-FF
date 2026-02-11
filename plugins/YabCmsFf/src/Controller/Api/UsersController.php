@@ -127,7 +127,6 @@ class UsersController extends AppController
         }
 
         $this->set(compact('json'));
-        $this->viewBuilder()->setOption('serialize', 'json');
     }
 
     /**

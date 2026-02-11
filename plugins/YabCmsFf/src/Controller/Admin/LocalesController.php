@@ -29,6 +29,7 @@ namespace YabCmsFf\Controller\Admin;
 use Cake\Event\EventInterface;
 use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
+use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -109,7 +110,7 @@ class LocalesController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $locale = $this->Locales->get($id, contain: [
             'Domains' => function ($q) {
@@ -117,9 +118,17 @@ class LocalesController extends AppController
             }
         ]);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.Locales.beforeViewRender', $this, ['Locale' => $locale]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('locale', $locale);
+        YabCmsFf::dispatchEvent('Controller.Admin.Locales.beforeViewRender', $this, [
+            'Locale'    => $locale,
+            'Users'     => $users,
+        ]);
+
+        $this->set(compact('locale', 'users'));
     }
 
     /**
@@ -163,7 +172,7 @@ class LocalesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $locale = $this->Locales->get($id, contain: [
             'Domains' => function ($q) {
@@ -203,7 +212,7 @@ class LocalesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $locale = $this->Locales->get($id);

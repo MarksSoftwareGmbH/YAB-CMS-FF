@@ -104,7 +104,6 @@ $this->Html->meta([
                 <p class="login-box-msg">
                     <?= __d('yab_cms_ff', 'Welcome to {yabCmsFf}', ['yabCmsFf' => 'Yet another boring CMS for FREE']); ?> - v<?= Configure::version(); ?>
                 </p>
-
                 <?php $this->Form->setTemplates([
                     'inputContainer' => '{{content}}{{help}}',
                     'inputGroupContainer' => '<div class="input-group mb-3">{{prepend}}{{content}}{{append}}</div>',
@@ -132,6 +131,7 @@ $this->Html->meta([
                     'label'         => false,
                     'required'      => true,
                     'placeholder'   => __d('yab_cms_ff', 'Name'),
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <?= $this->Form->control('username', [
                     'append'        => $this->Html->icon('user'),
@@ -139,6 +139,7 @@ $this->Html->meta([
                     'label'         => false,
                     'required'      => true,
                     'placeholder'   => __d('yab_cms_ff', 'Username'),
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <hr />
                 <?= $this->Form->control('email', [
@@ -147,6 +148,7 @@ $this->Html->meta([
                     'label'         => false,
                     'required'      => true,
                     'placeholder'   => __d('yab_cms_ff', 'Email'),
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <?= $this->Form->control('verify_email', [
                     'append'        => $this->Html->icon('envelope'),
@@ -154,6 +156,7 @@ $this->Html->meta([
                     'label'         => false,
                     'required'      => true,
                     'placeholder'   => __d('yab_cms_ff', 'Verify email'),
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <hr />
                 <?= $this->Form->control('password', [
@@ -164,6 +167,7 @@ $this->Html->meta([
                     'placeholder'   => __d('yab_cms_ff', 'Password'),
                     'minlength'     => 8,
                     'maxlength'     => 249,
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <?= $this->Form->control('verify_password', [
                     'append'        => $this->Html->icon('lock'),
@@ -173,6 +177,7 @@ $this->Html->meta([
                     'placeholder'   => __d('yab_cms_ff', 'Verify password'),
                     'minlength'     => 8,
                     'maxlength'     => 249,
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <p>
                     <?= __d('yab_cms_ff', 'Password proposal'); ?>:
@@ -192,6 +197,7 @@ $this->Html->meta([
                         . ' ' . '('
                         . __d('yab_cms_ff', 'Please calculate this addition')
                         . ')',
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <div class="form-check mb-3">
                     <?= $this->Form->checkbox('terms_of_service', [
@@ -231,23 +237,21 @@ $this->Html->meta([
                                 'action'        => 'login',
                             ],
                             [
-                                'class'         => 'btn btn-' . h($frontendButtonColor),
+                                'class'         => 'shadow rounded btn btn-' . h($frontendButtonColor),
                                 'escapeTitle'   => false,
                             ]); ?>
                         <?= $this->Form->button(
                             __d('yab_cms_ff', 'Submit'),
                             [
-                                'class'         => 'float-right btn btn-' . h($frontendButtonColor),
+                                'class'         => 'float-right shadow rounded btn btn-' . h($frontendButtonColor),
                                 'escapeTitle'   => false,
                             ]); ?>
                     </div>
                 </div>
                 <?= $this->Form->end(); ?>
-
             </div>
         </div>
     </div>
-
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery' . DS . 'jquery.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-ui' . DS . 'jquery-ui.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap' . DS . 'js' . DS . 'bootstrap.bundle.min', ['block' => 'scripts']); ?>
@@ -262,10 +266,8 @@ $this->Html->meta([
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'summernote' . DS . 'summernote-bs4.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'overlayScrollbars' . DS . 'js' . DS . 'jquery.overlayScrollbars.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'adminlte.min', ['block' => 'scripts']); ?>
-
     <?= $this->fetch('scripts'); ?>
     <?= $this->fetch('scriptBottom'); ?>
-    
     <?= $this->Html->scriptBlock('$.widget.bridge(\'uibutton\', $.ui.button);'); ?>
     <?= $this->Html->scriptBlock(
         '$(function() {
@@ -329,5 +331,5 @@ $this->Html->meta([
                     $(element).removeClass(\'is-invalid\');
                 }
             });
-        });'); ?>
+        });', ['block' => 'scriptBottom']); ?>
 </body>

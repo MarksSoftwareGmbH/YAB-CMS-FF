@@ -29,6 +29,7 @@ namespace YabCmsFf\Controller\Admin;
 use Cake\Event\EventInterface;
 use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
+use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
 use Intervention\Image\ImageManager;
@@ -183,7 +184,7 @@ class ArticleTypeAttributesController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $articleTypeAttribute = $this->ArticleTypeAttributes->get($id, contain: [
             'ArticleTypeAttributeChoices' => function ($q) {
@@ -195,11 +196,17 @@ class ArticleTypeAttributesController extends AppController
             'ArticleArticleTypeAttributeValues',
         ]);
 
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
+
         YabCmsFf::dispatchEvent('Controller.Admin.ArticleTypeAttributes.beforeViewRender', $this, [
-            'ArticleTypeAttribute' => $articleTypeAttribute,
+            'ArticleTypeAttribute'  => $articleTypeAttribute,
+            'Users'                 => $users,
         ]);
 
-        $this->set('articleTypeAttribute', $articleTypeAttribute);
+        $this->set(compact('articleTypeAttribute', 'users'));
     }
 
     /**
@@ -1568,7 +1575,7 @@ class ArticleTypeAttributesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $articleTypeAttribute = $this->ArticleTypeAttributes->get($id, contain: ['ArticleTypes']);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -2924,7 +2931,7 @@ class ArticleTypeAttributesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $articleTypeAttribute = $this->ArticleTypeAttributes->get($id);

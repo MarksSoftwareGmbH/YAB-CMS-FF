@@ -26,8 +26,10 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Model\Behavior;
 
+use ArrayObject;
 use Cake\Core\Configure;
-use Cake\Event\Event;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\EventInterface;
 use Cake\ORM\Behavior;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
@@ -126,41 +128,46 @@ class TrackableBehavior extends Behavior
      *   Configure::write('Trackable.User', array('id' => 1));
      *
      * Note that value stored in this variable overrides session data.
+     * 
+     * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event The beforeSave event that was fired
+     * @param \Cake\Datasource\EntityInterface $entity The entity that is going to be saved
+     * @param \ArrayObject<string, mixed> $options The options for the query
+     * @return $event
      */
-    public function beforeSave(Event $event, $options = [])
+    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {
         if (!$this->_hasTrackableFields()) {
-            return true;
+            $event->setResult(true);
+            return;
         }
-        $config = $this->getConfig();
 
+        $config = $this->getConfig();
         $User = TableRegistry::getTableLocator()->get($config['userModel']);
         $userPk = $User->getPrimaryKey();
 
         $user = Configure::read('Trackable.Auth.User');
-        if (!$user && session_status() === \PHP_SESSION_ACTIVE) {
+        if (!$user && session_status() === PHP_SESSION_ACTIVE) {
             $user = Hash::get($_SESSION, 'Auth.User');
         }
 
-        if ($user && array_key_exists($userPk, $user)) {
+        $userId = null;
+        if ($user && is_array($user) && array_key_exists($userPk, $user)) {
             $userId = $user[$userPk];
         }
 
-        if (empty($user) || empty($userId)) {
-            return true;
+        if (!$userId) {
+            $event->setResult(true);
+            return;
         }
 
         $createdByField = $config['fields']['created_by'];
         $modifiedByField = $config['fields']['modified_by'];
 
-        $entity = $event->getData('entity');
-        if (empty($entity->{$createdByField})) {
-            if ($entity->isNew()) {
-                $entity->{$createdByField} = $user[$userPk];
-            }
+        if ($entity->isNew() && empty($entity->get($createdByField))) {
+            $entity->set($createdByField, $userId);
         }
-        $entity->{$modifiedByField} = $userId;
+        $entity->set($modifiedByField, $userId);
 
-        return true;
+        $event->setResult(true);
     }
 }

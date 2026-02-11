@@ -104,11 +104,8 @@ $this->Html->meta([
                 <p class="login-box-msg">
                     <?= __d('yab_cms_ff', 'Welcome to {yabCmsFf}', ['yabCmsFf' => 'Yet another boring CMS for FREE']); ?> - v<?= Configure::version(); ?>
                 </p>
-
                 <?php if ($session->check('Auth.User.blocked')): ?>
-
                     <?php if ($session->read('Auth.User.blocked') == 1): ?>
-
                         <div class="alert alert-danger" role="alert">
                             <h4 class="alert-heading"><?= __d('yab_cms_ff', 'Oops, unfortunately you are blocked!'); ?></h4>
                             <p><?= __d('yab_cms_ff', 'This can have various causes and does not mean anything in the first step.'); ?></p>
@@ -117,11 +114,8 @@ $this->Html->meta([
                                 <?= __d('yab_cms_ff', 'Please write us an email with the request for verification.'); ?>
                             </p>
                         </div>
-
                     <?php endif; ?>
-
                 <?php else: ?>
-
                     <?php $this->Form->setTemplates([
                         'inputContainer' => '{{content}}{{help}}',
                         'inputGroupContainer' => '<div class="input-group mb-3">{{prepend}}{{content}}{{append}}</div>',
@@ -140,6 +134,7 @@ $this->Html->meta([
                         'label'         => false,
                         'required'      => true,
                         'placeholder'   => __d('yab_cms_ff', 'Username'),
+                        'class'         => 'shadow rounded',
                     ]); ?>
                     <?= $this->Form->control('password', [
                         'append'        => $this->Html->icon('lock'),
@@ -147,6 +142,7 @@ $this->Html->meta([
                         'label'         => false,
                         'required'      => true,
                         'placeholder'   => __d('yab_cms_ff', 'Password'),
+                        'class'         => 'shadow rounded',
                     ]); ?>
                     <div class="row">
                         <div class="col-12">
@@ -158,13 +154,13 @@ $this->Html->meta([
                                     'action'        => 'forgot',
                                 ],
                                 [
-                                    'class'         => 'btn btn-' . h($frontendButtonColor),
+                                    'class'         => 'shadow rounded btn btn-' . h($frontendButtonColor),
                                     'escapeTitle'   => false,
                                 ]); ?>
                             <?= $this->Form->button(
                                 __d('yab_cms_ff', 'Login'),
                                 [
-                                    'class'         => 'float-right btn btn-' . h($frontendButtonColor),
+                                    'class'         => 'float-right shadow rounded btn btn-' . h($frontendButtonColor),
                                     'escapeTitle'   => false,
                                 ]); ?>
                         </div>
@@ -175,7 +171,6 @@ $this->Html->meta([
             </div>
         </div>
     </div>
-
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery' . DS . 'jquery.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-ui' . DS . 'jquery-ui.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap' . DS . 'js' . DS . 'bootstrap.bundle.min', ['block' => 'scripts']); ?>
@@ -190,10 +185,8 @@ $this->Html->meta([
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'summernote' . DS . 'summernote-bs4.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'overlayScrollbars' . DS . 'js' . DS . 'jquery.overlayScrollbars.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'adminlte.min', ['block' => 'scripts']); ?>
-
     <?= $this->fetch('scripts'); ?>
     <?= $this->fetch('scriptBottom'); ?>
-
     <?= $this->Html->scriptBlock('$.widget.bridge(\'uibutton\', $.ui.button);'); ?>
     <?= $this->Html->scriptBlock(
         '$(function() {
@@ -226,5 +219,5 @@ $this->Html->meta([
                     $(element).removeClass(\'is-invalid\');
                 }
             });
-        });'); ?>
+        });', ['block' => 'scriptBottom']); ?>
 </body>

@@ -28,16 +28,64 @@ use Cake\Core\Configure;
 // Get session object
 $session = $this->getRequest()->getSession();
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 $backendButtonColor = 'light';
 if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
+endif;
+
+$backendBoxColor = 'secondary';
+if (Configure::check('YabCmsFf.settings.backendBoxColor')):
+    $backendBoxColor = Configure::read('YabCmsFf.settings.backendBoxColor');
 endif;
 
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
     . ' :: '
     . ucfirst($this->getRequest()->getParam('action'))
-); ?>
+);
+$this->Html->meta('robots', 'noindex, nofollow', ['block' => true]);
+$this->Html->meta('author', 'Yet another boring CMS for FREE', ['block' => true]);
+$this->Html->meta('description', __d('yab_cms_ff', 'Reset'), ['block' => true]);
+
+$this->Html->meta([
+    'property'  => 'og:title',
+    'content'   => __d('yab_cms_ff', 'Reset'),
+    'block'     => 'meta',
+]);
+$this->Html->meta([
+    'property'  => 'og:description',
+    'content'   => __d('yab_cms_ff', 'Reset'),
+    'block'     => 'meta',
+]);
+$this->Html->meta([
+    'property'  => 'og:url',
+    'content'   => $this->Url->build([
+        'plugin'        => 'YabCmsFf',
+        'controller'    => 'Users',
+        'action'        => 'reset',
+    ], ['fullBase' => true]),
+    'block' => 'meta',
+]);
+$this->Html->meta([
+    'property'  => 'og:locale',
+    'content'   => $session->read('Locale.code'),
+    'block'     => 'meta',
+]);
+$this->Html->meta([
+    'property'  => 'og:type',
+    'content'   => 'website',
+    'block'     => 'meta',
+]);
+$this->Html->meta([
+    'property'  => 'og:site_name',
+    'content'   => 'Yet another boring CMS for FREE',
+    'block'     => 'meta',
+]); ?>
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="card">
@@ -78,6 +126,7 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
                     'placeholder'   => __d('yab_cms_ff', 'Password'),
                     'minlength'     => 8,
                     'maxlength'     => 249,
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <?= $this->Form->control('verify_password', [
                     'append'        => $this->Html->icon('lock'),
@@ -87,6 +136,7 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
                     'placeholder'   => __d('yab_cms_ff', 'Verify password'),
                     'minlength'     => 8,
                     'maxlength'     => 249,
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <?= $this->Form->control('captcha_result', [
                     'append'        => $this->Html->icon('plus-square'),
@@ -100,6 +150,7 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
                         . ' ' . '('
                         . __d('yab_cms_ff', 'Please calculate this addition')
                         . ')',
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <div class="row">
                     <div class="col-12">
@@ -107,13 +158,13 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
                             __d('yab_cms_ff', 'Home'),
                             '/',
                             [
-                                'class'         => 'btn btn-' . h($backendButtonColor),
+                                'class'         => 'shadow rounded btn btn-' . h($backendButtonColor),
                                 'escapeTitle'   => false,
                             ]); ?>
                         <?= $this->Form->button(
                             __d('yab_cms_ff', 'Reset'),
                             [
-                                'class'         => 'btn btn-' . h($backendButtonColor) . ' float-right',
+                                'class'         => 'float-right shadow rounded btn btn-' . h($backendButtonColor) . ' float-right',
                                 'escapeTitle'   => false,
                             ]); ?>
                     </div>
@@ -125,9 +176,6 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
 
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery' . DS . 'jquery.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-ui' . DS . 'jquery-ui.min', ['block' => 'scripts']); ?>
-
-    <?= $this->Html->scriptBlock("$.widget.bridge('uibutton', $.ui.button)", ['block' => 'scripts']); ?>
-
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap' . DS . 'js' . DS . 'bootstrap.bundle.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-validation' . DS . 'jquery.validate.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-validation' . DS . 'additional-methods.min', ['block' => 'scripts']); ?>
@@ -140,33 +188,35 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'summernote' . DS . 'summernote-bs4.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'overlayScrollbars' . DS . 'js' . DS . 'jquery.overlayScrollbars.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'adminlte.min', ['block' => 'scripts']); ?>
-
+    <?= $this->fetch('scripts'); ?>
+    <?= $this->fetch('scriptBottom'); ?>
+    <?= $this->Html->scriptBlock('$.widget.bridge(\'uibutton\', $.ui.button);'); ?>
     <?= $this->Html->scriptBlock(
         '$(function() {
-            $(".form-login").validate({
+            $(\'.form-login\').validate({
                 rules: {
                     password: { required: true },
                     verify_password: { required: true }
                 },
                 messages: {
-                    password: { required: "Please enter a password" },
-                    verify_password: { required: "Please verify the password" }
+                    password: {
+                        required: \'' . __d('yab_cms_ff', 'Please enter a valid password') . '\'
+                    },
+                    verify_password: {
+                        required: \'' . __d('yab_cms_ff', 'Please verify the valid password') . '\'
+                    }
                 },
-                errorElement: "span",
+                errorElement: \'span\',
                 errorPlacement: function (error, element) {
-                    error.addClass("invalid-feedback");
-                    element.closest(".form-group").append(error);
+                    error.addClass(\'invalid-feedback\');
+                    element.closest(\'.form-group\').append(error);
                 },
                 highlight: function (element, errorClass, validClass) {
-                    $(element).addClass("is-invalid");
+                    $(element).addClass(\'is-invalid\');
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass("is-invalid");
+                    $(element).removeClass(\'is-invalid\');
                 }
             });
-        });',
-        ['block' => 'scriptBottom']); ?>
-
-    <?= $this->fetch('scripts'); ?>
-    <?= $this->fetch('scriptBottom'); ?>
+        });', ['block' => 'scriptBottom']); ?>
 </body>

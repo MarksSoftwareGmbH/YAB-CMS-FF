@@ -39,10 +39,13 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     ['title' => __d('yab_cms_ff', 'Dashboard')]
-]); ?>
-
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
 
     <div class="col-lg-3 col-6">

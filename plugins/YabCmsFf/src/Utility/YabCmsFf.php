@@ -32,7 +32,6 @@ use Cake\Event\Event;
 use Cake\Event\EventManager;
 use Cake\Utility\Hash;
 use Cake\Http\ServerRequest;
-use Cake\Utility\Inflector;
 
 class YabCmsFf
 {
@@ -119,7 +118,7 @@ class YabCmsFf
      * @param string|null $option
      * @return array|mixed|void
      */
-    public static function options($configKey, object $object, string $option = null)
+    public static function options($configKey, object $object, ?string $option = null)
     {
         if (is_string($object)) {
             $objectName = $object;
@@ -168,7 +167,7 @@ class YabCmsFf
      *
      * @return \Cake\Event\EventInterface
      */
-    public static function dispatchEvent(string $name, object $subject = null, array $data = null)
+    public static function dispatchEvent(string $name, ?object $subject = null, ?array $data = [])
     {
         $event = new Event($name, $subject, $data);
         if ($subject) {

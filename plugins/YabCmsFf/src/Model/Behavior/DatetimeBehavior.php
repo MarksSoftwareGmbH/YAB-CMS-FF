@@ -47,11 +47,21 @@ class DatetimeBehavior extends Behavior
     public function beforeMarshal(EventInterface $event, ArrayObject $data, ArrayObject $options)
     {
         $attributes = [
+            'activation_date',
+            'approval_date',
+            'completed_date',
+            'due_date',
             'entry_date',
+            'estimated_start',
+            'estimated_end',
             'promote_start',
             'promote_end',
             'promote_new_start',
             'promote_new_end',
+            'shared_expiry',
+            'topic_add_date',
+            'topic_due_date',
+            'topic_solved_date',
         ];
 
         foreach ($attributes as $attribute) {

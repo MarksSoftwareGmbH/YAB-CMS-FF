@@ -34,7 +34,11 @@ $articleType = !empty($article->article_type->title)? $article->article_type->ti
 $this->assign('title', $articleType . ':' . ' ' . $article->global_title);
 
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Yet another boring CMS for FREE'),
         'url' => [
@@ -53,7 +57,7 @@ $this->Breadcrumbs->add([
         ],
     ],
     ['title' => $article->global_title],
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <?= $this->Html->meta('author', isset($article->user->name)? $article->user->name: 'Yet another boring CMS for FREE', ['block' => true]); ?>
 <?= $this->Html->meta('description', isset($article->meta_description)? $article->meta_description: '', ['block' => true]); ?>
 <?= $this->Html->meta('generator', 'Yet another boring CMS for FREE', ['block' => true]); ?>

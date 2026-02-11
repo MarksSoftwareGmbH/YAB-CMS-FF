@@ -32,6 +32,41 @@ var Default = function() {
             function(e) {
                 $('.table-data tr:has(td)').removeClass('blur');
             });
+
+            $('[data-toggle="tooltip"]').tooltip();
+            function hideAllActionsLinks() {
+                $("#slideActionsTable tbody tr").each(function() {
+                    $(this).removeClass("active");
+                });
+                $(".actions-links").each(function() {
+                    $(this).removeClass("active");
+                });
+            }
+            function showActionsLinks($row) {
+                hideAllActionsLinks();
+                $row.addClass("active");
+                $row.find(".actions-links").addClass("active");
+            }
+            $("#slideActionsTable tbody").on("click mouseover", "tr", function(e) {
+                e.stopPropagation();
+                const $row = $(this);
+                if (e.type === "click" && $row.hasClass("active")) {
+                    hideAllActionsLinks();
+                    return;
+                }
+                showActionsLinks($row);
+            });
+            $(".actions-links a").on("click", function(e) {
+                e.stopPropagation();
+            });
+            $(document).on("click", function(e) {
+                if (!$(e.target).closest("#slideActionsTable tbody tr").length) {
+                    hideAllActionsLinks();
+                }
+            });
+            $("#slideActionsTable").on("mouseleave", function() {
+                hideAllActionsLinks();
+            });
         }
     };
 }();

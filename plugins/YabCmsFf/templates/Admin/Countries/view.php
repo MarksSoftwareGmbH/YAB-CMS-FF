@@ -33,6 +33,11 @@ if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
 endif;
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
     . ' :: '
@@ -41,7 +46,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . $country->name_id
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -60,8 +69,7 @@ $this->Breadcrumbs->add([
     ],
     ['title' => __d('yab_cms_ff', 'View')],
     ['title' => $country->name_id]
-]); ?>
-
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -107,6 +115,8 @@ $this->Breadcrumbs->add([
                 <dl class="row">
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Id'); ?></dt>
                     <dd class="col-sm-9"><?= h($country->id); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'UUID'); ?></dt>
+                    <dd class="col-sm-9"><?= empty($country->uuid_id)? '-': h($country->uuid_id); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Foreign key'); ?></dt>
                     <dd class="col-sm-9"><?= empty($country->foreign_key)? '-': h($country->foreign_key); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Name'); ?></dt>
@@ -125,8 +135,12 @@ $this->Breadcrumbs->add([
                     <dd class="col-sm-9"><?= $this->YabCmsFf->status(h($country->status)); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created'); ?></dt>
                     <dd class="col-sm-9"><?= empty($country->created)? '-': h($country->created->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Created by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($country->created_by)]: h($country->created_by); ?></dd>
                     <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified'); ?></dt>
                     <dd class="col-sm-9"><?= empty($country->modified)? '-': h($country->modified->format('d.m.Y H:i:s')); ?></dd>
+                    <dt class="col-sm-3"><?= __d('yab_cms_ff', 'Modified by'); ?></dt>
+                    <dd class="col-sm-9"><?= !empty($users)? $users[h($country->modified_by)]: h($country->modified_by); ?></dd>
                 </dl>
                 <hr/>
                 <dl>

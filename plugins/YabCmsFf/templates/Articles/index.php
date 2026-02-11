@@ -34,7 +34,11 @@ $articleType = !empty($articleType)? Inflector::pluralize(ucfirst($articleType))
 $this->assign('title', $articleType);
 
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Yet another boring CMS for FREE'),
         'url' => [
@@ -44,7 +48,7 @@ $this->Breadcrumbs->add([
         ],
     ],
     ['title' => $articleType]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -69,9 +73,9 @@ $this->Breadcrumbs->add([
                             <thead>
                             <tr>
                                 <th style="width: 5%">#</th>
-                                <th style="width: 80%"><?= __d('yab_cms_ff', 'Title'); ?></th>
-                                <th style="width: 10%"><?= __d('yab_cms_ff', 'Created'); ?></th>
-                                <th style="width: 5%"><?= __d('yab_cms_ff', 'Status'); ?></th>
+                                <th style="width: 80%"><?= __d('yab_cms_ff', 'Title'); ?></strong></small></th>
+                                <th style="width: 10%"><?= __d('yab_cms_ff', 'Created'); ?></strong></small></th>
+                                <th style="width: 5%"><?= __d('yab_cms_ff', 'Status'); ?></strong></small></th>
                             </tr>
                             </thead>
                             <tbody>

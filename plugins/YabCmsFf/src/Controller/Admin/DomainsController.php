@@ -29,6 +29,7 @@ namespace YabCmsFf\Controller\Admin;
 use Cake\Event\EventInterface;
 use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
+use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -107,7 +108,7 @@ class DomainsController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $domain = $this->Domains->get($id, contain: [
             'Locales' => function ($q) {
@@ -115,9 +116,17 @@ class DomainsController extends AppController
             }
         ]);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.Domains.beforeViewRender', $this, ['Domain' => $domain]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('domain', $domain);
+        YabCmsFf::dispatchEvent('Controller.Admin.Domains.beforeViewRender', $this, [
+            'Domain'    => $domain,
+            'Users'     => $users,
+        ]);
+
+        $this->set(compact('domain', 'users'));
     }
 
     /**
@@ -170,7 +179,7 @@ class DomainsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $domain = $this->Domains->get($id, contain: [
             'Locales' => function ($q) {
@@ -217,7 +226,7 @@ class DomainsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $domain = $this->Domains->get($id);

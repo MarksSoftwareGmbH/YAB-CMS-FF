@@ -33,13 +33,22 @@ if (Configure::check('YabCmsFf.settings.backendButtonColor')):
     $backendButtonColor = Configure::read('YabCmsFf.settings.backendButtonColor');
 endif;
 
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
+
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
     . ' :: '
     . ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -49,7 +58,7 @@ $this->Breadcrumbs->add([
         ]
     ],
     ['title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -184,14 +193,14 @@ $this->Breadcrumbs->add([
             </div>
 
             <div class="card-body table-responsive">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-bordered table-hover text-nowrap" id="slideActionsTable">
                     <thead>
                     <tr>
-                        <th><?= $this->Paginator->sort('scheme', __d('yab_cms_ff', 'Scheme')); ?></th>
-                        <th><?= $this->Paginator->sort('url', __d('yab_cms_ff', 'Url')); ?></th>
-                        <th><?= $this->Paginator->sort('name', __d('yab_cms_ff', 'Name')); ?></th>
-                        <th><?= $this->Paginator->sort('theme', __d('yab_cms_ff', 'Theme')); ?></th>
-                        <th class="actions"><?= __d('yab_cms_ff', 'Actions'); ?></th>
+                        <th><small><strong><?= $this->Paginator->sort('scheme', __d('yab_cms_ff', 'Scheme')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('url', __d('yab_cms_ff', 'Url')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('name', __d('yab_cms_ff', 'Name')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('theme', __d('yab_cms_ff', 'Theme')); ?></strong></small></th>
+                        <th class="actions"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -202,6 +211,7 @@ $this->Breadcrumbs->add([
                             <td><?= $domain->name; ?></td>
                             <td><?= h($domain->theme); ?></td>
                             <td class="actions">
+                                <div class="actions-links" style="display: block;">
                                 <?= $this->Html->link(
                                     $this->Html->icon('eye'),
                                     [
@@ -246,6 +256,7 @@ $this->Breadcrumbs->add([
                                         'data-toggle'   => 'tooltip',
                                         'escapeTitle'   => false,
                                     ]); ?>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

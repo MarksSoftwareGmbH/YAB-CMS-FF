@@ -123,6 +123,7 @@ $this->Html->meta([
                     'label'         => false,
                     'required'      => true,
                     'placeholder'   => __d('yab_cms_ff', 'Username'),
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <?= $this->Form->control('email', [
                     'append'        => $this->Html->icon('envelope'),
@@ -130,6 +131,7 @@ $this->Html->meta([
                     'label'         => false,
                     'required'      => true,
                     'placeholder'   => __d('yab_cms_ff', 'Email'),
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <?= $this->Form->control('verify_email', [
                     'append'        => $this->Html->icon('envelope'),
@@ -137,6 +139,7 @@ $this->Html->meta([
                     'label'         => false,
                     'required'      => true,
                     'placeholder'   => __d('yab_cms_ff', 'Verify email'),
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <?= $this->Form->control('captcha_result', [
                     'append'        => $this->Html->icon('plus-square'),
@@ -150,6 +153,7 @@ $this->Html->meta([
                         . ' ' . '('
                         . __d('yab_cms_ff', 'Please calculate this addition')
                         . ')',
+                    'class'         => 'shadow rounded',
                 ]); ?>
                 <div class="row">
                     <div class="col-12">
@@ -161,13 +165,13 @@ $this->Html->meta([
                                 'action'        => 'login',
                             ],
                             [
-                                'class'         => 'btn btn-' . h($frontendButtonColor),
+                                'class'         => 'shadow rounded btn btn-' . h($frontendButtonColor),
                                 'escapeTitle'   => false,
                             ]); ?>
                         <?= $this->Form->button(
                             __d('yab_cms_ff', 'Forgot'),
                             [
-                                'class'         => 'float-right btn btn-' . h($frontendButtonColor),
+                                'class'         => 'float-right shadow rounded btn btn-' . h($frontendButtonColor),
                                 'escapeTitle'   => false,
                             ]); ?>
                     </div>
@@ -176,7 +180,6 @@ $this->Html->meta([
             </div>
         </div>
     </div>
-
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery' . DS . 'jquery.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-ui' . DS . 'jquery-ui.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap' . DS . 'js' . DS . 'bootstrap.bundle.min', ['block' => 'scripts']); ?>
@@ -191,10 +194,8 @@ $this->Html->meta([
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'summernote' . DS . 'summernote-bs4.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'overlayScrollbars' . DS . 'js' . DS . 'jquery.overlayScrollbars.min', ['block' => 'scripts']); ?>
     <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'adminlte.min', ['block' => 'scripts']); ?>
-
     <?= $this->fetch('scripts'); ?>
     <?= $this->fetch('scriptBottom'); ?>
-
     <?= $this->Html->scriptBlock('$.widget.bridge(\'uibutton\', $.ui.button);'); ?>
     <?= $this->Html->scriptBlock(
         '$(function() {
@@ -233,5 +234,5 @@ $this->Html->meta([
                     $(element).removeClass(\'is-invalid\');
                 }
             });
-        });'); ?>
+        });', ['block' => 'scriptBottom']); ?>
 </body>

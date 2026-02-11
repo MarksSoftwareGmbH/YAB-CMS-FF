@@ -39,7 +39,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -49,7 +53,7 @@ $this->Breadcrumbs->add([
         ]
     ],
     ['title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -170,15 +174,15 @@ $this->Breadcrumbs->add([
             </div>
 
             <div class="card-body table-responsive">
-                <table class="table table-hover table-data">
+                <table class="table table-bordered table-hover text-nowrap" id="slideActionsTable">
                     <thead>
                     <tr>
-                        <th><?= $this->Paginator->sort('Users.name', __d('yab_cms_ff', 'User')); ?></th>
-                        <th><?= $this->Paginator->sort('first_name', __d('yab_cms_ff', 'First name')); ?></th>
-                        <th><?= $this->Paginator->sort('middle_name', __d('yab_cms_ff', 'Middle name')); ?></th>
-                        <th><?= $this->Paginator->sort('last_name', __d('yab_cms_ff', 'Last name')); ?></th>
-                        <th><?= $this->Paginator->sort('status', __d('yab_cms_ff', 'Status')); ?></th>
-                        <th class="actions"><?= __d('yab_cms_ff', 'Actions'); ?></th>
+                        <th><small><strong><?= $this->Paginator->sort('Users.name', __d('yab_cms_ff', 'User')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('first_name', __d('yab_cms_ff', 'First name')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('middle_name', __d('yab_cms_ff', 'Middle name')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('last_name', __d('yab_cms_ff', 'Last name')); ?></strong></small></th>
+                        <th><small><strong><?= $this->Paginator->sort('status', __d('yab_cms_ff', 'Status')); ?></strong></small></th>
+                        <th class="actions"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -190,6 +194,7 @@ $this->Breadcrumbs->add([
                             <td><?= h($userProfile->last_name); ?></td>
                             <td><?= $this->YabCmsFf->status(h($userProfile->status)); ?></td>
                             <td class="actions">
+                                <div class="actions-links" style="display: block;">
                                 <?= $this->Html->link(
                                     $this->Html->icon('eye'),
                                     [
@@ -234,6 +239,7 @@ $this->Breadcrumbs->add([
                                         'data-toggle'   => 'tooltip',
                                         'escapeTitle'   => false,
                                     ]); ?>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

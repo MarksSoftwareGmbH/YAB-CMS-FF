@@ -148,14 +148,13 @@ class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProvider
             'fields'    => $fields,
             'loginUrl'  => '/api/oauth/token',
         ]);
-
-        $service->loadIdentifier('Authentication.JwtSubject', [
+        $service->identifiers()->load('Authentication.JwtSubject', [
             'resolver' => [
                 'className' => 'Authentication.Orm',
                 'userModel' => 'YabCmsFf.Users',
             ],
         ]);
-        $service->loadIdentifier('Authentication.Password', [
+        $service->identifiers()->load('Authentication.Password', [
             'returnPayload' => false,
             'fields'        => $fields,
             'resolver' => [

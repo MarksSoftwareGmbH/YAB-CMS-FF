@@ -28,6 +28,7 @@ namespace YabCmsFf\Controller\Admin;
 
 use Cake\Event\EventInterface;
 use Cake\Http\CallbackStream;
+use Cake\ORM\TableRegistry;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use YabCmsFf\Controller\Admin\AppController;
@@ -114,7 +115,7 @@ class ArticleArticleTypeAttributeValuesController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $articleArticleTypeAttributeValue = $this->ArticleArticleTypeAttributeValues->get($id, contain: [
             'ArticleTypeAttributes' => function ($q) {
@@ -123,11 +124,17 @@ class ArticleArticleTypeAttributeValuesController extends AppController
             'Articles.ArticleArticleTypeAttributeValues.ArticleTypeAttributes',
         ]);
 
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
+
         YabCmsFf::dispatchEvent('Controller.Admin.ArticleArticleTypeAttributeValues.beforeViewRender', $this, [
-            'ArticleArticleTypeAttributeValue' => $articleArticleTypeAttributeValue,
+            'ArticleArticleTypeAttributeValue'  => $articleArticleTypeAttributeValue,
+            'Users'                             => $users,
         ]);
 
-        $this->set('articleArticleTypeAttributeValue', $articleArticleTypeAttributeValue);
+        $this->set(compact('articleArticleTypeAttributeValue', 'users'));
     }
 
     /**
@@ -196,7 +203,7 @@ class ArticleArticleTypeAttributeValuesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $articleArticleTypeAttributeValue = $this->ArticleArticleTypeAttributeValues->get($id);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -257,7 +264,7 @@ class ArticleArticleTypeAttributeValuesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $articleArticleTypeAttributeValue = $this->ArticleArticleTypeAttributeValues->get($id);

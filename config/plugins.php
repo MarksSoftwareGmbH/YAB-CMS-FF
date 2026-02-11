@@ -1,27 +1,32 @@
 <?php
-/* 
- * MIT License
+/**
+ * Plugin configuration.
  *
- * Copyright (c) 2018-present, Marks Software GmbH (https://www.marks-software.de/)
+ * In this file, you configure which plugins are loaded in the different states your app can be.
+ * It's loaded via the `parent::bootstrap();` call inside your `Application::bootstrap()` method.
+ * For more information see https://book.cakephp.org/5/en/plugins.html#loading-plugins-via-configuration-array
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://cakephp.org CakePHP(tm) Project
+ * @since         5.0.0
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+
+ /*
+  * List of plugins to load in the form `PluginName` => `[configuration options]`.
+  *
+  * Available options:
+  * - onlyDebug: Load the plugin only in debug mode. Default false.
+  * - onlyCli: Load the plugin only in CLI mode. Default false.
+  * - optional: Do not throw an exception if the plugin is not found. Default false.
+  */
 
 return [
     'DebugKit' => [

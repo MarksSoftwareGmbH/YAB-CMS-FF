@@ -23,6 +23,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+use Cake\Core\Configure;
+
+$backendBoxColor = 'secondary';
+if (Configure::check('YabCmsFf.settings.backendBoxColor')):
+    $backendBoxColor = Configure::read('YabCmsFf.settings.backendBoxColor');
+endif;
 
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
@@ -30,7 +36,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Dashboard'),
         'url' => [
@@ -48,7 +58,7 @@ $this->Breadcrumbs->add([
         ]
     ],
     ['title' => ucfirst($this->YabCmsFf->readCamel($this->getRequest()->getParam('action')))]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 
 <?= $this->Form->create(null, [
     'url' => [
@@ -57,11 +67,11 @@ $this->Breadcrumbs->add([
         'action'        => 'import',
     ],
     'type'  => 'file',
-    'class' => 'form-general',
+    'class' => 'form-general form-menu',
 ]); ?>
 <div class="row">
     <section class="col-lg-8 connectedSortable">
-        <div class="card">
+        <div class="card card-<?= h($backendBoxColor); ?>">
             <div class="card-header">
                 <h3 class="card-title">
                     <?= $this->Html->icon('upload'); ?> <?= __d('yab_cms_ff', 'Import'); ?>
@@ -70,20 +80,34 @@ $this->Breadcrumbs->add([
             <div class="card-body">
                 <?= $this->Form->control('delimiter', [
                     'type'      => 'text',
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Delimiter') . '*',
+                        'class' => 'text-danger',
+                    ],
                     'default'   => ';',
-                    'readonly',
+                    'class'     => 'border-danger',
+                    'readonly'  => true,
                     'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('enclosure', [
                     'type'      => 'text',
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Enclosure') . '*',
+                        'class' => 'text-danger',
+                    ],
                     'default'   => '"',
-                    'readonly',
+                    'class'     => 'border-danger',
+                    'readonly'  => true,
                     'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('file', [
                     'type'      => 'file',
                     'accept'    => 'text/comma-separated-values,text/csv,application/csv',
-                    'label'     => __d('yab_cms_ff', 'Select file'),
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Select file') . '*',
+                        'class' => 'text-danger',
+                    ],
+                    'class'     => 'border-danger',
                     'required'  => true,
                     'help'      => __d('yab_cms_ff', 'Please use a valid csv file.')
                 ]); ?>
@@ -91,7 +115,7 @@ $this->Breadcrumbs->add([
         </div>
     </section>
     <section class="col-lg-4 connectedSortable">
-        <div class="card">
+        <div class="card card-<?= h($backendBoxColor); ?>">
             <div class="card-header">
                 <h3 class="card-title">
                     <?= $this->Html->icon('cog'); ?> <?= __d('yab_cms_ff', 'Actions'); ?>
@@ -105,7 +129,7 @@ $this->Breadcrumbs->add([
                     </div>
                 </div>
                 <div class="form-group">
-                    <?= $this->Form->button(__d('yab_cms_ff', 'Import'), ['class' => 'btn btn-success']); ?>
+                    <?= $this->Form->button(__d('yab_cms_ff', 'Import'), ['class' => 'btn btn-success shadow rounded']); ?>
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
@@ -114,7 +138,7 @@ $this->Breadcrumbs->add([
                             'action'        => 'index',
                         ],
                         [
-                            'class'     => 'btn btn-danger float-right',
+                            'class'         => 'btn btn-danger shadow rounded float-right',
                             'escapeTitle'   => false,
                         ]); ?>
                 </div>
@@ -125,13 +149,9 @@ $this->Breadcrumbs->add([
 <?= $this->Form->end(); ?>
 
 <?= $this->element('please_wait'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'menus' . DS . 'form',
-    ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {
-        Menus.init();
-        $(\'.form-general\').validate({
+        $(\'.form-menu\').validate({
             rules: {
                 delimiter: {
                     required: true

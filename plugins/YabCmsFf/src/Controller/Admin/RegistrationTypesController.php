@@ -30,6 +30,7 @@ use Cake\Datasource\ConnectionManager;
 use Cake\Event\EventInterface;
 use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
+use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -110,13 +111,21 @@ class RegistrationTypesController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $registrationType = $this->RegistrationTypes->get($id, contain: ['Registrations']);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.RegistrationTypes.beforeViewRender', $this, ['RegistrationType' => $registrationType]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('registrationType', $registrationType);
+        YabCmsFf::dispatchEvent('Controller.Admin.RegistrationTypes.beforeViewRender', $this, [
+            'RegistrationType'  => $registrationType,
+            'Users'             => $users,
+        ]);
+
+        $this->set(compact('registrationType', 'users'));
     }
 
     /**
@@ -161,7 +170,7 @@ class RegistrationTypesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $registrationType = $this->RegistrationTypes->get($id);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -198,7 +207,7 @@ class RegistrationTypesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function copy(int $id = null)
+    public function copy(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post']);
 
@@ -229,7 +238,7 @@ class RegistrationTypesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $registrationType = $this->RegistrationTypes->get($id);

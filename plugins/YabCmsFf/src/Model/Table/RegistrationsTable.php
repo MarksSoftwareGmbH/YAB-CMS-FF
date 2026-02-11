@@ -87,7 +87,7 @@ class RegistrationsTable extends Table
         ]);
 
         // Setup search filter using search manager
-        $this->searchManager()
+        $this->getBehavior('Search')->searchManager()
             ->value('registration_type', [
                 'fields' => ['RegistrationTypes.alias']
             ])

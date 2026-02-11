@@ -23,6 +23,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+use Cake\Core\Configure;
+use Cake\Utility\Text;
+
+$backendBoxColor = 'secondary';
+if (Configure::check('YabCmsFf.settings.backendBoxColor')):
+    $backendBoxColor = Configure::read('YabCmsFf.settings.backendBoxColor');
+endif;
+
+$backendLinkTextColor = 'navy';
+if (Configure::check('YabCmsFf.settings.backendLinkTextColor')):
+    $backendLinkTextColor = Configure::read('YabCmsFf.settings.backendLinkTextColor');
+endif;
 
 // Title
 $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller'))
@@ -32,7 +44,11 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . $this->Text->truncate(h($articleArticleTypeAttributeValue->value), 35, ['ellipsis' => '...', 'exact' => false])
 );
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => $this->YabCmsFf->readCamel($this->getRequest()->getParam('controller')),
         'url' => [
@@ -41,31 +57,58 @@ $this->Breadcrumbs->add([
             'action'        => 'index',
         ]
     ],
-    ['title' => __d('yab_cms_ff', 'Edit Type Attribute Value')],
+    ['title' => __d('yab_cms_ff', 'Edit type attribute value')],
     ['title' => $this->Text->truncate(h($articleArticleTypeAttributeValue->value), 35, ['ellipsis' => '...', 'exact' => false])]
-]); ?>
-
+], ['class' => 'breadcrumb-item']); ?>
 <?= $this->Form->create($articleArticleTypeAttributeValue, ['class' => 'form-general']); ?>
 <div class="row">
     <section class="col-lg-8 connectedSortable">
-        <div class="card">
+        <div class="card card-<?= h($backendBoxColor); ?>">
             <div class="card-header">
                 <h3 class="card-title">
-                    <?= $this->Html->icon('edit'); ?> <?= __d('yab_cms_ff', 'Edit Type Attribute Value'); ?>
+                    <?= $this->Html->icon('edit'); ?> <?= __d('yab_cms_ff', 'Edit type attribute value'); ?>
                 </h3>
             </div>
             <div class="card-body">
                 <?= $this->Form->control('article_id', [
+                    'type'      => 'select',
+                    'label'     => [
+                        'text'  => __d('yab_cms_ff', 'Article') . '*',
+                        'class' => 'text-danger',
+                    ],
                     'options'   => !empty($articles)? $articles: [],
                     'class'     => 'select2',
                     'style'     => 'width: 100%',
-                    'empty'     => false,
+                    'empty'     => true,
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->control('article_type_attribute_id', [
+                    'type'  => 'select',
+                    'label' => [
+                        'text' => __d('yab_cms_ff', 'Article type attribute') . '*'
+                            . ' '
+                            . '('
+                            . $this->Html->link(
+                                __d('yab_cms_ff', 'Article type attribute'),
+                                [
+                                    'plugin'        => 'YabCmsFf',
+                                    'controller'    => 'ArticleTypeAttributes',
+                                    'action'        => 'add',
+                                ],
+                                [
+                                    'target'        => '_blank',
+                                    'class'         => 'text-' . h($backendLinkTextColor),
+                                    'escapeTitle'   => false,
+                                ])
+                            . ')',
+                        'class'     => 'text-danger',
+                        'escape'    => false,
+                    ],
                     'options'   => !empty($articleTypeAttributes)? $articleTypeAttributes: [],
                     'class'     => 'select2',
                     'style'     => 'width: 100%',
-                    'empty'     => false,
+                    'empty'     => true,
+                    'required'  => true,
                 ]); ?>
                 <?= $this->Form->input('value', [
                     'type'      => 'textarea',
@@ -75,7 +118,7 @@ $this->Breadcrumbs->add([
         </div>
     </section>
     <section class="col-lg-4 connectedSortable">
-        <div class="card">
+        <div class="card card-<?= h($backendBoxColor); ?>">
             <div class="card-header">
                 <h3 class="card-title">
                     <?= $this->Html->icon('cog'); ?> <?= __d('yab_cms_ff', 'Actions'); ?>
@@ -83,7 +126,7 @@ $this->Breadcrumbs->add([
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <?= $this->Form->button(__d('yab_cms_ff', 'Submit'), ['class' => 'btn btn-success']); ?>
+                    <?= $this->Form->button(__d('yab_cms_ff', 'Submit'), ['class' => 'btn btn-success shadow rounded']); ?>
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
@@ -92,7 +135,7 @@ $this->Breadcrumbs->add([
                             'action'        => 'index',
                         ],
                         [
-                            'class'         => 'btn btn-danger float-right',
+                            'class'         => 'btn btn-danger shadow rounded float-right',
                             'escapeTitle'   => false,
                         ]); ?>
                 </div>

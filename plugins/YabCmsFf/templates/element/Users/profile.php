@@ -48,7 +48,11 @@ endif;
 $this->assign('title', __d('yab_cms_ff', 'Your user profile'));
 
 // Breadcrumb
-$this->Breadcrumbs->add([
+$this->Breadcrumbs->addMany([
+    [
+        'title' => __d('yab_cms_ff', 'Go back'),
+        'url' => 'javascript:history.back()',
+    ],
     [
         'title' => __d('yab_cms_ff', 'Yet another boring CMS for FREE'),
         'url' => [
@@ -58,7 +62,7 @@ $this->Breadcrumbs->add([
         ],
     ],
     ['title' => __d('yab_cms_ff', 'Edit profile')]
-]); ?>
+], ['class' => 'breadcrumb-item']); ?>
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -73,7 +77,6 @@ $this->Breadcrumbs->add([
         </div>
     </div>
 </section>
-
 <section class="content">
     <div class="container-fluid">
         <div class="row">

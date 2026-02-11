@@ -262,7 +262,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function reset(string $username = null, string $token = null)
+    public function reset(?string $username = null, ?string $token = null)
     {
         // Get session object
         $session = $this->getRequest()->getSession();
@@ -361,7 +361,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function profile(int $id = null)
+    public function profile(?int $id = null)
     {
         // Get session object
         $session = $this->getRequest()->getSession();
@@ -420,7 +420,7 @@ class UsersController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $user = $this->Users->get($id, contain: [
             'Locales',
@@ -447,13 +447,18 @@ class UsersController extends AppController
             )
             ->toArray();
 
+        $users = $this->Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
+
         YabCmsFf::dispatchEvent('Controller.Admin.Users.beforeViewRender', $this, [
-            'User' => $user,
-            'Regions' => $regions,
+            'User'      => $user,
+            'Regions'   => $regions,
             'Countries' => $countries,
+            'Users'     => $users,
         ]);
 
-        $this->set(compact('user', 'regions', 'countries'));
+        $this->set(compact('user', 'regions', 'countries', 'users'));
     }
 
     /**
@@ -541,7 +546,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $user = $this->Users->get($id, contain: [
             'Locales',
@@ -604,7 +609,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function resetPassword(int $id = null)
+    public function resetPassword(?int $id = null)
     {
         $user = $this->Users->get($id);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -638,7 +643,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id, contain: ['Roles']);

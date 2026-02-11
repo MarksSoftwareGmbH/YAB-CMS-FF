@@ -30,7 +30,6 @@ use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Event\EventListenerInterface;
 use Cake\Utility\Hash;
-use Cake\Utility\Inflector;
 use YabCmsFf\Utility\YabCmsFf;
 use YabCmsFf\Controller\HookableComponentInterface;
 

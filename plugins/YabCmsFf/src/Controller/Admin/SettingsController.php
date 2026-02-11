@@ -29,6 +29,7 @@ namespace YabCmsFf\Controller\Admin;
 use Cake\Event\EventInterface;
 use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
+use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -127,15 +128,23 @@ class SettingsController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $setting = $this->Settings->get($id, contain: [
             'Domains' => function ($q) { return $q->orderBy(['Domains.name' => 'ASC']); }
         ]);
 
-        YabCmsFf::dispatchEvent('Controller.Admin.Settings.beforeViewRender', $this, ['Setting' => $setting]);
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
 
-        $this->set('setting', $setting);
+        YabCmsFf::dispatchEvent('Controller.Admin.Settings.beforeViewRender', $this, [
+            'Setting'   => $setting,
+            'Users'     => $users,
+        ]);
+
+        $this->set(compact('setting', 'users'));
     }
 
     /**
@@ -178,7 +187,7 @@ class SettingsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $setting = $this->Settings->get($id, contain: ['Domains']);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -213,7 +222,7 @@ class SettingsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $setting = $this->Settings->get($id);

@@ -26,8 +26,8 @@ use Cake\Routing\RouteBuilder;
 
 /*
  * This file is loaded in the context of the `Application` class.
-  * So you can use  `$this` to reference the application class instance
-  * if required.
+ * So you can use `$this` to reference the application class instance
+ * if required.
  */
 // return function (RouteBuilder $routes): void {
     /*

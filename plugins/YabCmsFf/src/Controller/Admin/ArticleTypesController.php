@@ -114,7 +114,7 @@ class ArticleTypesController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $articleType = $this->ArticleTypes->get($id, contain: [
             'ArticleTypeAttributes' => function ($q) {
@@ -122,11 +122,17 @@ class ArticleTypesController extends AppController
             }
         ]);
 
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
+
         YabCmsFf::dispatchEvent('Controller.Admin.ArticleTypes.beforeViewRender', $this, [
-            'ArticleType' => $articleType,
+            'ArticleType'   => $articleType,
+            'Users'         => $users,
         ]);
 
-        $this->set('articleType', $articleType);
+        $this->set(compact('articleType', 'users'));
     }
 
     /**
@@ -185,7 +191,7 @@ class ArticleTypesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $articleType = $this->ArticleTypes->get($id, contain: ['ArticleTypeAttributes']);
         if ($this->getRequest()->is(['patch', 'post', 'put'])) {
@@ -240,7 +246,7 @@ class ArticleTypesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $articleType = $this->ArticleTypes->get($id);

@@ -76,7 +76,7 @@ class ArticleTypeAttributeChoicesTable extends Table
         ]);
 
         // Setup search filter using search manager
-        $this->searchManager()
+        $this->getBehavior('Search')->searchManager()
             ->add('search', 'Search.Like', [
                 'before' => true,
                 'after' => true,

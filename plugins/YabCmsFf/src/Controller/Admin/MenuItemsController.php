@@ -212,7 +212,7 @@ class MenuItemsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function moveUp(int $id = null)
+    public function moveUp(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $menuItem = $this->MenuItems->get($id);
@@ -238,7 +238,7 @@ class MenuItemsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function moveDown(int $id = null)
+    public function moveDown(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'put']);
         $menuItem = $this->MenuItems->get($id);
@@ -263,7 +263,7 @@ class MenuItemsController extends AppController
      * @param int|null $id
      * @return void
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $menuItem = $this->MenuItems->get($id, contain: [
             'Menus',
@@ -274,11 +274,17 @@ class MenuItemsController extends AppController
             }
         ]);
 
+        $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
+        $users = $Users
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->toArray();
+
         YabCmsFf::dispatchEvent('Controller.Admin.MenuItems.beforeViewRender', $this, [
-            'MenuItem' => $menuItem
+            'MenuItem'  => $menuItem,
+            'Users'     => $users,
         ]);
 
-        $this->set('menuItem', $menuItem);
+        $this->set(compact('menuItem', 'users'));
     }
 
     /**
@@ -357,7 +363,7 @@ class MenuItemsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function edit(int $id = null)
+    public function edit(?int $id = null)
     {
         $menuItem = $this->MenuItems->get($id, contain: [
             'Menus',
@@ -434,7 +440,7 @@ class MenuItemsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function delete(int $id = null)
+    public function delete(?int $id = null)
     {
         $this->getRequest()->allowMethod(['post', 'delete']);
         $menuItem = $this->MenuItems->get($id);
