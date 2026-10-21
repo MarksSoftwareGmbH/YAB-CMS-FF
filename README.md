@@ -1,19 +1,46 @@
 # YAB-CMS-FF
 
+[![Packagist Version](https://img.shields.io/packagist/v/marks-software-gmbh/yab-cms-ff.svg?style=flat-square)](https://packagist.org/packages/marks-software-gmbh/yab-cms-ff)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/marks-software-gmbh/yab-cms-ff.svg?style=flat-square)](https://packagist.org/packages/marks-software-gmbh/yab-cms-ff)
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D8.2-8892BF.svg?style=flat-square)](https://www.php.net/)
+[![CakePHP Version](https://img.shields.io/badge/CakePHP-5.4-D33C43.svg?style=flat-square)](https://cakephp.org/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+
 **"Yet Another Boring" CMS – Fast Forward (YAB CMS)** is a free, open source, bootstrap content management system for PHP 8 based on CakePHP 5, CakePHP vendor plugins, the AdminLTE bootstrap admin dashboard template and released under the [MIT License](https://github.com/MarksSoftwareGmbH/YAB-CMS-FF/blob/main/LICENSE).
 
 It is powered by the [CakePHP](http://cakephp.org) 5 PHP framework.
 
 ## Requirements
   * Apache with `mod_rewrite`, intl, imagick OR nginx server
-  * PHP 8.1 or higher
+  * PHP 8.2 or higher
   * Latest MySQL or MariaDB, PostgreSQL, SQLite or SQL-Server database engines
 
 ## Installation
 
+1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
+2. Run `php composer.phar create-project --prefer-dist marks-software-gmbh/yab-cms-ff [app_name]`.
+
+If Composer is installed globally, run
+
+```bash
+composer create-project --prefer-dist marks-software-gmbh/yab-cms-ff
+```
+
+In case you want to use a custom app dir name (e.g. `/myapp/`):
+
+```bash
+composer create-project --prefer-dist marks-software-gmbh/yab-cms-ff my-yab-cms
+```
+
+Then configure your database in `config/app_local.php` or use the default Sqlite Setup and visit the site.
+
+#### Default login: Admin / superadmin (change immediately).
+
+**Important:** Change the default credentials immediately after the first login.
+
 #### Installation using GitHub [Clone](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories)
 
-The preferred way to install YAB-CMS-FF is by using HTTP
+Alternative: Installation using GitHub Clone
 
     https://github.com/MarksSoftwareGmbH/YAB-CMS-FF.git
     

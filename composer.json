@@ -1,9 +1,20 @@
 {
-    "name": "cakephp/app",
-    "description": "CakePHP skeleton app",
+    "name": "marks-software-gmbh/yab-cms-ff",
+    "description": "Yet Another Boring CMS – Fast Forward (YAB CMS). A CakePHP 5 + PHP 8 powered Bootstrap CMS with AdminLTE.",
     "license": "MIT",
     "type": "project",
-    "homepage": "https://cakephp.org",
+    "homepage": "https://github.com/MarksSoftwareGmbH/YAB-CMS-FF",
+    "authors": [
+        {
+            "name": "Marks Software GmbH - Lukas Marks",
+            "email": "info@marks-software.de",
+            "homepage": "https://www.marks-software.de",
+            "role": "Developer"
+        }
+    ],
+    "keywords": ["cms", "cakephp", "cakephp5", "bootstrap", "adminlte", "php8", "content-management", "sqlite", "eav", "rest", "api"],
+    "prefer-stable": true,
+    "minimum-stability": "stable",
     "require": {
         "php": ">=8.2",
         "ext-curl": "*",
