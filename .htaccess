@@ -15,7 +15,7 @@ SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
     # RewriteRule ^(.*)$ https://your-domain.tld/$1 [R=301,L]
 
     # PHP Info
-    # RewriteRule   ^phpinfo.php - [L]
+    RewriteRule   ^phpinfo.php - [L]
 
     # Robots
     # RewriteRule   ^robots.txt - [L]

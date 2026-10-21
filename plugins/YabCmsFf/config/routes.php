@@ -831,9 +831,6 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
         */
         $routes->prefix('Api', ['_namePrefix' => 'api:'], function (RouteBuilder $builder) {
 
-            $builder->registerMiddleware('auth', new \Authentication\Middleware\AuthenticationMiddleware($this));
-            $builder->applyMiddleware('auth');
-
             // Parse specified extensions from URLs
             $builder->setExtensions(['json', 'xml']);
 

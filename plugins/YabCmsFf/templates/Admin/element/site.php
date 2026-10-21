@@ -51,31 +51,26 @@ endif;
             <?php endif; ?>
         <?php endif; ?>
     </div>
-
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery' . DS . 'jquery.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-ui' . DS . 'jquery-ui.min', ['block' => 'scripts']); ?>
-
+    <?= $this->Html->script([
+        'YabCmsFf./adminlte/plugins/jquery/jquery.min',
+        'YabCmsFf./adminlte/plugins/jquery-ui/jquery-ui.min'
+    ], ['block' => 'scripts']); ?>
     <?= $this->Html->scriptBlock("$.widget.bridge('uibutton', $.ui.button)", ['block' => 'scripts']); ?>
-
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap' . DS . 'js' . DS . 'bootstrap.bundle.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-validation' . DS . 'jquery.validate.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-validation' . DS . 'additional-methods.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jqvmap' . DS . 'jquery.vmap.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jqvmap' . DS . 'maps' . DS . 'jquery.vmap.world', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-knob' . DS . 'jquery.knob.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'moment' . DS . 'moment.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'daterangepicker' . DS . 'daterangepicker', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'tempusdominus-bootstrap-4' . DS . 'js' . DS . 'tempusdominus-bootstrap-4.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'summernote' . DS . 'summernote-bs4.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'overlayScrollbars' . DS . 'js' . DS . 'jquery.overlayScrollbars.min', ['block' => 'scripts']); ?>
-    <?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'adminlte.min', ['block' => 'scripts']); ?>
-
+    <?= $this->Html->script([
+        'YabCmsFf./adminlte/plugins/bootstrap/js/bootstrap.bundle.min',
+        'YabCmsFf./adminlte/plugins/jquery-validation/jquery.validate.min',
+        'YabCmsFf./adminlte/plugins/jquery-validation/additional-methods.min',
+        'YabCmsFf./adminlte/plugins/jqvmap/jquery.vmap.min',
+        'YabCmsFf./adminlte/plugins/jqvmap/maps/jquery.vmap.world',
+        'YabCmsFf./adminlte/plugins/jquery-knob/jquery.knob.min',
+        'YabCmsFf./adminlte/plugins/moment/moment.min',
+        'YabCmsFf./adminlte/plugins/daterangepicker/daterangepicker',
+        'YabCmsFf./adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min',
+        'YabCmsFf./adminlte/plugins/summernote/summernote-bs4.min',
+        'YabCmsFf./adminlte/plugins/select2/js/select2.full.min',
+        'YabCmsFf./adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min',
+        'YabCmsFf./adminlte/dist/js/adminlte.min',
+    ], ['block' => 'scripts']); ?>
     <?= $this->fetch('scripts'); ?>
     <?= $this->fetch('scriptBottom'); ?>
-
 </body>
-
-
-
-
-

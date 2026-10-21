@@ -32,6 +32,7 @@ use Cake\Http\CallbackStream;
 use Cake\I18n\DateTime;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
+use Cake\Utility\Text;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use YabCmsFf\Controller\Admin\AppController;
@@ -117,7 +118,7 @@ class RegistrationsController extends AppController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -312,6 +313,8 @@ class RegistrationsController extends AppController
      */
     public function import()
     {
+        $session = $this->getRequest()->getSession();
+
         if ($this->getRequest()->is('post') || !empty($this->getRequest()->getData())) {
 
             $postData = $this->getRequest()->getData();
@@ -381,8 +384,11 @@ class RegistrationsController extends AppController
                             Hash::merge(
                                 $registration,
                                 [
-                                    'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
-                                    'modified' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                                    'uuid_id'       => Text::uuid(),
+                                    'created'       => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                                    'created_by'    => $session->read('Auth.User.id'),
+                                    'modified'      => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                                    'modified_by'   => $session->read('Auth.User.id'),
                                 ]
                             )
                         );
@@ -395,7 +401,10 @@ class RegistrationsController extends AppController
                             $existent,
                             Hash::merge(
                                 $registration,
-                                ['modified' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss')]
+                                [
+                                    'modified'      => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                                    'modified_by'   => $session->read('Auth.User.id'),
+                                ]
                             )
                         );
                         if ($this->Registrations->save($registration)) {
@@ -615,10 +624,10 @@ class RegistrationsController extends AppController
             }
         }
 
-        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+        foreach ($objSpreadsheet->getActiveSheet()->getColumnIterator() as $col) {
             $objSpreadsheet
                 ->getActiveSheet()
-                ->getColumnDimension($col)
+                ->getColumnDimension($col->getColumnIndex())
                 ->setAutoSize(true);
         }
         $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');

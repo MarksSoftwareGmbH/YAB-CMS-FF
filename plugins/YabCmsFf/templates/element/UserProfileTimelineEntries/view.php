@@ -99,7 +99,7 @@ $this->Html->meta([
 ]);
 $this->Html->meta([
     'property'  => 'og:site_name',
-    'content'   => 'Yet another boring CMS for FREE',
+    'content'   => 'Yet Another Boring CMS - Fast Forward',
     'block'     => 'meta',
 ]);
 
@@ -110,7 +110,7 @@ $this->Breadcrumbs->addMany([
         'url' => 'javascript:history.back()',
     ],
     [
-        'title' => __d('yab_cms_ff', 'Yet another boring CMS for FREE'),
+        'title' => __d('yab_cms_ff', 'Yet Another Boring CMS - Fast Forward'),
         'url' => [
             'plugin'        => 'YabCmsFf',
             'controller'    => 'Articles',
@@ -1820,13 +1820,10 @@ $this->Breadcrumbs->addMany([
     </div>
 </section>
 
-<?= $this->Html->css('YabCmsFf' . '.' . 'template' . DS . 'element' . DS . 'users' . DS . 'profile'); ?>
-
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'select2' . DS . 'css' . DS . 'select2.min'); ?>
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'yab_cms_ff.select2'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'select2' . DS . 'js' . DS . 'select2.full.min',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->css('YabCmsFf.template/element/users/profile'); ?>
+<?= $this->Html->css('YabCmsFf.admin/vendor/select2/css/select2.min'); ?>
+<?= $this->Html->css('YabCmsFf.admin/yab_cms_ff.select2'); ?>
+<?= $this->Html->script('YabCmsFf.admin/vendor/select2/js/select2.full.min', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {
         // Initialize select2

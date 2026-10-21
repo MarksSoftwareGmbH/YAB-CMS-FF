@@ -58,13 +58,9 @@ switch ($class):
         $icon = 'fa fa-info';
 endswitch;
 
-echo $this->Html->css(['YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'animate' . DS . 'animate'])
-. $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap-notify' . DS . 'bootstrap-notify.min',
-    ['block' => 'scriptBottom'])
-. $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'element' . DS . 'flash' . DS . 'default',
-    ['block' => 'scriptBottom'])
+echo $this->Html->css(['YabCmsFf.admin/vendor/animate/animate'])
+. $this->Html->script('YabCmsFf.admin/vendor/bootstrap-notify/bootstrap-notify.min', ['block' => 'scriptBottom'])
+. $this->Html->script('YabCmsFf.admin/template/element/flash/default', ['block' => 'scriptBottom'])
 . $this->Html->scriptBlock(
     '$(function() {
         FlashMessages.init(\'' . $icon . '\' ,\'' . $message . '\',\'' . $type . '\');

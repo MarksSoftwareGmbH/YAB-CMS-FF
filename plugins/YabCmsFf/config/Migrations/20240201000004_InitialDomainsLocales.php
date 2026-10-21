@@ -24,12 +24,12 @@ declare(strict_types=1);
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
 /**
  * Class InitialDomainsLocales
  */
-class InitialDomainsLocales extends AbstractMigration
+class InitialDomainsLocales extends BaseMigration
 {
     /**
      * You can specify a autoId property in the Migration class and set it to false,

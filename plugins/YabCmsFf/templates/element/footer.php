@@ -34,6 +34,6 @@ use Cake\Core\Configure;
     </strong>
     <?= __d('yab_cms_ff', 'All Rights Reserved.'); ?>
     <div class="float-right d-none d-sm-inline-block">
-        <b><?= __d('yab_cms_ff', 'Powered by {yabCmsFf}', ['yabCmsFf' => 'Yet another boring CMS for FREE']); ?></b> v<?= Configure::version(); ?>
+        <b><?= __d('yab_cms_ff', 'Powered by {yabCmsFf}', ['yabCmsFf' => 'Yet Another Boring CMS - Fast Forward']); ?></b> v<?= Configure::version(); ?>
     </div>
 </footer>

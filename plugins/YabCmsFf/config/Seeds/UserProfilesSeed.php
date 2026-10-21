@@ -26,12 +26,12 @@ declare(strict_types=1);
  */
 use Cake\I18n\DateTime;
 use Cake\Utility\Text;
-use Migrations\AbstractSeed;
+use Migrations\BaseSeed;
 
 /**
  * UserProfiles seed.
  */
-class UserProfilesSeed extends AbstractSeed
+class UserProfilesSeed extends BaseSeed
 {
     /**
      * Run Method.
@@ -66,10 +66,10 @@ class UserProfilesSeed extends AbstractSeed
                 'mobilephone' => '',
                 'fax' => '',
                 'company' => 'Marks Software GmbH',
-                'street' => 'Holunderweg',
-                'street_addition' => '20',
-                'postcode' => '29664',
-                'city' => 'Walsrode',
+                'street' => 'Brock 6',
+                'street_addition' => NULL,
+                'postcode' => '29683',
+                'city' => 'Bad Fallingbostel',
                 'region_id' => NULL,
                 'country_id' => 98,
                 'about_me' => '&lt;p&gt;Coder in Chef&lt;br&gt;&lt;/p&gt;',

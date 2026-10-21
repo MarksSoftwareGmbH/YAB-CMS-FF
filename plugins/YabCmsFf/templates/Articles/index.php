@@ -40,7 +40,7 @@ $this->Breadcrumbs->addMany([
         'url' => 'javascript:history.back()',
     ],
     [
-        'title' => __d('yab_cms_ff', 'Yet another boring CMS for FREE'),
+        'title' => __d('yab_cms_ff', 'Yet Another Boring CMS - Fast Forward'),
         'url' => [
             'plugin'        => 'YabCmsFf',
             'controller'    => 'Articles',

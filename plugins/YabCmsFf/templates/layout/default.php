@@ -51,10 +51,10 @@ if (!empty($settings_for_layout)):
 endif;
 // Site title
 $siteTitle = isset($settings['siteTitle'])? $settings['siteTitle']: '';
-if (isset($settings['siteTitlePrefix']) & !empty($settings['siteTitlePrefix'])):
+if (isset($settings['siteTitlePrefix']) && !empty($settings['siteTitlePrefix'])):
     $siteTitle = h($settings['siteTitlePrefix']) . ' | ' . $siteTitle;
 endif;
-if (isset($settings['siteTitleSuffix']) & !empty($settings['siteTitleSuffix'])):
+if (isset($settings['siteTitleSuffix']) && !empty($settings['siteTitleSuffix'])):
     $siteTitle = $siteTitle . ' | ' . h($settings['siteTitleSuffix']);
 endif;
 // Define global locales
@@ -72,16 +72,17 @@ endif;
     <?= $this->fetch('meta'); ?>
     <link rel="canonical" href="<?= $this->Url->build(); ?>" />
     <?= $this->Html->css([
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'fontawesome-free' . DS . 'css' . DS . 'all.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'ionicons' . DS . '2.0.1' . DS . 'css' . DS . 'ionicons.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'tempusdominus-bootstrap-4' . DS . 'css' . DS . 'tempusdominus-bootstrap-4.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'icheck-bootstrap' . DS . 'icheck-bootstrap.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jqvmap' . DS . 'jqvmap.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'adminlte.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'overlayScrollbars' . DS . 'css' . DS . 'OverlayScrollbars.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'daterangepicker' . DS . 'daterangepicker',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'summernote' . DS . 'summernote-bs4',
-        'YabCmsFf' . '.' . 'admin' . DS . 'fonts',
+        // 1. Original-Dateien dynamisch aus vendor/almasaeed2010/adminlte/
+        'YabCmsFf./adminlte/plugins/fontawesome-free/css/all.min',
+        'YabCmsFf./adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min',
+        'YabCmsFf./adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min',
+        'YabCmsFf./adminlte/plugins/jqvmap/jqvmap.min',
+        'YabCmsFf./adminlte/dist/css/adminlte.min',
+        'YabCmsFf./adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min',
+        'YabCmsFf./adminlte/plugins/daterangepicker/daterangepicker',
+        'YabCmsFf./adminlte/plugins/summernote/summernote-bs4.min',
+        // 2. Overrides in plugins/YabCmsFf/webroot/css/admin/
+        'YabCmsFf.admin/fonts',
     ]); ?><?= $this->fetch('css'); ?><?= $this->fetch('script'); ?></head>
 <?php if ($session->check('Auth.User.id')): ?>
     <?= $this->element('site'); ?>

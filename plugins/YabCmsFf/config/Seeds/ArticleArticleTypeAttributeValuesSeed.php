@@ -25,12 +25,12 @@ declare(strict_types=1);
  * SOFTWARE.
  */
 use Cake\I18n\DateTime;
-use Migrations\AbstractSeed;
+use Migrations\BaseSeed;
 
 /**
  * ArticleArticleTypeAttributeValues seed.
  */
-class ArticleArticleTypeAttributeValuesSeed extends AbstractSeed
+class ArticleArticleTypeAttributeValuesSeed extends BaseSeed
 {
     /**
      * Run Method.
@@ -63,7 +63,7 @@ class ArticleArticleTypeAttributeValuesSeed extends AbstractSeed
                 'id' => 2,
                 'article_id' => 1,
                 'article_type_attribute_id' => 5,
-                'value' => 'Yet another boring CMS for FREE v1.0 beta',
+                'value' => 'Yet Another Boring CMS - Fast Forward v5.4.*',
                 'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
                 'created_by' => '1',
                 'modified' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
@@ -124,7 +124,7 @@ class ArticleArticleTypeAttributeValuesSeed extends AbstractSeed
                 'id' => 7,
                 'article_id' => 1,
                 'article_type_attribute_id' => 10,
-                'value' => 'Yet another boring CMS for FREE - A CakePHP 5 Bootstrap CMS',
+                'value' => 'Yet Another Boring CMS - Fast Forward - A CakePHP 5 Bootstrap CMS',
                 'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
                 'created_by' => '1',
                 'modified' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),

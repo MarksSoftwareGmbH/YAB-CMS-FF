@@ -76,7 +76,7 @@ $this->Breadcrumbs->addMany([
 ]); ?>
 <div class="row">
     <section class="col-lg-8 connectedSortable">
-        <div class="card">
+        <div class="card card-<?= h($backendBoxColor); ?>">
             <div class="card-header">
                 <h3 class="card-title">
                     <?= $this->Html->icon('plus'); ?> <?= __d('yab_cms_ff', 'Add article'); ?>
@@ -107,32 +107,63 @@ $this->Breadcrumbs->addMany([
                     if (empty($articleTypeAttribute->article_type_attribute_choices)):
 
                         if ($articleTypeAttribute->empty_value):
-                            echo $this->Form->control(
-                                'article_article_type_attribute_values' . '.' . h($key) . '.' . 'value',
-                                [
-                                    'type'              => $this->YabCmsFf->inputType($articleTypeAttribute->type),
-                                    'label'             => h($articleTypeAttribute->title),
-                                    'class'             => h($articleTypeAttribute->foreign_key) . ' ' . 'count-chars',
-                                    'maxlength'         => 255,
-                                    'data-chars-max'    => 255,
-                                    'data-msg-color'    => 'success',
-                                ]);
+                            if ($articleTypeAttribute->type === 'text'):
+                                echo $this->Form->control(
+                                    'article_article_type_attribute_values' . '.' . h($key) . '.' . 'value',
+                                    [
+                                        'type'              => $this->YabCmsFf->inputType($articleTypeAttribute->type),
+                                        'label'             => h($articleTypeAttribute->title),
+                                        'class'             => h($articleTypeAttribute->foreign_key) . ' ' . 'count-chars',
+                                        'maxlength'         => 65535,
+                                        'data-chars-max'    => 65535,
+                                        'data-msg-color'    => 'success',
+                                    ]);
+                            else:
+                                echo $this->Form->control(
+                                    'article_article_type_attribute_values' . '.' . h($key) . '.' . 'value',
+                                    [
+                                        'type'              => $this->YabCmsFf->inputType($articleTypeAttribute->type),
+                                        'label'             => h($articleTypeAttribute->title),
+                                        'class'             => h($articleTypeAttribute->foreign_key) . ' ' . 'count-chars',
+                                        'maxlength'         => 255,
+                                        'data-chars-max'    => 255,
+                                        'data-msg-color'    => 'success',
+                                    ]);
+                            endif;
                         else:
-                            echo $this->Form->control(
-                                'article_article_type_attribute_values' . '.' . h($key) . '.' . 'value',
-                                [
-                                    'type'              => $this->YabCmsFf->inputType($articleTypeAttribute->type),
-                                    'label'             => [
-                                        'text'      => h($articleTypeAttribute->title) . '*',
-                                        'class'     => 'text-danger',
-                                        'escape'    => false,
-                                    ],
-                                    'class'             => h($articleTypeAttribute->foreign_key) . ' ' . 'border-danger count-chars',
-                                    'maxlength'         => 255,
-                                    'data-chars-max'    => 255,
-                                    'data-msg-color'    => 'success',
-                                    'required',
-                                ]);
+                            if ($articleTypeAttribute->type === 'text'):
+                                echo $this->Form->control(
+                                    'article_article_type_attribute_values' . '.' . h($key) . '.' . 'value',
+                                    [
+                                        'type'              => $this->YabCmsFf->inputType($articleTypeAttribute->type),
+                                        'label'             => [
+                                            'text'      => h($articleTypeAttribute->title) . '*',
+                                            'class'     => 'text-danger',
+                                            'escape'    => false,
+                                        ],
+                                        'class'             => h($articleTypeAttribute->foreign_key) . ' ' . 'border-danger count-chars',
+                                        'maxlength'         => 65535,
+                                        'data-chars-max'    => 65535,
+                                        'data-msg-color'    => 'success',
+                                        'required',
+                                    ]);
+                            else:
+                                echo $this->Form->control(
+                                    'article_article_type_attribute_values' . '.' . h($key) . '.' . 'value',
+                                    [
+                                        'type'              => $this->YabCmsFf->inputType($articleTypeAttribute->type),
+                                        'label'             => [
+                                            'text'      => h($articleTypeAttribute->title) . '*',
+                                            'class'     => 'text-danger',
+                                            'escape'    => false,
+                                        ],
+                                        'class'             => h($articleTypeAttribute->foreign_key) . ' ' . 'border-danger count-chars',
+                                        'maxlength'         => 255,
+                                        'data-chars-max'    => 255,
+                                        'data-msg-color'    => 'success',
+                                        'required',
+                                    ]);
+                            endif;
                         endif;
 
                     else:
@@ -334,19 +365,13 @@ $this->Breadcrumbs->addMany([
 </div>
 <?= $this->Form->end(); ?>
 
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'select2' . DS . 'css' . DS . 'select2.min'); ?>
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'yab_cms_ff.select2'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'select2' . DS . 'js' . DS . 'select2.full.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap4-duallistbox' . DS . 'bootstrap-duallistbox.min'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap4-duallistbox' . DS . 'jquery.bootstrap-duallistbox.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datetimepicker' . DS . 'jquery.datetimepicker'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datetimepicker' . DS . 'build' . DS . 'jquery.datetimepicker.full.min',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->css('YabCmsFf.admin/vendor/select2/css/select2.min'); ?>
+<?= $this->Html->css('YabCmsFf.admin/yab_cms_ff.select2'); ?>
+<?= $this->Html->script('YabCmsFf.admin/vendor/select2/js/select2.full.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->css('YabCmsFf.admin/vendor/bootstrap4-duallistbox/bootstrap-duallistbox.min'); ?>
+<?= $this->Html->script('YabCmsFf.admin/vendor/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->css('YabCmsFf.admin/vendor/datetimepicker/jquery.datetimepicker'); ?>
+<?= $this->Html->script('YabCmsFf.admin/vendor/datetimepicker/build/jquery.datetimepicker.full.min', ['block' => 'scriptBottom']); ?>
 
 <?php $ckeditorScript = ''; ?>
 <?php foreach ($articleType->article_type_attributes as $key => $articleTypeAttribute): ?>

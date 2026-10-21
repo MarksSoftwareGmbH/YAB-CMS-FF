@@ -1,31 +1,8 @@
 <?php
-/* 
- * MIT License
- *
- * Copyright (c) 2018-present, Marks Software GmbH (https://www.marks-software.de/)
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
+
 use Cake\Database\Connection;
-use Cake\Database\Driver\Mysql;
 use Cake\Database\Driver\Sqlite;
-use Cake\Mailer\Transport\SmtpTransport;
+use function Cake\Core\env;
 
 /*
  * Local configuration file to provide any overrides to your app.php configuration.
@@ -53,7 +30,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', 'ec08c1e82244483d999b9b339b0f3f9a7e5730a225b38cf4e814270b25b9ed29'),
+        'salt' => env('SECURITY_SALT', 'e3611f48ab63be772a781190080fc93c182303609455501f7279c40ac2763f75'),
     ],
 
     /*
@@ -64,127 +41,64 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
-            'persistent' => false,
-            'timezone' => 'UTC',
-            'host' => 'localhost',
-            /*
-             * CakePHP will use the default DB port based on the driver selected
-             * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
-             * the following line and set the port accordingly
-             */
-            //'port' => 'non_standard_port_number',
-            'username' => '',
-            'password' => '',
-            'database' => '',
-            /*
-             * If not using the default 'public' schema with the PostgreSQL driver
-             * set it here.
-             */
-            //'schema' => 'myapp',
-
-            /*
-             * You can use a DSN string to set the entire configuration
-             */
-            'url' => env('DATABASE_URL', null),
+            'className'     => Connection::class,
+            'driver'        => Sqlite::class,
+            'database'      => ROOT . DS . 'data' . DS . 'yab_cms_ff.db',
+            'encoding'      => 'utf8',
+            'cacheMetadata' => true,
+            'log'           => false,
+            // 'mask'          => 0640,
+            'init'          => [
+                'PRAGMA foreign_keys = ON',
+                'PRAGMA journal_mode = WAL',
+                'PRAGMA synchronous = NORMAL',
+                'PRAGMA busy_timeout = 5000;',
+            ],
         ],
 
         /*
          * The test connection is used during the test suite.
          */
         'test' => [
-            'className' => Connection::class,
-            'driver' => Sqlite::class,
-            'persistent' => false,
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
-            'username' => null,
-            'password' => null,
-            'database' => ':memory:',
+            'username' => 'my_app',
+            'password' => 'secret',
+            'database' => 'test_myapp',
             //'schema' => 'myapp',
             'url' => env('DATABASE_TEST_URL', 'sqlite://127.0.0.1/tmp/tests.sqlite'),
         ],
 
-        'test_mysql' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
-            'persistent' => false,
-            'timezone' => 'UTC',
-            'host' => 'localhost',
-            /*
-             * CakePHP will use the default DB port based on the driver selected
-             * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
-             * the following line and set the port accordingly
-             */
-            //'port' => 'non_standard_port_number',
-            'username' => '',
-            'password' => '',
-            'database' => '',
-            /*
-             * If not using the default 'public' schema with the PostgreSQL driver
-             * set it here.
-             */
-            //'schema' => 'myapp',
-
-            /*
-             * You can use a DSN string to set the entire configuration
-             */
-            'url' => env('DATABASE_URL', null),
-        ],
-
         'development' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
-            'persistent' => false,
-            'timezone' => 'UTC',
-            'host' => 'localhost',
-            /*
-             * CakePHP will use the default DB port based on the driver selected
-             * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
-             * the following line and set the port accordingly
-             */
-            //'port' => 'non_standard_port_number',
-            'username' => '',
-            'password' => '',
-            'database' => '',
-            /*
-             * If not using the default 'public' schema with the PostgreSQL driver
-             * set it here.
-             */
-            //'schema' => 'myapp',
-
-            /*
-             * You can use a DSN string to set the entire configuration
-             */
-            'url' => env('DATABASE_URL', null),
+            'className'     => Connection::class,
+            'driver'        => Sqlite::class,
+            'database'      => ROOT . DS . 'data' . DS . 'yab_cms_ff.db',
+            'encoding'      => 'utf8',
+            'cacheMetadata' => true,
+            'log'           => false,
+            // 'mask'          => 0640,
+            'init'          => [
+                'PRAGMA foreign_keys = ON',
+                'PRAGMA journal_mode = WAL',
+                'PRAGMA synchronous = NORMAL',
+                'PRAGMA busy_timeout = 5000;',
+            ],
         ],
 
         'production' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
-            'persistent' => false,
-            'timezone' => 'UTC',
-            'host' => 'localhost',
-            /*
-             * CakePHP will use the default DB port based on the driver selected
-             * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
-             * the following line and set the port accordingly
-             */
-            //'port' => 'non_standard_port_number',
-            'username' => '',
-            'password' => '',
-            'database' => '',
-            /*
-             * If not using the default 'public' schema with the PostgreSQL driver
-             * set it here.
-             */
-            //'schema' => 'myapp',
-
-            /*
-             * You can use a DSN string to set the entire configuration
-             */
-            'url' => env('DATABASE_URL', null),
+            'className'     => Connection::class,
+            'driver'        => Sqlite::class,
+            'database'      => ROOT . DS . 'data' . DS . 'yab_cms_ff.db',
+            'encoding'      => 'utf8',
+            'cacheMetadata' => true,
+            'log'           => false,
+            // 'mask'          => 0640,
+            'init'          => [
+                'PRAGMA foreign_keys = ON',
+                'PRAGMA journal_mode = WAL',
+                'PRAGMA synchronous = NORMAL',
+                'PRAGMA busy_timeout = 5000;',
+            ],
         ],
     ],
 

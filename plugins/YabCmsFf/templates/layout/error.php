@@ -51,10 +51,10 @@ if (!empty($settings_for_layout)):
 endif;
 // Site title
 $siteTitle = isset($settings['siteTitle'])? $settings['siteTitle']: '';
-if (isset($settings['siteTitlePrefix']) & !empty($settings['siteTitlePrefix'])):
+if (isset($settings['siteTitlePrefix']) && !empty($settings['siteTitlePrefix'])):
     $siteTitle = h($settings['siteTitlePrefix']) . ' - ' . $siteTitle;
 endif;
-if (isset($settings['siteTitleSuffix']) & !empty($settings['siteTitleSuffix'])):
+if (isset($settings['siteTitleSuffix']) && !empty($settings['siteTitleSuffix'])):
     $siteTitle = $siteTitle . ' - ' . h($settings['siteTitleSuffix']);
 endif;
 // Define global locales
@@ -79,52 +79,50 @@ endif;
     <?= $this->fetch('meta'); ?>
     <link rel="canonical" href="<?= $this->Url->build(); ?>" />
     <?= $this->Html->css([
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'fontawesome-free' . DS . 'css' . DS . 'all.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'ionicons' . DS . '2.0.1' . DS . 'css' . DS . 'ionicons.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'tempusdominus-bootstrap-4' . DS . 'css' . DS . 'tempusdominus-bootstrap-4.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'icheck-bootstrap' . DS . 'icheck-bootstrap.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jqvmap' . DS . 'jqvmap.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'adminlte.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'overlayScrollbars' . DS . 'css' . DS . 'OverlayScrollbars.min',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'daterangepicker' . DS . 'daterangepicker',
-        'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'summernote' . DS . 'summernote-bs4',
-        'YabCmsFf' . '.' . 'admin' . DS . 'fonts',
+        // 1. Original-Dateien dynamisch aus vendor/almasaeed2010/adminlte/
+        'YabCmsFf./adminlte/plugins/fontawesome-free/css/all.min',
+        'YabCmsFf./adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min',
+        'YabCmsFf./adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min',
+        'YabCmsFf./adminlte/plugins/jqvmap/jqvmap.min',
+        'YabCmsFf./adminlte/dist/css/adminlte.min',
+        'YabCmsFf./adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min',
+        'YabCmsFf./adminlte/plugins/daterangepicker/daterangepicker',
+        'YabCmsFf./adminlte/plugins/summernote/summernote-bs4.min',
+        // 2. Overrides in plugins/YabCmsFf/webroot/css/admin/
+        'YabCmsFf.admin/fonts',
     ]); ?>
     <?= $this->fetch('css'); ?>
     <?= $this->fetch('script'); ?>
 </head>
-
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed control-sidebar-slide-open text-sm">
-
-<div class="wrapper">
-    <?= $this->element('flash'); ?>
-    <?= $this->element('header'); ?>
-    <?= $this->element('sidebar'); ?>
-    <?= $this->element('error_content'); ?>
-    <?= $this->element('footer'); ?>
-</div>
-
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery' . DS . 'jquery.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-ui' . DS . 'jquery-ui.min', ['block' => 'scripts']); ?>
-
-<?= $this->Html->scriptBlock("$.widget.bridge('uibutton', $.ui.button)", ['block' => 'scripts']); ?>
-
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'bootstrap' . DS . 'js' . DS . 'bootstrap.bundle.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-validation' . DS . 'jquery.validate.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-validation' . DS . 'additional-methods.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jqvmap' . DS . 'jquery.vmap.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jqvmap' . DS . 'maps' . DS . 'jquery.vmap.world', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jquery-knob' . DS . 'jquery.knob.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'moment' . DS . 'moment.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'daterangepicker' . DS . 'daterangepicker', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'tempusdominus-bootstrap-4' . DS . 'js' . DS . 'tempusdominus-bootstrap-4.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'summernote' . DS . 'summernote-bs4.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'overlayScrollbars' . DS . 'js' . DS . 'jquery.overlayScrollbars.min', ['block' => 'scripts']); ?>
-<?= $this->Html->script('YabCmsFf' . '.' . 'admin' . DS . 'adminlte.min', ['block' => 'scripts']); ?>
-
-<?= $this->fetch('scripts'); ?>
-<?= $this->fetch('scriptBottom'); ?>
-
+    <div class="wrapper">
+        <?= $this->element('flash'); ?>
+        <?= $this->element('header'); ?>
+        <?= $this->element('sidebar'); ?>
+        <?= $this->element('error_content'); ?>
+        <?= $this->element('footer'); ?>
+    </div>
+    <?= $this->Html->script([
+        'YabCmsFf./adminlte/plugins/jquery/jquery.min',
+        'YabCmsFf./adminlte/plugins/jquery-ui/jquery-ui.min'
+    ], ['block' => 'scripts']); ?>
+    <?= $this->Html->scriptBlock("$.widget.bridge('uibutton', $.ui.button)", ['block' => 'scripts']); ?>
+    <?= $this->Html->script([
+        'YabCmsFf./adminlte/plugins/bootstrap/js/bootstrap.bundle.min',
+        'YabCmsFf./adminlte/plugins/jquery-validation/jquery.validate.min',
+        'YabCmsFf./adminlte/plugins/jquery-validation/additional-methods.min',
+        'YabCmsFf./adminlte/plugins/jqvmap/jquery.vmap.min',
+        'YabCmsFf./adminlte/plugins/jqvmap/maps/jquery.vmap.world',
+        'YabCmsFf./adminlte/plugins/jquery-knob/jquery.knob.min',
+        'YabCmsFf./adminlte/plugins/moment/moment.min',
+        'YabCmsFf./adminlte/plugins/daterangepicker/daterangepicker',
+        'YabCmsFf./adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min',
+        'YabCmsFf./adminlte/plugins/summernote/summernote-bs4.min',
+        'YabCmsFf./adminlte/plugins/select2/js/select2.full.min',
+        'YabCmsFf./adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min',
+        'YabCmsFf./adminlte/dist/js/adminlte.min',
+    ], ['block' => 'scripts']); ?>
+    <?= $this->fetch('scripts'); ?>
+    <?= $this->fetch('scriptBottom'); ?>
 </body>
-
 </html>

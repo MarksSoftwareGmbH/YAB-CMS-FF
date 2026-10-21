@@ -49,7 +49,7 @@ $this->assign('title', $this->YabCmsFf->readCamel($this->getRequest()->getParam(
     . ucfirst($this->getRequest()->getParam('action'))
 );
 $this->Html->meta('robots', 'noindex, nofollow', ['block' => true]);
-$this->Html->meta('author', 'Yet another boring CMS for FREE', ['block' => true]);
+$this->Html->meta('author', 'Yet Another Boring CMS - Fast Forward', ['block' => true]);
 $this->Html->meta('description', __d('yab_cms_ff', 'Forgot'), ['block' => true]);
 
 $this->Html->meta([
@@ -83,7 +83,7 @@ $this->Html->meta([
 ]);
 $this->Html->meta([
     'property'  => 'og:site_name',
-    'content'   => 'Yet another boring CMS for FREE',
+    'content'   => 'Yet Another Boring CMS - Fast Forward',
     'block'     => 'meta',
 ]); ?>
 <body class="hold-transition login-page">

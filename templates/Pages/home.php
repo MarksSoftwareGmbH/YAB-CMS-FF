@@ -39,7 +39,7 @@ $checkConnection = function (string $name) {
         }
         if ($name === 'debug_kit') {
             $error = 'Try adding your current <b>top level domain</b> to the
-                <a href="https://book.cakephp.org/debugkit/5/en/index.html#configuration" target="_blank">DebugKit.safeTld</a>
+                <a href="https://book.cakephp.org/debugkit/5/configuration.html" target="_blank">DebugKit.safeTld</a>
             config and reload.';
             if (!in_array('sqlite', \PDO::getAvailableDrivers())) {
                 $error .= '<br />You need to install the PHP extension <code>pdo_sqlite</code> so DebugKit can work properly.';
@@ -123,16 +123,18 @@ endif;
 
                         <?php if (extension_loaded('openssl')) : ?>
                             <li class="bullet success">Your version of PHP has the openssl extension loaded.</li>
-                        <?php elseif (extension_loaded('mcrypt')) : ?>
-                            <li class="bullet success">Your version of PHP has the mcrypt extension loaded.</li>
                         <?php else : ?>
-                            <li class="bullet problem">Your version of PHP does NOT have the openssl or mcrypt extension loaded.</li>
+                            <li class="bullet problem">Your version of PHP does NOT have the openssl extension loaded.</li>
                         <?php endif; ?>
 
                         <?php if (extension_loaded('intl')) : ?>
                             <li class="bullet success">Your version of PHP has the intl extension loaded.</li>
                         <?php else : ?>
                             <li class="bullet problem">Your version of PHP does NOT have the intl extension loaded.</li>
+                        <?php endif; ?>
+
+                        <?php if (ini_get('zend.assertions') !== '1') : ?>
+                            <li class="bullet problem">You should set <code>zend.assertions</code> to <code>1</code> in your <code>php.ini</code> for your development environment.</li>
                         <?php endif; ?>
                         </ul>
                     </div>
@@ -151,11 +153,11 @@ endif;
                             <li class="bullet problem">Your logs directory is NOT writable.</li>
                         <?php endif; ?>
 
-                        <?php $settings = Cache::getConfig('_cake_core_'); ?>
+                        <?php $settings = Cache::getConfig('_cake_translations_'); ?>
                         <?php if (!empty($settings)) : ?>
-                            <li class="bullet success">The <em><?= h($settings['className']) ?></em> is being used for core caching. To change the config edit config/app.php</li>
+                            <li class="bullet success">The <em><?= h($settings['className']) ?></em> engine is being used for translations caching. To change the config edit <code>config/app.php</code></li>
                         <?php else : ?>
-                            <li class="bullet problem">Your cache is NOT working. Please check the settings in config/app.php</li>
+                            <li class="bullet problem">Your translations cache is NOT working. Please check the settings in config/app.php</li>
                         <?php endif; ?>
                         </ul>
                     </div>
@@ -172,6 +174,13 @@ endif;
                             <li class="bullet success">CakePHP is able to connect to the database.</li>
                         <?php else : ?>
                             <li class="bullet problem">CakePHP is NOT able to connect to the database.<br /><?= h($result['error']) ?></li>
+                        <?php endif; ?>
+
+                        <?php $settings = Cache::getConfig('_cake_model_'); ?>
+                        <?php if (!empty($settings)) : ?>
+                            <li class="bullet success">The <em><?= h($settings['className']) ?></em> engine is being used for database schema caching. To change the config edit config/app.php</li>
+                        <?php else : ?>
+                            <li class="bullet problem">Your database schema cache is NOT working. Please check the settings in <code>config/app.php</code></li>
                         <?php endif; ?>
                         </ul>
                     </div>

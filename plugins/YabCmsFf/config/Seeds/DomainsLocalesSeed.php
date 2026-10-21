@@ -24,12 +24,12 @@ declare(strict_types=1);
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-use Migrations\AbstractSeed;
+use Migrations\BaseSeed;
 
 /**
  * Class DomainsLocalesSeed
  */
-class DomainsLocalesSeed extends AbstractSeed
+class DomainsLocalesSeed extends BaseSeed
 {
     /**
      * Run Method.

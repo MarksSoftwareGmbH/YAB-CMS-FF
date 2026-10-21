@@ -73,7 +73,7 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -155,7 +155,7 @@ class UsersController extends AppController
      * @param int|null $id
      * @return mixed
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $this->Crud->on('beforeFind', function (Event $event) {
             if (

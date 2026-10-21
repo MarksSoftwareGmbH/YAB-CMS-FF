@@ -30,11 +30,8 @@ use Cake\Event\EventInterface;
 use Cake\I18n\DateTime;
 use YabCmsFf\Controller\AppController;
 use YabCmsFf\Utility\YabCmsFf;
-use Cake\Event\Event;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
-use Intervention\Image\ImageManager;
 
 /**
  * Users Controller
@@ -59,7 +56,7 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -97,9 +94,11 @@ class UsersController extends AppController
                 Hash::merge(
                     $postData,
                     [
-                        'role_id'           => 4, // Public
-                        'status'            => 0, // Deactivated
-                        'token'             => Text::uuid(),
+                        'role_id'           => 4,               // Public
+                        'uuid_id'           => Text::uuid(),    // Random
+                        'foreign_key'       => Text::uuid(),    // Random
+                        'status'            => 0,               // Deactivated
+                        'token'             => Text::uuid(),    // Random
                         'activation_date'   => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
                     ]
                 )
@@ -309,7 +308,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function reset(string $username = null, string $token = null)
+    public function reset(?string $username = null, ?string $token = null)
     {
         // Get session object
         $session = $this->getRequest()->getSession();

@@ -79,7 +79,7 @@ class ArticlesController extends AppController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -140,7 +140,7 @@ class ArticlesController extends AppController
      * @param string|null $articleType
      * @return void
      */
-    public function index(string $articleType = null)
+    public function index(?string $articleType = null)
     {
         $dateTime = DateTime::now();
         $query = $this->Articles
@@ -224,7 +224,7 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function view(string $articleType = null, string $slug = null)
+    public function view(?string $articleType = null, ?string $slug = null)
     {
         $dateTime = DateTime::now();
 
@@ -273,7 +273,7 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function pageView(string $slug = null)
+    public function pageView(?string $slug = null)
     {
         $dateTime = DateTime::now();
 

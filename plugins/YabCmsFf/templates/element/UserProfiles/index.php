@@ -92,7 +92,7 @@ $this->Html->meta([
 ]);
 $this->Html->meta([
     'property'  => 'og:site_name',
-    'content'   => 'Yet another boring CMS for FREE',
+    'content'   => 'Yet Another Boring CMS - Fast Forward',
     'block'     => 'meta',
 ]);
 
@@ -103,7 +103,7 @@ $this->Breadcrumbs->addMany([
         'url' => 'javascript:history.back()',
     ],
     [
-        'title' => __d('yab_cms_ff', 'Yet another boring CMS for FREE'),
+        'title' => __d('yab_cms_ff', 'Yet Another Boring CMS - Fast Forward'),
         'url' => [
             'plugin'        => 'YabCmsFf',
             'controller'    => 'Articles',

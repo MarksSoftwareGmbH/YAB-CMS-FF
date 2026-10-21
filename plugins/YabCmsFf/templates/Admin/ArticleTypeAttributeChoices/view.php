@@ -290,7 +290,5 @@ $this->Breadcrumbs->addMany([
     </div>
 </div>
 
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'prism' . DS . 'prism.min'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'prism' . DS . 'prism.min',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->css('YabCmsFf.admin/vendor/prism/prism.min'); ?>
+<?= $this->Html->script('YabCmsFf.admin/vendor/prism/prism.min', ['block' => 'scriptBottom']); ?>

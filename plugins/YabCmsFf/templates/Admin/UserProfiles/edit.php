@@ -378,15 +378,11 @@ $this->Breadcrumbs->addMany([
 </div>
 <?= $this->Form->end(); ?>
 
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'select2' . DS . 'css' . DS . 'select2.min'); ?>
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'yab_cms_ff.select2'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'select2' . DS . 'js' . DS . 'select2.full.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'tagify' . DS . 'tagify'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'tagify' . DS . 'jQuery.tagify.min',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->css('YabCmsFf.admin/vendor/select2/css/select2.min'); ?>
+<?= $this->Html->css('YabCmsFf.admin/yab_cms_ff.select2'); ?>
+<?= $this->Html->script('YabCmsFf.admin/vendor/select2/js/select2.full.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->css('YabCmsFf.admin/vendor/tagify/tagify'); ?>
+<?= $this->Html->script('YabCmsFf.admin/vendor/tagify/jQuery.tagify.min', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->script(
     'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'userProfiles' . DS . 'form',
     ['block' => 'scriptBottom']); ?>

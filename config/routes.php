@@ -21,8 +21,8 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Routing\Route\DashedRoute;
-use Cake\Routing\RouteBuilder;
+// use Cake\Routing\Route\DashedRoute;
+// use Cake\Routing\RouteBuilder;
 
 /*
  * This file is loaded in the context of the `Application` class.
@@ -72,8 +72,8 @@ use Cake\Routing\RouteBuilder;
          * $builder->connect('/{controller}/{action}/*', []);
          * ```
          *
-         * You can remove these routes once you've connected the
-         * routes you want in your application.
+         * It is NOT recommended to use fallback routes after your initial prototyping phase!
+         * See https://book.cakephp.org/5/en/development/routing.html#fallbacks-method for more information
          */
         // $builder->fallbacks();
     // });

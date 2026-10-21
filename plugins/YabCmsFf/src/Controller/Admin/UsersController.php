@@ -85,7 +85,7 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -785,10 +785,10 @@ class UsersController extends AppController
             }
         }
 
-        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+        foreach ($objSpreadsheet->getActiveSheet()->getColumnIterator() as $col) {
             $objSpreadsheet
                 ->getActiveSheet()
-                ->getColumnDimension($col)
+                ->getColumnDimension($col->getColumnIndex())
                 ->setAutoSize(true);
         }
         $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');

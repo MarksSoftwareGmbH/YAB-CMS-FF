@@ -1,6 +1,6 @@
 # YAB-CMS-FF
 
-**Yet another boring CMS for FREE** is a free, open source, bootstrap content management system for PHP 8 based on CakePHP 5, CakePHP vendor plugins, the AdminLTE bootstrap admin dashboard template and released under the [MIT License](https://github.com/MarksSoftwareGmbH/YAB-CMS-FF/blob/main/LICENSE).
+**"Yet Another Boring" CMS – Fast Forward (YAB CMS)** is a free, open source, bootstrap content management system for PHP 8 based on CakePHP 5, CakePHP vendor plugins, the AdminLTE bootstrap admin dashboard template and released under the [MIT License](https://github.com/MarksSoftwareGmbH/YAB-CMS-FF/blob/main/LICENSE).
 
 It is powered by the [CakePHP](http://cakephp.org) 5 PHP framework.
 
@@ -62,6 +62,7 @@ When the composer update is finished
   * **Intervention - PHP Image Processing**: [intervention/image](https://github.com/intervention/image)
   * **PHPOffice - PhpSpreadsheet**: [phpoffice/phpspreadsheet](https://github.com/phpoffice/phpspreadsheet)
   * **PHPOffice - PhpWord**: [phpoffice/phpword](https://github.com/phpoffice/phpword)
+  * **Colorlib (Aigars Silkalns) - AdminLTE**: [almasaeed2010/adminlte](https://github.com/ColorlibHQ/AdminLTE)
 
 ## Suggested vendor plugins you should install via composer
 
@@ -76,4 +77,4 @@ When the composer update is finished
 ## Links
 
   * **Marks Software GmbH website**: [https://www.marks-software.de](https://www.marks-software.de)
-  * **Marks Software GmbH on X / Twitter**: [https://twitter.com/SoftwareMarks](https://twitter.com/SoftwareMarks)
+  * **Marks Software GmbH on X**: [https://x.com/SoftwareMarks](https://x.com/SoftwareMarks)

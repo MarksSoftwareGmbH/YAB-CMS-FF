@@ -26,12 +26,12 @@ declare(strict_types=1);
  */
 use Cake\I18n\DateTime;
 use Cake\Utility\Text;
-use Migrations\AbstractSeed;
+use Migrations\BaseSeed;
 
 /**
  * Class SettingsSeed
  */
-class SettingsSeed extends AbstractSeed
+class SettingsSeed extends BaseSeed
 {
     /**
      * Run Method.
@@ -446,7 +446,7 @@ class SettingsSeed extends AbstractSeed
                 'foreign_key' => NULL,
                 'parameter' => 'site',
                 'name' => 'siteTitle',
-                'value' => 'Yet another boring CMS for FREE',
+                'value' => 'Yet Another Boring CMS - Fast Forward',
                 'title' => 'Site title',
                 'description' => 'Default title',
                 'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
@@ -514,7 +514,7 @@ class SettingsSeed extends AbstractSeed
                 'foreign_key' => NULL,
                 'parameter' => 'site',
                 'name' => 'siteLogoImageAlt',
-                'value' => 'Yet another boring CMS for FREE',
+                'value' => 'Yet Another Boring CMS - Fast Forward',
                 'title' => 'Site logo image alt',
                 'description' => 'Default logo image alt',
                 'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),

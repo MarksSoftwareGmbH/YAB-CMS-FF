@@ -44,7 +44,7 @@ if (Configure::check('YabCmsFf.settings.frontendBoxColor')):
 endif;
 
 // Title
-$this->assign('title', __d('yab_cms_ff', 'Yet another boring CMS for FREE'));
+$this->assign('title', __d('yab_cms_ff', 'Yet Another Boring CMS - Fast Forward'));
 
 // Breadcrumb
 $this->Breadcrumbs->addMany([
@@ -52,7 +52,7 @@ $this->Breadcrumbs->addMany([
         'title' => __d('yab_cms_ff', 'Go back'),
         'url' => 'javascript:history.back()',
     ],
-    ['title' => 'Yet another boring CMS for FREE'],
+    ['title' => 'Yet Another Boring CMS - Fast Forward'],
     ['title' => __d('yab_cms_ff', 'Recent CMS articles')]
 ], ['class' => 'breadcrumb-item']); ?>
 <section class="content-header">
@@ -75,7 +75,7 @@ $this->Breadcrumbs->addMany([
             <div class="col-12">
                 <div class="callout callout-<?= h($frontendBoxColor); ?>">
                     <h5><i class="fas fa-info"></i> <?= __d('yab_cms_ff', 'Important note');?>:</h5>
-                    <strong><?= __d('yab_cms_ff', 'Yet another boring CMS for FREE is free.'); ?></strong><br />
+                    <strong><?= __d('yab_cms_ff', 'Yet Another Boring CMS - Fast Forward is free.'); ?></strong><br />
                 </div>
             </div>
         </div>

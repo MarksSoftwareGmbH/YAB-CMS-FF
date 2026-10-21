@@ -27,9 +27,9 @@ declare(strict_types=1);
 namespace YabCmsFf\Event;
 
 use ArrayObject;
-use Cake\Controller\Component\AuthComponent;
+use Authentication\Controller\Component\AuthenticationComponent;
 use Cake\Datasource\EntityInterface;
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 use Cake\Event\EventListenerInterface;
 
 /**
@@ -37,75 +37,67 @@ use Cake\Event\EventListenerInterface;
  */
 class LoggedInUserListener implements EventListenerInterface
 {
-
     /**
-     *
-     * @var string
+     * @var \Authentication\Controller\Component\AuthenticationComponent
      */
-    protected $_Auth;
+    protected AuthenticationComponent $_Authentication;
 
     /**
      * Constructor hook method.
      *
-     * @param AuthComponent $Auth
+     * @param \Authentication\Controller\Component\AuthenticationComponent $Authentication
      */
-    public function __construct(AuthComponent $Auth)
+    public function __construct(AuthenticationComponent $Authentication)
     {
-        $this->_Auth = $Auth;
+        $this->_Authentication = $Authentication;
     }
 
     /**
      * Gets the Model callbacks this behavior is interested in.
      *
-     * By defining one of the callback methods a behavior is assumed
-     * to be interested in the related event.
-     *
-     * Override this method if you need to add non-conventional event listeners.
-     * Or if you want your behavior to listen to non-standard events.
-     *
-     * @return array
+     * @return array<string, mixed>
      */
     public function implementedEvents(): array
     {
         return [
             'Model.beforeSave' => [
                 'callable' => 'beforeSave',
-                'priority' => -100
+                'priority' => -100,
             ],
             'Model.beforeDelete' => [
                 'callable' => 'beforeDelete',
-                'priority' => -100
-            ]
+                'priority' => -100,
+            ],
         ];
     }
 
     /**
      * Before save listener method.
      *
-     * @param \Cake\Event\Event $event The beforeSave event that was fired
-     * @param \Cake\ORM\Entity $entity The entity that is going to be saved
-     * @param \ArrayObject $options the options passed to the save method
+     * @param \Cake\Event\EventInterface $event The beforeSave event that was fired
+     * @param \Cake\Datasource\EntityInterface $entity The entity that is going to be saved
+     * @param \ArrayObject $options The options passed to the save method
      * @return void
      */
-    public function beforeSave(Event $event, EntityInterface $entity, ArrayObject $options)
+    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {
-        if (empty($options['loggedInUser'])) {
-            $options['loggedInUser'] = $this->_Auth->user('id');
+        if (empty($options['loggedInUser']) && $this->_Authentication->getIdentity()) {
+            $options['loggedInUser'] = $this->_Authentication->getIdentityData('id');
         }
     }
 
     /**
      * Before delete listener method.
      *
-     * @param \Cake\Event\Event $event The beforeDelete event that was fired
-     * @param \Cake\ORM\Entity $entity The entity that is going to be deleted
-     * @param \ArrayObject $options the options passed to the delete method
+     * @param \Cake\Event\EventInterface $event The beforeDelete event that was fired
+     * @param \Cake\Datasource\EntityInterface $entity The entity that is going to be deleted
+     * @param \ArrayObject $options The options passed to the delete method
      * @return void
      */
-    public function beforeDelete(Event $event, EntityInterface $entity, ArrayObject $options)
+    public function beforeDelete(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {
-        if (empty($options['loggedInUser'])) {
-            $options['loggedInUser'] = $this->_Auth->user('id');
+        if (empty($options['loggedInUser']) && $this->_Authentication->getIdentity()) {
+            $options['loggedInUser'] = $this->_Authentication->getIdentityData('id');
         }
     }
 }

@@ -27,24 +27,18 @@
   * - onlyCli: Load the plugin only in CLI mode. Default false.
   * - optional: Do not throw an exception if the plugin is not found. Default false.
   */
-
 return [
-    'DebugKit' => [
-        'onlyDebug' => true,
-    ],
-    'Bake' => [
-        'onlyCli' => true,
-        'optional' => true,
-    ],
-    'Migrations' => [
-        'onlyCli' => true,
-    ],
-    'TinyAuth' => [],
+    'DebugKit' => ['onlyDebug' => true],
+    'Bake' => ['onlyCli' => true, 'optional' => true],
+    'Migrations' => ['onlyCli' => true],
+
+    // Additional plugins here
     'Authentication' => [],
+    'BootstrapUI' => [],
     'Crud' => [],
     'CsvView' => [],
     'Search' => [],
-    'BootstrapUI' => [],
+    'TinyAuth' => [],
     'YabCmsFf' => [
         'bootstrap' => true,
         'routes' => true,

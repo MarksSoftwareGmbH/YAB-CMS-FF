@@ -32,10 +32,10 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Event\EventInterface;
 use Cake\I18n\DateTime;
-use Cake\ORM\TableRegistry;
+use Cake\Log\Log;
 use Cake\Utility\Text;
-use Exception;
-use Migrations\Migrations;
+use RuntimeException;
+use Throwable;
 use YabCmsFf\Controller\Traits\HookableComponentTrait;
 use YabCmsFf\Configure\Engine\SettingsConfig;
 
@@ -47,16 +47,16 @@ class AppController extends BaseController
     /**
      * Http host
      *
-     * @var string
+     * @var string|null
      */
-    private string $httpHost;
+    private ?string $httpHost = null;
 
     /**
      * Domain id
      *
      * @var int
      */
-    private int $domainId;
+    private int $domainId = 1;
 
     /**
      * Initialization hook method.
@@ -71,159 +71,9 @@ class AppController extends BaseController
     {
         parent::initialize();
 
-        // Set http host by environment
-        if (filter_var(env('HTTP_HOST'), FILTER_VALIDATE_IP) !== false) {
-            $this->httpHost = env('HTTP_X_FORWARDED_HOST');
-        } else {
-            $this->httpHost = env('HTTP_HOST');
-        }
-
-        // Deploy the Migrations based on the "default" datasource
-        try {
-            $connectionDefault = ConnectionManager::get('default');
-            if ($connectionDefault) {
-
-                /*
-                 * When using proxies or load balancers, SSL/TLS connections might
-                 * get terminated before reaching the server. If you trust the proxy,
-                 * you can enable `$trustProxy` to rely on the `X-Forwarded-Proto`
-                 * header to determine whether to generate URLs using `https`.
-                 *
-                 * See also https://book.cakephp.org/4/en/controllers/request-response.html#trusting-proxy-headers
-                 */
-                $trustProxy = false;
-
-                $s = null;
-                if (env('HTTPS') || ($trustProxy && env('HTTP_X_FORWARDED_PROTO') === 'https')) {
-                    $s = 's';
-                }
-
-                $dateTime = DateTime::now();
-
-                $connectionDefaultResults = $connectionDefault->execute('SELECT id, url, theme FROM domains')->fetchAll('assoc');
-                if (empty($connectionDefaultResults)) {
-                    $connectionDefault->execute('TRUNCATE TABLE domains');
-                    $connectionDefault->insert('domains', [
-                        'uuid_id'   => Text::uuid(),
-                        'scheme'    => 'http' . $s,
-                        'url'       => $this->httpHost,
-                        'name'      => 'Yet another boring CMS for FREE',
-                        'theme'     => 'YabCmsFf',
-                        'created'   => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
-                        'modified'  => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
-                    ], [
-                        'created'   => 'datetime',
-                        'modified'  => 'datetime',
-                    ]);
-                } else {
-                    foreach ($connectionDefaultResults as $connectionDefaultResult) {
-                        if (
-                            ($connectionDefaultResult['url'] === 'yab-cms-ff-github.tld') &&
-                            ($connectionDefaultResult['theme'] === 'YabCmsFf')
-                        ) {
-                            $connectionDefault->update('domains', [
-                                'uuid_id'   => Text::uuid(),
-                                'scheme'    => 'http' . $s,
-                                'url'       => $this->httpHost,
-                                'modified'  => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
-                            ], ['id' => $connectionDefaultResult['id']]);
-                        }
-                    }
-                }
-            }
-
-        } catch (Exception $e) {
-            $migrations = new Migrations();
-            $migrationsStatus = $migrations->status(['connection' => 'default', 'plugin' => 'YabCmsFf']);
-            if (is_array($migrationsStatus) && !empty($migrationsStatus)) {
-
-                $migrationsMigrate = $migrations->migrate(['connection' => 'default', 'plugin' => 'YabCmsFf']);
-                if ($migrationsMigrate) {
-
-                    $migrationsSeed = $migrations->seed(['connection' => 'default', 'plugin' => 'YabCmsFf']);
-                    if ($migrationsSeed) {
-
-                        $connectionDefault = ConnectionManager::get('default');
-                        if ($connectionDefault) {
-
-                            /*
-                            * When using proxies or load balancers, SSL/TLS connections might
-                            * get terminated before reaching the server. If you trust the proxy,
-                            * you can enable `$trustProxy` to rely on the `X-Forwarded-Proto`
-                            * header to determine whether to generate URLs using `https`.
-                            *
-                            * See also https://book.cakephp.org/4/en/controllers/request-response.html#trusting-proxy-headers
-                            */
-                            $trustProxy = false;
-
-                            $s = null;
-                            if (env('HTTPS') || ($trustProxy && env('HTTP_X_FORWARDED_PROTO') === 'https')) {
-                                $s = 's';
-                            }
-
-                            $dateTime = DateTime::now();
-
-                            $connectionDefaultResults = $connectionDefault->execute('SELECT  id, url, theme FROM domains')->fetchAll('assoc');
-                            if (empty($connectionDefaultResults)) {
-                                $connectionDefault->execute('TRUNCATE TABLE domains');
-                                $connectionDefault->insert('domains', [
-                                    'uuid_id'   => Text::uuid(),
-                                    'scheme'    => 'http' . $s,
-                                    'url'       => $this->httpHost,
-                                    'name'      => 'Yet another boring CMS for FREE',
-                                    'theme'     => 'YabCmsFf',
-                                    'created'   => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
-                                    'modified'  => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
-                                ], [
-                                    'created'   => 'datetime',
-                                    'modified'  => 'datetime',
-                                ]);
-                            } else {
-                                foreach ($connectionDefaultResults as $connectionDefaultResult) {
-                                    if (
-                                        ($connectionDefaultResult['url'] === 'yab-cms-ff-github.tld') &&
-                                        ($connectionDefaultResult['theme'] === 'YabCmsFf')
-                                    ) {
-                                        $connectionDefault->update('domains', [
-                                            'uuid_id'   => Text::uuid(),
-                                            'scheme'    => 'http' . $s,
-                                            'url'       => $this->httpHost,
-                                            'modified'  => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
-                                        ], ['id' => $connectionDefaultResult['id']]);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } 
-
-        // Define Datasource Connection
-        if (strpos($this->httpHost, 'localhost') !== false) {
-            // Development environment
-            ConnectionManager::drop('default');
-            ConnectionManager::setConfig('default', ConnectionManager::get('development'));
-        } elseif (PHP_SAPI === 'cli') {
-            // Define Datasource Connection for unit testing and cli commands
-            // Default default or other environment
-            ConnectionManager::drop('default');
-            ConnectionManager::setConfig('default', ConnectionManager::get('default'));
-        } else {
-            // Default production or other environment
-            ConnectionManager::drop('default');
-            ConnectionManager::setConfig('default', ConnectionManager::get('production'));
-        }
-
-        // Set domain id by http host
-        $Domains = TableRegistry::getTableLocator()->get('YabCmsFf.Domains');
-        $domain = $Domains
-            ->find()
-            ->where(['url' => $this->httpHost])
-            ->first();
-        if (!empty($domain)) {
-            $this->domainId = $domain->id;
-        }
+        $this->httpHost = $this->resolveHttpHost();
+        $this->configureDatasourceEnvironment();
+        $this->domainId = $this->resolveDomainId();
 
         if ($loadComponents) {
             if (PHP_SAPI !== 'cli') {
@@ -231,91 +81,75 @@ class AppController extends BaseController
             }
 
             $this->loadComponent('Search.Search', [
-                'actions' => ['index', 'search'],
+                'actions' => ['index', 'search', 'view'],
             ]);
 
             // Load all Components
             $this->_dispatchAfterInitialize();
 
-            if (
-                in_array(
-                    $this->getRequest()->getParam('prefix'),
-                    ['Admin']
-                ) ||
-                in_array(
-                    $this->getRequest()->getParam('action'),
-                    [
-                        'login',
-                        'logout',
-                        'forgot',
-                        'reset',
-                        'profile',
-                    ]
-                )
-            ) {
-                /**
-                 * Add a component to the controller's registry.
-                 *
-                 * This method will also set the component to a property.
-                 * For example:
-                 *
-                 * ```
-                 * $this->loadComponent('Acl.Acl');
-                 * ```
-                 *
-                 * Will result in a `Toolbar` property being set.
-                 *
-                 * @param string $name The name of the component to load.
-                 * @param array $config The config for the component.
-                 * @return \Cake\Controller\Component
-                 */
-                $this->loadComponent('TinyAuth.Auth', [
-                    'loginAction' => [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Users',
-                        'action' => 'login',
-                    ],
-                    'loginRedirect' => [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Dashboards',
-                        'action' => 'dashboard',
-                    ],
-                    'logoutRedirect' => [
-                        'plugin' => 'YabCmsFf',
-                        'controller' => 'Users',
-                        'action' => 'login',
-                    ],
-                    'authError' => __d('yab_cms_ff', 'You are not authorized to access this location.'),
-                    'flash' => [
-                        'element' => 'default',
-                        'params' => ['class' => 'error'],
-                    ],
-                    'allowFilePath' => Plugin::configPath('YabCmsFf'),
-                    'autoClearCache' => true,
-                    'authenticate' => [
-                        'TinyAuth.Form' => [
-                            'fields' => [
-                                'username' => 'username',
-                                'password' => 'password',
-                            ],
-                            'userModel' => 'YabCmsFf.Users',
-                            // Use finder method in users table
-                            'finder' => 'auth',
+            /**
+             * Add a component to the controller's registry.
+             *
+             * This method will also set the component to a property.
+             * For example:
+             *
+             * ```
+             * $this->loadComponent('Acl.Acl');
+             * ```
+             *
+             * Will result in a `Toolbar` property being set.
+             *
+             * @param string $name The name of the component to load.
+             * @param array $config The config for the component.
+             * @return \Cake\Controller\Component
+             */
+            $this->loadComponent('TinyAuth.Auth', [
+                'loginAction' => [
+                    'plugin' => 'YabCmsFf',
+                    'controller' => 'Users',
+                    'action' => 'login',
+                ],
+                'loginRedirect' => [
+                    'prefix' => 'Admin',
+                    'plugin' => 'YabCmsFf',
+                    'controller' => 'Dashboards',
+                    'action' => 'dashboard',
+                ],
+                'logoutRedirect' => [
+                    'plugin' => 'YabCmsFf',
+                    'controller' => 'Users',
+                    'action' => 'login',
+                ],
+                'authError' => __d('yab_cms_ff', 'You are not authorized to access this location.'),
+                'flash' => [
+                    'element' => 'default',
+                    'params' => ['class' => 'error'],
+                ],
+                'allowFilePath' => Plugin::configPath('YabCmsFf'),
+                'autoClearCache' => true,
+                'authenticate' => [
+                    'TinyAuth.Form' => [
+                        'fields' => [
+                            'username' => 'username',
+                            'password' => 'password',
                         ],
+                        'userModel' => 'YabCmsFf.Users',
+                        // Use finder method in users table
+                        'finder' => 'auth',
                     ],
-                    'authorize' => [
-                        'TinyAuth.Tiny' => [
-                            'superAdminRole' => '1', // id of super admin role, which grants access to ALL resources
-                            'superAdmin' => '1', // super admin, which grants access to ALL resources
-                            'pivotTable' => 'roles_users', // Should be used in multi-roles setups
-                            'aclFilePath' => Plugin::configPath('YabCmsFf'), // Possible to locate INI file at given path e.g. Plugin::configPath('Admin'), filePath is also available for shared config
-                            'rolesTable' => 'YabCmsFf.Roles', // name of Configure key holding available roles OR class name of roles table
-                            'usersTable' => 'YabCmsFf.Users', // name of the Users table
-                            'autoClearCache' => true, // Set to true to delete cache automatically in debug mode, keep null for auto-detect
-                        ],
+                ],
+                'authorize' => [
+                    'TinyAuth.Tiny' => [
+                        'superAdminRole' => '1', // id of super admin role, which grants access to ALL resources
+                        'superAdmin' => '1', // super admin, which grants access to ALL resources
+                        'pivotTable' => 'roles_users', // Should be used in multi-roles setups
+                        'aclFilePath' => Plugin::configPath('YabCmsFf'), // Possible to locate INI file at given path e.g. Plugin::configPath('Admin'), filePath is also available for shared config
+                        'rolesTable' => 'YabCmsFf.Roles', // name of Configure key holding available roles OR class name of roles table
+                        'usersTable' => 'YabCmsFf.Users', // name of the Users table
+                        'autoClearCache' => true, // Set to true to delete cache automatically in debug mode, keep null for auto-detect
                     ],
-                ]);
-            }
+                ],
+            ]);
         }
     }
 
@@ -327,7 +161,7 @@ class AppController extends BaseController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         /**
          * Parent before filter callback.
@@ -369,30 +203,11 @@ class AppController extends BaseController
          *   Use false to remove the current theme.
          * @return string|$this
          */
-        if (in_array($this->getRequest()->getParam('prefix'), ['Admin'])) {
-            // YabCmsFf default backend theme
-            $backendTheme = 'YabCmsFf';
-
-            // Plugin based custom backend theme
-            if (Configure::check('YabCmsFf.settings.backendTheme')) {
-                $backendTheme = Configure::read('YabCmsFf.settings.backendTheme');
-            }
-
-            $this
-                ->viewBuilder()
-                ->setTheme($backendTheme);
+        $prefix = (string)$this->getRequest()->getParam('prefix');
+        if ($prefix === 'Admin') {
+            $theme = (string)Configure::read('YabCmsFf.settings.backendTheme', 'YabCmsFf');
         } else {
-            // YabCmsFf default frontend theme
-            $frontendTheme = 'YabCmsFf';
-
-            // Plugin based custom frontend theme
-            if (Configure::check('YabCmsFf.settings.frontendTheme')) {
-                $frontendTheme = Configure::read('YabCmsFf.settings.frontendTheme');
-            }
-
-            $this
-                ->viewBuilder()
-                ->setTheme($frontendTheme);
+            $theme = (string)Configure::read('YabCmsFf.settings.frontendTheme', 'YabCmsFf');
         }
 
         /**
@@ -404,14 +219,15 @@ class AppController extends BaseController
          */
         $this
             ->viewBuilder()
+            ->setTheme($theme)
             ->addHelpers([
                 // Extending the default Helper classes
                 'Html' => [
-                    'className' => 'BootstrapUI.Html',
-                    'iconDefaults' => [
-                        'tag' => 'i',
+                    'className'     => 'BootstrapUI.Html',
+                    'iconDefaults'  => [
+                        'tag'       => 'i',
                         'namespace' => 'fas',
-                        'prefix' => 'fa',
+                        'prefix'    => 'fa',
                     ],
                 ],
                 'Form' => ['className' => 'BootstrapUI.Form'],
@@ -421,5 +237,130 @@ class AppController extends BaseController
                 'YabCmsFf' => ['className' => 'YabCmsFf.YabCmsFf'],
                 'Menu' => ['className' => 'YabCmsFf.Menu'],
             ]);
+    }
+
+    /**
+     * Determines and validates the current HTTP host.
+     *
+     * @return string
+     * @throws \RuntimeException
+     */
+    private function resolveHttpHost(): string
+    {
+        if (PHP_SAPI === 'cli') {
+            return (string)env('HTTP_HOST', 'localhost');
+        }
+
+        $host = $this->getRequest()->host() ?: env('HTTP_HOST');
+        if (empty($host)) {
+            throw new RuntimeException(__d(
+                'yab_cms_ff',
+                'The HTTP_HOST environment variable is missing. Unable to determine the application domain.'
+            ));
+        }
+
+        // Remove port number if present (e.g., localhost:8765 -> localhost)
+        $cleanHost = explode(':', (string)$host)[0];
+
+        if (filter_var($cleanHost, FILTER_VALIDATE_IP) !== false) {
+            $forwarded = env('HTTP_X_FORWARDED_HOST');
+            if (empty($forwarded)) {
+                throw new RuntimeException(__d(
+                    'yab_cms_ff',
+                    'The HTTP_X_FORWARDED_HOST header is required when running behind a reverse proxy (HTTP_HOST is an IP address).'
+                ));
+            }
+            // If multiple proxies exist, take the first forwarded host
+            return trim(explode(',', (string)$forwarded)[0]);
+        }
+
+        return (string)$host;
+    }
+
+    /**
+     * Maps the active datasource connection based on the runtime environment.
+     *
+     * @return void
+     */
+    private function configureDatasourceEnvironment(): void
+    {
+        if (PHP_SAPI === 'cli') {
+            return;
+        }
+
+        $configuredConnections = ConnectionManager::configured();
+
+        if (
+            str_contains((string)$this->httpHost, 'localhost') &&
+            in_array('development', $configuredConnections, true)
+        ) {
+            ConnectionManager::alias('development', 'default');
+        } elseif (in_array('production', $configuredConnections, true)) {
+            ConnectionManager::alias('production', 'default');
+        }
+    }
+
+    /**
+     * Resolves the current domain ID from the database or updates the placeholder seed domain.
+     *
+     * @return int
+     * @throws \RuntimeException
+     */
+    private function resolveDomainId(): int
+    {
+        try {
+            $Domains = $this->fetchTable('YabCmsFf.Domains');
+            $domain = $Domains->find()
+                ->select(['id'])
+                ->where(['url' => $this->httpHost])
+                ->first();
+
+            if ($domain !== null) {
+                return (int)$domain->id;
+            }
+
+            // Self-heal if the seeded placeholder domain still exists
+            $placeholder = $Domains->find()
+                ->where([
+                    'url'   => 'yab-cms-ff-github.tld',
+                    'theme' => 'YabCmsFf',
+                ])
+                ->first();
+
+            $scheme = $this->getRequest()->scheme() ?: (env('HTTPS') ? 'https' : 'http');
+
+            if ($placeholder !== null) {
+                $placeholder->set([
+                    'uuid_id'  => Text::uuid(),
+                    'scheme'   => $scheme,
+                    'url'      => $this->httpHost,
+                    'modified' => DateTime::now(),
+                ]);
+                $Domains->saveOrFail($placeholder);
+
+                return (int)$placeholder->id;
+            }
+
+            // Fallback to the first available domain record
+            $firstDomain = $Domains->find()->select(['id'])->first();
+            if ($firstDomain !== null) {
+                return (int)$firstDomain->id;
+            }
+        } catch (Throwable $e) {
+            Log::error(__d(
+                'yab_cms_ff',
+                'Failed to resolve domain for host "{0}": {1}',
+                (string)$this->httpHost,
+                $e->getMessage()
+            ));
+
+            throw new RuntimeException(
+                __d('yab_cms_ff', 'Database initialization error: Unable to resolve domain configuration.'),
+                (int)$e->getCode(),
+                $e
+            );
+        }
+
+        return 1;
     }
 }

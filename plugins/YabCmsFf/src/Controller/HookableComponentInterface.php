@@ -34,10 +34,10 @@ namespace YabCmsFf\Controller;
 interface HookableComponentInterface
 {
     /**
-     * @param $name
+     * @param string $name
      * @param array $config
      *
      * @return mixed
      */
-    public function _loadHookableComponent($name, array $config);
+    public function _loadHookableComponent(string $name, array $config);
 }

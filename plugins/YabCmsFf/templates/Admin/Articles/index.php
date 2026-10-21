@@ -192,7 +192,6 @@ $this->Breadcrumbs->addMany([
                     <thead>
                     <tr>
                         <th><small><strong><?= $this->Paginator->sort('Domains.name', __d('yab_cms_ff', 'Domain')); ?></strong></small></th>
-                        <th><small><strong><?= $this->Paginator->sort('Customers.name', __d('yab_cms_ff', 'Customer')); ?></strong></small></th>
                         <th><small><strong><?= $this->Paginator->sort('ArticleTypes.title', __d('yab_cms_ff', 'Type')); ?></strong></small></th>
                         <th><small><strong><?= __d('yab_cms_ff', 'Title'); ?></strong></small></th>
                         <th><small><strong><?= __d('yab_cms_ff', 'Slug'); ?></strong></small></th>
@@ -209,13 +208,6 @@ $this->Breadcrumbs->addMany([
                                 <?php if ($article->has('domain')): ?>
                                     <?php if (isset($article->domain->name) && !empty($article->domain->name)): ?>
                                         <?= h($article->domain->name); ?>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if ($article->has('customer')): ?>
-                                    <?php if (isset($article->customer->name) && !empty($article->customer->name)): ?>
-                                        <?= h($article->customer->name); ?>
                                     <?php endif; ?>
                                 <?php endif; ?>
                             </td>
@@ -296,9 +288,7 @@ $this->Breadcrumbs->addMany([
     </div>
 </div>
 
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'default',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf.admin/template/admin/default', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {
         Default.init();

@@ -26,12 +26,12 @@ declare(strict_types=1);
  */
 use Cake\I18n\DateTime;
 use Cake\Utility\Text;
-use Migrations\AbstractSeed;
+use Migrations\BaseSeed;
 
 /**
  * UserProfileDiaryEntries seed.
  */
-class UserProfileDiaryEntriesSeed extends AbstractSeed
+class UserProfileDiaryEntriesSeed extends BaseSeed
 {
     /**
      * Run Method.

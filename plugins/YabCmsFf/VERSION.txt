@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // +--------------------------------------------------------------------------------------------+ //
-// Yet another boring CMS for FREE Version
+// Yet Another Boring CMS - Fast Forward Version
 //
-// Holds a static string representing the current version of Yet another boring CMS for FREE plugin for CakePHP
+// Holds a static string representing the current version of Yet Another Boring CMS - Fast Forward plugin for CakePHP
 //
 // Copyright (c) 2018-present, Marks Software GmbH (https://www.marks-software.de/)
 //

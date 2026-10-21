@@ -44,7 +44,7 @@ class LocalesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function switchLocale($code = 'en_US')
+    public function switchLocale(string $code = 'en_US')
     {
         if (!$this->Locale->processLocaleForSession($this, $code)) {
             $this->Flash->set(

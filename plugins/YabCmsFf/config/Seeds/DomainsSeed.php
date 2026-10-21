@@ -26,12 +26,12 @@ declare(strict_types=1);
  */
 use Cake\I18n\DateTime;
 use Cake\Utility\Text;
-use Migrations\AbstractSeed;
+use Migrations\BaseSeed;
 
 /**
  * Class DomainsSeed
  */
-class DomainsSeed extends AbstractSeed
+class DomainsSeed extends BaseSeed
 {
     /**
      * Run Method.
@@ -53,7 +53,7 @@ class DomainsSeed extends AbstractSeed
                 'uuid_id' => Text::uuid(),
                 'scheme' => 'http',
                 'url' => 'yab-cms-ff-github.tld',
-                'name' => 'Yet another boring CMS for FREE',
+                'name' => 'Yet Another Boring CMS - Fast Forward',
                 'theme' => 'YabCmsFf',
                 'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
                 'created_by' => '1',

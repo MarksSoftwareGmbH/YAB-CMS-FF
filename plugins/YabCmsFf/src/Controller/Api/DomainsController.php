@@ -98,7 +98,7 @@ class DomainsController extends AppController
      * @param int|null $id
      * @return mixed
      */
-    public function view(int $id = null)
+    public function view(?int $id = null)
     {
         $this->Crud->on('beforeFind', function (Event $event) {
             if (

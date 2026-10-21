@@ -29,7 +29,7 @@ namespace YabCmsFf;
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
-use Authentication\Identifier\AbstractIdentifier;
+use Authentication\Identifier\PasswordIdentifier;
 use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\Console\CommandCollection;
@@ -133,8 +133,8 @@ class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProvider
         $service = new AuthenticationService();
 
         $fields = [
-            AbstractIdentifier::CREDENTIAL_USERNAME => 'username',
-            AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
+            PasswordIdentifier::CREDENTIAL_USERNAME => 'username',
+            PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
         ];
 
         $service->loadAuthenticator('Authentication.Jwt', [
@@ -143,23 +143,25 @@ class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProvider
             'header'        => 'Authorization',
             'tokenPrefix'   => 'Bearer',
             'returnPayload' => false,
-        ]);
-        $service->loadAuthenticator('Authentication.Form', [
-            'fields'    => $fields,
-            'loginUrl'  => '/api/oauth/token',
-        ]);
-        $service->identifiers()->load('Authentication.JwtSubject', [
-            'resolver' => [
-                'className' => 'Authentication.Orm',
-                'userModel' => 'YabCmsFf.Users',
+            'identifier'    => [
+                'className' => 'Authentication.JwtSubject',
+                'resolver'  => [
+                    'className' => 'Authentication.Orm',
+                    'userModel' => 'YabCmsFf.Users',
+                ],
             ],
         ]);
-        $service->identifiers()->load('Authentication.Password', [
-            'returnPayload' => false,
-            'fields'        => $fields,
-            'resolver' => [
-                'className' => 'Authentication.Orm',
-                'userModel' => 'YabCmsFf.Users',
+
+        $service->loadAuthenticator('Authentication.Form', [
+            'fields'     => $fields,
+            'loginUrl'   => '/api/oauth/token',
+            'identifier' => [
+                'className' => 'Authentication.Password',
+                'fields'    => $fields,
+                'resolver'  => [
+                    'className' => 'Authentication.Orm',
+                    'userModel' => 'YabCmsFf.Users',
+                ],
             ],
         ]);
 

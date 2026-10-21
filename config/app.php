@@ -26,7 +26,6 @@
 use Cake\Cache\Engine\FileEngine;
 use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
-use Cake\Database\Driver\Sqlite;
 use Cake\Log\Engine\FileLog;
 use Cake\Mailer\Transport\MailTransport;
 use function Cake\Core\env;
@@ -117,7 +116,6 @@ return [
         //'timestamp' => true,
         // 'cacheTime' => '+1 year'
     ],
-
 
     /*
      * Configure the cache adapters.
@@ -292,8 +290,8 @@ return [
      *
      * ### Notes
      * - Drivers include Mysql Postgres Sqlite Sqlserver
-     *   See vendor\cakephp\cakephp\src\Database\Driver for complete list
-     * - Do not use periods in database name - it may lead to error.
+     *   See vendor\cakephp\cakephp\src\Database\Driver for the complete list
+     * - Do not use periods in database name - it may lead to errors.
      *   See https://github.com/cakephp/cakephp/issues/6471 for details.
      * - 'encoding' is recommended to be set to full UTF-8 4-Byte support.
      *   E.g set it to 'utf8mb4' in MariaDB and MySQL and 'utf8' for any
@@ -307,8 +305,8 @@ return [
          * The values in app_local.php will override any values set here
          * and should be used for local and per-environment configurations.
          *
-         * Environment variable based configurations can be loaded here or
-         * in app_local.php depending on the applications needs.
+         * Environment variable-based configurations can be loaded here or
+         * in app_local.php depending on the application's needs.
          */
         'default' => [
             'className' => Connection::class,
@@ -317,7 +315,7 @@ return [
             'timezone' => 'UTC',
 
             /*
-             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
+             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support
              */
             'encoding' => 'utf8mb4',
 
@@ -355,164 +353,14 @@ return [
          */
         'test' => [
             'className' => Connection::class,
-            'driver' => Sqlite::class,
-            'persistent' => false,
-            'timezone' => 'UTC',
-            //'encoding' => 'utf8mb4',
-            'flags' => [],
-            'cacheMetadata' => true,
-            'quoteIdentifiers' => false,
-            'log' => false,
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-        ],
-
-        /*
-         * These configurations should contain permanent settings used
-         * by all environments.
-         *
-         * The values in app_local.php will override any values set here
-         * and should be used for local and per-environment configurations.
-         *
-         * Environment variable based configurations can be loaded here or
-         * in app_local.php depending on the applications needs.
-         */
-        'test_mysql' => [
-            'className' => Connection::class,
             'driver' => Mysql::class,
             'persistent' => false,
             'timezone' => 'UTC',
-
-            /*
-             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
-             */
             'encoding' => 'utf8mb4',
-
-            /*
-             * If your MySQL server is configured with `skip-character-set-client-handshake`
-             * then you MUST use the `flags` config to set your charset encoding.
-             * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
-             */
             'flags' => [],
             'cacheMetadata' => true,
-            'log' => false,
-
-            /*
-             * Set identifier quoting to true if you are using reserved words or
-             * special characters in your table or column names. Enabling this
-             * setting will result in queries built using the Query Builder having
-             * identifiers quoted when creating SQL. It should be noted that this
-             * decreases performance because each query needs to be traversed and
-             * manipulated before being executed.
-             */
             'quoteIdentifiers' => false,
-
-            /*
-             * During development, if using MySQL < 5.6, uncommenting the
-             * following line could boost the speed at which schema metadata is
-             * fetched from the database. It can also be set directly with the
-             * mysql configuration directive 'innodb_stats_on_metadata = 0'
-             * which is the recommended value in production environments
-             */
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-        ],
-
-        /*
-         * These configurations should contain permanent settings used
-         * by all environments.
-         *
-         * The values in app_local.php will override any values set here
-         * and should be used for local and per-environment configurations.
-         *
-         * Environment variable based configurations can be loaded here or
-         * in app_local.php depending on the applications needs.
-         */
-        'development' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
-            'persistent' => false,
-            'timezone' => 'UTC',
-
-            /*
-             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
-             */
-            'encoding' => 'utf8mb4',
-
-            /*
-             * If your MySQL server is configured with `skip-character-set-client-handshake`
-             * then you MUST use the `flags` config to set your charset encoding.
-             * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
-             */
-            'flags' => [],
-            'cacheMetadata' => true,
             'log' => false,
-
-            /*
-             * Set identifier quoting to true if you are using reserved words or
-             * special characters in your table or column names. Enabling this
-             * setting will result in queries built using the Query Builder having
-             * identifiers quoted when creating SQL. It should be noted that this
-             * decreases performance because each query needs to be traversed and
-             * manipulated before being executed.
-             */
-            'quoteIdentifiers' => false,
-
-            /*
-             * During development, if using MySQL < 5.6, uncommenting the
-             * following line could boost the speed at which schema metadata is
-             * fetched from the database. It can also be set directly with the
-             * mysql configuration directive 'innodb_stats_on_metadata = 0'
-             * which is the recommended value in production environments
-             */
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-        ],
-
-        /*
-         * These configurations should contain permanent settings used
-         * by all environments.
-         *
-         * The values in app_local.php will override any values set here
-         * and should be used for local and per-environment configurations.
-         *
-         * Environment variable based configurations can be loaded here or
-         * in app_local.php depending on the applications needs.
-         */
-        'production' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
-            'persistent' => false,
-            'timezone' => 'UTC',
-
-            /*
-             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
-             */
-            'encoding' => 'utf8mb4',
-
-            /*
-             * If your MySQL server is configured with `skip-character-set-client-handshake`
-             * then you MUST use the `flags` config to set your charset encoding.
-             * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
-             */
-            'flags' => [],
-            'cacheMetadata' => true,
-            'log' => false,
-
-            /*
-             * Set identifier quoting to true if you are using reserved words or
-             * special characters in your table or column names. Enabling this
-             * setting will result in queries built using the Query Builder having
-             * identifiers quoted when creating SQL. It should be noted that this
-             * decreases performance because each query needs to be traversed and
-             * manipulated before being executed.
-             */
-            'quoteIdentifiers' => false,
-
-            /*
-             * During development, if using MySQL < 5.6, uncommenting the
-             * following line could boost the speed at which schema metadata is
-             * fetched from the database. It can also be set directly with the
-             * mysql configuration directive 'innodb_stats_on_metadata = 0'
-             * which is the recommended value in production environments
-             */
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ],
     ],

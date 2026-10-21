@@ -26,12 +26,12 @@ declare(strict_types=1);
  */
 use Cake\I18n\DateTime;
 use Cake\Utility\Text;
-use Migrations\AbstractSeed;
+use Migrations\BaseSeed;
 
 /**
  * Class ArticleTypeAttributeChoicesSeed
  */
-class ArticleTypeAttributeChoicesSeed extends AbstractSeed
+class ArticleTypeAttributeChoicesSeed extends BaseSeed
 {
     /**
      * Run Method.

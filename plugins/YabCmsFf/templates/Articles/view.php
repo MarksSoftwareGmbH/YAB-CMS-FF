@@ -40,7 +40,7 @@ $this->Breadcrumbs->addMany([
         'url' => 'javascript:history.back()',
     ],
     [
-        'title' => __d('yab_cms_ff', 'Yet another boring CMS for FREE'),
+        'title' => __d('yab_cms_ff', 'Yet Another Boring CMS - Fast Forward'),
         'url' => [
             'plugin'        => 'YabCmsFf',
             'controller'    => 'Articles',
@@ -58,9 +58,9 @@ $this->Breadcrumbs->addMany([
     ],
     ['title' => $article->global_title],
 ], ['class' => 'breadcrumb-item']); ?>
-<?= $this->Html->meta('author', isset($article->user->name)? $article->user->name: 'Yet another boring CMS for FREE', ['block' => true]); ?>
+<?= $this->Html->meta('author', isset($article->user->name)? $article->user->name: 'Yet Another Boring CMS - Fast Forward', ['block' => true]); ?>
 <?= $this->Html->meta('description', isset($article->meta_description)? $article->meta_description: '', ['block' => true]); ?>
-<?= $this->Html->meta('generator', 'Yet another boring CMS for FREE', ['block' => true]); ?>
+<?= $this->Html->meta('generator', 'Yet Another Boring CMS - Fast Forward', ['block' => true]); ?>
 
 <section class="content-header">
     <div class="container-fluid">

@@ -275,9 +275,7 @@ $this->Breadcrumbs->addMany([
     </div>
 </div>
 
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'default',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf.admin/template/admin/default', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {
         Default.init();

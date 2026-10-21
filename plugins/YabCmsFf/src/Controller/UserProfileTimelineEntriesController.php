@@ -84,7 +84,7 @@ class UserProfileTimelineEntriesController extends AppController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -103,7 +103,7 @@ class UserProfileTimelineEntriesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index(string $foreignKey = null)
+    public function index(?string $foreignKey = null)
     {
         if (!empty($foreignKey)) {
             $UserProfiles = TableRegistry::getTableLocator()->get('YabCmsFf.UserProfiles');
@@ -156,7 +156,7 @@ class UserProfileTimelineEntriesController extends AppController
      *
      * @return \Cake\Http\Response|void|null
      */
-    public function view(string $foreignKey = null)
+    public function view(?string $foreignKey = null)
     {
         if (!empty($foreignKey)) {
             $userProfileTimelineEntryReference = [];
@@ -225,12 +225,12 @@ class UserProfileTimelineEntriesController extends AppController
     /**
      * View by slug method
      *
-     * @param string $slug
-     * @param string $foreignKey
+     * @param string|null $slug
+     * @param string|null $foreignKey
      *
      * @return \Cake\Http\Response|void|null
      */
-    public function viewBySlug(string $slug, string $foreignKey)
+    public function viewBySlug(?string $slug = null, ?string $foreignKey = null)
     {
         if (!empty($foreignKey)) {
             $userProfileTimelineEntryReference = [];

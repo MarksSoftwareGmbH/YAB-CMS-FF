@@ -4273,7 +4273,7 @@ msgstr ""
 #: ./plugins/YabCmsFf/templates/element/UserProfiles/view.php:110
 #: ./plugins/YabCmsFf/templates/element/Users/profile.php:53
 #: ./plugins/YabCmsFf/templates/element/Users/welcome.php:48
-msgid "Yet another boring CMS for FREE"
+msgid "Yet Another Boring CMS - Fast Forward"
 msgstr ""
 
 #: ./plugins/YabCmsFf/templates/Articles/promoted.php:52
@@ -4285,7 +4285,7 @@ msgid "Important note"
 msgstr ""
 
 #: ./plugins/YabCmsFf/templates/Articles/promoted.php:74
-msgid "Yet another boring CMS for FREE is free."
+msgid "Yet Another Boring CMS - Fast Forward is free."
 msgstr ""
 
 #: ./plugins/YabCmsFf/templates/Articles/search.php:31

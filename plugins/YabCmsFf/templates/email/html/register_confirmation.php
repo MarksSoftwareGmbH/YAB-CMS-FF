@@ -220,17 +220,17 @@
                                                         <div class="contentEditableContainer contentTextEditable">
                                                             <div class="contentEditable footer" align="center">
                                                                 <p class="footer">
-                                                                    <strong>Yet another boring CMS for FREE</strong><br />
+                                                                    <strong>Yet Another Boring CMS - Fast Forward</strong><br />
                                                                     <br />
                                                                     by Marks Software GmbH<br />
-                                                                    Holunderweg 20<br />
-                                                                    D-29664 Walsrode<br />
+                                                                    Brock 6<br />
+                                                                    29683 Bad Fallingbostel<br />
                                                                     Germany<br />
                                                                 </p>
                                                                 <br />
                                                                 <p class="footer">
-                                                                    <?= __d('yab_cms_ff', 'Telephone'); ?>: <a href="tel:+4951617875356" title="+49 51 61 78 75 356" moz-do-not-send="true">+49 51 61 78 75 356</a><br />
-                                                                    <?= __d('yab_cms_ff', 'Email'); ?>: <a href="mailto:info@marks-software.de" title="Yet another boring CMS for FREE" moz-do-not-send="true">info@marks-software.de</a>
+                                                                    <?= __d('yab_cms_ff', 'Telephone'); ?>: <a href="tel:+4915150662819" title="+49 151 50 66 28 19" moz-do-not-send="true">+49 151 50 66 28 19</a><br />
+                                                                    <?= __d('yab_cms_ff', 'Email'); ?>: <a href="mailto:info@marks-software.de" title="Yet Another Boring CMS - Fast Forward" moz-do-not-send="true">info@marks-software.de</a>
                                                                 </p>
                                                                 <br />
                                                                 <p class="footer">

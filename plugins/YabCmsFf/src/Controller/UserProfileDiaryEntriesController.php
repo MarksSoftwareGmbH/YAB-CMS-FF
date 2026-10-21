@@ -80,7 +80,7 @@ class UserProfileDiaryEntriesController extends AppController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -99,7 +99,7 @@ class UserProfileDiaryEntriesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function index(string $foreignKey = null)
+    public function index(?string $foreignKey = null)
     {
         if (!empty($foreignKey)) {
             $UserProfiles = TableRegistry::getTableLocator()->get('YabCmsFf.UserProfiles');
@@ -134,7 +134,7 @@ class UserProfileDiaryEntriesController extends AppController
      *
      * @return \Cake\Http\Response|void|null
      */
-    public function view(string $foreignKey = null)
+    public function view(?string $foreignKey = null)
     {
         if (!empty($foreignKey)) {
             $userProfileDiaryEntry = $this->UserProfileDiaryEntries

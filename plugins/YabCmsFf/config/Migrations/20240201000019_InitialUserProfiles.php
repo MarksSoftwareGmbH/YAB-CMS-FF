@@ -24,12 +24,12 @@ declare(strict_types=1);
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-use Migrations\AbstractMigration;
+use Migrations\BaseMigration;
 
 /**
  * Class InitialUserProfiles
  */
-class InitialUserProfiles extends AbstractMigration
+class InitialUserProfiles extends BaseMigration
 {
     /**
      * You can specify a autoId property in the Migration class and set it to false,
@@ -72,7 +72,7 @@ class InitialUserProfiles extends AbstractMigration
             ->addColumn('first_name', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('middle_name', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('last_name', 'string', ['limit' => 255, 'null' => true])
-            ->addColumn('gender', 'enum', ['values' => ['Male', 'Female'], 'null' => true])
+            ->addColumn('gender', 'string', ['limit' => 50, 'null' => true])
             ->addColumn('birthday', 'date', ['null' => true])
             ->addColumn('website', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('telephone', 'string', ['limit' => 255, 'null' => true])

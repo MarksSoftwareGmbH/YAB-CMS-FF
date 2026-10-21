@@ -148,7 +148,7 @@ class ArticleTypeAttributesController extends AppController
      * @return \Cake\Http\Response|null|void
      * @link https://book.cakephp.org/4/en/controllers.html#request-life-cycle-callbacks
      */
-    public function beforeFilter(EventInterface $event)
+    public function beforeFilter(EventInterface $event): void
     {
         parent::beforeFilter($event);
 
@@ -2967,6 +2967,8 @@ class ArticleTypeAttributesController extends AppController
      */
     public function import()
     {
+        $session = $this->getRequest()->getSession();
+
         if ($this->getRequest()->is('post') || !empty($this->getRequest()->getData())) {
 
             $postData = $this->getRequest()->getData();
@@ -3037,8 +3039,11 @@ class ArticleTypeAttributesController extends AppController
                             Hash::merge(
                                 $articleTypeAttribute,
                                 [
-                                    'created' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
-                                    'modified' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                                    'uuid_id'       => Text::uuid(),
+                                    'created'       => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                                    'created_by'    => $session->read('Auth.User.id'),
+                                    'modified'      => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                                    'modified_by'   => $session->read('Auth.User.id'),
                                 ]
                             )
                         );
@@ -3051,7 +3056,10 @@ class ArticleTypeAttributesController extends AppController
                             $existent,
                             Hash::merge(
                                 $articleTypeAttribute,
-                                ['modified' => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss')]
+                                [
+                                    'modified'      => $dateTime->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                                    'modified_by'   => $session->read('Auth.User.id'),
+                                ]
                             )
                         );
                         if ($this->ArticleTypeAttributes->save($articleTypeAttribute)) {
@@ -3353,10 +3361,10 @@ class ArticleTypeAttributesController extends AppController
             }
         }
 
-        foreach (range('A', $objSpreadsheet->getActiveSheet()->getHighestDataColumn()) as $col) {
+        foreach ($objSpreadsheet->getActiveSheet()->getColumnIterator() as $col) {
             $objSpreadsheet
                 ->getActiveSheet()
-                ->getColumnDimension($col)
+                ->getColumnDimension($col->getColumnIndex())
                 ->setAutoSize(true);
         }
         $objSpreadsheetWriter = IOFactory::createWriter($objSpreadsheet, 'Xlsx');

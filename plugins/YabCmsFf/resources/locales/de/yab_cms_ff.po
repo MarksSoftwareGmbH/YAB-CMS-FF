@@ -4284,8 +4284,8 @@ msgstr "YAB CMS FF"
 #: ./plugins/YabCmsFf/templates/element/UserProfiles/view.php:110
 #: ./plugins/YabCmsFf/templates/element/Users/profile.php:48
 #: ./plugins/YabCmsFf/templates/element/Users/welcome.php:48
-msgid "Yet another boring CMS for FREE"
-msgstr "Yet another boring CMS for FREE"
+msgid "Yet Another Boring CMS - Fast Forward"
+msgstr "Yet Another Boring CMS - Fast Forward"
 
 #: ./plugins/YabCmsFf/templates/Articles/promoted.php:52
 msgid "Recent CMS articles"
@@ -4296,8 +4296,8 @@ msgid "Important note"
 msgstr "Wichtiger Hinweis"
 
 #: ./plugins/YabCmsFf/templates/Articles/promoted.php:76
-msgid "Yet another boring CMS for FREE is free."
-msgstr "Yet another boring CMS for FREE is free."
+msgid "Yet Another Boring CMS - Fast Forward is free."
+msgstr "Yet Another Boring CMS - Fast Forward is free."
 
 #: ./plugins/YabCmsFf/templates/Articles/search.php:31
 #: ./plugins/YabCmsFf/templates/Articles/search.php:43
