@@ -92,10 +92,10 @@ $this->Breadcrumbs->addMany([
                     'value'         => $this->getRequest()->getQuery('search'),
                     'label'         => false,
                     'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
-                    'prepend'       => $this->element('Articles' . DS . 'add_select_article_type', ['articleTypes' => !empty($articleTypes)? $articleTypes: []])
-                        . $this->element('Articles' . DS . 'add_search_domain', ['domains' => !empty($domains)? $domains: []])
-                        . $this->element('Articles' . DS . 'add_search_locale', ['locales' => !empty($locales)? $locales: []])
-                        . $this->element('Articles' . DS . 'add_search_article_type', ['articleTypes' => !empty($articleTypes)? $articleTypes: []]),
+                    'prepend'       => $this->element('Articles/add_select_article_type', ['articleTypes' => !empty($articleTypes)? $articleTypes: []])
+                        . $this->element('Articles/add_search_domain', ['domains' => !empty($domains)? $domains: []])
+                        . $this->element('Articles/add_search_locale', ['locales' => !empty($locales)? $locales: []])
+                        . $this->element('Articles/add_search_article_type', ['articleTypes' => !empty($articleTypes)? $articleTypes: []]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]

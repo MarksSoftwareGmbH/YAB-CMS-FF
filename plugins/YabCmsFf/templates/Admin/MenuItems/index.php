@@ -75,10 +75,10 @@ $this->Breadcrumbs->addMany([
                     'value' => $this->getRequest()->getQuery('search'),
                     'label' => false,
                     'placeholder' => __d('yab_cms_ff', 'Search') . '...',
-                    'prepend' => $this->element('MenuItems' . DS . 'add_menu_item')
-                        . $this->element('MenuItems' . DS . 'add_search_domain', ['domains' => !empty($domains)? $domains: []])
-                        . $this->element('MenuItems' . DS . 'add_search_locale', ['locales' => !empty($locales)? $locales: []])
-                        . $this->element('MenuItems' . DS . 'add_search_menu', ['menus' => !empty($menus)? $menus: []]),
+                    'prepend' => $this->element('MenuItems/add_menu_item')
+                        . $this->element('MenuItems/add_search_domain', ['domains' => !empty($domains)? $domains: []])
+                        . $this->element('MenuItems/add_search_locale', ['locales' => !empty($locales)? $locales: []])
+                        . $this->element('MenuItems/add_search_menu', ['menus' => !empty($menus)? $menus: []]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]

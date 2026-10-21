@@ -69,7 +69,7 @@ endif;
     <?= $this->Html->charset(); ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <?= $this->Html->meta('favicon.ico', DS . 'YabCmsFf' . DS . 'img' . DS . 'admin' . DS . 'favicons' . DS . 'favicon.ico', ['type' => 'icon']); ?>
+    <?= $this->Html->meta('favicon.ico', '/YabCmsFf/img/admin/favicons/favicon.ico', ['type' => 'icon']); ?>
     <?= $this->fetch('meta'); ?>
     <link rel="canonical" href="<?= $this->Url->build(); ?>" />
     <?= $this->Html->css([

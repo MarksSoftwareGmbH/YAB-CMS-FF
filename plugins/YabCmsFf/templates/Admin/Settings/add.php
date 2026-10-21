@@ -175,7 +175,7 @@ $this->Breadcrumbs->addMany([
                     'empty'     => true,
                 ]); ?>
                 <div class="form-group">
-                    <?= $this->Form->button(__d('yab_cms_ff', 'Submit'), ['class' => 'btn btn-success shadow rounded']); ?>
+                    <?= $this->Form->button(__d('yab_cms_ff', 'Save'), ['class' => 'btn btn-success shadow rounded']); ?>
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
@@ -216,9 +216,6 @@ $this->Breadcrumbs->addMany([
                 name: {
                     required: true
                 },
-                value: {
-                    required: true
-                },
                 title: {
                     required: true
                 }
@@ -229,9 +226,6 @@ $this->Breadcrumbs->addMany([
                 },
                 name: {
                     required: \'' . __d('yab_cms_ff', 'Please enter a valid name') . '\'
-                },
-                value: {
-                    required: \'' . __d('yab_cms_ff', 'Please enter a valid value') . '\'
                 },
                 title: {
                     required: \'' . __d('yab_cms_ff', 'Please enter a valid title') . '\'

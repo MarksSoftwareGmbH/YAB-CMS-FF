@@ -75,9 +75,9 @@ $this->Breadcrumbs->addMany([
                     'value'         => $this->getRequest()->getQuery('search'),
                     'label'         => false,
                     'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
-                    'prepend'       => $this->element('Users' . DS . 'add_user')
-                        . $this->element('Users' . DS . 'add_search_role', ['roles' => !empty($roles)? $roles: []])
-                        . $this->element('Users' . DS . 'add_search_locale', ['locales' => !empty($locales)? $locales: []]),
+                    'prepend'       => $this->element('Users/add_user')
+                        . $this->element('Users/add_search_role', ['roles' => !empty($roles)? $roles: []])
+                        . $this->element('Users/add_search_locale', ['locales' => !empty($locales)? $locales: []]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]

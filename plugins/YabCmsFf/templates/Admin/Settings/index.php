@@ -70,9 +70,9 @@ $this->Breadcrumbs->addMany([
                     'value'         => $this->getRequest()->getQuery('search'),
                     'label'         => false,
                     'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
-                    'prepend'       => $this->element('Settings' . DS . 'add_setting')
-                        . $this->element('Settings' . DS . 'add_search_domain', ['domains' => !empty($domains)? $domains: []])
-                        . $this->element('Settings' . DS . 'add_search_parameter', ['parameters' => !empty($parameters)? $parameters: []]),
+                    'prepend'       => $this->element('Settings/add_setting')
+                        . $this->element('Settings/add_search_domain', ['domains' => !empty($domains)? $domains: []])
+                        . $this->element('Settings/add_search_parameter', ['parameters' => !empty($parameters)? $parameters: []]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]

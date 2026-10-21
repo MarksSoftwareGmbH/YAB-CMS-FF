@@ -359,7 +359,7 @@ $this->Breadcrumbs->addMany([
                     </div>
                 </div>
                 <div class="form-group">
-                    <?= $this->Form->button(__d('yab_cms_ff', 'Submit'), ['class' => 'btn btn-success float-left']); ?>&nbsp;
+                    <?= $this->Form->button(__d('yab_cms_ff', 'Save'), ['class' => 'btn btn-success float-left']); ?>&nbsp;
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
@@ -383,9 +383,7 @@ $this->Breadcrumbs->addMany([
 <?= $this->Html->script('YabCmsFf.admin/vendor/select2/js/select2.full.min', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->css('YabCmsFf.admin/vendor/tagify/tagify'); ?>
 <?= $this->Html->script('YabCmsFf.admin/vendor/tagify/jQuery.tagify.min', ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'userProfiles' . DS . 'form',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf.admin/template/admin/userProfiles/form', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {
         UserProfiles.init();

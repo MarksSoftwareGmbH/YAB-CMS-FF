@@ -252,4 +252,4 @@ endif;
         <?php endif; ?>
     </ul>
 </nav>
-<?= $this->Html->css('YabCmsFf' . '.' . 'template' . DS . 'element' . DS . 'header'); ?>
+<?= $this->Html->css('YabCmsFf.template/element/header'); ?>

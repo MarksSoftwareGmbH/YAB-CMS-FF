@@ -102,47 +102,21 @@ $this->Breadcrumbs->addMany([
         </div>
     </div>
 </section>
-
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-bs4' . DS . 'css' . DS . 'dataTables.bootstrap4.min'); ?>
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-responsive' . DS . 'css' . DS . 'responsive.bootstrap4.min'); ?>
-<?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-buttons' . DS . 'css' . DS . 'buttons.bootstrap4.min'); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables' . DS . 'jquery.dataTables.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-bs4' . DS . 'js' . DS . 'dataTables.bootstrap4.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-responsive' . DS . 'js' . DS . 'dataTables.responsive.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-responsive' . DS . 'js' . DS . 'responsive.bootstrap4.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-buttons' . DS . 'js' . DS . 'dataTables.buttons.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-buttons' . DS . 'js' . DS . 'buttons.bootstrap4.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'jszip' . DS . 'jszip.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'pdfmake' . DS . 'pdfmake.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'pdfmake' . DS . 'vfs_fonts',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-buttons' . DS . 'js' . DS . 'buttons.html5.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-buttons' . DS . 'js' . DS . 'buttons.print.min',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datatables-buttons' . DS . 'js' . DS . 'buttons.colVis.min',
-    ['block' => 'scriptBottom']); ?>
-
+<?= $this->Html->css('YabCmsFf./adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min'); ?>
+<?= $this->Html->css('YabCmsFf./adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min'); ?>
+<?= $this->Html->css('YabCmsFf./adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min'); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables/jquery.dataTables.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables-responsive/js/dataTables.responsive.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables-buttons/js/dataTables.buttons.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/jszip/jszip.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/pdfmake/pdfmake.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/pdfmake/vfs_fonts', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables-buttons/js/buttons.html5.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables-buttons/js/buttons.print.min', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf./adminlte/plugins/datatables-buttons/js/buttons.colVis.min', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {
         // Initialize DataTables

@@ -140,9 +140,7 @@ $this->Breadcrumbs->addMany([
 </div>
 <?= $this->Form->end(); ?>
 
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'users' . DS . 'form',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf.admin/template/admin/users/form', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {
         Users.init();

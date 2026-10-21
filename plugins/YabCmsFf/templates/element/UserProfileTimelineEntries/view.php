@@ -996,10 +996,8 @@ $this->Breadcrumbs->addMany([
                                     <?= $this->Form->end(); ?>
                                 </div>
 
-                                <?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datetimepicker' . DS . 'jquery.datetimepicker'); ?>
-                                <?= $this->Html->script(
-                                    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'datetimepicker' . DS . 'build' . DS . 'jquery.datetimepicker.full.min',
-                                    ['block' => 'scriptBottom']); ?>
+                                <?= $this->Html->css('YabCmsFf.admin/vendor/datetimepicker/jquery.datetimepicker'); ?>
+                                <?= $this->Html->script('YabCmsFf.admin/vendor/datetimepicker/build/jquery.datetimepicker.full.min', ['block' => 'scriptBottom']); ?>
                                 <?= $this->Html->scriptBlock(
                                     '$(function() {
                                         // Initialize datetimepicker
@@ -1728,10 +1726,8 @@ $this->Breadcrumbs->addMany([
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'alphatab' . DS . 'alphatab'); ?>
-                                                    <?= $this->Html->script(
-                                                        'https://cdn.jsdelivr.net/npm/@coderline/alphatab@latest/dist/alphaTab.js',
-                                                        ['block' => 'scriptBottom']); ?>
+                                                    <?= $this->Html->css('YabCmsFf.admin/vendor/alphatab/alphatab'); ?>
+                                                    <?= $this->Html->script('https://cdn.jsdelivr.net/npm/@coderline/alphatab@latest/dist/alphaTab.js', ['block' => 'scriptBottom']); ?>
                                                     <?= $this->Html->scriptBlock(
                                                         '$(function() {
                                                             const wrapper = document.querySelector(\'.at-wrap-' . h($userProfileTimelineEntry->entry_no) . '\');
@@ -1793,10 +1789,8 @@ $this->Breadcrumbs->addMany([
                                                 'escapeTitle'   => false,
                                             ]); ?><p>
 
-                                            <?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'ekko-lightbox' . DS . 'ekko-lightbox'); ?>
-                                            <?= $this->Html->script(
-                                                'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'ekko-lightbox' . DS . 'ekko-lightbox',
-                                                ['block' => 'scriptBottom']); ?>
+                                            <?= $this->Html->css('YabCmsFf./adminlte/plugins/ekko-lightbox/ekko-lightbox'); ?>
+                                            <?= $this->Html->script('YabCmsFf./adminlte/plugins/ekko-lightbox/ekko-lightbox', ['block' => 'scriptBottom']); ?>
                                             <?= $this->Html->scriptBlock(
                                                 '$(function() {
                                                     $(\'.gallery-' . h($userProfileTimelineEntry->foreign_key) . '\').click(function() {

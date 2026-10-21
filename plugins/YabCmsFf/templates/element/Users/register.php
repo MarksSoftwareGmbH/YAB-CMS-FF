@@ -212,14 +212,14 @@ $this->Html->meta([
                         [
                             'termsOfService' => $this->Html->link(
                                 __d('yab_cms_ff', 'Terms of service'),
-                                'javascript:void(0)',
+                                '#',
                                 [
                                     'class' => 'text-' . h($frontendLinkTextColor),
                                     'style' => 'text-decoration: underline;',
                                 ]),
                             'privacyPolicy' => $this->Html->link(
                                 __d('yab_cms_ff', 'Privacy policy'),
-                                'javascript:void(0)',
+                                '#',
                                 [
                                     'class' => 'text-' . h($frontendLinkTextColor),
                                     'style' => 'text-decoration: underline;',
@@ -243,7 +243,7 @@ $this->Html->meta([
                         <?= $this->Form->button(
                             __d('yab_cms_ff', 'Submit'),
                             [
-                                'class'         => 'float-right shadow rounded btn btn-' . h($frontendButtonColor),
+                                'class'         => 'float-right shadow rounded btn btn-outline-success',
                                 'escapeTitle'   => false,
                             ]); ?>
                     </div>

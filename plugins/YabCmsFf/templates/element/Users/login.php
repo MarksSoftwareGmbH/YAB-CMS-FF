@@ -160,7 +160,7 @@ $this->Html->meta([
                             <?= $this->Form->button(
                                 __d('yab_cms_ff', 'Login'),
                                 [
-                                    'class'         => 'float-right shadow rounded btn btn-' . h($frontendButtonColor),
+                                    'class'         => 'float-right shadow rounded btn btn-outline-success',
                                     'escapeTitle'   => false,
                                 ]); ?>
                         </div>

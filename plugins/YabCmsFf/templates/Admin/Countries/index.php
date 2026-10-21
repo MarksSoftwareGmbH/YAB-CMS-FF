@@ -75,8 +75,8 @@ $this->Breadcrumbs->addMany([
                     'value'         => $this->getRequest()->getQuery('search'),
                     'label'         => false,
                     'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
-                    'prepend'       => $this->element('Countries' . DS . 'add_country')
-                    . $this->element('Countries' . DS . 'add_search_locale', ['locales' => !empty($locales)? $locales: []]),
+                    'prepend'       => $this->element('Countries/add_country')
+                    . $this->element('Countries/add_search_locale', ['locales' => !empty($locales)? $locales: []]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]

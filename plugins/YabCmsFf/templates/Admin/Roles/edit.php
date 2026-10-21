@@ -127,7 +127,7 @@ $this->Breadcrumbs->addMany([
                     'required'          => false,
                 ]); ?>
                 <div class="form-group">
-                    <?= $this->Form->button(__d('yab_cms_ff', 'Submit'), ['class' => 'btn btn-success']); ?>
+                    <?= $this->Form->button(__d('yab_cms_ff', 'Save'), ['class' => 'btn btn-success']); ?>
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
@@ -146,11 +146,8 @@ $this->Breadcrumbs->addMany([
 </div>
 <?= $this->Form->end(); ?>
 
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'slug' . DS . 'jquery.slug',
-    ['block' => 'scriptBottom']); ?>
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'roles' . DS . 'form',
+<?= $this->Html->script('YabCmsFf.admin/vendor/slug/jquery.slug', ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf.admin/template/admin/roles/form',
     ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {

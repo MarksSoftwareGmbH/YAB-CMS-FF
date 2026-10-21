@@ -151,7 +151,7 @@ $this->Breadcrumbs->addMany([
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <?= $this->Form->button(__d('yab_cms_ff', 'Submit'), ['class' => 'btn btn-success shadow rounded']); ?>
+                    <?= $this->Form->button(__d('yab_cms_ff', 'Save'), ['class' => 'btn btn-success shadow rounded']); ?>
                     <?= $this->Html->link(
                         __d('yab_cms_ff', 'Cancel'),
                         [
@@ -170,9 +170,7 @@ $this->Breadcrumbs->addMany([
 </div>
 <?= $this->Form->end(); ?>
 
-<?= $this->Html->script(
-    'YabCmsFf' . '.' . 'admin' . DS . 'template' . DS . 'admin' . DS . 'logs' . DS . 'form',
-    ['block' => 'scriptBottom']); ?>
+<?= $this->Html->script('YabCmsFf.admin/template/admin/logs/form', ['block' => 'scriptBottom']); ?>
 <?= $this->Html->scriptBlock(
     '$(function() {
         Logs.init();

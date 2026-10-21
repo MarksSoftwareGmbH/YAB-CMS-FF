@@ -75,8 +75,8 @@ $this->Breadcrumbs->addMany([
                     'value'         => $this->getRequest()->getQuery('search'),
                     'label'         => false,
                     'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
-                    'prepend'       => $this->element('Registrations' . DS . 'add_registration')
-                        . $this->element('Registrations' . DS . 'add_search_registration_type', ['registrationTypes' => !empty($registrationTypes)? $registrationTypes: []]),
+                    'prepend'       => $this->element('Registrations/add_registration')
+                        . $this->element('Registrations/add_search_registration_type', ['registrationTypes' => !empty($registrationTypes)? $registrationTypes: []]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]

@@ -205,10 +205,8 @@ $this->Breadcrumbs->addMany([
                         </div>
                         <div class="card-body">
                             <input name="tags" value='<?= htmlspecialchars_decode($userProfile->tags); ?>' readonly>
-                            <?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'tagify' . DS . 'tagify'); ?>
-                            <?= $this->Html->script(
-                                'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'tagify' . DS . 'jQuery.tagify.min',
-                                ['block' => 'scriptBottom']); ?>
+                            <?= $this->Html->css('YabCmsFf.admin/vendor/tagify/tagify'); ?>
+                            <?= $this->Html->script('YabCmsFf.admin/vendor/tagify/jQuery.tagify.min', ['block' => 'scriptBottom']); ?>
                             <?= $this->Html->scriptBlock(
                                 '$(function() {
                                     var inputTags = document.querySelector(\'input[name=tags]\');
@@ -1234,10 +1232,8 @@ $this->Breadcrumbs->addMany([
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'alphatab' . DS . 'alphatab'); ?>
-                                                                    <?= $this->Html->script(
-                                                                        'https://cdn.jsdelivr.net/npm/@coderline/alphatab@latest/dist/alphaTab.js',
-                                                                        ['block' => 'scriptBottom']); ?>
+                                                                    <?= $this->Html->css('YabCmsFf.admin/vendor/alphatab/alphatab'); ?>
+                                                                    <?= $this->Html->script('https://cdn.jsdelivr.net/npm/@coderline/alphatab@latest/dist/alphaTab.js', ['block' => 'scriptBottom']); ?>
                                                                     <?= $this->Html->scriptBlock(
                                                                         '$(function() {
                                                                             const wrapper = document.querySelector(\'.at-wrap-' . h($userProfileTimelineEntry->entry_no) . '\');
@@ -1314,10 +1310,8 @@ $this->Breadcrumbs->addMany([
                                                                 'escapeTitle'   => false,
                                                             ]); ?><p>
 
-                                                            <?= $this->Html->css('YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'ekko-lightbox' . DS . 'ekko-lightbox'); ?>
-                                                            <?= $this->Html->script(
-                                                                'YabCmsFf' . '.' . 'admin' . DS . 'vendor' . DS . 'ekko-lightbox' . DS . 'ekko-lightbox',
-                                                                ['block' => 'scriptBottom']); ?>
+                                                            <?= $this->Html->css('YabCmsFf./adminlte/plugins/ekko-lightbox/ekko-lightbox'); ?>
+                                                            <?= $this->Html->script('YabCmsFf./adminlte/plugins/ekko-lightbox/ekko-lightbox', ['block' => 'scriptBottom']); ?>
                                                             <?= $this->Html->scriptBlock(
                                                                 '$(function() {
                                                                     $(\'.gallery-' . h($userProfileTimelineEntry->foreign_key) . '\').click(function() {
@@ -1457,4 +1451,4 @@ $this->Breadcrumbs->addMany([
     </div>
 </section>
 
-<?= $this->Html->css('YabCmsFf' . '.' . 'template' . DS . 'element' . DS . 'users' . DS . 'profile'); ?>
+<?= $this->Html->css('YabCmsFf.template/element/users/profile'); ?>

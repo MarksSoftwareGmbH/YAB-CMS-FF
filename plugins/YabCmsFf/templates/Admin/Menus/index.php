@@ -75,9 +75,9 @@ $this->Breadcrumbs->addMany([
                     'value'         => $this->getRequest()->getQuery('search'),
                     'label'         => false,
                     'placeholder'   => __d('yab_cms_ff', 'Search') . '...',
-                    'prepend' => $this->element('Menus' . DS . 'add_menu')
-                        . $this->element('Menus' . DS . 'add_search_domain', ['domains' => !empty($domains)? $domains: []])
-                        . $this->element('Menus' . DS . 'add_search_locale', ['locales' => !empty($locales)? $locales: []]),
+                    'prepend' => $this->element('Menus/add_menu')
+                        . $this->element('Menus/add_search_domain', ['domains' => !empty($domains)? $domains: []])
+                        . $this->element('Menus/add_search_locale', ['locales' => !empty($locales)? $locales: []]),
                     'append' => $this->Form->button(
                             __d('yab_cms_ff', 'Filter'),
                             ['class' => 'btn btn-' . h($backendButtonColor)]
