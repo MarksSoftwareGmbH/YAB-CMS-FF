@@ -53,7 +53,7 @@ $userProfilesCount = $UserProfiles
 <aside class="main-sidebar sidebar-<?= h($frontendSidebarColor); ?>-<?= h($frontendSidebarTextColor); ?> elevation-4">
     <?= $this->Html->link(
         $this->Html->image(
-            'logo_icon.png',
+            'emblem.png',
             [
                 'alt'   => 'YAB CMS FF',
                 'class' => 'brand-image img-circle elevation-3',

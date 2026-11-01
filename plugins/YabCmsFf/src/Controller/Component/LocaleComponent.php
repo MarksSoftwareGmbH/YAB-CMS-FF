@@ -67,9 +67,9 @@ class LocaleComponent extends Component
     /**
      * Domain id
      *
-     * @var string
+     * @var int
      */
-    private int $domainId;
+    private int $domainId = 0;
 
     /**
      * Constructor hook method.
@@ -110,6 +110,8 @@ class LocaleComponent extends Component
             ->first();
         if (!empty($domain)) {
             $this->domainId = $domain->id;
+        } else {
+            $this->domainId = 0;
         }
 
         // Set the locales for layout
@@ -152,6 +154,11 @@ class LocaleComponent extends Component
      */
     public function setLocalesForLayout()
     {
+        if ($this->domainId === 0) {
+            $this->localesForLayout = ['locales' => []];
+            return;
+        }
+
         $Locales = TableRegistry::getTableLocator()->get('YabCmsFf.Locales');
         $locales = $Locales
             ->find('all')
@@ -177,6 +184,12 @@ class LocaleComponent extends Component
      */
     public function processLocaleForSession(object $controller, $code = 'en_US', $name = 'English')
     {
+        if ($this->domainId === 0) {
+            $controller->getRequest()->getSession()->write('Locale.code', 'en_US');
+            $controller->getRequest()->getSession()->write('Locale.name', 'English');
+            return 'en_US';
+        }
+
         $Locales = TableRegistry::getTableLocator()->get('YabCmsFf.Locales');
         $locale = $Locales
             ->find()

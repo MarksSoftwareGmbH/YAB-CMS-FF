@@ -115,7 +115,7 @@ class GlobalComponent extends Component
      * @param array $data
      * @return void
      */
-    public function logRequest(object $controller = null, string $type = null, string $message = null, array $data = [])
+    public function logRequest(?object $controller = null, ?string $type = null, ?string $message = null, array $data = [])
     {
         try {
             $Logs = TableRegistry::getTableLocator()->get('YabCmsFf.Logs');
@@ -138,7 +138,7 @@ class GlobalComponent extends Component
      * @param object|null $controller
      * @return bool
      */
-    public function captcha(object $controller = null)
+    public function captcha(?object $controller = null)
     {
         $digitOne = mt_rand(1,20);
         $digitTwo = mt_rand(1,20);

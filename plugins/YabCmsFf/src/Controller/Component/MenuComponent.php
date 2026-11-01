@@ -65,9 +65,9 @@ class MenuComponent extends Component
     /**
      * Domain id
      *
-     * @var string
+     * @var int
      */
-    private int $domainId;
+    private int $domainId = 0;
 
     /**
      * Constructor hook method.
@@ -84,13 +84,13 @@ class MenuComponent extends Component
     }
 
     /**
-     * Callback for Controller.startup event.
+     * Is called before the controller’s beforeFilter method, but after the
+     * controller’s initialize() method.
      *
      * @param \Cake\Event\Event $event Event instance.
      */
-    public function startup(Event $event)
+    public function beforeFilter(Event $event): void
     {
-        // Set controller
         $Controller = $event->getSubject();
 
         // Set http host by environment
@@ -108,9 +108,11 @@ class MenuComponent extends Component
             ->first();
         if (!empty($domain)) {
             $this->domainId = $domain->id;
+        } else {
+            $this->domainId = 0;
         }
 
-        if ($Controller->getRequest()->getParam('prefix') !== 'admin') {
+        if ($Controller->getRequest()->getParam('prefix') !== 'Admin') {
             $this->menus($Controller);
         }
     }
@@ -120,12 +122,11 @@ class MenuComponent extends Component
      *
      * @param Event $event
      */
-    public function beforeRender(Event $event)
+    public function beforeRender(Event $event): void
     {
-        // Set controller
         $Controller = $event->getSubject();
 
-        if ($Controller->getRequest()->getParam('prefix') !== 'admin') {
+        if ($Controller->getRequest()->getParam('prefix') !== 'Admin') {
             $Controller->set('menus_for_layout', $this->menusForLayout);
         }
     }
@@ -137,9 +138,10 @@ class MenuComponent extends Component
      * Menus will be available in this variable in views: $menus_for_layout
      * @return void
      */
-    public function menus(object $controller = null)
+    public function menus(?object $controller = null)
     {
         $code = 'en_US';
+
         // Check if locale code is already in session
         if ($controller->getRequest()->getSession()->check('Locale.code')) {
             $code = $controller->getRequest()->getSession()->read('Locale.code');
@@ -149,21 +151,22 @@ class MenuComponent extends Component
         $menus = $Menus
             ->find('all')
             ->where([
-                'Menus.domain_id' => $this->domainId,
-                'Menus.locale' => $code,
-                'Menus.status' => 1,
+                'Menus.domain_id'   => $this->domainId,
+                'Menus.locale'      => $code,
+                'Menus.status'      => 1,
             ])
-            ->orderBy(['Menus.created' => 'ASC']);
+            ->orderBy(['Menus.created' => 'ASC'])
+            ->toArray();
 
         foreach ($menus as $menu) {
             $MenuItems = TableRegistry::getTableLocator()->get('YabCmsFf.MenuItems');
             $menuItems = $MenuItems
                 ->find('threaded')
                 ->where([
-                    'MenuItems.menu_id' => $menu->id,
-                    'MenuItems.domain_id' => $this->domainId,
-                    'MenuItems.locale' => $code,
-                    'MenuItems.status' => 1,
+                    'MenuItems.menu_id'     => $menu->id,
+                    'MenuItems.domain_id'   => $this->domainId,
+                    'MenuItems.locale'      => $code,
+                    'MenuItems.status'      => 1,
                 ])
                 ->orderBy(['MenuItems.lft' => 'ASC'])
                 ->toArray();

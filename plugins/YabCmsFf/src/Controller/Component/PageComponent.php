@@ -39,6 +39,15 @@ use Cake\Utility\Hash;
  */
 class PageComponent extends Component
 {
+
+    /**
+     * Pages for layout
+     *
+     * @var array
+     * @access public
+     */
+    public array $pagesForLayout = [];
+
     /**
      * Default config
      *
@@ -47,14 +56,6 @@ class PageComponent extends Component
      * @var array
      */
     protected array $_defaultConfig = [];
-
-    /**
-     * Locales for layout
-     *
-     * @var array
-     * @access public
-     */
-    public array $pagesForLayout = [];
 
     /**
      * Constructor hook method.
@@ -76,17 +77,17 @@ class PageComponent extends Component
      *
      * @param \Cake\Event\Event $event Event instance.
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(Event $event): void
     {
         $Controller = $event->getSubject();
 
         // Set the locales for layout in the $localesForLayout array
-        if ($Controller->getRequest()->getParam('prefix') !== 'admin') {
+        if ($Controller->getRequest()->getParam('prefix') !== 'Admin') {
             $this->setPagesForLayout($Controller);
         }
 
         // Set the locales for layout as variable for the view
-        if ($Controller->getRequest()->getParam('prefix') !== 'admin') {
+        if ($Controller->getRequest()->getParam('prefix') !== 'Admin') {
             $Controller->set('pages_for_layout', $this->pagesForLayout);
         }
     }
@@ -99,7 +100,7 @@ class PageComponent extends Component
      *
      * @return void
      */
-    public function setPagesForLayout(object $controller = null)
+    public function setPagesForLayout(?object $controller = null)
     {
         $code = 'en_US';
         // Check if locale code is already in session

@@ -71,7 +71,10 @@ class SettingsController extends AppController
             'description',
             'Domains.name',
         ],
-        'order' => ['parameter' => 'ASC']
+        'order' => [
+            'domain_id' => 'ASC',
+            'parameter' => 'ASC',
+        ],
     ];
 
     /**
@@ -315,7 +318,7 @@ class SettingsController extends AppController
                         ->where([
                             'domain_id' => $setting['domain_id'],
                             'parameter' => $setting['parameter'],
-                            'name' => $setting['name'],
+                            'name'      => $setting['name'],
                         ])
                         ->first();
 

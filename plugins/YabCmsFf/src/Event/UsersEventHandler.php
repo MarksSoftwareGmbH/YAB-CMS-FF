@@ -83,7 +83,7 @@ class UsersEventHandler implements EventListenerInterface
     public function onBeforeLogin(Event $event)
     {
         if (empty($event->getSubject()->getRequest()->getData())) {
-            return true;
+            $event->setResult(true);
         }
         $cacheName = 'yab_cms_ff_auth_failed_' . $event->getSubject()->getRequest()->getData('username');
         $cacheValue = Cache::read($cacheName, 'yab_cms_ff_users_login');
@@ -212,23 +212,23 @@ class UsersEventHandler implements EventListenerInterface
                     ['element' => 'default', 'params' => ['class' => 'danger']]
                 );
 
-                return $event->getSubject()->redirect([
+                $event->setResult($event->getSubject()->redirect([
                     'plugin'        => 'YabCmsFf',
                     'controller'    => 'Users',
                     'action'        => 'logout',
-                ]);
+                ]));
             }
 
             if (isset($user->user_profile) && !empty($user->user_profile->image)) {
                 $event->getSubject()->getRequest()->getSession()->write('Auth.User.avatar', $user->user_profile->image);
             }
             if (isset($user->locale->code) && !empty($user->locale->code)) {
-                return $event->getSubject()->redirect([
+                $event->setResult($event->getSubject()->redirect([
                     'plugin'        => 'YabCmsFf',
                     'controller'    => 'Locales',
                     'action'        => 'switchLocale',
                     'code'          => h($user->locale->code),
-                ]);
+                ]));
             }
         }
 

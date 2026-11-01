@@ -35,7 +35,7 @@ endif;
 ?>
 <div class="input-group-prepend">
     <button class="btn btn-<?= h($backendButtonColor); ?> dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <?= __d('yab_cms_ff', 'Article Type'); ?>
+    <?= __d('yab_cms_ff', 'Article type'); ?>
     </button>
     <div class="dropdown-menu">
     <?php foreach ($articleTypes as $key => $value): ?>

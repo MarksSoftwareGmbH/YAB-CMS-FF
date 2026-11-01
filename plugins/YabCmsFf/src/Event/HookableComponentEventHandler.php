@@ -91,11 +91,11 @@ class HookableComponentEventHandler implements EventListenerInterface
     /**
      * Load component
      *
-     * @param $name
+     * @param string $name
      * @param array $config
      * @return mixed
      */
-    public function loadComponent($name, array $config = [])
+    public function loadComponent(string $name, array $config = [])
     {
         [, $prop] = pluginSplit($name);
         [, $modelProp] = pluginSplit($this->defaultTable);

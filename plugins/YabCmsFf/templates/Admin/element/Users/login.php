@@ -101,7 +101,7 @@ $this->Html->meta([
                         '/',
                         ['escapeTitle' => false]); ?>
                 </div>
-                <p class="login-box-msg text-sm">
+                <p class="login-box-msg">
                     <?= __d('yab_cms_ff', 'Welcome to {yabCmsFf}', ['yabCmsFf' => 'Yet Another Boring CMS - Fast Forward']); ?> - v<?= Configure::version(); ?>
                 </p>
                 <?php $this->Form->setTemplates([

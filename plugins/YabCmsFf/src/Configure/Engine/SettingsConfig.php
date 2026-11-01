@@ -60,7 +60,7 @@ class SettingsConfig implements ConfigEngineInterface
      * @param \Cake\ORM\Table|null $table
      * @param int|null $domainId
      */
-    public function __construct(Table $table = null, int $domainId = null)
+    public function __construct(?Table $table = null, ?int $domainId = null)
     {
         if (!$table) {
             $table = TableRegistry::getTableLocator()->get('YabCmsFf.Settings');
@@ -95,7 +95,7 @@ class SettingsConfig implements ConfigEngineInterface
         foreach ($globalSettings as $setting) {
             $config = Hash::insert($config, 'YabCmsFf' . '.' . $key . '.' . $setting->name, $setting->value);
         }
-
+        
         return $config;
     }
 
@@ -147,12 +147,20 @@ class SettingsConfig implements ConfigEngineInterface
                 ->toArray();
         }
 
-        // Get the domain theme
-        $domainTheme = $this->getDomainTheme();
-        if (!empty($domainTheme)) {
-            // Merge the domain related settings with the domain theme, frontendTheme as name is essential
-            $domainFrontendTheme = [(object)['name' => 'frontendTheme', 'value' => $domainTheme]];
-            $domainSettings = Hash::merge($domainSettings, $domainFrontendTheme);
+        $hasFrontendTheme = false;
+        foreach ($domainSettings as $setting) {
+            if ($setting->name === 'frontendTheme') {
+                $hasFrontendTheme = true;
+                break;
+            }
+        }
+
+        if (!$hasFrontendTheme) {
+            $domainTheme = $this->getDomainTheme();
+            if (!empty($domainTheme)) {
+                $domainFrontendTheme = [(object)['name' => 'frontendTheme', 'value' => $domainTheme]];
+                $domainSettings = Hash::merge($domainSettings, $domainFrontendTheme);
+            }
         }
 
         return $domainSettings;
