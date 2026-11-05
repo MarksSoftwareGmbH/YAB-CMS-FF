@@ -71,6 +71,8 @@ class LogsTable extends Table
         // Setup search filter using search manager
         $this->getBehavior('Search')->searchManager()
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',
@@ -191,12 +193,12 @@ class LogsTable extends Table
      * @return \Cake\Datasource\EntityInterface|false
      */
     public function createLog(
-        $request = 'GET',
-        $type = 'log',
-        $message = 'message',
-        $ip = null,
-        $uri = null,
-        $data = []
+        string $request = 'GET',
+        string $type = 'log',
+        string $message = 'message',
+        ?string $ip = null,
+        ?string $uri = null,
+        array $data = []
     )
     {
         $log = $this->newEntity([

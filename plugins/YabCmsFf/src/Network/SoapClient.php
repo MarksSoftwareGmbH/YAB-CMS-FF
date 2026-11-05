@@ -36,7 +36,6 @@ use SoapClient as Client;
  */
 class SoapClient extends Client
 {
-
     /**
      * Performs a SOAP request
      *
@@ -44,19 +43,21 @@ class SoapClient extends Client
      * @param string $location The URL to request.
      * @param string $action The SOAP action.
      * @param int $version The SOAP version.
-     * @param bool|null $oneWay If set to 1, this method returns nothing. Use this where a response is not expected.
-     * @return string The XML SOAP response.
+     * @param bool $oneWay If set to true, this method returns nothing. Use this where a response is not expected.
+     * @return string|null The XML SOAP response.
      */
-    public function __doRequest($request, $location, $action, $version, $oneWay = false)
+    public function __doRequest(string $request, string $location, string $action, int $version, bool $oneWay = false): ?string
     {
         if (Configure::read('debug') === true) {
-            Log::write(LogLevel::INFO, $request);
-            Log::write(LogLevel::INFO, $location);
-            Log::write(LogLevel::INFO, $action);
-            Log::write(LogLevel::INFO, (string) $version);
+            Log::write(LogLevel::INFO, 'SOAP Request XML: {request}', ['request' => $request]);
+            Log::write(LogLevel::INFO, 'SOAP Location: {location}', ['location' => $location]);
+            Log::write(LogLevel::INFO, 'SOAP Action: {action}', ['action' => $action]);
+            Log::write(LogLevel::INFO, 'SOAP Version: {version}', ['version' => $version]);
         }
 
-        return parent::__doRequest($request, $location, $action, $version, $oneWay);
+        $result = parent::__doRequest($request, $location, $action, $version, (int)$oneWay);
+
+        return is_string($result) ? $result : null;
     }
 
     /**
@@ -69,14 +70,18 @@ class SoapClient extends Client
      * @param array|null $outputHeaders If supplied, this array will be filled with the headers from the SOAP response.
      * @return mixed
      */
-    public function __soapCall($functionName, $arguments = [], $options = null, $inputHeaders = null, &$outputHeaders = null)
-    {
+    public function __soapCall(
+        string $functionName,
+        array $arguments,
+        ?array $options = null,
+        ?array $inputHeaders = null,
+        &$outputHeaders = null
+    ): mixed {
         if (Configure::read('debug') === true) {
-            Log::write(LogLevel::INFO, $functionName);
-            Log::write(LogLevel::INFO, (string) $arguments);
-            Log::write(LogLevel::INFO, (string) $options);
-            Log::write(LogLevel::INFO, (string) $inputHeaders);
-            Log::write(LogLevel::INFO, (string) $outputHeaders);
+            Log::write(LogLevel::INFO, 'SOAP Function: {function}', ['function' => $functionName]);
+            Log::write(LogLevel::INFO, 'SOAP Arguments context', ['arguments' => $arguments]);
+            Log::write(LogLevel::INFO, 'SOAP Options context', ['options' => $options]);
+            Log::write(LogLevel::INFO, 'SOAP Input Headers context', ['inputHeaders' => $inputHeaders]);
         }
 
         return parent::__soapCall($functionName, $arguments, $options, $inputHeaders, $outputHeaders);

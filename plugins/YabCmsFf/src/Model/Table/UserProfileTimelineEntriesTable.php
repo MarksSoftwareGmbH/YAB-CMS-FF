@@ -89,12 +89,14 @@ class UserProfileTimelineEntriesTable extends Table
         // Setup search filter using search manager
         $this->getBehavior('Search')->searchManager()
             ->add('search', 'Search.Like', [
-                'before'    => true,
-                'after'     => true,
-                'fieldMode'     => 'OR',
-                'comparison'    => 'LIKE',
-                'wildcardAny'   => '*',
-                'wildcardOne'   => '?',
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
+                'before' => true,
+                'after' => true,
+                'fieldMode' => 'OR',
+                'comparison' => 'LIKE',
+                'wildcardAny' => '*',
+                'wildcardOne' => '?',
                 'colType' => [
                     'entry_no' => 'string',
                     'entry_ref_no' => 'string',

@@ -114,6 +114,8 @@ class CategoriesTable extends Table
                 'fields' => ['Categories.locale']
             ])
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',

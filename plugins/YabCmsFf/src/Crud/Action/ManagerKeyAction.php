@@ -68,11 +68,11 @@ class ManagerKeyAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $managerKey
+     * @param string $managerKey
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $managerKey = null)
+    protected function _handle(string $managerKey)
     {
         $subject = $this->_subject();
         $repository = $this->_table();
@@ -86,7 +86,7 @@ class ManagerKeyAction extends BaseAction
     /**
      * Find a record from the manager Key
      *
-     * @param string|null $managerKey
+     * @param string $managerKey
      * @param \Crud\Event\Subject $subject
      * @throws \Exception
      * @return void

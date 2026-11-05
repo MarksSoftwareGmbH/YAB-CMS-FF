@@ -68,11 +68,11 @@ class NameAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $name
+     * @param string $name
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $name = null)
+    protected function _handle(string $name)
     {
         $subject = $this->_subject();
         $repository = $this->_table();
@@ -86,7 +86,7 @@ class NameAction extends BaseAction
     /**
      * Find a record from the Name
      *
-     * @param string|null $name
+     * @param string $name
      * @param \Crud\Event\Subject $subject
      * @throws \Exception
      * @return void

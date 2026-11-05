@@ -68,11 +68,11 @@ class CategoryKeyAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $categoryKey
+     * @param string $categoryKey
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $categoryKey = null)
+    protected function _handle(string $categoryKey)
     {
         $subject = $this->_subject();
         $repository = $this->_table();
@@ -86,7 +86,7 @@ class CategoryKeyAction extends BaseAction
     /**
      * Find a record from the Category Key
      *
-     * @param string|null $categoryKey
+     * @param string $categoryKey
      * @param \Crud\Event\Subject $subject
      * @throws \Exception
      * @return void

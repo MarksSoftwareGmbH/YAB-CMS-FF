@@ -68,11 +68,11 @@ class NumberAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $number
+     * @param string $number
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $number = null)
+    protected function _handle(string $number)
     {
         $subject = $this->_subject();
         $repository = $this->_table();
@@ -86,7 +86,7 @@ class NumberAction extends BaseAction
     /**
      * Find a record from the Number
      *
-     * @param string|null $number
+     * @param string $number
      * @param \Crud\Event\Subject $subject
      * @throws \Exception
      * @return void

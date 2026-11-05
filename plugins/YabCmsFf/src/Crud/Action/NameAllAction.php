@@ -68,11 +68,11 @@ class NameAllAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $name
+     * @param string $name
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $name = null)
+    protected function _handle(string $name)
     {
         $repository = $this->_table();
 

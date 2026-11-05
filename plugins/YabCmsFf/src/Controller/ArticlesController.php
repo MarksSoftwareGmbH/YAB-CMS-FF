@@ -51,9 +51,9 @@ class ArticlesController extends AppController
     /**
      * Domain id
      *
-     * @var string
+     * @var int
      */
-    private int $domainId;
+    private int $domainId = 1;
 
     /**
      * Locale

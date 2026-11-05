@@ -100,6 +100,8 @@ class ManagersTable extends Table
                 'fields' => ['locale_id'],
             ])
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',

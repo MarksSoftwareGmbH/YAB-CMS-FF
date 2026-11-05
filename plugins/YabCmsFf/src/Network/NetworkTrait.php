@@ -26,37 +26,46 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Network;
 
+use Cake\Controller\Controller;
 use Cake\Log\Log;
 use Cake\ORM\TableRegistry;
+use Psr\Log\LogLevel;
+use Exception;
 
 /**
  * Network trait
  */
 trait NetworkTrait
 {
-
     /**
      * Convenience method to write a request log into database
      *
-     * @param object|null $controller
+     * @param Controller|null $controller
      * @param string|null $type
      * @param string|null $message
      * @param array $data
+     * @return void
      */
-    public function requestLog($controller = null, $type = null, $message = null, $data = [])
+    public function requestLog(?Controller $controller = null, ?string $type = null, ?string $message = null, array $data = []): void
     {
         try {
-            $Logs = TableRegistry::getTableLocator()->get('YabCmsFf.Logs');
-            $Logs->createLog(
-                $controller->getRequest()->getMethod(),
+            $request = $controller?->getRequest();
+            
+            $method = $request?->getMethod() ?? 'CLI';
+            $clientIp = $request?->clientIp() ?? '127.0.0.1';
+            $requestTarget = $request?->getRequestTarget() ?? '';
+
+            $logsTable = TableRegistry::getTableLocator()->get('YabCmsFf.Logs');
+            $logsTable->createLog(
+                $method,
                 $type,
                 $message,
-                $controller->getRequest()->clientIp(),
-                $controller->getRequest()->getRequestTarget(),
+                $clientIp,
+                $requestTarget,
                 $data
             );
-        } catch (\Exception $ex) {
-            Log::write('error', (string)$ex);
+        } catch (Exception $ex) {
+            Log::write(LogLevel::ERROR, (string)$ex);
         }
     }
 }

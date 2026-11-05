@@ -84,6 +84,8 @@ class LocalesTable extends Table
         // Setup search filter using search manager
         $this->getBehavior('Search')->searchManager()
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',
@@ -201,7 +203,7 @@ class LocalesTable extends Table
      * @param string|null $code
      * @return mixed
      */
-    public function getLocaleIdByCode(string $code = null)
+    public function getLocaleIdByCode(?string $code = null)
     {
         $locale = $this
             ->find()

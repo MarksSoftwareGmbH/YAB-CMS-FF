@@ -27,7 +27,9 @@ declare(strict_types=1);
 namespace YabCmsFf\Network;
 
 use Cake\Core\InstanceConfigTrait;
+use Cake\Http\Client\Response;
 use Cake\Log\Log;
+use Psr\Log\LogLevel;
 use YabCmsFf\Network\HttpClient;
 use Exception;
 
@@ -36,29 +38,28 @@ use Exception;
  */
 class HttpConnect
 {
-
     use InstanceConfigTrait;
 
     /**
      * HttpClient instance
      *
-     * @var object
+     * @var HttpClient|null
      */
-    public $client = null;
+    public ?HttpClient $client = null;
 
     /**
      * Connection status
      *
-     * @var boolean
+     * @var bool
      */
-    public $connected = false;
+    public bool $connected = false;
 
     /**
      * Default configuration
      *
      * @var array
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'adapter' => 'Cake\Http\Client\Adapter\Stream',
         'host' => null,
         'port' => null,
@@ -72,9 +73,8 @@ class HttpConnect
     ];
 
     /**
-     * Constructor
-     *
      * HttpConnect constructor.
+     *
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -88,16 +88,14 @@ class HttpConnect
      *
      * @return bool
      */
-    public function connect()
+    public function connect(): bool
     {
         try {
             $this->client = new HttpClient($this->getConfig());
-        } catch (Exception $ex) {
-            Log::write('error', (string) $ex);
-        }
-
-        if ($this->client) {
             $this->connected = true;
+        } catch (Exception $ex) {
+            Log::write(LogLevel::ERROR, (string)$ex);
+            $this->connected = false;
         }
 
         return $this->connected;
@@ -106,40 +104,33 @@ class HttpConnect
     /**
      * Query the Http host with the given method and parameters
      *
+     * @param string $url
      * @param string $method
-     * @param string|null $url
-     * @param array $data
+     * @param mixed $data
      * @param array $options
-     * @return \Cake\Http\Client\Response|bool
+     * @return Response|false
      */
-    public function sendRequest(string $method = 'GET', string $url = null, $data = [], $options = [])
+    public function sendRequest(string $url, string $method = 'GET', mixed $data = [], array $options = []): Response|false
     {
-        if (!$this->connected) {
+        if (!$this->connected || $this->client === null) {
             $this->connect();
         }
 
+        if ($this->client === null) {
+            return false;
+        }
+
         try {
-            switch ($method) {
-                case 'POST':
-                    $result = $this->client->post($url, $data, $options);
-                    break;
-                case 'PUT':
-                    $result = $this->client->put($url, $data, $options);
-                    break;
-                case 'DELETE':
-                    $result = $this->client->delete($url, $data, $options);
-                    break;
-                case 'HEAD':
-                    $result = $this->client->head($url, $data, $options);
-                    break;
-                case 'PATCH':
-                    $result = $this->client->patch($url, $data, $options);
-                    break;
-                default:
-                    $result = $this->client->get($url, $data, $options);
-            }
+            $result = match (strtoupper($method)) {
+                'POST' => $this->client->post($url, $data, $options),
+                'PUT' => $this->client->put($url, $data, $options),
+                'DELETE' => $this->client->delete($url, $data, $options),
+                'HEAD' => $this->client->head($url, $data, $options),
+                'PATCH' => $this->client->patch($url, $data, $options),
+                default => $this->client->get($url, $data, $options),
+            };
         } catch (Exception $ex) {
-            Log::write('error', (string) $ex);
+            Log::write(LogLevel::ERROR, (string)$ex);
 
             return false;
         }

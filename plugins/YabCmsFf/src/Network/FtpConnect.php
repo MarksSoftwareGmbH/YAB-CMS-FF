@@ -29,62 +29,62 @@ namespace YabCmsFf\Network;
 use Cake\Log\Log;
 use Psr\Log\LogLevel;
 use Exception;
+use FTP\Connection;
 
 /**
  * FtpConnect Model
  *
- * @method void alloc(int $filesize, string & $result) - Allocates space for a file to be uploaded
- * @method void cdUp() - Changes to the parent directory
- * @method void chDir(string $directory) - Changes the current directory on a FTP server
- * @method int chMod(int $mode, string $filename) - Set permissions on a file via FTP
- * @method void close() - Closes an FTP connection
- * @method void connect(string $host, int $port = 21, int $timeout = 90) - Opens an FTP connection
- * @method void delete(string $path) - Deletes a file on the FTP server
- * @method bool exec(string $command) - Requests execution of a command on the FTP server
- * @method void fGet(resource $handle, string $remote_file, int $mode, int $resumepos = 0) - Downloads a file from the FTP server and saves to an open file
- * @method void fPut(string $remote_file, resource $handle, int $mode, int $startpos = 0) - Uploads from an open file to the FTP server
- * @method mixed getOption(int $option) - Retrieves various runtime behaviours of the current FTP stream
- * @method void get(string $local_file, string $remote_file, int $mode, int $resumepos = 0) - Downloads a file from the FTP server
- * @method void login(string $username, string $password) - Logs in to an FTP connection
- * @method int mdTm(string $remote_file) - Returns the last modified time of the given file
- * @method string mkDir(string $directory) - Creates a directory
- * @method int nbContinue() - Continues retrieving/sending a file(non-blocking)
- * @method int nbFGet(resource $handle, string $remote_file, int $mode, int $resumepos = 0) - Retrieves a file from the FTP server and writes it to an open file(non-blocking)
- * @method int nbFPut(string $remote_file, resource $handle, int $mode, int $startpos = 0) - Stores a file from an open file to the FTP server(non-blocking)
- * @method int nbGet(string $local_file, string $remote_file, int $mode, int $resumepos = 0) - Retrieves a file from the FTP server and writes it to a local file(non-blocking)
- * @method int nbPut(string $remote_file, string $local_file, int $mode, int $startpos = 0) - Stores a file on the FTP server(non-blocking)
- * @method array nList(string $directory) - Returns a list of files in the given directory
- * @method void pasv(bool $pasv) - Turns passive mode on or off
- * @method void put(string $remote_file, string $local_file, int $mode, int $startpos = 0) - Uploads a file to the FTP server
- * @method string pwd() - Returns the current directory name
- * @method void quit() - Closes an FTP connection(alias of close)
- * @method array raw(string $command) - Sends an arbitrary command to an FTP server
- * @method mixed rawList(string $directory, bool $recursive = false) - Returns a detailed list of files in the given directory
- * @method void rename(string $oldname, string $newname) - Renames a file or a directory on the FTP server
- * @method void rmDir(string $directory) - Removes a directory
- * @method bool setOption(int $option, mixed $value) - Set miscellaneous runtime FTP options
- * @method void site(string $command) - Sends a SITE command to the server
- * @method int size(string $remote_file) - Returns the size of the given file
- * @method void sslConnect(string $host, int $port = 21, int $timeout = 90) - Opens an Secure SSL-FTP connection
- * @method string sysType() - Returns the system type identifier of the remote FTP server
+ * @method void alloc(int $filesize, string &$result) Allocates space for a file to be uploaded
+ * @method void cdUp() Changes to the parent directory
+ * @method void chDir(string $directory) Changes the current directory on a FTP server
+ * @method int chMod(int $mode, string $filename) Set permissions on a file via FTP
+ * @method void close() Closes an FTP connection
+ * @method void connect(string $host, int $port = 21, int $timeout = 90) Opens an FTP connection
+ * @method void delete(string $path) Deletes a file on the FTP server
+ * @method bool exec(string $command) Requests execution of a command on the FTP server
+ * @method void fGet($handle, string $remote_file, int $mode, int $resumepos = 0) Downloads a file from the FTP server and saves to an open file
+ * @method void fPut(string $remote_file, $handle, int $mode, int $startpos = 0) Uploads from an open file to the FTP server
+ * @method mixed getOption(int $option) Retrieves various runtime behaviours of the current FTP stream
+ * @method void get(string $local_file, string $remote_file, int $mode, int $resumepos = 0) Downloads a file from the FTP server
+ * @method void login(string $username, string $password) Logs in to an FTP connection
+ * @method int mdTm(string $remote_file) Returns the last modified time of the given file
+ * @method string mkDir(string $directory) Creates a directory
+ * @method int nbContinue() Continues retrieving/sending a file (non-blocking)
+ * @method int nbFGet($handle, string $remote_file, int $mode, int $resumepos = 0) Retrieves a file from the FTP server and writes it to an open file (non-blocking)
+ * @method int nbFPut(string $remote_file, $handle, int $mode, int $startpos = 0) Stores a file from an open file to the FTP server (non-blocking)
+ * @method int nbGet(string $local_file, string $remote_file, int $mode, int $resumepos = 0) Retrieves a file from the FTP server and writes it to a local file (non-blocking)
+ * @method int nbPut(string $remote_file, string $local_file, int $mode, int $startpos = 0) Stores a file on the FTP server (non-blocking)
+ * @method array nList(string $directory) Returns a list of files in the given directory
+ * @method void pasv(bool $pasv) Turns passive mode on or off
+ * @method void put(string $remote_file, string $local_file, int $mode, int $startpos = 0) Uploads a file to the FTP server
+ * @method string pwd() Returns the current directory name
+ * @method void quit() Closes an FTP connection (alias of close)
+ * @method array raw(string $command) Sends an arbitrary command to an FTP server
+ * @method mixed rawList(string $directory, bool $recursive = false) Returns a detailed list of files in the given directory
+ * @method void rename(string $oldname, string $newname) Renames a file or a directory on the FTP server
+ * @method void rmDir(string $directory) Removes a directory
+ * @method bool setOption(int $option, mixed $value) Set miscellaneous runtime FTP options
+ * @method void site(string $command) Sends a SITE command to the server
+ * @method int size(string $remote_file) Returns the size of the given file
+ * @method void sslConnect(string $host, int $port = 21, int $timeout = 90) Opens a Secure SSL-FTP connection
+ * @method string sysType() Returns the system type identifier of the remote FTP server
  */
 class FtpConnect
 {
-
     /**#@+ FTP constant alias */
-    const ASCII = FTP_ASCII;
-    const TEXT = FTP_TEXT;
-    const BINARY = FTP_BINARY;
-    const IMAGE = FTP_IMAGE;
-    const TIMEOUT_SEC = FTP_TIMEOUT_SEC;
-    const AUTOSEEK = FTP_AUTOSEEK;
-    const AUTORESUME = FTP_AUTORESUME;
-    const FAILED = FTP_FAILED;
-    const FINISHED = FTP_FINISHED;
-    const MOREDATA = FTP_MOREDATA;
+    public const ASCII = FTP_ASCII;
+    public const TEXT = FTP_TEXT;
+    public const BINARY = FTP_BINARY;
+    public const IMAGE = FTP_IMAGE;
+    public const TIMEOUT_SEC = FTP_TIMEOUT_SEC;
+    public const AUTOSEEK = FTP_AUTOSEEK;
+    public const AUTORESUME = FTP_AUTORESUME;
+    public const FAILED = FTP_FAILED;
+    public const FINISHED = FTP_FINISHED;
+    public const MOREDATA = FTP_MOREDATA;
     /**#@-*/
 
-    private static $aliases = array(
+    private static array $aliases = [
         'sslconnect' => 'ssl_connect',
         'getoption' => 'get_option',
         'setoption' => 'set_option',
@@ -93,40 +93,44 @@ class FtpConnect
         'nbfput' => 'nb_fput',
         'nbget' => 'nb_get',
         'nbput' => 'nb_put',
-    );
+    ];
 
-    /** @var resource */
-    private $resource;
+    private ?Connection $resource = null;
 
-    /** @var array */
-    private $state;
+    private array $state = [];
 
-    /** @var string */
-    private $errorMsg;
+    private ?string $errorMsg = null;
 
     /**
-     * Constructor
-     *
      * FtpConnect constructor.
-     * @param string|null $url
+     *
+     * @param string $url
      * @param bool $passiveMode
+     * @throws Exception
      */
-    public function __construct(string $url = null, $passiveMode = true)
+    public function __construct(string $url, bool $passiveMode = true)
     {
         if (!extension_loaded('ftp')) {
             Log::write(LogLevel::ERROR, __d('yab_cms_ff', 'PHP extension FTP is not loaded.'));
             throw new Exception(__d('yab_cms_ff', 'PHP extension FTP is not loaded.'));
         }
-        if ($url) {
+        if ($url !== '') {
             $parts = parse_url($url);
-            if (!isset($parts['scheme']) || !in_array($parts['scheme'], array('ftp', 'ftps', 'sftp'))) {
+            if (!isset($parts['scheme']) || !in_array($parts['scheme'], ['ftp', 'ftps', 'sftp'], true)) {
                 Log::write(LogLevel::ERROR, __d('yab_cms_ff', 'Invalid URL.'));
                 throw new Exception(__d('yab_cms_ff', 'Invalid URL.'));
             }
             $func = $parts['scheme'] === 'ftp' ? 'connect' : 'ssl_connect';
-            $this->$func($parts['host'], empty($parts['port']) ? null : (int)$parts['port']);
-            $this->login(urldecode($parts['user']), urldecode($parts['pass']));
-            $this->pasv((bool)$passiveMode);
+            $port = empty($parts['port']) ? 21 : (int)$parts['port'];
+            
+            $this->$func($parts['host'], $port);
+            
+            if (isset($parts['user'], $parts['pass'])) {
+                $this->login(urldecode($parts['user']), urldecode($parts['pass']));
+            }
+            
+            $this->pasv($passiveMode);
+            
             if (isset($parts['path'])) {
                 $this->chdir($parts['path']);
             }
@@ -136,16 +140,17 @@ class FtpConnect
     /**
      * Magic method (do not call directly).
      *
-     * @param $name
-     * @param $args
+     * @param string $name
+     * @param array $args
      * @return mixed|null
+     * @throws Exception
      */
-    public function __call($name, $args)
+    public function __call(string $name, array $args)
     {
-        $name = strtolower($name);
-        $silent = strncmp($name, 'try', 3) === 0;
-        $func = $silent ? substr($name, 3) : $name;
-        $func = 'ftp_' . (isset(self::$aliases[$func])? self::$aliases[$func]: $func);
+        $nameLower = strtolower($name);
+        $silent = strncmp($nameLower, 'try', 3) === 0;
+        $func = $silent ? substr($nameLower, 3) : $nameLower;
+        $func = 'ftp_' . (self::$aliases[$func] ?? $func);
 
         if (!function_exists($func)) {
             Log::write(
@@ -169,10 +174,10 @@ class FtpConnect
         set_error_handler([$this, '_errorHandler']);
 
         if ($func === 'ftp_connect' || $func === 'ftp_ssl_connect') {
-            $this->state = [$name => $args];
+            $this->state[$name] = $args;
             $this->resource = call_user_func_array($func, $args);
             $res = null;
-        } elseif (!is_resource($this->resource)) {
+        } elseif (!($this->resource instanceof Connection)) {
             restore_error_handler();
             Log::write(LogLevel::ERROR, __d('yab_cms_ff', 'Not connected to FTP server. Call connect() or ssl_connect() first.'));
             throw new Exception(
@@ -193,16 +198,17 @@ class FtpConnect
 
         restore_error_handler();
         if (!$silent && $this->errorMsg !== null) {
+            $error = $this->errorMsg;
             if (ini_get('html_errors')) {
-                $this->errorMsg = html_entity_decode(strip_tags($this->errorMsg));
+                $error = html_entity_decode(strip_tags($error));
             }
 
-            if (($a = strpos($this->errorMsg, ': ')) !== false) {
-                $this->errorMsg = substr($this->errorMsg, $a + 2);
+            if (($a = strpos($error, ': ')) !== false) {
+                $error = substr($error, $a + 2);
             }
 
-            Log::write(LogLevel::ERROR, $this->errorMsg);
-            throw new Exception($this->errorMsg);
+            Log::write(LogLevel::ERROR, $error);
+            throw new Exception($error);
         }
 
         return $res;
@@ -211,10 +217,11 @@ class FtpConnect
     /**
      * Internal error handler. Do not call directly.
      *
-     * @param $code
-     * @param $message
+     * @param int $code
+     * @param string $message
+     * @return void
      */
-    public function _errorHandler($code, $message)
+    public function _errorHandler(int $code, string $message): void
     {
         $this->errorMsg = $message;
     }
@@ -224,21 +231,23 @@ class FtpConnect
      *
      * @return void
      */
-    public function reconnect()
+    public function reconnect(): void
     {
-        @ftp_close($this->resource); // intentionally @
+        if ($this->resource instanceof Connection) {
+            @ftp_close($this->resource); // intentionally @
+        }
         foreach ($this->state as $name => $args) {
-            call_user_func_array(array($this, $name), $args);
+            call_user_func_array([$this, $name], $args);
         }
     }
 
     /**
      * Checks if file or directory exists.
      *
-     * @param $file
+     * @param string $file
      * @return bool
      */
-    public function fileExists($file)
+    public function fileExists(string $file): bool
     {
         return (bool)$this->nlist($file);
     }
@@ -246,31 +255,33 @@ class FtpConnect
     /**
      * Checks if directory exists.
      *
-     * @param  string
+     * @param string $dir
      * @return bool
      * @throws Exception
      */
-    public function isDir($dir)
+    public function isDir(string $dir): bool
     {
         $current = $this->pwd();
         try {
             $this->chdir($dir);
         } catch (Exception $ex) {
             Log::write(LogLevel::ERROR, $ex);
-            throw new Exception((string) $ex);
+            $this->chdir($current);
+            return false;
         }
         $this->chdir($current);
 
-        return empty($e);
+        return true;
     }
 
     /**
      * Recursive creates directories.
      *
-     * @param  string
+     * @param string $dir
      * @return void
+     * @throws Exception
      */
-    public function mkDirRecursive($dir)
+    public function mkDirRecursive(string $dir): void
     {
         $parts = explode('/', $dir);
         $path = '';
@@ -306,15 +317,18 @@ class FtpConnect
     /**
      * Recursive deletes path.
      *
-     * @param $path
+     * @param string $path
      * @return void
      */
-    public function deleteRecursive($path)
+    public function deleteRecursive(string $path): void
     {
         if (!$this->tryDelete($path)) {
-            foreach ((array)$this->nlist($path) as $file) {
-                if ($file !== '.' && $file !== '..') {
-                    $this->deleteRecursive(strpos($file, '/') === false ? "$path/$file" : $file);
+            $nlist = $this->nlist($path);
+            if (is_array($nlist)) {
+                foreach ($nlist as $file) {
+                    if ($file !== '.' && $file !== '..') {
+                        $this->deleteRecursive(strpos($file, '/') === false ? "$path/$file" : $file);
+                    }
                 }
             }
             $this->rmdir($path);

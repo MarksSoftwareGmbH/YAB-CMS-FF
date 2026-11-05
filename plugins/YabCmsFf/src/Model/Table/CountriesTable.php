@@ -90,6 +90,8 @@ class CountriesTable extends Table
                 'fields' => ['Countries.locale']
             ])
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',

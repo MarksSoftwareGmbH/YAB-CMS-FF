@@ -92,6 +92,8 @@ class RegistrationsTable extends Table
                 'fields' => ['RegistrationTypes.alias']
             ])
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',

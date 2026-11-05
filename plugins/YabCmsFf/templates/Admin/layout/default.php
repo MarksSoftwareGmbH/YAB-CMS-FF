@@ -24,7 +24,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-use Cake\Core\Configure;
 
 // Get session object
 $session = $this->getRequest()->getSession();
@@ -69,7 +68,7 @@ endif;
     <?= $this->Html->charset(); ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <?= $this->Html->meta('favicon.ico', '/YabCmsFf/img/admin/favicons/favicon.ico', ['type' => 'icon']); ?>
+    <?= $this->Html->meta('favicon.ico', '/yab_cms_ff/img/admin/favicons/favicon.ico', ['type' => 'icon']); ?>
     <?= $this->fetch('meta'); ?>
     <link rel="canonical" href="<?= $this->Url->build(); ?>" />
     <?= $this->Html->css([
@@ -85,7 +84,6 @@ endif;
         // 2. Overrides in plugins/YabCmsFf/webroot/css/admin/
         'YabCmsFf.admin/fonts',
     ]); ?>
-
     <?php if ($session->check('Auth.User.id')): ?>
         <?= $this->Html->css([
             'YabCmsFf.admin/yab_cms_ff.admin',
@@ -97,21 +95,17 @@ endif;
     <?= $this->fetch('css'); ?>
     <?= $this->fetch('script'); ?>
 </head>
-
 <?php if ($session->check('Auth.User.id')): ?>
     <?= $this->element('site'); ?>
 <?php else: ?>
     <?php
         switch ($activeAction):
-
             case 'login':
                 echo $this->element('Users/login');
                 break;
             default:
                 echo $this->element('site');
-
         endswitch;
     ?>
 <?php endif; ?>
-
 </html>

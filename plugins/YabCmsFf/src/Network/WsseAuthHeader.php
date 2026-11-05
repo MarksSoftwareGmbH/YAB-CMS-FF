@@ -37,34 +37,35 @@ use stdClass;
  */
 class WsseAuthHeader extends SoapHeader
 {
-
     /**
-     * Connection status
+     * WS-Security Namespace
      *
      * @var string
      */
-    public $wssNs = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
+    public string $wssNs = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
 
     /**
      * WsseAuthHeader constructor.
      *
-     * @param $user
-     * @param $pass
+     * @param string $user
+     * @param string $pass
      * @param string|null $ns
      */
-    public function __construct($user, $pass, $ns = null)
+    public function __construct(string $user, string $pass, ?string $ns = null)
     {
-        if ($ns) {
+        if ($ns !== null && $ns !== '') {
             $this->wssNs = $ns;
         }
+
         $auth = new stdClass();
         $auth->Username = new SoapVar($user, XSD_STRING, null, $this->wssNs, null, $this->wssNs);
         $auth->Password = new SoapVar($pass, XSD_STRING, null, $this->wssNs, null, $this->wssNs);
-        $usernameToken = new stdClass();
 
+        $usernameToken = new stdClass();
         $usernameToken->UsernameToken = new SoapVar($auth, SOAP_ENC_OBJECT, null, $this->wssNs, 'UsernameToken', $this->wssNs);
+
         $securityService = new SoapVar(
-            new SoapVar($usernameToken, SOAP_ENC_OBJECT, null, $this->wssNs, 'UsernameToken', $this->wssNs),
+            $usernameToken,
             SOAP_ENC_OBJECT,
             null,
             $this->wssNs,

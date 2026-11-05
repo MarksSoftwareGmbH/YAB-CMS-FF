@@ -66,9 +66,9 @@ class SettingComponent extends Component
     /**
      * Domain id
      *
-     * @var string
+     * @var int
      */
-    private int $domainId;
+    private int $domainId = 1;
 
     /**
      * Constructor hook method.

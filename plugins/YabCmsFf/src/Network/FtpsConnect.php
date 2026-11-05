@@ -26,6 +26,8 @@ declare(strict_types=1);
  */
 namespace YabCmsFf\Network;
 
+use CurlHandle;
+
 /**
  * FTP with Implicit SSL/TLS Class
  *
@@ -33,10 +35,10 @@ namespace YabCmsFf\Network;
  */
 class FtpsConnect
 {
-    private $host;
-    private $username;
-    private $password;
-    private $handle;
+    private string $host;
+    private string $username;
+    private string $password;
+    private CurlHandle $handle;
 
     /**
      * FtpsConnect constructor.
@@ -58,131 +60,129 @@ class FtpsConnect
      */
     public function __destruct()
     {
-        if (!empty($this->handle)) {
+        if (isset($this->handle)) {
             @curl_close($this->handle);
         }
     }
 
     /**
-     * Common
+     * Common cURL setup.
      *
      * @param string $folderPath
-     *
-     * @return false|resource
+     * @return CurlHandle
      */
-    private function common(string $folderPath)
+    private function common(string $folderPath): CurlHandle
     {
         curl_reset($this->handle);
         curl_setopt($this->handle, CURLOPT_URL, 'ftps://' . $this->host . $folderPath);
         curl_setopt($this->handle, CURLOPT_USERPWD, $this->username . ':' . $this->password);
-        curl_setopt($this->handle, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($this->handle, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($this->handle, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($this->handle, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($this->handle, CURLOPT_USE_SSL, CURLFTPSSL_TRY);
         curl_setopt($this->handle, CURLOPT_FTPSSLAUTH, CURLFTPAUTH_TLS);
         return $this->handle;
     }
 
     /**
-     * Download file
+     * Download file.
      *
      * @param string $folderPath
      * @param string|null $localDirectory
-     *
-     * @return bool|false|string|null
+     * @return string|false
      */
-    public function download(string $folderPath, string $localDirectory = null)
+    public function download(string $folderPath, ?string $localDirectory = null): string|false
     {
         if ($localDirectory === null) {
-            $localDirectory = tempnam('/tmp', 'ftps_connect');
+            $localDirectory = tempnam(sys_get_temp_dir(), 'ftps_connect');
         }
 
-        if ($fp = fopen($localDirectory, 'w')) {
-            $this->handle = self::common($folderPath);
-            curl_setopt($this->handle, CURLOPT_UPLOAD, 0);
-            curl_setopt($this->handle, CURLOPT_FILE, $fp);
-
-            curl_exec($this->handle);
-
-            if (curl_error($this->handle)) {
-                return false;
-            } else {
-                return $localDirectory;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Upload file
-     *
-     * @param string $localDirectory
-     * @param string $folderPath
-     * @param string|null $file
-     *
-     * @return bool
-     */
-    public function upload(string $localDirectory, string $folderPath, string $file = null)
-    {
-
-        if ($localDirectory === null) {
-            $localDirectory = tempnam('/tmp', 'ftps_connect');
-        }
-
-        if ($file === null) {
+        $fp = fopen($localDirectory, 'w');
+        if ($fp === false) {
             return false;
         }
 
-        if ($fp = fopen($localDirectory, 'r')) {
-            $this->handle = self::common($folderPath . '/' . $file);
-            curl_setopt($this->handle, CURLOPT_UPLOAD, 1);
-            curl_setopt($this->handle, CURLOPT_INFILE, $fp);
+        $this->handle = $this->common($folderPath);
+        curl_setopt($this->handle, CURLOPT_UPLOAD, 0);
+        curl_setopt($this->handle, CURLOPT_WRITEFUNCTION, function ($ch, $data) use ($fp) {
+            return fwrite($fp, $data);
+        });
 
-            curl_exec($this->handle);
-            $err = curl_error($this->handle);
+        curl_exec($this->handle);
+        $error = curl_error($this->handle);
+        fclose($fp);
 
-            return !$err;
+        if ($error !== '') {
+            return false;
         }
 
-        return false;
+        return $localDirectory;
     }
 
     /**
-     * List folder and files
+     * Upload file.
+     *
+     * @param string|null $localDirectory
+     * @param string $folderPath
+     * @param string|null $file
+     * @return bool
+     */
+    public function upload(?string $localDirectory, string $folderPath, ?string $file = null): bool
+    {
+        if ($localDirectory === null || $file === null) {
+            return false;
+        }
+
+        $fp = fopen($localDirectory, 'r');
+        if ($fp === false) {
+            return false;
+        }
+
+        $this->handle = $this->common($folderPath . '/' . $file);
+        curl_setopt($this->handle, CURLOPT_UPLOAD, 1);
+        curl_setopt($this->handle, CURLOPT_READFUNCTION, function ($ch, $fd, $length) use ($fp) {
+            return fread($fp, $length);
+        });
+
+        curl_exec($this->handle);
+        $err = curl_error($this->handle);
+        fclose($fp);
+
+        return $err === '';
+    }
+
+    /**
+     * List folder and files.
      *
      * @param string $folderPath
-     *
-     * @return array|bool
+     * @return array|false
      */
-    public function listFolderAndFiles(string $folderPath)
+    public function listFolderAndFiles(string $folderPath): array|false
     {
-        if (substr($folderPath, -1) != '/') {
+        if (!str_ends_with($folderPath, '/')) {
             $folderPath .= '/';
         }
 
-        $this->handle = self::common($folderPath);
+        $this->handle = $this->common($folderPath);
         curl_setopt($this->handle, CURLOPT_UPLOAD, 0);
         curl_setopt($this->handle, CURLOPT_FTPLISTONLY, 1);
         curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($this->handle);
 
-        if (curl_error($this->handle)) {
+        if (curl_error($this->handle) || !is_string($result)) {
             return false;
-        } else {
-            $remoteFiles = explode("\r\n", trim($result));
-            return $remoteFiles;
         }
+
+        return array_filter(explode("\n", str_replace("\r\n", "\n", trim($result))));
     }
 
     /**
-     * List files by date
+     * List files by date.
      *
      * @param string $folderPath
-     *
      * @return array|null
      */
-    public function listByLastModified(string $folderPath)
+    public function listByLastModified(string $folderPath): ?array
     {
         $remoteFiles = $this->listFolderAndFiles($folderPath);
         if (empty($remoteFiles)) {
@@ -191,89 +191,92 @@ class FtpsConnect
 
         $fileAttributes = [];
         foreach ($remoteFiles as $remoteFile) {
-
-            $this->handle = self::common($folderPath . '/' . $remoteFile);
+            $this->handle = $this->common($folderPath . '/' . $remoteFile);
             curl_setopt($this->handle, CURLOPT_NOBODY, 1);
             curl_setopt($this->handle, CURLOPT_FILETIME, 1);
             curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, 1);
             $result = curl_exec($this->handle);
 
-            if ($result) {
+            if ($result !== false) {
                 $timestamp = curl_getinfo($this->handle, CURLINFO_FILETIME);
-                $file = [];
-                $file['name'] = $remoteFile;
-                $file['last_modified'] = ($timestamp != -1)? date('Y-m-d H:i:s', $timestamp): null;
-                $fileAttributes[] = $file;
+                $fileAttributes[] = [
+                    'name' => $remoteFile,
+                    'last_modified' => ($timestamp !== -1 && $timestamp !== false) ? date('Y-m-d H:i:s', $timestamp) : null,
+                ];
             }
         }
 
         usort($fileAttributes, function ($first, $second) {
-            return date($second['last_modified']) <=> date($first['last_modified']);
+            $timeFirst = $first['last_modified'] ?? '';
+            $timeSecond = $second['last_modified'] ?? '';
+            return $timeSecond <=> $timeFirst;
         });
 
         return $fileAttributes;
     }
 
     /**
-     * Raw list of files
+     * Raw list of files.
      *
      * @param string $folderPath
-     *
-     * @return array|bool
+     * @return array|false
      */
-    public function rawList(string $folderPath)
+    public function rawList(string $folderPath): array|false
     {
-        if (substr($folderPath, -1) != '/') {
+        if (!str_ends_with($folderPath, '/')) {
             $folderPath .= '/';
         }
 
-        $this->handle = self::common($folderPath);
+        $this->handle = $this->common($folderPath);
         curl_setopt($this->handle, CURLOPT_UPLOAD, 0);
         curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($this->handle);
 
-        if (curl_error($this->handle)) {
+        if (curl_error($this->handle) || !is_string($result)) {
             return false;
-        } else {
-            $remoteFiles = explode("\n", trim($result));
-            return $remoteFiles;
         }
+
+        return array_filter(explode("\n", str_replace("\r\n", "\n", trim($result))));
     }
 
     /**
-     * Attribute list of files
+     * Attribute list of files.
      *
      * @param string $folderPath
-     *
-     * @return array|bool
+     * @return array|false
      */
-    public function attributeList(string $folderPath)
+    public function attributeList(string $folderPath): array|false
     {
         $remoteFiles = $this->rawList($folderPath);
-        if (!empty($remoteFiles)) {
-            $files = [];
-            foreach($remoteFiles as $remoteFile) {
-                $fileAttributes = preg_split("/\s+/", $remoteFile);
-                list(
-                    $attribute['rights'],
-                    $attribute['number'],
-                    $attribute['user'],
-                    $attribute['group'],
-                    $attribute['size'],
-                    $attribute['month'],
-                    $attribute['day'],
-                    $attribute['time']
-                ) = $fileAttributes;
-                array_splice($fileAttributes, 0, 8);
-                $attribute['name'] = trim(implode(' ', $fileAttributes));
-                $attribute['type'] = (substr($attribute['rights'], 0, 1) === 'd')? 'directory': 'file';
-                $files[] = $attribute;
-            }
-            return $files;
+        if (empty($remoteFiles)) {
+            return false;
         }
 
-        return false;
+        $files = [];
+        foreach ($remoteFiles as $remoteFile) {
+            $fileAttributes = preg_split("/\s+/", trim($remoteFile));
+            if (count($fileAttributes) < 8) {
+                continue;
+            }
+
+            [
+                $attribute['rights'],
+                $attribute['number'],
+                $attribute['user'],
+                $attribute['group'],
+                $attribute['size'],
+                $attribute['month'],
+                $attribute['day'],
+                $attribute['time']
+            ] = $fileAttributes;
+
+            array_splice($fileAttributes, 0, 8);
+            $attribute['name'] = trim(implode(' ', $fileAttributes));
+            $attribute['type'] = str_starts_with($attribute['rights'], 'd') ? 'directory' : 'file';
+            $files[] = $attribute;
+        }
+
+        return $files;
     }
 }
-

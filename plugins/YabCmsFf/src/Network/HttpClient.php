@@ -27,17 +27,16 @@ declare(strict_types=1);
 namespace YabCmsFf\Network;
 
 use Cake\Core\Configure;
+use Cake\Http\Client;
 use Cake\Http\Client\Response;
 use Cake\Log\Log;
 use Psr\Log\LogLevel;
-use Cake\Http\Client as Client;
 
 /**
  * Client Override
  */
 class HttpClient extends Client
 {
-
     /**
      * Helper method for doing non-GET requests.
      *
@@ -45,15 +44,15 @@ class HttpClient extends Client
      * @param string $url URL to request.
      * @param mixed $data The request body.
      * @param array $options The options to use. Contains auth, proxy, etc.
-     * @return \Cake\Http\Client\Response
+     * @return Response
      */
-    protected function _doRequest(string $method, string $url, $data, $options): Response
+    protected function _doRequest(string $method, string $url, mixed $data, array $options): Response
     {
         if (Configure::read('debug') === true) {
             Log::write(LogLevel::INFO, $method);
             Log::write(LogLevel::INFO, $url);
-            Log::write(LogLevel::INFO, 'data', $data);
-            Log::write(LogLevel::INFO, 'options', $options);
+            Log::write(LogLevel::INFO, 'Request data context', ['data' => $data]);
+            Log::write(LogLevel::INFO, 'Request options context', ['options' => $options]);
         }
 
         return parent::_doRequest($method, $url, $data, $options);

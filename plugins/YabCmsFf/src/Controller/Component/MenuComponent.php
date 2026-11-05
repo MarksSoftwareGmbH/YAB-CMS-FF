@@ -67,7 +67,7 @@ class MenuComponent extends Component
      *
      * @var int
      */
-    private int $domainId = 0;
+    private int $domainId = 1;
 
     /**
      * Constructor hook method.

@@ -38,16 +38,19 @@ use Cake\Utility\Hash;
 /**
  * Trackable behavior
  *
+ * Automatically sets created_by and modified_by fields based on the current user.
+ * Associations are added lazily in beforeSave to avoid early schema reflection
+ * issues (especially under PHP 8.4 with CakePHP 5.3.2 schema bugs).
+ *
  * Class TrackableBehavior
  * @package YabCmsFf\Model\Behavior
  */
 class TrackableBehavior extends Behavior
 {
-
     /**
      * Default settings
      */
-    protected $_defaults = [
+    protected array $_defaults = [
         'userModel' => 'YabCmsFf.Users',
         'fields' => [
             'created_by' => 'created_by',
@@ -65,83 +68,39 @@ class TrackableBehavior extends Behavior
     }
 
     /**
-     * Constructor hook method.
-     *
-     * Implement this method to avoid having to overwrite
-     * the constructor and call parent.
-     *
-     * @param array $config The configuration settings provided to this behavior.
-     * @return void
+     * No longer set up associations or check fields here.
+     * We do it lazily in beforeSave() to prevent early schema introspection.
      */
     public function initialize(array $config): void
     {
         parent::initialize($config);
-        if ($this->_hasTrackableFields()) {
-            $this->_setupBelongsTo();
-        }
+        // Nothing else here — avoids hasField() → Column object issues on PHP 8.4
     }
 
     /**
-     * Checks wether model has the required fields
+     * Fill the created_by and modified_by fields.
      *
-     * @return bool True if $model has the required fields
-     */
-    protected function _hasTrackableFields()
-    {
-        $fields = $this->getConfig('fields');
-        return
-            $this->_table->hasField($fields['created_by']) &&
-            $this->_table->hasField($fields['modified_by']);
-    }
-
-    /**
-     * Bind relationship on the fly
-     */
-    protected function _setupBelongsTo()
-    {
-        if ($this->_table->associations()->has('TrackableCreator')) {
-            return;
-        }
-
-        $config = $this->getConfig();
-        $this->_table->addAssociations([
-            'belongsTo' => [
-                'TrackableCreator' => [
-                    'className' => $config['userModel'],
-                    'foreignKey' => $config['fields']['created_by'],
-                ],
-                'TrackableUpdater' => [
-                    'className' => $config['userModel'],
-                    'foreignKey' => $config['fields']['modified_by'],
-                ],
-            ],
-        ]);
-    }
-
-    /**
-     * Fill the created_by and updated_by fields
+     * Associations are added on-the-fly only if needed.
+     * We use $entity->has() instead of $table->hasField() to prevent schema reflection.
      *
-     * Note: Since shells do not have Sessions, created_by/updated_by fields
-     * will not be populated. If a shell needs to populate these fields, you
-     * can simulate a logged in user by setting `Trackable.Auth` config:
-     *
-     *   Configure::write('Trackable.User', array('id' => 1));
-     *
-     * Note that value stored in this variable overrides session data.
-     * 
-     * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event The beforeSave event that was fired
-     * @param \Cake\Datasource\EntityInterface $entity The entity that is going to be saved
-     * @param \ArrayObject<string, mixed> $options The options for the query
-     * @return $event
+     * @param \Cake\Event\EventInterface $event The beforeSave event
+     * @param \Cake\Datasource\EntityInterface $entity The entity being saved
+     * @param \ArrayObject $options Save options
+     * @return void
      */
     public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {
-        if (!$this->_hasTrackableFields()) {
-            $event->setResult(true);
-            return;
+        $config = $this->getConfig();
+        $fields = $config['fields'];
+
+        // Lazily add the belongsTo associations if not already present
+        if (!$this->_table->associations()->has('TrackableCreator')) {
+            $this->_setupBelongsTo();
         }
 
-        $config = $this->getConfig();
+        // ────────────────────────────────────────────────
+        // Determine current user ID
+        // ────────────────────────────────────────────────
         $User = TableRegistry::getTableLocator()->get($config['userModel']);
         $userPk = $User->getPrimaryKey();
 
@@ -155,19 +114,44 @@ class TrackableBehavior extends Behavior
             $userId = $user[$userPk];
         }
 
-        if (!$userId) {
-            $event->setResult(true);
+        // No valid user → skip (no error, just don't set the fields)
+        if ($userId === null) {
             return;
         }
 
-        $createdByField = $config['fields']['created_by'];
-        $modifiedByField = $config['fields']['modified_by'];
+        // ────────────────────────────────────────────────
+        // Apply the values — only if the field exists on this entity
+        // ────────────────────────────────────────────────
+        $createdByField = $fields['created_by'];
+        $modifiedByField = $fields['modified_by'];
 
-        if ($entity->isNew() && empty($entity->get($createdByField))) {
+        if ($entity->isNew() && $entity->has($createdByField)) {
             $entity->set($createdByField, $userId);
         }
-        $entity->set($modifiedByField, $userId);
 
-        $event->setResult(true);
+        if ($entity->has($modifiedByField)) {
+            $entity->set($modifiedByField, $userId);
+        }
+    }
+
+    /**
+     * Bind belongsTo relationships on the fly (only called when needed)
+     */
+    protected function _setupBelongsTo(): void
+    {
+        $config = $this->getConfig();
+
+        $this->_table->addAssociations([
+            'belongsTo' => [
+                'TrackableCreator' => [
+                    'className' => $config['userModel'],
+                    'foreignKey' => $config['fields']['created_by'],
+                ],
+                'TrackableUpdater' => [
+                    'className' => $config['userModel'],
+                    'foreignKey' => $config['fields']['modified_by'],
+                ],
+            ],
+        ]);
     }
 }

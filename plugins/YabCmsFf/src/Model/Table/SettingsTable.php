@@ -84,6 +84,8 @@ class SettingsTable extends Table
                 'fields' => ['parameter']
             ])
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',
@@ -194,10 +196,10 @@ class SettingsTable extends Table
 
     /**
      * Get settings
-     * @param $name
+     * @param string $name
      * @return bool
      */
-    public function getSetting($name)
+    public function getSetting(string $name)
     {
         $setting = $this
             ->find()
@@ -213,11 +215,11 @@ class SettingsTable extends Table
     /**
      * Set settings
      *
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param string $value
      * @return mixed
      */
-    public function setSetting($name, $value)
+    public function setSetting(string $name, string $value)
     {
         $setting = $this
             ->find()

@@ -68,11 +68,11 @@ class ForeignKeyAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $foreignKey
+     * @param string $foreignKey
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $foreignKey = null)
+    protected function _handle(string $foreignKey)
     {
         $subject = $this->_subject();
         $repository = $this->_table();
@@ -86,7 +86,7 @@ class ForeignKeyAction extends BaseAction
     /**
      * Find a record from the foreign key
      *
-     * @param string|null $foreignKey
+     * @param string $foreignKey
      * @param \Crud\Event\Subject $subject
      * @throws \Exception
      * @return void

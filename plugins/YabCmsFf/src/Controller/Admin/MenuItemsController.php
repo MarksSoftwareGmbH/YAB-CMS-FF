@@ -277,7 +277,7 @@ class MenuItemsController extends AppController
 
         $Users = TableRegistry::getTableLocator()->get('YabCmsFf.Users');
         $users = $Users
-            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username')
+            ->find('list', order: ['Users.name' => 'ASC'], keyField: 'id', valueField: 'name_username_email')
             ->toArray();
 
         YabCmsFf::dispatchEvent('Controller.Admin.MenuItems.beforeViewRender', $this, [

@@ -38,44 +38,42 @@ use SoapFault;
  */
 class SoapConnect
 {
-
     use InstanceConfigTrait;
 
     /**
      * SoapClient instance
      *
-     * @var SoapClient
+     * @var SoapClient|null
      */
-    public $client = null;
+    public ?SoapClient $client = null;
 
     /**
      * Connection status
      *
-     * @var boolean
+     * @var bool
      */
-    public $connected = false;
-
+    public bool $connected = false;
 
     /**
-     * Error
+     * Error message
      *
-     * @var string
+     * @var string|null
      */
-    public $error = null;
+    public ?string $error = null;
 
     /**
      * Default configuration
      *
      * @var array
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'wsdl' => null,
         'userAgent' => 'SoapClient',
         'location' => '',
         'uri' => '',
         'login' => '',
         'password' => '',
-        'authentication' => 'SOAP_AUTHENTICATION_`IC',
+        'authentication' => SOAP_AUTHENTICATION_BASIC,
         'trace' => false,
         'exception' => false,
     ];
@@ -94,9 +92,9 @@ class SoapConnect
     /**
      * Setup Configuration options
      *
-     * @return array|bool
+     * @return array|false
      */
-    protected function _parseConfig()
+    protected function _parseConfig(): array|false
     {
         if (!class_exists('SoapClient')) {
             $this->error = __d('yab_cms_ff', 'Class SoapClient not found, please enable Soap extensions.');
@@ -104,13 +102,15 @@ class SoapConnect
 
             return false;
         }
+
         $opts = ['http' => ['user_agent' => $this->getConfig('userAgent')]];
         $context = stream_context_create($opts);
         $options = [
             'trace' => Configure::read('debug'),
             'stream_context' => $context,
-            'cache_wsdl' => WSDL_CACHE_NONE
+            'cache_wsdl' => WSDL_CACHE_NONE,
         ];
+
         if (!empty($this->getConfig('location'))) {
             $options['location'] = $this->getConfig('location');
         }
@@ -131,17 +131,21 @@ class SoapConnect
      *
      * @return bool True on success, false on failure
      */
-    public function connect()
+    public function connect(): bool
     {
         $options = $this->_parseConfig();
+        if ($options === false) {
+            $this->connected = false;
+            return false;
+        }
+
         try {
             $this->client = new SoapClient($this->getConfig('wsdl'), $options);
+            $this->connected = true;
         } catch (SoapFault $fault) {
             $this->error = $fault->faultstring;
             $this->showError();
-        }
-        if ($this->client) {
-            $this->connected = true;
+            $this->connected = false;
         }
 
         return $this->connected;
@@ -152,7 +156,7 @@ class SoapConnect
      *
      * @return bool True
      */
-    public function close()
+    public function close(): bool
     {
         $this->client = null;
         $this->connected = false;
@@ -163,10 +167,14 @@ class SoapConnect
     /**
      * Returns the available SOAP methods
      *
-     * @return array List of SOAP methods
+     * @return array|null List of SOAP methods
      */
-    public function listSources()
+    public function listSources(): ?array
     {
+        if ($this->client === null) {
+            return null;
+        }
+
         return $this->client->__getFunctions();
     }
 
@@ -177,12 +185,17 @@ class SoapConnect
      * @param array $data The data array
      * @return mixed Returns the result on success, false on failure
      */
-    public function sendRequest($action, $data)
+    public function sendRequest(string $action, array $data = []): mixed
     {
-        $this->error = false;
-        if (!$this->connected) {
+        $this->error = null;
+        if (!$this->connected || $this->client === null) {
             $this->connect();
         }
+
+        if ($this->client === null) {
+            return false;
+        }
+
         try {
             $result = $this->client->__soapCall($action, $data);
         } catch (SoapFault $fault) {
@@ -198,36 +211,47 @@ class SoapConnect
     /**
      * Returns the last SOAP response
      *
-     * @return string The last SOAP response
+     * @return string|null The last SOAP response
      */
-    public function getResponse()
+    public function getResponse(): ?string
     {
+        if ($this->client === null) {
+            return null;
+        }
+
         return $this->client->__getLastResponse();
     }
 
     /**
      * Returns the last SOAP request
      *
-     * @return string The last SOAP request
+     * @return string|null The last SOAP request
      */
-    public function getRequest()
+    public function getRequest(): ?string
     {
+        if ($this->client === null) {
+            return null;
+        }
+
         return $this->client->__getLastRequest();
     }
 
     /**
      * Shows an error message and outputs the SOAP result if passed
      *
-     * @param string $result A SOAP result
+     * @param string|null $result A SOAP result
      * @return void
      */
-    public function showError($result = null)
+    public function showError(?string $result = null): void
     {
-        Log::write(LogLevel::ERROR, $this->client->__getLastRequest());
+        if ($this->client !== null) {
+            Log::write(LogLevel::ERROR, (string)$this->client->__getLastRequest());
+        }
+
         if (Configure::read('debug') === true) {
-            if ($this->error) {
+            if ($this->error !== null) {
                 trigger_error(
-                    '<span style="color: #ff0; text-align: left;"><b>SOAP Error:</b>' . ' ' . $this->error . '</span>',
+                    '<span style="color: #ff0; text-align: left;"><b>SOAP Error:</b> ' . $this->error . '</span>',
                     E_USER_WARNING
                 );
             }

@@ -68,11 +68,11 @@ class NumberAllAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $number
+     * @param string $number
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $number = null)
+    protected function _handle(string $number)
     {
         $repository = $this->_table();
 

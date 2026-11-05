@@ -162,9 +162,9 @@ $this->Html->meta([
                                 'escapeTitle'   => false,
                             ]); ?>
                         <?= $this->Form->button(
-                            __d('yab_cms_ff', 'Reset'),
+                            __d('yab_cms_ff', 'Save'),
                             [
-                                'class'         => 'float-right shadow rounded btn btn-' . h($backendButtonColor) . ' float-right',
+                                'class'         => 'float-right shadow rounded btn btn-outline-success',
                                 'escapeTitle'   => false,
                             ]); ?>
                     </div>
@@ -193,8 +193,6 @@ $this->Html->meta([
         'YabCmsFf./adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min',
         'YabCmsFf./adminlte/dist/js/adminlte.min',
     ], ['block' => 'scripts']); ?>
-    <?= $this->fetch('scripts'); ?>
-    <?= $this->fetch('scriptBottom'); ?>
     <?= $this->Html->scriptBlock(
         '$(function() {
             $(\'.form-login\').validate({
@@ -223,4 +221,6 @@ $this->Html->meta([
                 }
             });
         });', ['block' => 'scriptBottom']); ?>
+    <?= $this->fetch('scripts'); ?>
+    <?= $this->fetch('scriptBottom'); ?>
 </body>

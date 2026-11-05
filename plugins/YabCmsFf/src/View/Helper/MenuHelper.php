@@ -47,10 +47,10 @@ class MenuHelper extends Helper
     /**
      * Build a Menu (UL/OL) out of MenuHandlers array.
      *
-     * @param array|null $requestParams
-     * @return mixed
+     * @param array $requestParams
+     * @return string
      */
-    public function menu($requestParams = null)
+    public function menu(array $requestParams)
     {
         $menu = $this->Html->tag('li',
             $this->Html->link(
@@ -81,10 +81,10 @@ class MenuHelper extends Helper
      * Internal function to build a nested menu list out of MenuHandlers array.
      *
      * @param array $menuHandlers
-     * @param array|null $requestParams
+     * @param array $requestParams
      * @return string
      */
-    protected function _menuItems(array $menuHandlers, array $requestParams = null)
+    protected function _menuItems(array $menuHandlers, array $requestParams)
     {
         $menuItems = '';
         if (!empty($menuHandlers) && is_array($menuHandlers)) {
@@ -105,19 +105,21 @@ class MenuHelper extends Helper
      * Internal function to build a menu item out of item array.
      *
      * @param array $item
-     * @param array|null $requestParams
-     * @return mixed
+     * @param array $requestParams
+     * @return string
      */
-    protected function _menuItem(array $item, array $requestParams = null)
+    protected function _menuItem(array $item, array $requestParams)
     {
+        $title = __d('yab_cms_ff', (string)$item['title']);
         $link = $this->Html->link(
             $this->Html->icon($item['icon'], ['class' => 'nav-icon'])
             . ' '
-            . $this->Html->tag('p', $item['title']),
+            . $this->Html->tag('p', $title),
             $item['link'],
             $item['options'] + [
-                'class' => ($item['controller'] === $requestParams['controller'])? 'nav-link active': 'nav-link'
-            ]);
+                'class' => ($item['controller'] === $requestParams['controller']) ? 'nav-link active' : 'nav-link',
+            ]
+        );
 
         return $this->Html->tag('li', $link, ['class' => 'nav-item']);
     }
@@ -126,24 +128,27 @@ class MenuHelper extends Helper
      * Internal function to build a nested menu item list out of item array.
      *
      * @param array $item
-     * @param array|null $requestParams
-     * @return mixed
+     * @param array $requestParams
+     * @return string
      */
-    protected function _menuItemTree(array $item, array $requestParams = null)
+    protected function _menuItemTree(array $item, array $requestParams)
     {
+        $title = __d('yab_cms_ff', (string)$item['title']);
+        $controllers = (array)($item['controller'] ?? []);
+        $isOpen = in_array($requestParams['controller'], $controllers, true);
+
         $menuItemTree = $this->Html->link(
             $this->Html->icon($item['icon'], ['class' => 'nav-icon'])
             . ' '
             . $this->Html->tag(
                 'p',
-                $item['title']
-                . ' '
-                . $this->Html->icon('angle-left', ['class' => 'right'])
+                $title . ' ' . $this->Html->icon('angle-left', ['class' => 'right'])
             ),
             'javascript:void(0)',
             $item['options'] + [
-                'class' => in_array($requestParams['controller'], $item['controller'])? 'nav-link active': 'nav-link'
-            ]);
+                'class' => $isOpen ? 'nav-link active' : 'nav-link',
+            ]
+        );
 
         $menuItem = '';
         if (!empty($item['branch']) && is_array($item['branch'])) {
@@ -157,7 +162,7 @@ class MenuHelper extends Helper
         return $this->Html->tag(
             'li',
             $menuItemTree,
-            ['class' => in_array($requestParams['controller'], $item['controller'])? 'nav-item has-treeview menu-open': 'nav-item has-treeview']
+            ['class' => $isOpen ? 'nav-item has-treeview menu-open' : 'nav-item has-treeview']
         );
     }
 }

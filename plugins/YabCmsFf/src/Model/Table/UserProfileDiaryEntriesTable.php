@@ -88,12 +88,14 @@ class UserProfileDiaryEntriesTable extends Table
         // Setup search filter using search manager
         $this->getBehavior('Search')->searchManager()
             ->add('search', 'Search.Like', [
-                'before'    => true,
-                'after'     => true,
-                'fieldMode'     => 'OR',
-                'comparison'    => 'LIKE',
-                'wildcardAny'   => '*',
-                'wildcardOne'   => '?',
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
+                'before' => true,
+                'after' => true,
+                'fieldMode' => 'OR',
+                'comparison' => 'LIKE',
+                'wildcardAny' => '*',
+                'wildcardOne' => '?',
                 'fields' => [
                     'foreign_key',
                     'entry_title',

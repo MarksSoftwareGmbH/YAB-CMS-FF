@@ -68,11 +68,11 @@ class EmailAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $email
+     * @param string $email
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $email = null)
+    protected function _handle(string $email)
     {
         $subject = $this->_subject();
         $repository = $this->_table();
@@ -86,7 +86,7 @@ class EmailAction extends BaseAction
     /**
      * Find a record from the Email
      *
-     * @param string|null $email
+     * @param string $email
      * @param \Crud\Event\Subject $subject
      * @throws \Exception
      * @return void

@@ -103,6 +103,8 @@ class MenuItemsTable extends Table
                 'fields' => ['Menus.alias']
             ])
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',

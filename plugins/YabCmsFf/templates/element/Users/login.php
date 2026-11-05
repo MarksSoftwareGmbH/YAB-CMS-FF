@@ -191,8 +191,6 @@ $this->Html->meta([
         'YabCmsFf./adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min',
         'YabCmsFf./adminlte/dist/js/adminlte.min',
     ], ['block' => 'scripts']); ?>
-    <?= $this->fetch('scripts'); ?>
-    <?= $this->fetch('scriptBottom'); ?>
     <?= $this->Html->scriptBlock(
         '$(function() {
             $(\'.form-login\').validate({
@@ -225,4 +223,6 @@ $this->Html->meta([
                 }
             });
         });', ['block' => 'scriptBottom']); ?>
+    <?= $this->fetch('scripts'); ?>
+    <?= $this->fetch('scriptBottom'); ?>
 </body>

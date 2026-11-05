@@ -30,19 +30,20 @@ use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Event\EventManager;
+use Cake\Event\EventInterface;
 use Cake\Utility\Hash;
 use Cake\Http\ServerRequest;
 
 class YabCmsFf
 {
-
     /**
      * Loads as a normal component from controller.
      *
      * @param string $controllerName Controller Name
-     * @param mixed $componentName Component name or array of Component and settings
+     * @param string|array $componentName Component name or array of Component and settings
+     * @return void
      */
-    public static function hookComponent($controllerName, $componentName)
+    public static function hookComponent(string $controllerName, string|array $componentName): void
     {
         if (is_string($componentName)) {
             $componentName = [$componentName];
@@ -55,9 +56,10 @@ class YabCmsFf
      *
      * @param string $controllerName Controller name (for e.g., YabCmsFf.Global)
      * @param string $property for e.g., components
-     * @param string|array $value
+     * @param mixed $value
+     * @return void
      */
-    public static function hookControllerProperty($controllerName, $property, $value)
+    public static function hookControllerProperty(string $controllerName, string $property, mixed $value): void
     {
         $configKeyPrefix = 'Hook.controller_properties';
         $controllerClass = self::_getClassName($controllerName, 'Controller', 'Controller');
@@ -72,9 +74,10 @@ class YabCmsFf
      * @param string $configKeyPrefix
      * @param string $name
      * @param string $property
-     * @param string $value
+     * @param mixed $value
+     * @return void
      */
-    protected static function _hookProperty($configKeyPrefix, $name, $property, $value)
+    protected static function _hookProperty(string $configKeyPrefix, string $name, string $property, mixed $value): void
     {
         $propertyValue = Configure::read($configKeyPrefix . '.' . $name . '.' . $property);
         if (!is_array($propertyValue)) {
@@ -96,12 +99,12 @@ class YabCmsFf
     /**
      * Get class name property
      *
-     * @param $name
-     * @param $type
-     * @param $suffix
-     * @return bool|string
+     * @param string $name
+     * @param string $type
+     * @param string $suffix
+     * @return string|false
      */
-    protected static function _getClassName($name, $type, $suffix)
+    protected static function _getClassName(string $name, string $type, string $suffix): string|false
     {
         if ($name !== '*') {
             return App::className($name, $type, $suffix);
@@ -114,12 +117,14 @@ class YabCmsFf
      * Options property
      *
      * @param string $configKey
-     * @param object $object
+     * @param object|string $object
      * @param string|null $option
-     * @return array|mixed|void
+     * @return mixed
      */
-    public static function options($configKey, object $object, ?string $option = null)
+    public static function options(string $configKey, object|string $object, ?string $option = null): mixed
     {
+        $objectName = null;
+
         if (is_string($object)) {
             $objectName = $object;
         } elseif ($object instanceof ServerRequest) {
@@ -141,15 +146,19 @@ class YabCmsFf
             $objectName = App::className($pluginPath . $controller, $namespace, 'Controller');
         } elseif (is_object($object)) {
             $objectName = get_class($object);
-        } else {
-            return;
         }
+
+        if ($objectName === null) {
+            return null;
+        }
+
         $options = Configure::read($configKey . '.' . $objectName);
         if (is_array(Configure::read($configKey . '.*'))) {
-            $options = Hash::merge(Configure::read($configKey . '.*'), $options);
+            $options = Hash::merge(Configure::read($configKey . '.*'), $options ?? []);
         }
-        if ($option) {
-            return $options[$option];
+
+        if ($option !== null) {
+            return $options[$option] ?? null;
         }
 
         return $options;
@@ -164,13 +173,12 @@ class YabCmsFf
      * @param string $name Name of the event
      * @param object|null $subject the object that this event applies to
      * @param array|null $data any value you wish to be transported with this event
-     *
-     * @return \Cake\Event\EventInterface
+     * @return EventInterface
      */
-    public static function dispatchEvent(string $name, ?object $subject = null, ?array $data = [])
+    public static function dispatchEvent(string $name, ?object $subject = null, ?array $data = []): EventInterface
     {
         $event = new Event($name, $subject, $data);
-        if ($subject) {
+        if ($subject && method_exists($subject, 'getEventManager')) {
             $event = $subject->getEventManager()->dispatch($event);
         } else {
             $event = EventManager::instance()->dispatch($event);

@@ -89,6 +89,8 @@ class MenusTable extends Table
                 'fields' => ['Menus.locale']
             ])
             ->add('search', 'Search.Like', [
+                'multiValue' => true,
+                'multiValueSeparator' => ' ',
                 'before' => true,
                 'after' => true,
                 'fieldMode' => 'OR',

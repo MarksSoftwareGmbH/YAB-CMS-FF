@@ -68,11 +68,11 @@ class CategoryAction extends BaseAction
     /**
      * Generic HTTP handler
      *
-     * @param string|null $category
+     * @param string $category
      * @throws \Exception
      * @return void
      */
-    protected function _handle(string $category = null)
+    protected function _handle(string $category)
     {
         $subject = $this->_subject();
         $repository = $this->_table();
@@ -86,7 +86,7 @@ class CategoryAction extends BaseAction
     /**
      * Find a record from the Category
      *
-     * @param string|null $category
+     * @param string $category
      * @param \Crud\Event\Subject $subject
      * @throws \Exception
      * @return void
