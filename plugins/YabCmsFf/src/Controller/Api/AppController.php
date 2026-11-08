@@ -52,9 +52,6 @@ class AppController extends BaseController
     {
         parent::initialize();
 
-        $this->loadComponent('Flash');
-        $this->loadComponent('Authentication.Authentication');
-
         $this->loadComponent('Crud.Crud', [
             'actions' => [
                 'Crud.Index',
@@ -92,8 +89,6 @@ class AppController extends BaseController
     {
         parent::beforeFilter($event);
 
-        if ($this->request->getParam('prefix') === 'Api') {
-            $this->FormProtection->setConfig('validate', false);
-        }
+        $this->Authentication->allowUnauthenticated(['token']);
     }
 }

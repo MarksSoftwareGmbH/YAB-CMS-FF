@@ -414,9 +414,9 @@ class YabCmsFfHelper extends Helper
      * Countries list method
      *
      * @param int|null $id
-     * @return array|int
+     * @return array|int|string
      */
-    public function countriesList(?int $id = null): array|int
+    public function countriesList(?int $id = null): array|int|string
     {
         $Countries = TableRegistry::getTableLocator()->get('YabCmsFf.Countries');
         $countries = $Countries
@@ -439,9 +439,9 @@ class YabCmsFfHelper extends Helper
      *
      * @param string $locale
      * @param int|null $id
-     * @return array|int
+     * @return array|int|string
      */
-    public function countriesListByLocale(string $locale, ?int $id = null): array|int
+    public function countriesListByLocale(string $locale, ?int $id = null): array|int|string
     {
         $Countries = TableRegistry::getTableLocator()->get('YabCmsFf.Countries');
         $countries = $Countries
@@ -463,9 +463,9 @@ class YabCmsFfHelper extends Helper
      * Registration types method
      *
      * @param int|null $key
-     * @return array|int
+     * @return array|int|string
      */
-    public function registrationTypes(?int $key = null): array|int
+    public function registrationTypes(?int $key = null): array|int|string
     {
         $RegistrationTypes = TableRegistry::getTableLocator()->get('YabCmsFf.RegistrationTypes');
         $registrationTypes = $RegistrationTypes

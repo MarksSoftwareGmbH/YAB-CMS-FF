@@ -87,69 +87,24 @@ class AppController extends BaseController
             // Load all Components
             $this->_dispatchAfterInitialize();
 
-            /**
-             * Add a component to the controller's registry.
-             *
-             * This method will also set the component to a property.
-             * For example:
-             *
-             * ```
-             * $this->loadComponent('Acl.Acl');
-             * ```
-             *
-             * Will result in a `Toolbar` property being set.
-             *
-             * @param string $name The name of the component to load.
-             * @param array $config The config for the component.
-             * @return \Cake\Controller\Component
-             */
-            $this->loadComponent('TinyAuth.Auth', [
-                'loginAction' => [
-                    'plugin' => 'YabCmsFf',
-                    'controller' => 'Users',
-                    'action' => 'login',
-                ],
-                'loginRedirect' => [
-                    'prefix' => 'Admin',
-                    'plugin' => 'YabCmsFf',
-                    'controller' => 'Dashboards',
-                    'action' => 'dashboard',
-                ],
-                'logoutRedirect' => [
-                    'plugin' => 'YabCmsFf',
-                    'controller' => 'Users',
-                    'action' => 'login',
-                ],
-                'authError' => __d('yab_cms_ff', 'You are not authorized to access this location.'),
-                'flash' => [
-                    'element' => 'default',
-                    'params' => ['class' => 'error'],
-                ],
+            // TinyAuth Authentication (public actions via auth_allow.ini)
+            $this->loadComponent('TinyAuth.Authentication', [
                 'allowFilePath' => Plugin::configPath('YabCmsFf'),
                 'autoClearCache' => true,
-                'authenticate' => [
-                    'TinyAuth.Form' => [
-                        'fields' => [
-                            'username' => 'username',
-                            'password' => 'password',
-                        ],
-                        'userModel' => 'YabCmsFf.Users',
-                        // Use finder method in users table
-                        'finder' => 'auth',
-                    ],
-                ],
-                'authorize' => [
-                    'TinyAuth.Tiny' => [
-                        'superAdminRole' => '1', // id of super admin role, which grants access to ALL resources
-                        'superAdmin' => '1', // super admin, which grants access to ALL resources
-                        'pivotTable' => 'roles_users', // Should be used in multi-roles setups
-                        'aclFilePath' => Plugin::configPath('YabCmsFf'), // Possible to locate INI file at given path e.g. Plugin::configPath('Admin'), filePath is also available for shared config
-                        'rolesTable' => 'YabCmsFf.Roles', // name of Configure key holding available roles OR class name of roles table
-                        'usersTable' => 'YabCmsFf.Users', // name of the Users table
-                        'autoClearCache' => true, // Set to true to delete cache automatically in debug mode, keep null for auto-detect
-                    ],
-                ],
             ]);
+
+            // TinyAuth Authorization (roles via auth_acl.ini)
+            $this->loadComponent('TinyAuth.Authorization', [
+                'rolesTable'        => 'YabCmsFf.Roles',
+                'rolesTablePlugin'  => 'YabCmsFf',
+                'usersTable'        => 'YabCmsFf.Users',
+                'roleColumn'        => 'role_id',
+                'multiRole'         => false,
+                'aclFilePath'       => Plugin::configPath('YabCmsFf'),
+                'autoClearCache'    => true,
+            ]);
+
+            $this->loadComponent('TinyAuth.AuthUser');
         }
     }
 

@@ -69,7 +69,10 @@ class RegistrationTypesController extends AppController
      */
     public function viewClasses(): array
     {
-        return [JsonView::class, XmlView::class];
+        return [
+            JsonView::class,
+            XmlView::class,
+        ];
     }
 
     /**

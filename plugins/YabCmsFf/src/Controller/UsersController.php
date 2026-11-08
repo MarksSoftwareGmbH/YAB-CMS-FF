@@ -144,60 +144,43 @@ class UsersController extends AppController
      */
     public function login()
     {
-        if ($this->getRequest()->is('post')) {
-            $event = YabCmsFf::dispatchEvent('Controller.Users.beforeLogin', $this, []);
+        $this->request->allowMethod(['get', 'post']);
+
+        $result = $this->Authentication->getResult();
+        if ($result && $result->isValid()) {
+            $user = $result->getData();
+            $this->getRequest()->getSession()->write('Auth.User', $user->toArray());
+
+            $event = YabCmsFf::dispatchEvent('Controller.Users.onLoginSuccess', $this, [
+                'User' => $user,
+            ]);
+            if ($event->isStopped()) {
+                $this->getRequest()->getSession()->write('Auth.User.blocked', 1);
+                return $this->redirect(['action' => 'login']);
+            }
+
+            $this->Flash->set(
+                __d('yab_cms_ff', 'You have successfully signed in.'),
+                ['element' => 'default', 'params' => ['class' => 'success']]
+            );
+
+            return $this->redirect([
+                'plugin'     => 'YabCmsFf',
+                'controller' => 'Dashboards',
+                'action'     => 'dashboard',
+            ]);
+        }
+
+        if ($this->request->is('post') && (!$result || !$result->isValid())) {
+            $event = YabCmsFf::dispatchEvent('Controller.Users.onLoginFailure', $this, []);
             if ($event->isStopped()) {
                 return $this->redirect(['action' => 'login']);
             }
 
-            /**
-             * Use the configured authentication adapters, and attempt to identify the user
-             * by credentials contained in $request.
-             *
-             * Triggers `Auth.afterIdentify` event which the authenticate classes can listen
-             * to.
-             *
-             * @return array|false User record data, or false, if the user could not be identified.
-             */
-            $user = $this->Auth->identify();
-            if ($user) {
-                /**
-                 * Set provided user info to storage as logged in user.
-                 *
-                 * The storage class is configured using `storage` config key or passing
-                 * instance to AuthComponent::storage().
-                 *
-                 * @param array|\ArrayAccess $user User data.
-                 * @return void
-                 * @link https://book.cakephp.org/4/en/controllers/components/authentication.html#identifying-users-and-logging-them-in
-                 */
-                $this->Auth->setUser($user);
-
-                $event = YabCmsFf::dispatchEvent('Controller.Users.onLoginSuccess', $this, ['User' => $user]);
-                if ($event->isStopped()) {
-                    $this->getRequest()->getSession()->write('Auth.User.blocked', 1);
-
-                    return $this->redirect(['action' => 'login']);
-                }
-
-                $this->Flash->set(
-                    __d('yab_cms_ff', 'You have successfully signed in.'),
-                    ['element' => 'default', 'params' => ['class' => 'success']]
-                );
-
-                return $this->redirect($this->Auth->redirectUrl());
-            } else {
-                $event = YabCmsFf::dispatchEvent('Controller.Users.onLoginFailure', $this, []);
-                if ($event->isStopped()) {
-                    return $this->redirect(['action' => 'login']);
-                }
-                $this->Flash->set(
-                    __d('yab_cms_ff', 'You could not login. Please, try again.'),
-                    ['element' => 'default', 'params' => ['class' => 'error']]
-                );
-
-                return $this->redirect(['action' => 'login']);
-            }
+            $this->Flash->set(
+                __d('yab_cms_ff', 'You could not login. Please, try again.'),
+                ['element' => 'default', 'params' => ['class' => 'error']]
+            );
         }
     }
 
@@ -209,12 +192,20 @@ class UsersController extends AppController
     public function logout()
     {
         YabCmsFf::dispatchEvent('Controller.Users.beforeLogout', $this, []);
+
+        $this->Authentication->logout();
+        $this->getRequest()->getSession()->delete('Auth.User');
+
         $this->Flash->set(
             __d('yab_cms_ff', 'You have successfully signed out.'),
             ['element' => 'default', 'params' => ['class' => 'success']]
         );
 
-        return $this->redirect($this->Auth->logout());
+        return $this->redirect([
+            'plugin'     => 'YabCmsFf',
+            'controller' => 'Users',
+            'action'     => 'login',
+        ]);
     }
 
     /**
@@ -393,8 +384,7 @@ class UsersController extends AppController
      */
     public function profile()
     {
-        $session = $this->getRequest()->getSession();
-        $userId = $session->check('Auth.User.id')? $session->read('Auth.User.id'): null;
+        $userId = $this->AuthUser->id();
         if (!empty($userId)) {
 
             $userAccount = $this->Users

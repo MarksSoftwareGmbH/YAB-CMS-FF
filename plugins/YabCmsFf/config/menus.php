@@ -317,6 +317,19 @@ return [
             'options' => ['escape' => false],
             'position' => 60,
         ],
+        'YabCmsFf.Settings' => [
+            'controller' => 'Settings',
+            'title' => 'Settings',
+            'icon' => 'cog',
+            'link' => [
+                'prefix' => 'Admin',
+                'plugin' => 'YabCmsFf',
+                'controller' => 'Settings',
+                'action' => 'index',
+            ],
+            'options' => ['escape' => false],
+            'position' => 70,
+        ],
         'YabCmsFf.CachesLogsSessions' => [
             'controller' => [
                 'AppCaches',
@@ -365,19 +378,6 @@ return [
                     'options' => ['escape' => false],
                     'position' => 3,
                 ],
-            ],
-            'options' => ['escape' => false],
-            'position' => 70,
-        ],
-        'YabCmsFf.Settings' => [
-            'controller' => 'Settings',
-            'title' => 'Settings',
-            'icon' => 'cog',
-            'link' => [
-                'prefix' => 'Admin',
-                'plugin' => 'YabCmsFf',
-                'controller' => 'Settings',
-                'action' => 'index',
             ],
             'options' => ['escape' => false],
             'position' => 80,

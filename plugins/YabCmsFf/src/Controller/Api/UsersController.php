@@ -92,7 +92,10 @@ class UsersController extends AppController
      */
     public function viewClasses(): array
     {
-        return [JsonView::class, XmlView::class];
+        return [
+            JsonView::class,
+            XmlView::class,
+        ];
     }
 
     /**
@@ -103,7 +106,7 @@ class UsersController extends AppController
     public function token()
     {
         $result = $this->Authentication->getResult();
-        if ($result->isValid()) {
+        if ($result && $result->isValid()) {
             $user = $result->getData();
             $expires = time() + 10800;
             $payload = [
@@ -121,12 +124,15 @@ class UsersController extends AppController
                     'expires' => $expires,
                 ],
             ];
-        } else {
-            $this->response = $this->response->withStatus(401);
-            $json = [];
+
+            $this->set($json);
+            $this->viewBuilder()->setOption('serialize', ['success', 'data']);
+            return;
         }
 
-        $this->set(compact('json'));
+        $this->response = $this->response->withStatus(401);
+        $this->set(['success' => false, 'data' => ['message' => 'Invalid credentials']]);
+        $this->viewBuilder()->setOption('serialize', ['success', 'data']);
     }
 
     /**

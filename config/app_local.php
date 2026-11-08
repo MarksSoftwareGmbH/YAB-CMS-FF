@@ -20,7 +20,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
+    'debug' => filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN),
 
     /*
      * Security and encryption configuration
@@ -100,6 +100,25 @@ return [
                 'PRAGMA busy_timeout = 5000;',
             ],
         ],
+    ],
+
+    /*
+     * Error configuration.
+     *
+     * See app.php for more configuration options.
+     */
+    'Error' => [
+        'errorLevel' => E_ALL,
+        'exceptionRenderer' => \YabCmsFf\Error\ApiExceptionRenderer::class,
+        'skipLog' => [
+            \Authentication\Authenticator\UnauthenticatedException::class,
+            \Authorization\Exception\ForbiddenException::class,
+            \Cake\Http\Exception\NotFoundException::class,
+        ],
+        'log' => true,
+        'trace' => true,
+        'ignoredDeprecationPaths' => [],
+        'traceFormat' => null,
     ],
 
     /*

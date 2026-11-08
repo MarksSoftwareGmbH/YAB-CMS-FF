@@ -281,22 +281,20 @@ class UsersTable extends Table
      */
     public function findAuth(SelectQuery $query, array $options)
     {
+        $query->contain(['Roles']);
+
         if (array_key_exists('options', $options)) {
             $options = $options['options'];
         }
         
         if (!empty($options['username'])) {
-            $query
-                ->where(['Users.username' => $options['username']])
-                ->contain(['Roles']);
+            $query->where(['Users.username' => $options['username']]);
         }
         if (!empty($options['username']) && !empty($options['email'])) {
-            $query
-                ->where([
+            $query->where([
                     'Users.username' => $options['username'],
                     'Users.email' => $options['email'],
-                ])
-                ->contain(['Roles']);
+                ]);
         }
 
         return $query;

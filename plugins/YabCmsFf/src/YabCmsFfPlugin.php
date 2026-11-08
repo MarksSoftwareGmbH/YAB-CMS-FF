@@ -31,20 +31,29 @@ use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
 use Authentication\Identifier\PasswordIdentifier;
 use Authentication\Middleware\AuthenticationMiddleware;
-use Cake\Http\MiddlewareQueue;
+use Authorization\AuthorizationService;
+use Authorization\AuthorizationServiceInterface;
+use Authorization\AuthorizationServiceProviderInterface;
+use Authorization\Middleware\AuthorizationMiddleware;
+use Authorization\Policy\MapResolver;
 use Cake\Console\CommandCollection;
 use Cake\Core\BasePlugin;
 use Cake\Core\ContainerInterface;
+use Cake\Core\Plugin;
 use Cake\Core\PluginApplicationInterface;
+use Cake\Http\ServerRequest;
+use Cake\Http\MiddlewareQueue;
+use Cake\Routing\Router;
 use Cake\Routing\RouteBuilder;
 use Cake\Utility\Security;
 use Psr\Http\Message\ServerRequestInterface;
+use TinyAuth\Policy\RequestPolicy;
 use YabCmsFf\Command\YabCmsFfCommand;
 
 /**
  * Plugin for YabCmsFf
  */
-class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProviderInterface
+class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProviderInterface, AuthorizationServiceProviderInterface
 {
     /**
      * Load all the plugin configuration and bootstrap logic.
@@ -86,10 +95,12 @@ class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProvider
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
-        // Add middleware here.
         $middlewareQueue = parent::middleware($middlewareQueue);
 
         $middlewareQueue->add(new AuthenticationMiddleware($this));
+        $middlewareQueue->add(new AuthorizationMiddleware($this, [
+            'requireAuthorizationCheck' => false,
+        ]));
 
         return $middlewareQueue;
     }
@@ -137,34 +148,88 @@ class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProvider
             PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
         ];
 
-        $service->loadAuthenticator('Authentication.Jwt', [
-            'secretKey'     => Security::getSalt(),
-            'queryParam'    => 'token',
-            'header'        => 'Authorization',
-            'tokenPrefix'   => 'Bearer',
-            'returnPayload' => false,
-            'identifier'    => [
-                'className' => 'Authentication.JwtSubject',
-                'resolver'  => [
-                    'className' => 'Authentication.Orm',
-                    'userModel' => 'YabCmsFf.Users',
-                ],
-            ],
-        ]);
+        $prefix = $request->getParam('prefix');
+        if ($prefix === 'Api' || $request->is(['json', 'xml'])) {
+            $service->setConfig([
+                'unauthenticatedRedirect' => null,
+                'queryParam' => null,
+            ]);
 
-        $service->loadAuthenticator('Authentication.Form', [
-            'fields'     => $fields,
-            'loginUrl'   => '/api/oauth/token',
-            'identifier' => [
-                'className' => 'Authentication.Password',
-                'fields'    => $fields,
-                'resolver'  => [
-                    'className' => 'Authentication.Orm',
-                    'userModel' => 'YabCmsFf.Users',
+            $service->loadAuthenticator('Authentication.Jwt', [
+                'secretKey'     => Security::getSalt(),
+                'queryParam'    => 'token',
+                'header'        => 'Authorization',
+                'tokenPrefix'   => 'Bearer',
+                'returnPayload' => false,
+                'identifier'    => [
+                    'className' => 'Authentication.JwtSubject',
+                    'resolver'  => [
+                        'className' => 'Authentication.Orm',
+                        'userModel' => 'YabCmsFf.Users',
+                        'finder'    => 'auth',
+                    ],
                 ],
-            ],
-        ]);
+            ]);
+
+            $service->loadAuthenticator('Authentication.Form', [
+                'fields'     => $fields,
+                'loginUrl'   => '/api/oauth/token',
+                'identifier' => [
+                    'className' => 'Authentication.Password',
+                    'fields'    => $fields,
+                    'resolver'  => [
+                        'className' => 'Authentication.Orm',
+                        'userModel' => 'YabCmsFf.Users',
+                        'finder'    => 'auth',
+                    ],
+                ],
+            ]);
+
+            return $service;
+        } else {
+            $loginUrl = ($prefix === 'Admin')
+                ? Router::url(['plugin' => 'YabCmsFf', 'prefix' => 'Admin', 'controller' => 'Users', 'action' => 'login'])
+                : Router::url(['plugin' => 'YabCmsFf', 'controller' => 'Users', 'action' => 'login']);
+            $service->setConfig([
+                'unauthenticatedRedirect' => $loginUrl,
+                'queryParam' => 'redirect',
+            ]);
+
+            $service->loadAuthenticator('Authentication.Session', [
+                'sessionKey' => 'Auth.User',
+            ]);
+
+            $service->loadAuthenticator('Authentication.Form', [
+                'fields'     => $fields,
+                'loginUrl'   => $loginUrl,
+                'identifier' => [
+                    'className' => 'Authentication.Password',
+                    'fields'    => $fields,
+                    'resolver'  => [
+                        'className' => 'Authentication.Orm',
+                        'userModel' => 'YabCmsFf.Users',
+                        'finder'    => 'auth',
+                    ],
+                ],
+            ]);
+        }
 
         return $service;
+    }
+
+    public function getAuthorizationService(ServerRequestInterface $request): AuthorizationServiceInterface
+    {
+        $mapResolver = new MapResolver();
+        $mapResolver->map(ServerRequest::class, new RequestPolicy([
+            'rolesTable'        => 'YabCmsFf.Roles',
+            'rolesTablePlugin'  => 'YabCmsFf',
+            'usersTable'        => 'YabCmsFf.Users',
+            'roleColumn'        => 'role_id',
+            'multiRole'         => false,
+            'aclFilePath'       => Plugin::configPath('YabCmsFf'),
+            'autoClearCache'    => true,
+        ]));
+
+        return new AuthorizationService($mapResolver);
     }
 }
