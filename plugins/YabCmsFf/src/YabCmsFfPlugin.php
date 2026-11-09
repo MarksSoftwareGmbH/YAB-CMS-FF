@@ -187,11 +187,8 @@ class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProvider
 
             return $service;
         } else {
-            $loginUrl = ($prefix === 'Admin')
-                ? Router::url(['plugin' => 'YabCmsFf', 'prefix' => 'Admin', 'controller' => 'Users', 'action' => 'login'])
-                : Router::url(['plugin' => 'YabCmsFf', 'controller' => 'Users', 'action' => 'login']);
             $service->setConfig([
-                'unauthenticatedRedirect' => $loginUrl,
+                'unauthenticatedRedirect' => '/',
                 'queryParam' => 'redirect',
             ]);
 
@@ -201,7 +198,9 @@ class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProvider
 
             $service->loadAuthenticator('Authentication.Form', [
                 'fields'     => $fields,
-                'loginUrl'   => $loginUrl,
+                'loginUrl'   => ($prefix === 'Admin')
+                    ? Router::url(['plugin' => 'YabCmsFf', 'prefix' => 'Admin', 'controller' => 'Users', 'action' => 'login'])
+                    : Router::url(['plugin' => 'YabCmsFf', 'controller' => 'Users', 'action' => 'login']);,
                 'identifier' => [
                     'className' => 'Authentication.Password',
                     'fields'    => $fields,

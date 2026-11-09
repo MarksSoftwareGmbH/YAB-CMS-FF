@@ -109,7 +109,7 @@ return [
      */
     'Error' => [
         'errorLevel' => E_ALL,
-        'exceptionRenderer' => \YabCmsFf\Error\ApiExceptionRenderer::class,
+        'exceptionRenderer' => \YabCmsFf\Error\ExceptionRenderer::class,
         'skipLog' => [
             \Authentication\Authenticator\UnauthenticatedException::class,
             \Authorization\Exception\ForbiddenException::class,

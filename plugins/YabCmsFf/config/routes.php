@@ -1075,8 +1075,8 @@ $routes->plugin('YabCmsFf', ['path' => '/'], function (RouteBuilder $routes) {
             ->setPatterns(['id' => '\d+']);
 
         /*
-            * Registrations Controller
-            */
+        * Registrations Controller
+        */
         $builder
             ->connect('/registrations', ['controller' => 'Registrations', 'action' => 'index', '_ext' => 'json', '_method' => 'GET']);
         $builder

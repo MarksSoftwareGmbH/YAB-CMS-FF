@@ -103,6 +103,25 @@ return [
     ],
 
     /*
+     * Error configuration.
+     *
+     * See app.php for more configuration options.
+     */
+    'Error' => [
+        'errorLevel' => E_ALL,
+        'exceptionRenderer' => \YabCmsFf\Error\ExceptionRenderer::class,
+        'skipLog' => [
+            \Authentication\Authenticator\UnauthenticatedException::class,
+            \Authorization\Exception\ForbiddenException::class,
+            \Cake\Http\Exception\NotFoundException::class,
+        ],
+        'log' => true,
+        'trace' => true,
+        'ignoredDeprecationPaths' => [],
+        'traceFormat' => null,
+    ],
+
+    /*
      * Email configuration.
      *
      * Host and credential configuration in case you are using SmtpTransport

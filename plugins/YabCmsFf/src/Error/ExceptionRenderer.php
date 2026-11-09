@@ -31,8 +31,9 @@ use Authorization\Exception\ForbiddenException;
 use Cake\Core\Configure;
 use Cake\Error\Renderer\WebExceptionRenderer;
 use Cake\Http\Response;
+use Cake\Routing\Router;
 
-class ApiExceptionRenderer extends WebExceptionRenderer
+class ExceptionRenderer extends WebExceptionRenderer
 {
     public function render(): Response
     {
@@ -43,10 +44,19 @@ class ApiExceptionRenderer extends WebExceptionRenderer
             || $request->is('json')
             || str_starts_with($request->getPath(), '/api/');
 
-        if (!$isApi) {
-            return parent::render();
+        if ($isApi) {
+            return $this->renderApi($exception);
         }
 
+        if ($exception instanceof ForbiddenException || $exception instanceof UnauthenticatedException) {
+            return $this->renderWebAuthError($exception);
+        }
+
+        return parent::render();
+    }
+
+    protected function renderApi(\Throwable $exception): Response
+    {
         $status = 500;
         $message = 'An error occurred';
 
@@ -77,6 +87,34 @@ class ApiExceptionRenderer extends WebExceptionRenderer
             ->withStatus($status)
             ->withType('application/json')
             ->withStringBody(json_encode($body, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+
+        $this->controller->setResponse($response);
+
+        return $response;
+    }
+
+    protected function renderWebAuthError(\Throwable $exception): Response
+    {
+        $request = $this->controller->getRequest();
+        $session = $request->getSession();
+
+        $message = $exception instanceof ForbiddenException
+            ? __d('yab_cms_ff', 'You are not authorized to access this location.')
+            : __d('yab_cms_ff', 'You need to be logged in to access this location.');
+
+        $session->write('Flash.flash', [[
+            'message' => $message,
+            'key'     => 'flash',
+            'element' => 'flash/default',
+            'params'  => ['class' => 'error'],
+        ]]);
+
+        $referer = $request->getEnv('HTTP_REFERER');
+        $redirectUrl = $referer ?: Router::url('/');
+
+        $response = $this->controller->getResponse()
+            ->withStatus(302)
+            ->withHeader('Location', $redirectUrl);
 
         $this->controller->setResponse($response);
 
