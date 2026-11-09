@@ -200,7 +200,7 @@ class YabCmsFfPlugin extends BasePlugin implements AuthenticationServiceProvider
                 'fields'     => $fields,
                 'loginUrl'   => ($prefix === 'Admin')
                     ? Router::url(['plugin' => 'YabCmsFf', 'prefix' => 'Admin', 'controller' => 'Users', 'action' => 'login'])
-                    : Router::url(['plugin' => 'YabCmsFf', 'controller' => 'Users', 'action' => 'login']);,
+                    : Router::url(['plugin' => 'YabCmsFf', 'controller' => 'Users', 'action' => 'login']),
                 'identifier' => [
                     'className' => 'Authentication.Password',
                     'fields'    => $fields,
